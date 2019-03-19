@@ -10,7 +10,6 @@ INDEX VERSION 1.130+C:\Study\Algorithm\.metadata\.plugins\org.eclipse.jdt.core
 3620471903.index
 848469205.index
 2709225165.index
-2975814660.index
 559129880.index
 628019425.index
 3666609613.index

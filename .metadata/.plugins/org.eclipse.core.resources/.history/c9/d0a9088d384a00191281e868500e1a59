@@ -1,0 +1,17 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		int n = 10;
+		int i = 1;
+		int sum = 0;
+		
+		sum = (i + n) * 5;
+		
+		
+		System.out.println(sum);
+	}
+	
+
+}

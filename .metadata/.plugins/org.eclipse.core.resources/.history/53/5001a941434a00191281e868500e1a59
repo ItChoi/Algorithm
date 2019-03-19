@@ -1,0 +1,24 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+	
+		spira(4);
+		
+	}
+	
+	static void spira(int n) {
+		
+		for (int i = 1; i <= n; i++) {
+			for (int j = n; j >= i; j--) {
+				System.out.print(" ");
+			}
+			for (int k = 1; k <= n - 1; k++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+}
