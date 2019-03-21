@@ -1,0 +1,25 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		int[] a = {1, 2, 3 , 4, 5};
+		int temp;
+		
+		int leng = a.length;
+		
+		for (int i = 0; i < leng / 2; i++) {
+			
+			temp = a[i];
+			a[i] = a[leng - i - 1];
+			a[leng - i - 1] = a[i];
+			
+		}
+		
+		for (int val : a) {
+			System.out.println("val: " + val);
+		}
+		
+	}
+
+}

@@ -1,0 +1,34 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		int[] a = {1, 2, 3, 4, 5};
+		int[] b = new int[a.length];
+		
+		rcopy(a, b);
+		
+		
+	}
+
+	public static void rcopy(int[] a, int[] b) {
+		
+		int temp;
+		int mid;
+		
+		int leng = a.length;
+		
+		for (int i = 0; i < (leng % 2 == 0 ? leng / 2 : leng / 2 + 1); i++) {
+			
+			temp = a[i];
+			b[i] = a[a.length];
+		}
+		
+		for (int aaa : b) {
+			System.out.println("aaaa: " + aaa);
+		}
+	
+		
+	}
+	
+}

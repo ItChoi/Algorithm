@@ -1,0 +1,20 @@
+package test;
+
+public class TestAlgorithm {
+	static class Test {
+		String name;
+		String key;
+		String eye;
+		
+		Test() {
+			
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+}
+
+

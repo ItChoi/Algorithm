@@ -1,0 +1,24 @@
+package test;
+
+public class TestAlgorithm {
+
+	// 각 달의 일수 (평년/윤년)
+	static int[][] mdays = {
+			{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+			{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+	};
+	
+	// 서기 year년은 윤년인가(윤년: 1 / 평년: 0)
+	static int isLeap(int year) {
+		return (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) ? 1 : 0;
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		
+	}
+
+		
+	
+}

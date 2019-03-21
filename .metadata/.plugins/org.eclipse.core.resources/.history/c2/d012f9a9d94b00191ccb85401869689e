@@ -1,0 +1,47 @@
+package test;
+
+public class TestAlgorithm {
+	static class Test {
+		String name;
+		int key;
+		double eye;
+		
+		public Test(String name, int key, double eye) {
+			this.name = name;
+			this.key = key;
+			this.eye = eye;
+		}
+	}
+	
+	// 키 평균 값 구하기
+	static double avgHeight(Test[] test) {
+		
+		int sum = 0;
+		
+		for (int i = 0; i < test.length; i++) {
+			sum += test[i].key;
+		}
+		
+		return sum / test.length;
+	}
+	
+	// 시력 분포 구하기
+	static void distVision(Test[] test, int[] dist) {
+		int i = 0;
+		dist[i] = 0;
+		
+		for (int j = 0; j < test.length; j++) {
+			if (test[i].eye >= 0.0 && test[i].eye <= 2.1) {
+				dist[(int)(test[i].eye * 10)]++
+				
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+}
+
+
