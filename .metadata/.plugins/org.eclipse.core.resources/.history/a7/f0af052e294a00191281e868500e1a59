@@ -1,8 +1,0 @@
-# 01장
-
-### 01-1 알고리즘이란?
-	
-	ex)
-	Scanner stdIn = new Scanner(System.in);
-	- stdIn은 키보드와 연결된 표준 입력 스트림(System.in)에서 문자나 숫자를 꺼내는 장치 역할을 한다.
-	

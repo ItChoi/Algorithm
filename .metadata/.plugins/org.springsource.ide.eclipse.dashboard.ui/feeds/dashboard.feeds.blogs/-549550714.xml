@@ -5,7 +5,32 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-03-21T07:57:43Z</updated>
+  <updated>2019-03-21T15:20:00Z</updated>
+  <entry>
+    <title>Spring Initializr updates</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/03/21/spring-initializr-updates" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Damien Vitrac</name>
+    </author>
+    <id>tag:spring.io,2019-03-18:3606</id>
+    <updated>2019-03-21T15:20:00Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I&amp;rsquo;m happy to announce that &lt;strong&gt;Spring Initializr&lt;/strong&gt; has been updated and is now available on &lt;a href="https://start.spring.io"&gt;start.spring.io&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#ui-changes-listening-to-your-feedback" class="anchor" name="ui-changes-listening-to-your-feedback"&gt;&lt;/a&gt;UI changes - listening to your feedback&lt;/h2&gt;
+&lt;p&gt;Following the last revision, the &lt;a href="https://spring.io/blog/2019/03/05/spring-initializr-new-ui"&gt;main feedback&lt;/a&gt; we received was about the missing list of dependencies. Some community members seemed to be looking at this list for information purposes (not necessarily using the website to generate a new app), while others would just like to see what&amp;rsquo;s available.&lt;/p&gt;
+&lt;img src="https://static.spring.io/blog/damienvitrac/20190318/initializr.png"&gt;
+&lt;p&gt;While &lt;a href="https://start.spring.io"&gt;start.spring.io&lt;/a&gt; seems like a very simple service, generating applications with a simple HTML form, there&amp;rsquo;s much more to it - this round of feedback taught us that we need to double-down on product discovery and user centered design.&lt;/p&gt;
+&lt;p&gt;We brought the &lt;strong&gt;dependency list&lt;/strong&gt; back to the page but in a way that will help us to better understand how the website is being used and how to improve it. We hope that the community will find in that list what was missing in the previous version.&lt;/p&gt;
+&lt;p&gt;Of course, we fixed a few HTML/CSS issues and improved version incompatibility messages to help you select the appropriate Spring Boot version.&lt;/p&gt;&lt;h2&gt;&lt;a href="#architecture" class="anchor" name="architecture"&gt;&lt;/a&gt;Architecture&lt;/h2&gt;
+&lt;p&gt;This application is still made of two parts:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The &lt;a href="https://github.com/spring-io/initializr"&gt;Initializr library&lt;/a&gt; that contains the project generation logic and the Web API&lt;/li&gt;
+  &lt;li&gt;The &lt;a href="https://github.com/spring-io/start.spring.io"&gt;start.spring.io&lt;/a&gt; service instance, with the specifics behind the instance running in production&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because the &lt;strong&gt;Web UI&lt;/strong&gt; changes will be more and more involved, we&amp;rsquo;ve decided to move all Web UI-specific code to the start.spring.io project. This will hopefully clarify things. If you&amp;rsquo;re interested in running a service very similar to start.spring.io, you should now fork the start.spring.io project. If you&amp;rsquo;d like to write your own Web UI or work on core changes, then using the &lt;strong&gt;Initializr library&lt;/strong&gt; is a good starting point.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-rsquo-s-next" class="anchor" name="what-rsquo-s-next"&gt;&lt;/a&gt;What&amp;rsquo;s next?&lt;/h2&gt;
+&lt;p&gt;Over the next couple of weeks we will be conducting &lt;strong&gt;user interviews&lt;/strong&gt; to gain better insights on how to improve the website experience and a deeper understanding of the &lt;strong&gt;&amp;ldquo;whys&amp;rdquo;&lt;/strong&gt; behind how users are interacting with the service. &lt;/p&gt;
+&lt;p&gt;As we cannot interview all of our users (we appreciate you all!), we invite you to leave your input and thoughts with our optional &lt;a href="https://docs.google.com/forms/d/1CsQaJAYFntD8FkBz-2zjtew8maj2JWxV2Fv2ugea_VA/viewform?ts=5c8f9ee0&amp;edit_requested=true"&gt;anonymous survey&lt;/a&gt;. This will allow us to build a larger picture of how people are using the service and the expectations and wants from the community. &lt;/p&gt;
+&lt;p&gt;Thank you for your feedback and support as we continue on this journey.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>A Bootiful Podcast: CQRS with AxonIQ's Steven van Beelen and Pivotal's Ben Wilcock</title>
     <link rel="alternate" href="https://spring.io/blog/2019/03/21/a-bootiful-podcast-cqrs-with-axoniq-s-steven-van-beelen-and-pivotal-s-ben-wilcock" />
@@ -1400,25 +1425,5 @@ public FilterRegistrationBean&amp;lt;ForwardedHeaderFilter&amp;gt; forwardedHead
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Initializr: new UI</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/03/05/spring-initializr-new-ui" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Damien Vitrac</name>
-    </author>
-    <id>tag:spring.io,2019-03-04:3591</id>
-    <updated>2019-03-05T09:45:42Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I¡¯m happy to announce that &lt;strong&gt;Spring Initializr&lt;/strong&gt; has been updated and is now available on &lt;a href="https://start.spring.io"&gt;start.spring.io&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#a-short-history-of-spring-initializr" class="anchor" name="a-short-history-of-spring-initializr"&gt;&lt;/a&gt;A short history of Spring Initializr&lt;/h2&gt;
-&lt;p&gt;The project started out as a minimal HTML form, letting you generate a Spring Boot application with a few options. It&amp;rsquo;s been well received by the Spring community, so the team added new ways to interact with it, through the command-line or your favorite IDE.&lt;/p&gt;
-&lt;p&gt;After a while, we decided to work on a first revision of the UI. We simplified the form, leaving the essential parts front and center and pushing others in a section hidden by default. Given the number of dependencies, we created a search box to look for available starters.&lt;/p&gt;
-&lt;p&gt;The project is now a popular service and even a library that you can use and extend for your own needs. These days, the Web UI is not even the most popular client, but we&amp;rsquo;re still committed to work and improve the service.&lt;/p&gt;&lt;h2&gt;&lt;a href="#rationale-behind-the-new-web-design" class="anchor" name="rationale-behind-the-new-web-design"&gt;&lt;/a&gt;Rationale behind the new Web design&lt;/h2&gt;
-&lt;p&gt;Let&amp;rsquo;s take a look at the updated design.&lt;/p&gt;
-&lt;img src="https://i.imgur.com/SBl70J1.png" /&gt;
-&lt;p&gt;The Spring Initializr team has been tempted many times to add new features and options, or solve new problems. Should we generate complex builds to work around projects&amp;rsquo; limitations? Should we add more opinions around how to build, distribute or run your Spring Boot application in production? Should we turn it in a full-blown Spring Boot starter marketplace?&lt;/p&gt;
-&lt;p&gt;With this new revision, the design in general had a (much needed) refresh and we chose to not display anymore the full list of available dependencies. One could see that list as a way to work around poor project metadata (&lt;a href="https://github.com/spring-io/start.spring.io/commit/359770b9e1e2e92be623788f3bdaecc515af84ee"&gt;we should&lt;/a&gt; &lt;a href="https://github.com/spring-io/start.spring.io/commit/ed082500830091e415cba6b2a99961037de97ed9"&gt;improve those!&lt;/a&gt;) or a lack of discovery mechanism on the spring.io website (&lt;a href="https://github.com/spring-io/sagan/issues/893"&gt;we should fix that!&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;While we recognize its current limitations, we feel that &amp;ldquo;quickly bootstrapping a Spring Boot application that just runs&amp;rdquo; is still the core promise of our service and developers should know what type of application they want to build when creating a project.&lt;br/&gt;Still, we think that the Spring Boot team could do more about helping developers to grow and update their applications, so we&amp;rsquo;re working on expanding what Spring Initializr can do (see our&lt;br/&gt;&lt;a href="https://spring.io/blog/2019/02/20/what-s-new-with-spring-initializr"&gt;previous blog post&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;This new revision is a new step towards more changes on &lt;a href="https://start.spring.io"&gt;start.spring.io&lt;/a&gt;, so stay tuned!&lt;/p&gt;</content>
   </entry>
 </feed>
