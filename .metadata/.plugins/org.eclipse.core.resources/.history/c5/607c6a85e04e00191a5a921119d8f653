@@ -1,0 +1,30 @@
+package test;
+
+public class TestAlgorithm {
+	
+	public static void main(String[] args) {
+		int[] a = {1, 9, 2, 9, 4, 6, 7, 9};
+		int length = a.length;
+		int key = 9;
+		int idx[] = null;
+		
+		for(int aa : searchIdx(a, length, key, idx)) {
+			System.out.println("aaaa: " + aa);
+		}
+		
+	}	
+	
+	static int[] searchIdx(int[] a, int n, int key, int[] idx) {
+		
+		int index = 0;
+		for (int i = 0; i < n; i++) {
+			if (a[i] == key) {
+				idx[index++] = a[i];
+			}
+		}
+		
+		return idx;
+	}
+}
+
+

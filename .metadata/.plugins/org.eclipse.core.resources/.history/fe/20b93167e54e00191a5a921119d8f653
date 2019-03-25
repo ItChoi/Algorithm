@@ -1,0 +1,31 @@
+package test;
+
+public class TestAlgorithm {
+	
+	public static void main(String[] args) {
+
+		int[] a = {1, 2, 3, 5, 6, 8, 9};
+		int key = 2;
+		
+		int length = a.length;
+		int start = 0;
+		int last = length;
+		int middle = (start + last) / 2;
+	
+		
+		System.out.print("  |");
+		for (int i = 0; i <= 6; i++) {
+			System.out.printf("%2d", i);
+		}
+		System.out.println("\n--+---------------");
+		System.out.println(middle);
+		
+		while(true) {
+			System.out.println("  |");
+		}
+		
+	}
+	
+}
+
+

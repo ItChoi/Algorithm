@@ -3,34 +3,49 @@ package test;
 public class TestAlgorithm {
 	
 	public static void main(String[] args) {
-		int[] a = {6, 4, 3, 2, 1, 9, 8};
-		int key = 3;
+		int[] a = {1, 3, 5, 7, 7, 7, 7, 8, 8, 9, 9};
+		int key = 7;
 		
-		System.out.print("   |");
-		for (int i = 0; i < a.length; i++) {
-			System.out.printf("%2d", i);
-		}
-		System.out.println("\n---+-----------------");
+		int result = binSearchX(a, a.length, key);
 		
-		for (int i = 0; i < a.length; i++) {
-			System.out.print("   |");
+		System.out.println("result: " + result);
+		
+	}
+	
+	static int binSearchX(int[] a, int n, int key) {
+		
+		int start = 0;
+		int last = n;
+		
+		int index = 0;
+		
+		int result = 0;
+		
+		while(true) {
+			int middle = (start + last) / 2;
 			
-			for (int j = 0; j < a.length; j++) {
-				if (i == j) {
-					System.out.print(" ");
-					for (int k = 0; k < j; k++) {
-						System.out.print("  ");
+			if (a[middle] == key) {
+				result = middle;
+				
+				for (int i = 0; i < middle; i++) {
+					System.out.println("ai: " + a[i]);
+					if (a[i] == key) {
+						result = i;
+						break;
 					}
-					System.out.println("*");
-					
 				}
+				
+			} else if (a[middle] > key) {
+				start = middle + 1;
+			} else {
+				last = middle - 1;
 			}
 			
-			System.out.print(i + "  | ");
+			return result;
 		}
 		
-		
-	}	
+	}
+	
 }
 
 
