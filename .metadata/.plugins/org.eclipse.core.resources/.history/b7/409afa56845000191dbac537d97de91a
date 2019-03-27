@@ -1,0 +1,40 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		
+	}
+	
+	
+	class Queue {
+		private int max;		// 큐 용량
+		private int num;		// 현재 데이터 수
+		private int[] que;		// 큐 본체
+		
+		public Queue(int capacity) {
+			num = 0;
+			max = capacity;
+			que = new int[max];
+		}
+		
+		
+		public void enqueue(int n) {
+			if (max <= num) {
+				System.out.println("데이터 꽉참요");
+				return;
+			} else {
+				que[num++] = n;
+			}
+		}
+		
+		public int dequeue() {
+			
+			
+		}
+		
+		
+		
+	}
+	
+}

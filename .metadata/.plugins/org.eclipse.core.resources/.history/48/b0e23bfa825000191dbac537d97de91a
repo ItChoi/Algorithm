@@ -1,0 +1,9 @@
+package test;
+
+public class TestAlgorithm {
+	private int max;
+
+	public static void main(String[] args) {
+	}
+	
+}

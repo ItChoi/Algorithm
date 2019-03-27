@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+<fullyQualifiedTypeName name="java.lang.OutOfMemoryError"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="test.IntStack"/>
+<fullyQualifiedTypeName name="test.IntStack.OverflowIntStackException"/>
+<fullyQualifiedTypeName name="java.util.EmptyStackException"/>
+<fullyQualifiedTypeName name="test.IntStack.EmptyIntStackException"/>
 </qualifiedTypeNameHistroy>
