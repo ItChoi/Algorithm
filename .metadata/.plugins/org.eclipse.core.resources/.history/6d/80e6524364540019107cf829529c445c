@@ -1,0 +1,18 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		System.out.println("ÆÑÅä¸®¾ó: " + factorial(100));
+	}
+	
+	public static int factorial(int n) {
+		int sum = 0;
+		for (int i = 1; i <= n; i++) {
+			sum += i;
+		}
+		
+		return sum;
+	}
+	
+}

@@ -1,0 +1,29 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		int x = 22;
+		int y = 8;
+		System.out.println(gcd(x, y));
+	}
+	
+	public static int gcd(int x, int y) {
+		
+		/**
+		 * 22 8
+		 * 8  6
+		 * 6  2
+		 * 2  0
+		 */
+		while (y != 0) {
+			System.out.println("x: " + x);
+			System.out.println("y: " + y);
+			x = y;
+			y = x % y;
+		}
+		
+		return x;
+	}
+	
+}
