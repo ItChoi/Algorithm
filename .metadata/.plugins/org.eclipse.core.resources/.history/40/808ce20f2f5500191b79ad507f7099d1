@@ -1,0 +1,14 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		
+		int x = 4;
+		
+		recur(x);
+		
+	}
+	
+	
+}

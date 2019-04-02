@@ -1,9 +1,0 @@
-package test;
-
-public class TestAlgorithm {
-
-	public static void main(String[] args) {
-	}
-
-	
-}

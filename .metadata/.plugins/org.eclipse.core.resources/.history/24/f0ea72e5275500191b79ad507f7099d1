@@ -1,0 +1,23 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		
+		int x = 4;
+		
+		System.out.println(recur(x));
+		
+	}
+	
+	static void recur(int n) {
+		if (n > 0) {
+			recur(n - 1);
+			System.out.println("n: " + n);
+			recur(n - 2);
+		}
+	}
+	
+	
+	
+}

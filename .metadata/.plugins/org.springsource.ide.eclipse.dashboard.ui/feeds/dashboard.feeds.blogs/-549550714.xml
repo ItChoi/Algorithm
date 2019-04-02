@@ -5,7 +5,37 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-04-01T08:41:09Z</updated>
+  <updated>2019-04-02T06:41:01Z</updated>
+  <entry>
+    <title>This Week in Spring - April 2nd, 2019</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/04/02/this-week-in-spring-april-2nd-2019" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2019-04-02:3622</id>
+    <updated>2019-04-02T06:41:01Z</updated>
+    <content type="html">&lt;p&gt;Hi Spring fans and welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! This week I&amp;rsquo;m in New York City for the Kafka Summit where I&amp;rsquo;ll be joining the &lt;a href="https://twitter.com/tlberglund"&gt;excellent Tim Berglund&lt;/a&gt;, head of developer experience at Confluent, and &lt;a href="https://twitter.com/WattersJames"&gt;James Watters&lt;/a&gt;, SVP at Pivotal, to talk about why Pivotal and Confluent are better together. Join us! Then, next week it&amp;rsquo;s off to South Africa (for the SpringOne Tour shows in &lt;a href="https://springonetour.io/2019/cape-town"&gt;Capetown&lt;/a&gt; and &lt;a href="https://springonetour.io/2019/johannesburg"&gt;Johannesburg&lt;/a&gt; and then it&amp;rsquo;s off to &lt;a href="https://conference.mscc.mu/speaker/f2617bc2-d35e-4fd7-9cea-02060f3e1608"&gt;to Mauritius for the DevConf&lt;/a&gt;. If you&amp;rsquo;re in any of those places, &lt;a href="https://twitter.com/Starbuxman"&gt;don&amp;rsquo;t hesitate to say hi!&lt;/a&gt;.&lt;/p&gt;
+&lt;div&gt;&#xD;
+&lt;img src="https://pbs.twimg.com/media/D3F0qgiX0AEz1zD.jpg:large" width  = "600" /&gt;&#xD;
+&lt;div&gt;&lt;em&gt; LTR: Confluent co-founder Jay Kreps, Tim Berglund, me and Pivotal SVP James Watters&lt;/em&gt;&lt;/div&gt;&#xD;
+&lt;/div&gt;
+&lt;p&gt;And without further ado, let&amp;rsquo;s get to it! &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/04/01/spring-framework-5-1-6-5-0-13-and-4-3-23-available-now"&gt;Spring Framework 5.1.6, 5.0.13 and 4.3.23 available now&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/29/spring-tools-4-2-0-released"&gt;Spring Tools 4.2.0 released&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Last week on &lt;a href="https://twitter.com/bootifulpodcast"&gt;&lt;em&gt;A Bootiful Podcast&lt;/em&gt; (@BootifulPodcast)&lt;/a&gt; I talked to &lt;a href="https://spring.io/blog/2019/03/29/josh-mckenty-better-josh-on-data-sovereignty-microservices-cloud-foundry-python-the-cloud-pivotal-and-more"&gt;Josh Mckenty about data sovereignty, microservices, Cloud Foundry, Python, the cloud, Pivotal, and more&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;If you get one blog to read, read this one on the &lt;a href="https://spring.io/blog/2019/03/28/reactor-debugging-experience"&gt;Reactor Debugging Experience&lt;/a&gt;. It&amp;rsquo;s &lt;em&gt;amazing&lt;/em&gt;!&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/27/spring-tool-suite-3-9-8-released"&gt;Spring Tool Suite 3.9.8 released&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Want to know what makes &lt;a href="https://twitter.com/springcentral/status/1112804577659817990"&gt;Pivotal Cloud Foundry the best place to run Spring Boot applications?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://phauer.com/2019/focus-integration-tests-mock-based-tests/"&gt;Focus on Integration Tests Instead of Mock-Based Tests&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;A gentle reminder that you should &lt;a href="https://twitter.com/springframework/status/1112638165351874562"&gt;be upgrading to Spring Framework 5.1x as soon as possible&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://twitter.com/SaraTorrey/status/1111305944909127680"&gt;Sara Torrey diagrammed her notes introducing &lt;/a&gt; Spring Boot and they&amp;rsquo;re really cool!&lt;/li&gt;
+  &lt;li&gt;Check out Pivotal&amp;rsquo;s Ben Hale on &lt;a href="https://twitter.com/r2dbc/status/1111203411020656641"&gt;the state of Reactive Programming in the enterprise, RSocket and R2DBC on the latest OffHeap podcast episode&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Missed this white-hot Spring Tip introducing ways to make Spring Boot lazy &lt;em&gt;and&lt;/em&gt; fast? &lt;a href="https://twitter.com/springcentral/status/1110982329655283713"&gt;Now&amp;rsquo;s the time to watch&lt;/a&gt;! It&amp;rsquo;s not even ten minute&amp;rsquo;s long!&lt;/li&gt;
+  &lt;li&gt;We&amp;rsquo;re conducting a survey that looks at how we can improve the &lt;a href="http://start.Spring.io"&gt;Spring Initializr (start dot Spring dot io)&lt;/a&gt;, a topic near and dear to my heart. &lt;a href="https://docs.google.com/forms/d/e/1FAIpQLScMnjpp_jKMvM5ijru5cCZJYlk6cKDdKaNr54raQV-fI24k5w/viewform?ts=5c8f9ee0"&gt;Please feedback here&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
   <entry>
     <title>Spring Framework 5.1.6, 5.0.13 and 4.3.23 available now</title>
     <link rel="alternate" href="https://spring.io/blog/2019/04/01/spring-framework-5-1-6-5-0-13-and-4-3-23-available-now" />
@@ -14,9 +44,9 @@
       <name>St?phane Nicoll</name>
     </author>
     <id>tag:spring.io,2019-04-01:3621</id>
-    <updated>2019-04-01T08:41:09Z</updated>
+    <updated>2019-04-01T08:41:00Z</updated>
     <content type="html">&lt;p&gt;On behalf of the team and everyone who has contributed, I am pleased to announce that Spring Framework &lt;code&gt;5.1.6.&lt;/code&gt;, &lt;code&gt;5.0.13&lt;/code&gt; and &lt;code&gt;4.3.23&lt;/code&gt; are available from &lt;a href="https://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; as well as Maven Central now.&lt;/p&gt;
-&lt;p&gt;Spring Framework &lt;code&gt;5.1.6&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.1.6.RELEASE"&gt;49 fixes and improvements&lt;/a&gt;. Spring Framework &lt;code&gt;5.0.13&lt;/code&gt; is the last release of the &lt;code&gt;5.0.x&lt;/code&gt; line and includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.0.13.RELEASE"&gt;25 fixes and selected improvements&lt;/a&gt;. At this point, we expect all &lt;code&gt;5.x&lt;/code&gt; users to upgrade to &lt;code&gt;5.1.6&lt;/code&gt;. We&amp;rsquo;ve also released &lt;code&gt;4.3.23&lt;/code&gt; that includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v4.3.23.RELEASE"&gt;20 fixes and selected improvements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Spring Framework &lt;code&gt;5.1.6&lt;/code&gt; includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.1.6.RELEASE"&gt;49 fixes and improvements&lt;/a&gt;. Spring Framework &lt;code&gt;5.0.13&lt;/code&gt; is the last regular release of the &lt;code&gt;5.0.x&lt;/code&gt; line and includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v5.0.13.RELEASE"&gt;25 fixes and selected improvements&lt;/a&gt;. At this point, we expect all &lt;code&gt;5.x&lt;/code&gt; users to upgrade to &lt;code&gt;5.1.6&lt;/code&gt;. We&amp;rsquo;ve also released &lt;code&gt;4.3.23&lt;/code&gt; that includes &lt;a href="https://github.com/spring-projects/spring-framework/releases/tag/v4.3.23.RELEASE"&gt;20 fixes and selected improvements&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;As usual, those maintenance releases will be used for the upcoming Spring Boot &lt;code&gt;1.5.20&lt;/code&gt;, &lt;code&gt;2.0.9&lt;/code&gt;, &lt;code&gt;2.1.4&lt;/code&gt; releases coming up later this week.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://projects.spring.io/spring-framework/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/5.1.6.RELEASE/spring-framework-reference"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
@@ -686,28 +716,5 @@ dependencies {
 &lt;p&gt;When running in a Docker container, recent versions of Java are &lt;a href="https://bugs.openjdk.java.net/browse/JDK-8146115"&gt;now aware&lt;/a&gt; of the container&amp;rsquo;s memory limits and attempt to size the JVM accordingly. Unfortunately, this sizing often over-allocates non-heap memory and under-allocates the heap. Say you have an application running in a container with 2 CPUs and 512MB of memory available. You want it to be able to handle more load so you double the CPUs to 4 and the memory to 1GB. As we discussed above, heap usage typically varies depending on the load, and non-heap usage much less so. Therefore, we&amp;rsquo;d like the vast majority of the extra 512MB of memory to be given to the heap to cope with the increased load. Unfortunately, the JVM does not do so by default and will allocate the additional memory more equally between its heap and non-heap areas.&lt;/p&gt;
 &lt;p&gt;Thankfully, the CloudFoundry team have a wealth of knowledge about the JVM&amp;rsquo;s memory footprint. If you&amp;rsquo;re pushing apps to CloudFoundry, the build pack will automatically apply this knowledge for you. If you&amp;rsquo;re not using CloudFoudry, or you&amp;rsquo;d like to understand more about how to size your JVM, the &lt;a href="https://docs.google.com/document/d/1vlXBiwRIjwiVcbvUGYMrxx2Aw1RVAtxq3iuZ3UK2vXA/edit?usp=sharing"&gt;design document&lt;/a&gt; for version three of the &lt;a href="https://github.com/cloudfoundry/java-buildpack-memory-calculator"&gt;Java buildpack&amp;rsquo;s memory calculator&lt;/a&gt; provides some highly recommended further reading.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-does-this-mean-for-spring" class="anchor" name="what-does-this-mean-for-spring"&gt;&lt;/a&gt;What does this mean for Spring?&lt;/h2&gt;
 &lt;p&gt;We spend a lot of time on the Spring team thinking about performance and memory utilisation, considering both heap and non-heap memory usage. One way to limit non-heap memory usage is to make parts of the Framework as general-purpose as possible. An example of this is the use of reflection to create and inject dependencies into your application&amp;rsquo;s beans. Thanks to the use of reflection, the amount of Framework code that&amp;rsquo;s used remains constant, irrespective of how many beans your application contains. We use a heap-based cache to optimise startup time, clearing this cache once startup has completed. The heap memory can then be easily reclaimed by the garbage collector, making as much memory as possible available to your application as it handles its workload.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Boot 2.2 M1</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/03/08/spring-boot-2-2-m1" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Andy Wilkinson</name>
-    </author>
-    <id>tag:spring.io,2019-03-08:3600</id>
-    <updated>2019-03-08T17:00:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team and everyone that contributed, I am pleased to announce that the first milestone of Spring Boot 2.2 has been released and is available from &lt;a href="http://repo.spring.io/milestone/"&gt;our milestone repository&lt;/a&gt;. This release closes over &lt;a href="https://github.com/spring-projects/spring-boot/milestone/130?closed=1"&gt;140 issues and pull requests&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Highlights of this first milestone include:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/03/07/spring-data-moore-m2-released"&gt;Spring Data Moore M2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Significantly faster binding of large numbers of configuration properties&lt;/li&gt;
-  &lt;li&gt;Opt-in support for lazy bean initialization (there will be more on this in a subsequent blog post)&lt;/li&gt;
-  &lt;li&gt;JMX is now disabled by default&lt;/li&gt;
-  &lt;li&gt;Numerous &lt;a href="https://github.com/spring-projects/spring-boot/issues?utf8=?&amp;q=label%3A%22type%3A+dependency-upgrade%22+milestone%3A2.2.0.M1"&gt;dependency upgrades&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Faster startup and lower memory footprint when using the Actuator&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For a complete list of changes and upgrade instructions, please see the &lt;a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes"&gt;Spring Boot 2.2 Release Notes&lt;/a&gt; on the wiki and the &lt;a href="http://docs.spring.io/spring-boot/docs/2.2.0.M1/reference/html/"&gt;updated reference documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;If you want to get started with 2.2 and try out the new features, you can bootstrap a new project on &lt;a href="https://start.spring.io"&gt;https://start.spring.io&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.2.0.M1/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
