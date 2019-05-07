@@ -1,0 +1,11 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+	
+	}
+	
+	// a[idx1]와 a[idx2]의 값을 바꾼다.
+	
+}
