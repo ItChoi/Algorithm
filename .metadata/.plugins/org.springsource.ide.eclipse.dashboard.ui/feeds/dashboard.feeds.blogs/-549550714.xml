@@ -5,7 +5,93 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-05-07T04:41:49Z</updated>
+  <updated>2019-05-07T19:17:42Z</updated>
+  <entry>
+    <title>Spring Boot for Apache Geode &amp; Pivotal GemFire 1.1.0.M1 Released!</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/05/07/spring-boot-for-apache-geode-pivotal-gemfire-1-1-0-m1-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>John Blum</name>
+    </author>
+    <id>tag:spring.io,2019-05-07:3665</id>
+    <updated>2019-05-07T19:17:42Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;I am pleased to announce the release of &lt;em&gt;Spring Boot for Apache Geode &amp;amp; Pivotal GemFire/PCC&lt;/em&gt; (SBDG) &lt;code&gt;1.1.0.M1&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Bits (&lt;code&gt;org.springframework.geode:spring-geode-starter:1.1.0.M1&lt;/code&gt;) are available in the Spring &lt;a href="http://repo.spring.io/libs-milestone/org/springframework/geode/spring-geode-starter/1.1.0.M1/"&gt;libs-milestone&lt;/a&gt; repository.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="whats-new"&gt;&lt;a class="anchor" href="#whats-new"&gt;&lt;/a&gt;What&amp;#8217;s New&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The SBDG 1.1 Milestone 1 (M1) release includes:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Rebases SBDG on Spring Framework 5.1, Spring Boot 2.1, Spring Data Lovelace
+and Spring Session 2.1.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Rebases SBDG on Apache Geode 1.6.0 and Pivotal GemFire 9.5.3.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;For a complete list of changes, see the &lt;a href="https://github.com/spring-projects/spring-boot-data-geode/blob/1.1.0.M1/spring-geode/src/main/resources/changelog.txt#L7-L21"&gt;changelog&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="whats-next"&gt;&lt;a class="anchor" href="#whats-next"&gt;&lt;/a&gt;What&amp;#8217;s Next&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;SBDG 1.1 M2 will include dedicated support for &lt;em&gt;In-line Caching&lt;/em&gt;, the second caching pattern in our 3 separate caching patters [&lt;em&gt;Look-Aside&lt;/em&gt;, &lt;em&gt;Inline&lt;/em&gt;, &lt;em&gt;Near&lt;/em&gt;].&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;As a friendly reminder, Spring&amp;#8217;s &lt;a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#cache"&gt;Cache Abstraction&lt;/a&gt; already provides excellent support for the &lt;em&gt;Look-Aside Caching&lt;/em&gt; pattern, and SBDG (by extension of SDG) provides &lt;a href="https://docs.spring.io/autorepo/docs/spring-boot-data-geode-build/1.0.0.RELEASE/reference/html5/#geode-caching-provider"&gt;first-class support&lt;/a&gt; for using either Apache Geode or Pivotal GemFire/PCC as a caching provider in Spring&amp;#8217;s &lt;em&gt;Cache Abstraction&lt;/em&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This was also covered nicely in the &lt;strong&gt;new&lt;/strong&gt; &lt;a href="https://docs.spring.io/autorepo/docs/spring-boot-data-geode-build/1.0.0.RELEASE/reference/html5/#geode-samples"&gt;Sample&lt;/a&gt; on &lt;em&gt;Look-Aside Caching&lt;/em&gt;, containing both a &lt;a href="https://docs.spring.io/autorepo/docs/spring-boot-data-geode-build/1.0.0.RELEASE/reference/html5/guides/caching-look-aside.html"&gt;Guide&lt;/a&gt; and &lt;a href="https://github.com/spring-projects/spring-boot-data-geode/tree/1.0.0.RELEASE/spring-geode-samples/caching/look-aside"&gt;Example Code&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="feedback"&gt;&lt;a class="anchor" href="#feedback"&gt;&lt;/a&gt;Feedback&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We want to hear from you.  Feedback is the cornerstone of any successful project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-boot-data-geode/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot-data-geode/pulls"&gt;PR&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-boot"&gt;StackOverflow&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <title>This Week in Spring - May 7th, 2019</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/05/07/this-week-in-spring-may-7th-2019" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2019-05-07:3666</id>
+    <updated>2019-05-07T15:05:57Z</updated>
+    <content type="html">&lt;p&gt;Hi Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! This week I&amp;rsquo;ve been in beautiful Sao Paolo, Brazil for QCon Sao Paolo then it&amp;rsquo;s off to Devoxx UK in London. As usual, lots of good stuff to get to so let&amp;rsquo;s get to it.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/05/07/spring-boot-for-apache-geode-pivotal-gemfire-1-0-0-release-available"&gt;Spring Boot for Apache Geode &amp;amp; Pivotal GemFire 1.0.0.RELEASE Available!&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/05/03/a-bootiful-podcast-spring-cloud-engineer-olga-maciaszek-sharma"&gt;A Bootiful Podcast: Spring Cloud Engineer Olga Maciaszek-Sharma&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2019/05/01/spring-boot-for-apache-geode-pivotal-gemfire-1-0-0-rc2-released"&gt;Spring Boot for Apache Geode &amp;amp; Pivotal GemFire 1.0.0.RC2 Released!&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Interesting thread on Reddit.com: &lt;a href="https://www.reddit.com/r/java/comments/bkjnoi/docker_and_spring_boot_done_properly/"&gt;Docker and Spring Boot done properly? &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.infoq.com/news/2019/05/spring-cloud-pluggable-circuit"&gt;Spring Cloud Introduces Pluggable Circuit-Breaker Interface&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://itnext.io/microservices-with-spring-boot-and-spring-cloud-441e3dabc67d"&gt;Microservices with Spring Boot and Spring Cloud.&lt;/a&gt; This is part 3 of a series, titled &amp;ldquo;From config server to OAuth2 server (without in-Memory things)&amp;rdquo;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://billykorando.com/2019/05/06/jpa-or-sql-in-a-spring-boot-application-why-not-both/"&gt;JPA or SQL in a Spring Boot Application? Why Not Both? &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;DZone have my Spring Tips installment on WebMvc.fn up and &lt;a href="https://dzone.com/articles/spring-tips-webmvcfn-the-functional-dsl-for-spring"&gt;it was a good reminder that people might like to see this&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;This is kind of interesting - it looks &lt;a href="https://stackabuse.com/spring-cloud-hystrix/"&gt;at the Spring Cloud Hystrix integration&lt;/a&gt;. If I were building new software today &lt;a href="https://spring.io/blog/2019/04/24/spring-tips-spring-cloud-circuit-breaker"&gt;I&amp;rsquo;d start with the Spring Cloud Circuit Breaker abstraction, though&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Baeldung have updated their epic post &lt;a href="https://www.baeldung.com/spring-cloud-data-flow-spark"&gt;on using Spring Cloud Data Flow with Apache Spark&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+  </entry>
   <entry>
     <title>Spring Boot for Apache Geode &amp; Pivotal GemFire 1.0.0.RELEASE Available!</title>
     <link rel="alternate" href="https://spring.io/blog/2019/05/07/spring-boot-for-apache-geode-pivotal-gemfire-1-0-0-release-available" />
@@ -955,231 +1041,5 @@ Assembly site of producer [reactor.core.publisher.MonoElementAt] is identified b
 &lt;p&gt;The whole code can be found in a gist &lt;a href="https://gist.github.com/simonbasle/a4c6cfe79071610e1fe3bd27984d4381"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In the next instalment, we&amp;rsquo;ll see why we sometimes say that Reactor is &amp;ldquo;Concurrent Agnostic&amp;rdquo;.&lt;/p&gt;
 &lt;p&gt;In the meantime, happy reactive coding!&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Introducing Spring Cloud Circuit Breaker</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/04/16/introducing-spring-cloud-circuit-breaker" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Ryan Baxter</name>
-    </author>
-    <id>tag:spring.io,2019-04-15:3643</id>
-    <updated>2019-04-16T15:54:00Z</updated>
-    <content type="html">&lt;h1&gt;&lt;a href="#background" class="anchor" name="background"&gt;&lt;/a&gt;Background&lt;/h1&gt;
-&lt;p&gt;When using a microservices architecture to build our applications, it is very common to end up with a pretty complex dependency tree amongst services. If the service down the dependency tree encounters an issue that causes it to start to respond slowly, it ends up causing a set of issues that cascade up the dependency tree. As more and more requests come in to the application, more and more resources may be consumed by waiting for the slow service to respond. Even worse, the additional load being put on the slow service may exacerbate the problem. To help alleviate the effect of these types of cascading failures, it is common practice to use &lt;a href="https://microservices.io/patterns/reliability/circuit-breaker.html"&gt;circuit breakers&lt;/a&gt; as part of microservice applications.&lt;/p&gt;
-&lt;p&gt;Spring Cloud has &lt;a href="https://spring.io/guides/gs/circuit-breaker/"&gt;let developers add circuit breakers&lt;/a&gt; to their application by using &lt;a href="https://github.com/Netflix/Hystrix"&gt;Netflix Hystrix&lt;/a&gt; as part of the &lt;a href="https://github.com/spring-cloud/spring-cloud-netflix"&gt;Spring Cloud Netflix project&lt;/a&gt;. In addition to Hystrix, Spring Cloud developers may want to use other circuit breaker implementations. To help Spring Cloud developers add circuit breakers to their applications in a consistent manner, we have introduced the &lt;a href="https://github.com/spring-cloud-incubator/spring-cloud-circuitbreaker"&gt;Spring Cloud Circuit Breaker project&lt;/a&gt; as part of the Spring Cloud incubator.&lt;/p&gt;&lt;h1&gt;&lt;a href="#about" class="anchor" name="about"&gt;&lt;/a&gt;About&lt;/h1&gt;
-&lt;p&gt;The Spring Cloud Circuit Breaker project provides an abstraction API for adding circuit breakers to your application. At the time of this blog post, there are four supported implementations:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://github.com/Netflix/Hystrix"&gt;Hystrix&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/resilience4j/resilience4j"&gt;Resilience4J&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/alibaba/Sentinel"&gt;Sentinel&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-retry"&gt;Spring Retry&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To use a given implementation, add the appropriate &lt;a href="https://github.com/spring-cloud-incubator/spring-cloud-circuitbreaker/tree/master/spring-cloud-starter-circuitbreaker"&gt;starter&lt;/a&gt; to your application&amp;rsquo;s classpath.&lt;/p&gt;&lt;h1&gt;&lt;a href="#using-spring-cloud-circuit-breaker" class="anchor" name="using-spring-cloud-circuit-breaker"&gt;&lt;/a&gt;Using Spring Cloud Circuit Breaker&lt;/h1&gt;
-&lt;p&gt;Currently, Spring Cloud Circuit Breaker is not part of the Spring Cloud BOM and is being published only to our &lt;a href="https://repo.spring.io/snapshot/org/springframework/cloud/spring-cloud-circuitbreaker/"&gt;snapshot repo&lt;/a&gt;. You need to add our snapshot repo to your Maven or Gradle file. The following example uses Maven:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;repositories&amp;gt;&#xD;
-    &amp;lt;repository&amp;gt;&#xD;
-        &amp;lt;id&amp;gt;spring-snapshots&amp;lt;/id&amp;gt;&#xD;
-        &amp;lt;name&amp;gt;Spring Snapshots&amp;lt;/name&amp;gt;&#xD;
-        &amp;lt;url&amp;gt;https://repo.spring.io/libs-snapshot-local&amp;lt;/url&amp;gt;&#xD;
-        &amp;lt;snapshots&amp;gt;&#xD;
-            &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;&#xD;
-        &amp;lt;/snapshots&amp;gt;&#xD;
-        &amp;lt;releases&amp;gt;&#xD;
-            &amp;lt;enabled&amp;gt;false&amp;lt;/enabled&amp;gt;&#xD;
-        &amp;lt;/releases&amp;gt;&#xD;
-    &amp;lt;/repository&amp;gt;&#xD;
-&amp;lt;/repositories&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Next, you need to add the Spring Cloud Circuit Breaker dependency to your application. Again, the following example uses Maven:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependencies&amp;gt;&#xD;
-    &amp;lt;dependency&amp;gt;&#xD;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-        &amp;lt;artifactId&amp;gt;&#xD;
-            spring-cloud-starter-circuitbreaker-resilience4j&#xD;
-       &amp;lt;/artifactId&amp;gt;&#xD;
-        &amp;lt;version&amp;gt;0.0.1.BUILD-SNAPSHOT&amp;lt;/version&amp;gt;&#xD;
-    &amp;lt;/dependency&amp;gt;&#xD;
-&amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Spring Cloud Circuit Breaker auto-configures an implementation of &lt;code&gt;CircuitBreakerFactory&lt;/code&gt;, based on the starter on your application&amp;rsquo;s classpath. You can then inject this interface into any class you want. The following example shows how to do so:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;@Service&#xD;
-public static class DemoControllerService {&#xD;
-	private RestTemplate rest;&#xD;
-	private CircuitBreakerFactory cbFactory;&#xD;
-&#xD;
-	public DemoControllerService(RestTemplate rest, &#xD;
-                CircuitBreakerFactory cbFactory) {&#xD;
-		this.rest = rest;&#xD;
-		this.cbFactory = cbFactory;&#xD;
-	}&#xD;
-&#xD;
-	public String slow() {&#xD;
-		return cbFactory.create(&amp;quot;slow&amp;quot;).run(() -&amp;gt; &#xD;
-                rest.getForObject(&amp;quot;/slow&amp;quot;, String.class),&#xD;
-                throwable -&amp;gt; &amp;quot;fallback&amp;quot;);&#xD;
-	}&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Most implementations also support Reactive APIs. Currently, Spring Retry is the only implementation that does not have a reactive implementation. If you want to wrap some reactive code in a circuit breaker ,you need to use &lt;code&gt;ReactiveCircuitBreakerFactory&lt;/code&gt;. The following example shows how to do so:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;@Service&#xD;
-public static class DemoControllerService {&#xD;
-	private ReactiveCircuitBreakerFactory cbFactory;&#xD;
-	private WebClient webClient;&#xD;
-&#xD;
-&#xD;
-	public DemoControllerService(WebClient webClient, &#xD;
-                ReactiveCircuitBreakerFactory cbFactory) {&#xD;
-		this.webClient = webClient;&#xD;
-		this.cbFactory = cbFactory;&#xD;
-	}&#xD;
-&#xD;
-	public Mono&amp;lt;String&amp;gt; slow() {&#xD;
-		return webClient.get().uri(&amp;quot;/slow&amp;quot;).retrieve()&#xD;
-                .bodyToMono(String.class).transform(it -&amp;gt; {&#xD;
-			CircuitBreaker cb = cbFactory.create(&amp;quot;slow&amp;quot;);&#xD;
-			return cb.run(it, throwable -&amp;gt; &#xD;
-                            Mono.just(&amp;quot;fallback&amp;quot;));&#xD;
-                });&#xD;
-	}&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1&gt;&lt;a href="#configuring-circuit-breakers" class="anchor" name="configuring-circuit-breakers"&gt;&lt;/a&gt;Configuring Circuit Breakers&lt;/h1&gt;
-&lt;p&gt;In most cases, you are going to want to configure the behavior of your circuit breakers. To do so, you can create beans of type &lt;code&gt;Customizer&lt;/code&gt;. Spring Cloud Circuit Breaker lets you provide a default configuration for all circuit breakers as well as configuration for specific circuit breakers. For example, to provide a default configuration for all circuit breakers when using Resilience4J you could add the following bean to a configuration class:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;@Bean&#xD;
-public Customizer&amp;lt;Resilience4JCircuitBreakerFactory&amp;gt; defaultCustomizer() {&#xD;
-	return factory -&amp;gt; factory.configureDefault(&#xD;
-            id -&amp;gt; new Resilience4JConfigBuilder(id)&#xD;
-            .timeLimiterConfig(TimeLimiterConfig.custom()&#xD;
-                .timeoutDuration(Duration.ofSeconds(4)).build())&#xD;
-            .circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())&#xD;
-            .build());&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The code to configure an individual circuit breaker would look very similar, except you would provide a circuit breaker ID in your &lt;code&gt;Customizer&lt;/code&gt;, as follows:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;@Bean&#xD;
-public Customizer&amp;lt;Resilience4JCircuitBreakerFactory&amp;gt; slowCustomizer() {&#xD;
-	return factory -&amp;gt; factory.configure(builder -&amp;gt; {&#xD;
-		return builder&#xD;
-			.timeLimiterConfig(TimeLimiterConfig.custom()&#xD;
-                            .timeoutDuration(Duration.ofSeconds(2)).build())&#xD;
-			.circuitBreakerConfig(&#xD;
-                            CircuitBreakerConfig.ofDefaults());&#xD;
-	}, &amp;quot;slow&amp;quot;);&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1&gt;&lt;a href="#feedback" class="anchor" name="feedback"&gt;&lt;/a&gt;Feedback&lt;/h1&gt;
-&lt;p&gt;We look forward to hearing what you think about this new project. Check out the &lt;a href="https://github.com/spring-cloud-incubator/spring-cloud-circuitbreaker"&gt;GitHub project&lt;/a&gt; as well as the &lt;a href="https://spring-cloud-incubator.github.io/spring-cloud-circuitbreaker/spring-cloud-circuitbreaker.html"&gt;documentation&lt;/a&gt; for more information. As always, you can reach out to us on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt; and &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;Gitter&lt;/a&gt; or by creating a &lt;a href="https://github.com/spring-cloud-incubator/spring-cloud-circuitbreaker/issues"&gt;GitHub issue&lt;/a&gt;.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Security 5.2.0.M2 Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/04/16/spring-security-5-2-0-m2-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Josh Cummings</name>
-    </author>
-    <id>tag:spring.io,2019-04-15:3644</id>
-    <updated>2019-04-16T15:25:35Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the community, I¡¯m pleased to announce the release of
-Spring Security 5.2.0.M2! This release includes
-&lt;a href="https://github.com/spring-projects/spring-security/milestone/132?closed=1"&gt;100+
-updates&lt;/a&gt;. You can find the highlights below:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="oauth-2-0"&gt;&lt;a class="anchor" href="#oauth-2-0"&gt;&lt;/a&gt;OAuth 2.0&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6446-gh-6446-a-client-support-for-pkce"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6446-gh-6446-a-client-support-for-pkce"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6446"&gt;gh-6446&lt;/a&gt; - Client Support for PKCE&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://tools.ietf.org/html/rfc7636"&gt;PKCE&lt;/a&gt; isn&amp;#8217;t just for &lt;a href="https://tools.ietf.org/html/rfc8252"&gt;native&lt;/a&gt; or &lt;a href="https://tools.ietf.org/html/draft-ietf-oauth-browser-based-apps-01"&gt;browser-based apps&lt;/a&gt;, but for any time we want to have a public client. Spring Security 5.2 introduces a secure way for backends to authenticate as public clients.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-5350-gh-5350-a-openid-connect-rp-initiated-logout"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-5350-gh-5350-a-openid-connect-rp-initiated-logout"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/5350"&gt;gh-5350&lt;/a&gt; - OpenID Connect RP-Initiated Logout&lt;/h5&gt;
-
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-5465-gh-5465-a-ability-to-use-symmetric-keys-with-code-jwtdecoder-code"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-5465-gh-5465-a-ability-to-use-symmetric-keys-with-code-jwtdecoder-code"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/5465"&gt;gh-5465&lt;/a&gt; - Ability to use symmetric keys with &lt;code&gt;JwtDecoder&lt;/code&gt;&lt;/h5&gt;
-
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-5937-gh-5397-a-ability-for-code-nimbusreactivejwtdecoder-code-to-take-a-custom-processor"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-5937-gh-5397-a-ability-for-code-nimbusreactivejwtdecoder-code-to-take-a-custom-processor"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/5937"&gt;gh-5397&lt;/a&gt; - Ability for &lt;code&gt;NimbusReactiveJwtDecoder&lt;/code&gt; to take a custom processor&lt;/h5&gt;
-
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6513-gh-6513-a-a-href-https-github-com-spring-projects-spring-security-issues-5200-gh-5200-a-support-for-resource-server-token-introspection"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6513-gh-6513-a-a-href-https-github-com-spring-projects-spring-security-issues-5200-gh-5200-a-support-for-resource-server-token-introspection"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6513"&gt;gh-6513&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/spring-projects/spring-security/issues/5200"&gt;gh-5200&lt;/a&gt; - Support for Resource Server Token Introspection&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Resource Server now supports a second OAuth 2.0 token verification strategy: &lt;a href="https://github.com/spring-projects/spring-security/tree/master/samples/boot/oauth2resourceserver-opaque"&gt;Token Introspection&lt;/a&gt;. This is handy when a Resource Server wants to or must verify the token remotely.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-5351-gh-5351-a-support-for-resource-server-multi-tenancy-servlet-only"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-5351-gh-5351-a-support-for-resource-server-multi-tenancy-servlet-only"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/5351"&gt;gh-5351&lt;/a&gt; - Support for Resource Server Multi-tenancy (Servlet only)&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;With the introduction of &lt;code&gt;AuthenticationManagerResolver&lt;/code&gt;, initial support for &lt;a href="https://github.com/spring-projects/spring-security/tree/master/samples/boot/oauth2resourceserver-multitenancy"&gt;multi-tenant Resource Servers&lt;/a&gt; has arrived.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="core"&gt;&lt;a class="anchor" href="#core"&gt;&lt;/a&gt;Core&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6494-gh-6494-a-converting-key-material-into-code-key-code-instances"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6494-gh-6494-a-converting-key-material-into-code-key-code-instances"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6494"&gt;gh-6494&lt;/a&gt; - Converting key material into &lt;code&gt;Key&lt;/code&gt; instances&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Spring Security 5.2 simplifies converting X.509 and PKCS#8 key material into &lt;code&gt;RSAPublicKey&lt;/code&gt; and &lt;code&gt;RSAPrivateKey&lt;/code&gt; instances by registering &lt;code&gt;Converter&lt;/code&gt; s to the &lt;code&gt;ConversionService&lt;/code&gt; and &lt;code&gt;PropertyEditor&lt;/code&gt; s to the &lt;code&gt;PropertyEditorRegistry&lt;/code&gt;. You can see an example in the &lt;a href="https://github.com/spring-projects/spring-security/blob/master/samples/boot/oauth2resourceserver-static/src/main/java/sample/OAuth2ResourceServerSecurityConfiguration.java#L34"&gt;Resource Server static key sample&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6774-gh-6774-a-support-for-jdk-12"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6774-gh-6774-a-support-for-jdk-12"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6774"&gt;gh-6774&lt;/a&gt; - Support for JDK 12&lt;/h5&gt;
-
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6722-gh-6722-a-introducing-code-authenticationmanagerresolver-code"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6722-gh-6722-a-introducing-code-authenticationmanagerresolver-code"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6722"&gt;gh-6722&lt;/a&gt; - Introducing &lt;code&gt;AuthenticationManagerResolver&lt;/code&gt;&lt;/h5&gt;
-
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6546-gh-6546-a-introducing-code-currentsecuritycontext-code-for-method-arguments"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6546-gh-6546-a-introducing-code-currentsecuritycontext-code-for-method-arguments"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6546"&gt;gh-6546&lt;/a&gt; - Introducing &lt;code&gt;@CurrentSecurityContext&lt;/code&gt; for method arguments&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Like &lt;code&gt;@AuthenticationPrincipal&lt;/code&gt; before it, &lt;code&gt;@CurrentSecurityContext&lt;/code&gt; works with an argument resolver to retrieve aspects of the &lt;code&gt;SecurityContext&lt;/code&gt;:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;public String hello(@CurrentSecurityContext
-        SecurityContext context) {
-    return Optional.ofNullable(context.getAuthentication())
-            .map(Authentication::getName).orElse("world");
-}
-
-// or
-
-public String hello(@CurrentSecurityContext
-        (expression="authentication.name") String name) {
-    return Optional.ofNullable(name).orElse("world");
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="web"&gt;&lt;a class="anchor" href="#web"&gt;&lt;/a&gt;Web&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-4187-gh-4187-a-support-for-the-clear-site-data-header"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-4187-gh-4187-a-support-for-the-clear-site-data-header"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/4187"&gt;gh-4187&lt;/a&gt; - Support for the Clear-Site-Data header&lt;/h5&gt;
-
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6312-gh-6312-a-support-for-hsts-preload"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6312-gh-6312-a-support-for-hsts-preload"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6312"&gt;gh-6312&lt;/a&gt; - Support for HSTS preload&lt;/h5&gt;
-
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="a-href-https-github-com-spring-projects-spring-security-issues-6453-gh-6453-a-introducing-code-compositeheaderwriter-code-as-well-as-some-other-a-href-https-github-com-spring-projects-spring-security-issues-6454-header-writing-cleanup-a"&gt;&lt;a class="anchor" href="#a-href-https-github-com-spring-projects-spring-security-issues-6453-gh-6453-a-introducing-code-compositeheaderwriter-code-as-well-as-some-other-a-href-https-github-com-spring-projects-spring-security-issues-6454-header-writing-cleanup-a"&gt;&lt;/a&gt;&lt;a href="https://github.com/spring-projects/spring-security/issues/6453"&gt;gh-6453&lt;/a&gt; - Introducing &lt;code&gt;CompositeHeaderWriter&lt;/code&gt;, as well as some other &lt;a href="https://github.com/spring-projects/spring-security/issues/6454"&gt;header-writing cleanup&lt;/a&gt;.&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; |
-&lt;a href="https://docs.spring.io/spring-security/site/docs/5.2.0.M2/reference/htmlsingle/"&gt;Reference&lt;/a&gt;
-| &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</content>
   </entry>
 </feed>

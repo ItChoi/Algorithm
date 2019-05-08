@@ -1,0 +1,21 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		
+		
+	}
+	
+	
+	// swap
+	static void swap(int[] a, int idx1, int idx2) {
+		int temp = a[idx1];
+		a[idx1] = a[idx2];
+		a[idx2] = temp;
+	}
+	
+	
+	// 버블 정렬
+	
+}

@@ -1,0 +1,26 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		
+		int n = 6;
+		int[] a = new int[] {5,2,4,1,7,6};
+		
+		selectionSort(a, n);
+	}
+	
+	static void selectionSort(int[] a, int n) {
+		for (int i = 0; i < n - 1; i++) {
+			int min = i;
+			
+			for (int j = i + 1; j < n; j++) {
+				if (a[j] > a[min]) {
+					min = j;
+				}
+			}
+			
+		}
+	}
+	
+}

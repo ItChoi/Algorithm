@@ -1,0 +1,12 @@
+package test;
+
+public class TestAlgorithm {
+
+	public static void main(String[] args) {
+		
+		int n = 6;
+		int[] a = new int[] {5,2,4,1,7,6};
+		
+	
+	}
+}
