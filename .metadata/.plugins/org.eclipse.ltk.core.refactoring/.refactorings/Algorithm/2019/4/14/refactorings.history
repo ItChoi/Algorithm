@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;Algorithm/src/doc/(book) 자료구조와 함께 배우는 알고리즘 입문 (자바 편)/05장 재귀 알고리즘&apos; to &apos;05장 재귀 알고리즘.md&apos;" description="Rename resource &apos;05장 재귀 알고리즘&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/doc/(book) 자료구조와 함께 배우는 알고리즘 입문 (자바 편)/05장 재귀 알고리즘" name="05장 재귀 알고리즘.md" stamp="1554109991762" updateReferences="true"/>
-</session>
