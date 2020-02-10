@@ -19,6 +19,7 @@ Servers
 *.tar.gz
 *.rar
 
+/recommenders
 /.metadata/
 .settings
 .project
@@ -36,3 +37,4 @@ RemoteSystemsTempFiles
 
 # sql ddl
 *.sql
+
