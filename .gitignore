@@ -19,7 +19,7 @@ Servers
 *.tar.gz
 *.rar
 
-/recommenders
+.recommenders
 /.metadata/
 .settings
 .project
