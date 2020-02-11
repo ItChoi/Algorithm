@@ -15,10 +15,6 @@ public class TestAlgorithm {
 	
 	static void shellSort(int[] a, int n) {
 		
-		for (int i = n / 2; i > 0; i /= 2) {
-			for (int j = i; )
-			
-		}
 		
 	}
 	

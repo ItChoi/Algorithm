@@ -38,3 +38,5 @@ RemoteSystemsTempFiles
 # sql ddl
 *.sql
 
+WebContent
+
