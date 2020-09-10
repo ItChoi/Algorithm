@@ -1,42 +1,34 @@
-# Servers
-Servers
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Properties Files
-*.properties
-
-# Compiled Class Files
-*.class
-
-# Log Files
-*.log
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-.recommenders
-/.metadata/
-.settings
-.project
-build
+### STS ###
+.apt_generated
 .classpath
+.factorypath
+.project
+.settings
 .springBeans
+.sts4-cache
 
-# Maven Build Directory
-*/target/**
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
-# Eclipse Plugins
-RemoteSystemsTempFiles
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
-.ssh
-
-# sql ddl
-*.sql
-
-WebContent
-
+### VS Code ###
+.vscode/
