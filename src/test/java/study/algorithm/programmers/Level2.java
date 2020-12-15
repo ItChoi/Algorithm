@@ -2,9 +2,7 @@ package study.algorithm.programmers;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -188,6 +186,35 @@ public class Level2 {
     }
     // Summer/Winter Coding(~2018) - 스킬트리 end
 
+
+    // 해시 - 위장 start
+    @Test
+    public void 위장() {
+        String[][] clothes = {
+            {"yellow_hat", "headgear"},
+            {"blue_sunglasses", "eyewear"},
+            {"green_turban", "headgear"}
+        };
+        System.out.println("result: " + 위장함수(clothes));
+    }
+
+    private int 위장함수(String[][] clothes) {
+        int answer = 1;
+        Map<String, Integer> map = new HashMap<>();
+
+        for (String[] clothe : clothes) {
+            String kind = clothe[1];
+            Integer count = map.get(kind);
+            map.put(clothe[1], count == null ? 1 : count + 1);
+        }
+
+        for (String s : map.keySet()) {
+            answer *= map.get(s) + 1;
+        }
+
+        return answer - 1;
+    }
+    // 해시 - 위장 end
 
 
 }
