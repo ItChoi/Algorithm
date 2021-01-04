@@ -184,7 +184,6 @@ public class Level2 {
 
         return answer;
     }
-
     // Summer/Winter Coding(~2018) - 스킬트리 end
 
 
@@ -196,26 +195,24 @@ public class Level2 {
             {"blue_sunglasses", "eyewear"},
             {"green_turban", "headgear"}
         };
-
-        System.out.println("result: " + 위장(clothes));
+        System.out.println("result: " + 위장함수(clothes));
     }
 
-    private int 위장(String[][] clothes) {
-        int answer = 0;
-        Set set = new HashSet<>();
-        for (int i = 0 ; i < clothes.length; i++) {
-            set.add(clothes[i][1]);
+    private int 위장함수(String[][] clothes) {
+        int answer = 1;
+        Map<String, Integer> map = new HashMap<>();
+
+        for (String[] clothe : clothes) {
+            String kind = clothe[1];
+            Integer count = map.get(kind);
+            map.put(clothe[1], count == null ? 1 : count + 1);
         }
 
-        for (Object o : set) {
-            for (int i = 0 ; i < clothes.length; i++) {
-                set.add(clothes[i][1]);
-            }
+        for (String s : map.keySet()) {
+            answer *= map.get(s) + 1;
         }
 
-
-
-        return answer;
+        return answer - 1;
     }
     // 해시 - 위장 end
 
