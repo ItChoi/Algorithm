@@ -232,12 +232,15 @@ public class Level2 {
         int answer = 0;
         int totalWeight = 0;
         List<Integer> tempTruckWeights = Arrays.stream(truck_weights).boxed().collect(Collectors.toList());
-        List<Integer> passingTruckList = new ArrayList<>();
+        //List<Integer> passingTruckList = new ArrayList<>();
+        Map<Integer, Integer> passingTruckMap = new HashMap<>();
+        int pointer = 0;
 
         int truckSize = tempTruckWeights.size();
         for (int i = 0; i < truckSize; i++) {
             totalWeight += tempTruckWeights.get(i);
-            passingTruckList.add(i);
+            //passingTruckList.add(i);
+            passingTruckMap.put(i, tempTruckWeights.get(i));
 
             int j = i + 1;
             if (j < truckSize) {
@@ -247,14 +250,35 @@ public class Level2 {
                     }
 
                     totalWeight += tempTruckWeights.get(j);
-                    passingTruckList.add(j);
+                    //passingTruckList.add(j);
+                    passingTruckMap.put(j, tempTruckWeights.get(j));
+                    i = j;
                 }
             }
 
-            //for (int k = 0; k < passingTruckList)
+            for (int k = 0; k < bridge_length; k++) {
+                for (Integer index : passingTruckMap.keySet()) {
+                    if (passingTruckMap.get(index) == 0) {
+                        totalWeight -= passingTruckMap.get(index);
+                        passingTruckMap.remove(index);
+                        break;
+                    }
+                    passingTruckMap.put(index, passingTruckMap.get(index) - 1);
+                    answer++;
+                }
+            }
 
-
-
+            /*for (int k = pointer; k < passingTruckMap.size(); k++) {
+                if (passingTruckMap.get(k) == 0) {
+                    totalWeight -= passingTruckMap.get(k);
+                    passingTruckMap.remove(k);
+                    if (!stop) {
+                        stop = true;
+                        pointer = k;
+                    }
+                }
+                answer++;
+            }*/
         }
 
 
@@ -296,12 +320,18 @@ public class Level2 {
     }
     // 스택/큐 다리를 지나는 트럭 end
 
-
     @Test
     public void test() {
-        int[] array = {1, 2, 3, 4};
+        Map<Integer, Integer> map = new HashMap<>();
 
-        array.re
+        map.put(1, 11);
+        map.put(2, 22);
+        map.put(3, 33);
+
+        for (Integer i : map.keySet()) {
+            map.put(i, map.get(i) - 1);
+            System.out.println("map: " + map.get(i));
+        }
 
     }
 
