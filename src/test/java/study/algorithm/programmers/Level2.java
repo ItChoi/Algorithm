@@ -1,8 +1,10 @@
 package study.algorithm.programmers;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -216,5 +218,91 @@ public class Level2 {
     }
     // 해시 - 위장 end
 
+
+    // 스택/큐 다리를 지나는 트럭 start
+    @Test
+    public void 다리를_지나는_트럭() {
+        int bridge_length = 2;
+        int weight = 10;
+        int[] truck_weights = {7, 4, 5, 6};
+        System.out.println("result: " + 다리를_지나는_트럭_함수(bridge_length, weight, truck_weights));
+    }
+
+    private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        int totalWeight = 0;
+        List<Integer> tempTruckWeights = Arrays.stream(truck_weights).boxed().collect(Collectors.toList());
+        List<Integer> passingTruckList = new ArrayList<>();
+
+        int truckSize = tempTruckWeights.size();
+        for (int i = 0; i < truckSize; i++) {
+            totalWeight += tempTruckWeights.get(i);
+            passingTruckList.add(i);
+
+            int j = i + 1;
+            if (j < truckSize) {
+                for (; j < truckSize; j++) {
+                    if (weight < (totalWeight + tempTruckWeights.get(j))) {
+                        break;
+                    }
+
+                    totalWeight += tempTruckWeights.get(j);
+                    passingTruckList.add(j);
+                }
+            }
+
+            //for (int k = 0; k < passingTruckList)
+
+
+
+        }
+
+
+        /*int answer = 0;
+        List<Integer> passingTruckList = new ArrayList<>();
+        int totalWeight = 0;
+
+        for (int te : truck_weights) {
+            totalWeight += te;
+
+            if (totalWeight < weight) {
+                passingTruckList.add(bridge_length);
+            }
+
+            List<Integer> removeIndex = new ArrayList<>();
+            for (int j = 0; j < passingTruckList.size(); j++) {
+                int getValue = passingTruckList.get(j);
+
+                if (getValue == 0) {
+                    continue;
+                }
+
+                if (getValue - 1 <= 0) {
+                    removeIndex.add(j);
+                }
+
+                passingTruckList.set(j, getValue - 1);
+            }
+
+            for (Integer index : removeIndex) {
+                passingTruckList.remove(index);
+            }
+
+            answer++;
+        }*/
+
+
+            return answer;
+    }
+    // 스택/큐 다리를 지나는 트럭 end
+
+
+    @Test
+    public void test() {
+        int[] array = {1, 2, 3, 4};
+
+        array.re
+
+    }
 
 }
