@@ -2,6 +2,8 @@ package study.algorithm.inflearn;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 /**
  * 자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 (인프런 강의)
  */
@@ -10,6 +12,7 @@ public class Main {
     // String(문자열) start
 
 
+    // 3. 문장 속 단어 start
     // 3. 문장 속 단어(indexOf(), substring())
     @Test
     public void 문장_속_단어() {
@@ -50,14 +53,57 @@ public class Main {
             }
         }*/
 
+        return answer;
+    }
+    // 3. 문장 속 단어 end
 
 
+    // 4. 단어 뒤집기(StringBuilder이용법 또는 직접뒤집기) start
+    @Test
+    public void 단어_뒤집기() {
+        // StringBuilder reverse?
+
+        int n = 3;
+        String[] str = new String[n];
+        str[0] = "good";
+        str[1] = "Time";
+        str[2] = "Big";
+
+        for (String x : 단어_뒤집기_함수(n, str)) {
+            System.out.println(x);
+        }
+    }
+
+    private ArrayList<String> 단어_뒤집기_함수(int n, String[] str) {
+        ArrayList<String> answer = new ArrayList<>();
+
+        for (String x : str) {
+            /* 방법 1
+            String tmp = new StringBuilder(x).reverse().toString();
+            answer.add(tmp);
+            */
+            
+            // 방법 2 직접 뒤집기
+            char[] s = x.toCharArray();
+            int lt = 0;
+            int rt = x.length() - 1;
+            while (lt < rt) {
+                char tmp = s[lt];
+                s[lt] = s[rt];
+                s[rt] = tmp;
+                lt++;
+                rt--;
+            }
+            String tmp = String.valueOf(s);
+            answer.add(tmp);
+        }
 
         return answer;
     }
+    // 4. 단어 뒤집기(StringBuilder이용법 또는 직접뒤집기) end
 
 
-    // String(문자열) end
+        // String(문자열) end
 
 
-}
+    }
