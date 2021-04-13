@@ -102,8 +102,140 @@ public class Main {
     }
     // 4. 단어 뒤집기(StringBuilder이용법 또는 직접뒤집기) end
 
-
-        // String(문자열) end
-
-
+    // 5. 특정 문자 뒤집기(toCharArray()) start
+    @Test
+    void 특정_문자_뒤집기() {
+        System.out.println("result:: " + 특정_문자_뒤집기_함수("a@fb"));
+        //System.out.println("result:: " + 특정_문자_뒤집기_함수("a#b!GE*T@S"));
     }
+
+    private String 특정_문자_뒤집기_함수(String str) {
+        char[] s = str.toCharArray();
+        int lt = 0;
+        int rt = str.length() - 1;
+
+        while (lt < rt) {
+            if (!Character.isAlphabetic(s[lt])) {
+                lt++;
+            } else if (!Character.isAlphabetic(s[rt])) {
+                rt--;
+            } else {
+                char tmp = s[lt];
+                s[lt] = s[rt];
+                s[rt] = tmp;
+
+                lt++;
+                rt--;
+            }
+        }
+
+        return String.valueOf(s);
+    }
+    // 5. 특정 문자 뒤집기(toCharArray()) end
+
+
+    // 6. 중복문자제거 start
+    @Test
+    void 중복_문자_제거() {
+        System.out.println("result::: " + 중복_문자_제거_함수("ksskkset"));
+    }
+
+    private String 중복_문자_제거_함수(String str) {
+        String answer = "";
+
+        // charAt 자리와 indexOf 자리가 똑같으면 중복 문자가 아니다.
+        for (int i = 0; i < str.length(); i++) {
+            //System.out.println(str.charAt(i) + " " + i + " " + str.indexOf(str.charAt(i)));
+
+            if (str.indexOf(str.charAt(i)) != i){
+                answer += str.charAt(i);
+            }
+        }
+
+        return answer;
+    }
+    // 6. 중복문자제거 end
+
+    // 7. 회문문자열 start
+    @Test
+    void 회문_문자열() {
+        System.out.println("result::: " + 회문_문자열_함수("gooG"));
+    }
+
+    private String 회문_문자열_함수(String str) {
+        // 방법1
+        /*String answer = "Yes";
+        str = str.toUpperCase();
+        int len = str.length();
+        for (int i = 0; i < len / 2; i++) {
+            if (str.charAt(i) != str.charAt(len - i - 1)) {
+                return "NO";
+            }
+        }*/
+        // 방법2
+        String answer = "NO";
+        String tmp = new StringBuilder(str).reverse().toString();
+        if (str.equalsIgnoreCase(tmp)) {
+            answer = "YES";
+        }
+
+        return answer;
+    }
+    // 7. 회문문자열 end
+
+    // 8. 유효한 팰린드롬(replaceAll 정규식이용) start
+    @Test
+    void 유효한_팰린드롬() {
+        String s = "found7, time: study; Yduts; emit, 7Dnuof";
+        System.out.println("result:: " + 유효한_팰린드롬_함수(s));
+    }
+
+    private String 유효한_팰린드롬_함수(String s) {
+        String answer = "NO";
+
+        s = s.toUpperCase().replaceAll("[^A-Z]", "");
+        String tmp = new StringBuilder(s).reverse().toString();
+        if (s.equals(tmp)) {
+            answer = "YES";
+        }
+
+        return answer;
+    }
+    // 8. 유효한 팰린드롬(replaceAll 정규식이용) end
+
+    // 9. 숫자만 추출 start
+    @Test
+    void 숫자만_추출() {
+        System.out.println("result: " + 숫자만_추출_함수("g0en2T0s8eSoft"));
+    }
+
+    private int 숫자만_추출_함수(String s) {
+        // 방법 1
+        /*int answer = 0;
+
+        for (char x : s.toCharArray()) {
+            if (x >= 48 && x <= 57) {
+                // 아스키넘버랑 +가 결합되면 0인데, 아스키 넘버 48으로 연산된다.
+                answer = answer * 10 + (x-48);
+            }
+        }
+        return answer;*/
+
+        // 방법 2
+        String answer = "";
+        for (char x : s.toCharArray()) {
+            // char 값이 숫자인지 체크해주는 함수
+            if (Character.isDigit(x)) {
+                answer += x;
+            }
+        }
+        return Integer.parseInt(answer);
+    }
+    // 9. 숫자만 추출 end
+
+
+
+    // String(문자열) end
+
+
+}
