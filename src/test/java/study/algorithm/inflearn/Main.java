@@ -3,6 +3,7 @@ package study.algorithm.inflearn;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 (인프런 강의)
@@ -234,6 +235,67 @@ public class Main {
     // 9. 숫자만 추출 end
 
 
+    // 10. 가장 짧은 문자거리 start
+    @Test
+    void 가장_짧은_문자거리() {
+        String s = "teachermode";
+        //String t = "e";
+        char t = 'e';
+        for (int i : 가장_짧은_문자거리_함수(s, t)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 가장_짧은_문자거리_함수(String s, char t) {
+        /* 내가 푼 거
+        int[] answer = new int[s.length()];
+        int p = 1000;
+        for (int i = 0; i < s.length(); i++) {
+            if ((s.charAt(i)+"").equals(t)) {
+                p = 0;
+                answer[i] = p;
+                continue;
+            }
+            answer[i] = ++p;
+        }
+        p = 1000;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if ((s.charAt(i)+"").equals(t)) {
+                p = 0;
+                continue;
+            }
+            if (answer[i] > p) {
+                answer[i] = ++p;
+                continue;
+            }
+            p++;
+        }
+        return answer;*/
+
+        int[] answer = new int[s.length()];
+        int p = 1000;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == t) {
+                p = 0;
+            } else {
+                p++;
+            }
+            answer[i] = p;
+        }
+
+        p = 1000;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == t) {
+                p = 0;
+            } else {
+                p++;
+                answer[i] = Math.min(answer[i], p);
+            }
+        }
+
+        return answer;
+    }
+    // 10. 가장 짧은 문자거리 end
 
     // String(문자열) end
 
