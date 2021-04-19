@@ -297,6 +297,74 @@ public class Main {
     }
     // 10. 가장 짧은 문자거리 end
 
+    // 11. 문자열 압축 start
+    @Test
+    void 문자열_압축() {
+        String s = "KKHSSSSSSSE";
+        System.out.println("RESULT::: " + 문자열_압축_함수(s));
+    }
+
+    private String 문자열_압축_함수(String s) {
+        /*StringBuilder answer = new StringBuilder();
+        int i = 0;
+        char compareC = 0;
+        for (char c : s.toCharArray()) {
+            if (compareC != 0) {
+                if (c == compareC) {
+                    i++;
+                } else {
+                    if (i >= 2) {
+                        answer.append(i);
+                        answer.append(c);
+                    } else {
+                        answer.append(c);
+                    }
+                    compareC = 0;
+                    i = 0;
+                }
+            } else {
+                i++;
+                compareC = c;
+                answer.append(c);
+            }
+        }
+        return answer.toString();*/
+
+        String answer = "";
+        s = s + " ";
+        int cnt = 1;
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                cnt++;
+            } else {
+                answer += s.charAt(i);
+                if (cnt > 1) {
+                    answer += cnt;
+                    cnt = 1;
+                }
+            }
+        }
+
+        return answer;
+    }
+    // 11. 문자열 압축 end
+
+
+    // 12. 암호 start
+    @Test
+    void 암호() {
+
+    }
+
+    private String 암호_함수() {
+        String answer = "";
+        return answer;
+    }
+    // 12. 암호 end
+
+
+
     // String(문자열) end
 
 
