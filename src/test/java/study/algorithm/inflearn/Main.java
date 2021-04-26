@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class Main {
 
     // String(문자열) start
-
-
     // 3. 문장 속 단어 start
     // 3. 문장 속 단어(indexOf(), substring())
     @Test
@@ -406,10 +404,36 @@ public class Main {
         return answer;
     }
     // 12. 암호 end
-
-
-
     // String(문자열) end
 
 
+
+    // Array(1, 2차원 배열) start
+
+    // 1. 큰 수 출력하기 start
+    @Test
+    void 큰_수_출력하기() {
+        int n = 6;
+        int[] arr = {7, 3, 9, 5, 6, 12};
+        for (Integer integer : 큰_수_출력하기_함수(n, arr)) {
+            System.out.println("result::: " + integer);
+        }
+
+    }
+
+    private ArrayList<Integer> 큰_수_출력하기_함수(int n, int[] arr) {
+        ArrayList<Integer> answer = new ArrayList<>();
+        answer.add(arr[0]);
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[i-1]) {
+                answer.add(arr[i]);
+            }
+        }
+
+        return answer;
+    }
+
+    // 1. 큰 수 출력하기 end
+
+    // Array(1, 2차원 배열) end
 }
