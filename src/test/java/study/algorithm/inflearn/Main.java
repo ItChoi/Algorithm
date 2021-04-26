@@ -3,7 +3,6 @@ package study.algorithm.inflearn;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 (인프런 강의)
@@ -352,13 +351,58 @@ public class Main {
 
 
     // 12. 암호 start
+
+    /**
+     * #****## --> 'C'
+     * #**#### --> 'O'
+     * #**#### --> 'O'
+     * #**##** --> 'L'
+     */
     @Test
     void 암호() {
+        /*String s = "#****###**#####**#####**##**";
+        System.out.println("result::: " + 암호_함수(s));*/
 
+        String s = "#****###**#####**#####**##**";
+        System.out.println("result::: " + 암호_함수(4, s));
     }
 
-    private String 암호_함수() {
+    /*private String 암호_함수(String s) {
         String answer = "";
+        String temp = "";
+        for (int i = 0; i < s.length(); i++) {
+            String s1 = s.charAt(i) + "";
+            if (s1.equals("#")) {
+                temp += "1";
+            } else if (s1.equals("*")) {
+                temp += "0";
+            }
+        }
+
+        int start = 0;
+        int end = 7;
+        String tempS = "";
+        for (int i = 0; i < temp.length() / 7; i++) {
+            tempS = temp.substring(start, end);
+            int i1 = Integer.parseInt(tempS, 2);
+            answer += (char) i1;
+
+            start = end;
+            end = end + 7;
+        }
+
+        return answer;
+    }*/
+    private String 암호_함수(int n, String s) {
+        String answer = "";
+
+        for (int i = 0; i < n; i++) {
+            String tmp = s.substring(0, 7).replace('#', '1').replace('*', '0');
+            int num = Integer.parseInt(tmp, 2);
+            answer += (char) num;
+            s = s.substring(7);
+        }
+
         return answer;
     }
     // 12. 암호 end
