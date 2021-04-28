@@ -501,20 +501,146 @@ public class Main {
     // 4. 피보나치 수열 start
     @Test
     void 피보나치_수열() {
-        int n = 10;
-
-
+        int n = 3;
+        for (Integer result : 피보나치_수열_함수(n)) {
+            System.out.println("result: " + result);
+        }
     }
 
     private List<Integer> 피보나치_수열_함수(int n) {
         List<Integer> answer = new ArrayList<>();
 
-
-
+        for (int i = 0; i < n; i++) {
+            if (i <= 1) {
+                answer.add(1);
+                continue;
+            }
+            answer.add(answer.get(i - 1) + answer.get(i-2));
+        }
         return answer;
     }
     // 4. 피보나치 수열 end
 
+    // 5. 소수(에라토스테네스 체) start
+    @Test
+    void 소수_에라토스테네스체() {
+        int n = 20;
+        System.out.println("result::: " + 소수_에라토스테네스체_함수(n));
+    }
+
+    private int 소수_에라토스테네스체_함수(int n) {
+        int result = 0;
+        int[] ch = new int[n + 1];
+
+        for (int i = 2; i <= n; i++) {
+            if (ch[i] == 0) {
+                result++;
+                for (int j = i; j <= n; j=j+i) {
+                    ch[j] = 1;
+                }
+            }
+        }
+        /*for (int i = 3; i <= n; i++) {
+            boolean isSosu = true;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isSosu = false;
+                    break;
+                }
+            }
+
+            if (isSosu) {
+                result++;
+            }
+        }*/
+        return result;
+    }
+    // 5. 소수(에라토스테네스 체) end
+
+
+    // 6. 뒤집은 소수 start
+    @Test
+    void 뒤집은_소수() {
+        int n = 9;
+        int[] arr = {32, 55, 62, 20, 250, 370, 200, 30, 100};
+        System.out.println("result::: " + 뒤집은_소수_함수(n, arr));
+    }
+
+    private boolean isPrime(int num) {
+        if (num == 1) {
+            return false;
+        }
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private List<Integer> 뒤집은_소수_함수(int n, int[] arr) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int tmp = arr[i];
+            int res = 0;
+            while (tmp > 0) {
+                int t = tmp % 10;
+                res = res * 10 + t;
+                tmp = tmp / 10;
+            }
+            if (isPrime(res)) {
+                result.add(res);
+            }
+        }
+        /*for (int i = 0; i < arr.length; i++) {
+            String val = arr[i] + "";
+            String temp = "";
+            for (int j = val.length() - 1; j >= 0; j--) {
+                temp += val.charAt(j);
+            }
+            int checkNum = Integer.parseInt(temp);
+
+            boolean isSosu = checkNum > 1;
+            for (int k = 2; k < checkNum; k++) {
+                if (checkNum % k == 0) {
+                    isSosu = false;
+                    break;
+                }
+            }
+
+            if (isSosu) {
+                result.add(checkNum);
+            }
+        }*/
+        return result;
+    }
+    // 6. 뒤집은 소수 end
+
+    // 7. 점수계산 start
+    @Test
+    void 점수계산() {
+        int n = 10;
+        int[] arr = {1, 0, 1, 1, 1, 0, 0, 1, 1, 0};
+        System.out.println("result::: " + 점수계산_함수(n, arr));
+    }
+
+    private int 점수계산_함수(int n, int[] arr) {
+        int result = 0;
+        int bonus = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 1) {
+                result += 1 + bonus;
+                bonus++;
+                continue;
+            }
+
+            bonus = 0;
+        }
+
+        return result;
+    }
+    // 7. 점수계산 end
 
     // Array(1, 2차원 배열) end
 }
