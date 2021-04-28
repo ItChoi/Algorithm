@@ -626,7 +626,18 @@ public class Main {
 
     private int 점수계산_함수(int n, int[] arr) {
         int result = 0;
-        int bonus = 0;
+
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 1) {
+                cnt++;
+                result += cnt;
+            } else {
+                cnt = 0;
+            }
+        }
+
+        /*int bonus = 0;
 
         for (int i = 0; i < n; i++) {
             if (arr[i] == 1) {
@@ -636,7 +647,7 @@ public class Main {
             }
 
             bonus = 0;
-        }
+        }*/
 
         return result;
     }
