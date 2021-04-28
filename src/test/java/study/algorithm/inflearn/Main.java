@@ -3,6 +3,7 @@ package study.algorithm.inflearn;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 (인프런 강의)
@@ -432,8 +433,88 @@ public class Main {
 
         return answer;
     }
-
     // 1. 큰 수 출력하기 end
+
+    // 2. 보이는 학생 start
+    @Test
+    void 보이는_학생() {
+        int n = 6;
+        int[] arr = {130, 135, 148, 140, 145, 150, 150, 153};
+        System.out.println("result::: " + 보이는_학생_함수(n, arr));
+    }
+
+    private int 보이는_학생_함수(int n, int[] arr) {
+        int result = 1;
+        int max = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (max < arr[i]) {
+                result++;
+                max = arr[i];
+            }
+        }
+        return result;
+    }
+    // 2. 보이는 학생 end
+
+    // 3. 가위바위보 start
+    @Test
+    void 가위바위보() {
+        int n = 5;
+        int[] user1 = {2, 3, 3, 1, 3};
+        int[] user2 = {1, 1, 2, 2, 3};
+        for (String result : 가위바위보_함수(n, user1, user2)) {
+            System.out.println("result::: " + result);
+        }
+    }
+
+    private List<String> 가위바위보_함수(int n, int[] user1, int[] user2) {
+        List<String> answer = new ArrayList<>();
+        // 1: 가위, 2: 바위, 3: 보
+        for (int i = 0; i < n; i++) {
+            /* 방법 1 - 내가 푼 것
+            if (user1[i] == user2[i]) {
+                answer.add("D");
+            } else if (user1[i] != 3 && user1[i] + 1 == user2[i]) {
+                answer.add("B");
+            } else if(user1[i] == 3 && user1[i] -2 == user2[i]) {
+                answer.add("B");
+            } else {
+                answer.add("A");
+            }*/
+            if (user1[i] == user2[i]) {
+                answer.add("D");
+            } else if (user1[i] == 1 && user2[i] == 3) {
+                answer.add("A");
+            } else if (user1[i] == 2 && user2[i] == 1) {
+                answer.add("A");
+            } else if (user1[i] == 3 && user2[i] == 2) {
+                answer.add("A");
+            } else {
+                answer.add("B");
+            }
+        }
+        return answer;
+    }
+    // 3. 가위바위보 end
+
+    // 4. 피보나치 수열 start
+    @Test
+    void 피보나치_수열() {
+        int n = 10;
+
+
+    }
+
+    private List<Integer> 피보나치_수열_함수(int n) {
+        List<Integer> answer = new ArrayList<>();
+
+
+
+        return answer;
+    }
+    // 4. 피보나치 수열 end
+
 
     // Array(1, 2차원 배열) end
 }
