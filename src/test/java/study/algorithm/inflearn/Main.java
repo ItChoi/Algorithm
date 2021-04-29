@@ -660,13 +660,26 @@ public class Main {
     // 8. 등수구하기 start
     @Test
     void 등수구하기() {
-        int[] arr = {87, 92, 100, 92, 89, 89, 92, 100, 76};
-        for (Integer result : 등수구하기_함수(arr)) {
+        int n = 5;
+        int[] arr = {87, 89, 92, 100, 76};
+        for (Integer result : 등수구하기_함수(n, arr)) {
             System.out.println("result = " + result);
         }
     }
-    private List<Integer> 등수구하기_함수(int[] arr) {
-        int n = arr.length;
+    private int[] 등수구하기_함수(int n, int[] arr) {
+        int[] answer = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            int cnt = 1;
+            for (int j = 0; j < n; j++) {
+                if (arr[j] > arr[i]) {
+                    cnt++;
+                }
+            }
+            answer[i] = cnt;
+        }
+
+        /*int n = arr.length;
         List<Integer> tempCopy = Arrays.stream(arr).boxed().collect(Collectors.toList());
         List<Integer> result = new ArrayList<>();
 
@@ -687,11 +700,11 @@ public class Main {
                     break;
                 }
             }
-        }
+        }*/
 
 
 
-        return result;
+        return answer;
     }
 
     // 8. 등수구하기 end
