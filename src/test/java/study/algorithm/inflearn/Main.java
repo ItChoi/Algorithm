@@ -1,9 +1,13 @@
 package study.algorithm.inflearn;
 
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 (인프런 강의)
@@ -652,6 +656,45 @@ public class Main {
         return result;
     }
     // 7. 점수계산 end
+
+    // 8. 등수구하기 start
+    @Test
+    void 등수구하기() {
+        int[] arr = {87, 92, 100, 92, 89, 89, 92, 100, 76};
+        for (Integer result : 등수구하기_함수(arr)) {
+            System.out.println("result = " + result);
+        }
+    }
+    private List<Integer> 등수구하기_함수(int[] arr) {
+        int n = arr.length;
+        List<Integer> tempCopy = Arrays.stream(arr).boxed().collect(Collectors.toList());
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 1; j < n - i; j++) {
+                if (arr[j-1] < arr[j]) {
+                    int tmp = arr[j];
+                    arr[j] = arr[j-1];
+                    arr[j-1] = tmp;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (tempCopy.get(i) == arr[j]) {
+                    result.add(j+1);
+                    break;
+                }
+            }
+        }
+
+
+
+        return result;
+    }
+
+    // 8. 등수구하기 end
 
     // Array(1, 2차원 배열) end
 }
