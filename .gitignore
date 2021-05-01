@@ -38,4 +38,4 @@ settings.gradle
 gradle/wrapper
 
 ### custom ignore
-codingtest/**
+src/test/java/study/algorithm/codingtest/**
