@@ -230,16 +230,55 @@ public class Level2 {
 
     private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
+        Map<Integer, Integer> passingTruck = new HashMap<>();
+
+        int totalWeigh = 0;
+        int truckWeightsLength = truck_weights.length;
+        for (int i = 0; i < truckWeightsLength; i++) {
+            answer++;
+            totalWeigh += truck_weights[i];
+            passingTruck.put(truck_weights[i], bridge_length);
+
+            if (i != truckWeightsLength - 1 && weight > (totalWeigh + truck_weights[i + 1])) {
+                continue;
+            }
+
+            List<Integer> removeTargetList = new ArrayList<>();
+            boolean isWorking = true;
+            while (isWorking) {
+                for (Integer key : passingTruck.keySet()) {
+                    int val = passingTruck.get(key) - 1;
+                    passingTruck.put(key, val);
+
+                    if (val == 0) {
+                        removeTargetList.add(key);
+                        isWorking = false;
+                    }
+                    answer++;
+                }
+            }
+
+            for (Integer key : removeTargetList) {
+                passingTruck.remove(key);
+            }
+        }
+
+
+
+
+        return answer;
+    }
+
+    /*private int 다리를_지나는_트럭_함수1(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
         int totalWeight = 0;
         List<Integer> tempTruckWeights = Arrays.stream(truck_weights).boxed().collect(Collectors.toList());
-        //List<Integer> passingTruckList = new ArrayList<>();
         Map<Integer, Integer> passingTruckMap = new HashMap<>();
         int pointer = 0;
 
         int truckSize = tempTruckWeights.size();
         for (int i = 0; i < truckSize; i++) {
             totalWeight += tempTruckWeights.get(i);
-            //passingTruckList.add(i);
             passingTruckMap.put(i, tempTruckWeights.get(i));
 
             int j = i + 1;
@@ -267,57 +306,9 @@ public class Level2 {
                     answer++;
                 }
             }
-
-            /*for (int k = pointer; k < passingTruckMap.size(); k++) {
-                if (passingTruckMap.get(k) == 0) {
-                    totalWeight -= passingTruckMap.get(k);
-                    passingTruckMap.remove(k);
-                    if (!stop) {
-                        stop = true;
-                        pointer = k;
-                    }
-                }
-                answer++;
-            }*/
         }
-
-
-        /*int answer = 0;
-        List<Integer> passingTruckList = new ArrayList<>();
-        int totalWeight = 0;
-
-        for (int te : truck_weights) {
-            totalWeight += te;
-
-            if (totalWeight < weight) {
-                passingTruckList.add(bridge_length);
-            }
-
-            List<Integer> removeIndex = new ArrayList<>();
-            for (int j = 0; j < passingTruckList.size(); j++) {
-                int getValue = passingTruckList.get(j);
-
-                if (getValue == 0) {
-                    continue;
-                }
-
-                if (getValue - 1 <= 0) {
-                    removeIndex.add(j);
-                }
-
-                passingTruckList.set(j, getValue - 1);
-            }
-
-            for (Integer index : removeIndex) {
-                passingTruckList.remove(index);
-            }
-
-            answer++;
-        }*/
-
-
-            return answer;
-    }
+        return answer;
+    }*/
     // 스택/큐 다리를 지나는 트럭 end
 
     @Test
