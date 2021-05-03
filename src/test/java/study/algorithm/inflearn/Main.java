@@ -827,6 +827,74 @@ public class Main {
 
     // 10. 봉우리 end
 
+    // 11. 임시반장정하기 start
+    @Test
+    void 임시반장정하기() {
+        int n = 5;
+        int[][] arr = {
+            {2, 3, 1, 7, 3},
+            {4, 1, 9, 6, 8},
+            {5, 5, 2, 4, 4},
+            {6, 5, 2, 6, 7},
+            {8, 4, 2, 2, 2}
+        };
+
+        System.out.println("result::: " + 임시반장정하기_함수(n, arr));
+    }
+
+    private int 임시반장정하기_함수(int n, int[][] arr) {
+        int answer = 0;
+        int max = Integer.MIN_VALUE;
+
+        // 학생 번호
+        for (int i = 0; i < n; i++) {
+            int cnt = 0;
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < 5; k++) {
+                    if (arr[i][k] == arr[j][k]) {
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+
+            if (cnt > max) {
+                max = cnt;
+                answer = i + 1;
+            }
+        }
+
+
+
+        /* 내가 푼 것 - 틀렸었네...
+        int maxCount = 0;
+        for (int i = 0; i < n; i++) {
+            int compareCount = 0;
+            for (int j = 0; j < n; j++) {
+                List<Integer> existsIndex = new ArrayList<>();
+                for (int k = 0; k < n; k++) {
+                    if (j == k || existsIndex.contains(k)) {
+                        continue;
+                    }
+
+                    if (arr[i][j] == arr[j][k]) {
+                        existsIndex.add(k);
+                        compareCount++;
+                    }
+                }
+
+                if (maxCount < compareCount) {
+                    maxCount = compareCount;
+                    answer = i;
+                }
+            }
+        }*/
+
+        return answer;
+    }
+
+    // 11. 임시반장정하기 end
+
 
     // Array(1, 2차원 배열) end
 }
