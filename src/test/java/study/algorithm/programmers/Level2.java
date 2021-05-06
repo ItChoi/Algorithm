@@ -1,9 +1,9 @@
 package study.algorithm.programmers;
 
-import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
 /**
@@ -222,20 +222,121 @@ public class Level2 {
     // 스택/큐 다리를 지나는 트럭 start
     @Test
     public void 다리를_지나는_트럭() {
+        // TEST START
+
+        // TEST END
         int bridge_length = 2;
         int weight = 10;
         int[] truck_weights = {7, 4, 5, 6};
+        /*int bridge_length = 100;
+        int weight = 100;
+        int[] truck_weights = {10,10,10,10,10,10,10,10,10,10};*/
+
         System.out.println("result: " + 다리를_지나는_트럭_함수(bridge_length, weight, truck_weights));
     }
 
     private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        Queue<Integer> que = new ConcurrentLinkedQueue<>();
+
+        int totalWeight = 0;
+        for (int truckWeight : truck_weights) {
+            while (true) {
+                if (que.isEmpty()) {
+                    answer++;
+                    que.add(truckWeight);
+                    totalWeight += truckWeight;
+                    break;
+                } else if (que.size() == bridge_length) {
+                    totalWeight -= que.poll();
+                } else {
+                    if (totalWeight + truckWeight > weight) {
+                        answer++;
+                        que.add(0);
+                    } else {
+                        answer++;
+                        que.add(truckWeight);
+                        totalWeight += truckWeight;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return answer + bridge_length;
+    // TODO: 완벽하게 이해하기.
+    /*private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        Queue<Integer> que = new LinkedList<>();
+
+        int totalWeight = 0;
+        for (Integer truckWeight : truck_weights) {
+            while (true) {
+                if (que.isEmpty()) {
+                    que.add(truckWeight);
+                    answer++;
+                    totalWeight += truckWeight;
+                    break;
+                } else if (que.size() == bridge_length) {
+                    totalWeight -= que.poll();
+                } else {
+                    if (totalWeight + truckWeight > weight) {
+                        answer++;
+                        que.add(0);
+                    } else {
+                        answer++;
+                        que.add(truckWeight);
+                        totalWeight += truckWeight;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return answer + bridge_length;*/
+    }
+
+    /*private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        Queue<Integer> que = new LinkedList<>();
+        int truckWeightsLength = truck_weights.length;
+
+        int totalWeigh = 0;
+        for (int i = 0; i < truckWeightsLength; i++) {
+            int count = que.size() == 1 ? bridge_length - 1 : bridge_length;
+
+            while (true) {
+                if (que.isEmpty()) {
+                    int truckWeight = truck_weights[i];
+                    totalWeigh += truckWeight;
+                    que.add(truckWeight);
+                } else if (i != truckWeightsLength -1 && weight >= (totalWeigh + truck_weights[i + 1])) {
+                    int nextTructWeight = truck_weights[i + 1];
+                    count--;
+                    answer++;
+                    totalWeigh += nextTructWeight;
+                    que.add(nextTructWeight);
+                    continue;
+                } else {
+                    if (count-- <= 0) {
+                        totalWeigh -= que.poll();
+                        break;
+                    }
+                    answer++;
+                }
+            }
+        }
+
+        return answer + 1;
+    }*/
+
+    /*private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
         Map<Integer, Integer> passingTruck = new HashMap<>();
 
         int totalWeigh = 0;
         int truckWeightsLength = truck_weights.length;
         for (int i = 0; i < truckWeightsLength; i++) {
-            answer++;
             totalWeigh += truck_weights[i];
             passingTruck.put(truck_weights[i], bridge_length);
 
@@ -246,15 +347,16 @@ public class Level2 {
             List<Integer> removeTargetList = new ArrayList<>();
             boolean isWorking = true;
             while (isWorking) {
+                answer++;
                 for (Integer key : passingTruck.keySet()) {
                     int val = passingTruck.get(key) - 1;
                     passingTruck.put(key, val);
 
                     if (val == 0) {
                         removeTargetList.add(key);
+                        totalWeigh -= key;
                         isWorking = false;
                     }
-                    answer++;
                 }
             }
 
@@ -262,12 +364,8 @@ public class Level2 {
                 passingTruck.remove(key);
             }
         }
-
-
-
-
         return answer;
-    }
+    }*/
 
     /*private int 다리를_지나는_트럭_함수1(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
@@ -313,16 +411,6 @@ public class Level2 {
 
     @Test
     public void test() {
-        Map<Integer, Integer> map = new HashMap<>();
-
-        map.put(1, 11);
-        map.put(2, 22);
-        map.put(3, 33);
-
-        for (Integer i : map.keySet()) {
-            map.put(i, map.get(i) - 1);
-            System.out.println("map: " + map.get(i));
-        }
 
     }
 
