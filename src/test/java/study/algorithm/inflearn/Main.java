@@ -866,6 +866,7 @@ public class Main {
 
 
 
+
         /* 내가 푼 것 - 틀렸었네...
         int maxCount = 0;
         for (int i = 0; i < n; i++) {
@@ -892,8 +893,50 @@ public class Main {
 
         return answer;
     }
-
     // 11. 임시반장정하기 end
+
+
+    // 12. 멘토링 start
+    @Test
+    void 멘토링() {
+        int n = 4;
+        int m = 3;
+        int[][] arr = {
+                {3, 4, 1, 2},
+                {4, 3, 2, 1},
+                {3, 1, 4, 2}
+        };
+
+        System.out.println("result:: " + 멘토링_함수(n, m, arr));
+    }
+
+    private int 멘토링_함수(int n, int m, int[][] arr) {
+        int answer = 0;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                int cnt = 0;
+                for (int k = 0; k < m; k++) {
+                    int pi = 0;
+                    int pj = 0;
+                    for (int s = 0; s < n; s++) {
+                        if (arr[k][s] == i) pi = s;
+                        if (arr[k][s] == j) pj = s;
+                    }
+
+                    if (pi < pj) {
+                        cnt++;
+                    }
+                }
+                if (cnt == m) answer++;
+            }
+
+        }
+
+        return answer;
+    }
+    // 12. 멘토링 end
+
 
 
     // Array(1, 2차원 배열) end
