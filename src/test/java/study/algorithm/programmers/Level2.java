@@ -409,6 +409,86 @@ public class Level2 {
     }*/
     // 스택/큐 다리를 지나는 트럭 end
 
+    // 짝지어 제거하기 start
+    @Test
+    void 짝지어_제거하기() {
+//        String s = "baabaa";
+//        String s = "cdcd";
+
+        String s = "abccbaf";	//1
+//        String s = "abcccba";	//0
+//        String s = "abccccbaaa";	//1
+//        String s = "abccaabaa";	//0
+//        String s = "a";	//0
+        System.out.println("result: " + 짝지어_제거하기_함수(s));
+    }
+
+    // stack 이용 하여 풀기 -> 자료 구조를 잘 활용하자.
+    private int 짝지어_제거하기_함수(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (!stack.isEmpty() && stack.peek() == c) {
+                stack.pop();
+            } else {
+                stack.push(c);
+            }
+        }
+
+        return stack.isEmpty() ? 1 : 0;
+    }
+
+    // 내가 푼 것 -> 효율성 0.....
+    /*private int 짝지어_제거하기_함수(String s) {
+        int answer = 0;
+        while (true) {
+            int cnt = 0;
+            for (int i = 0; i < s.length() -1; i++) {
+                char c = s.charAt(i);
+                if (c == s.charAt(i + 1)) {
+                    cnt++;
+                    String temp = c + "" + c;
+                    s = s.replaceFirst(temp, "");
+                    break;
+                }
+            }
+
+            if (s.length() == 0) {
+                answer = 1;
+                break;
+            } else if (cnt == 0) {
+                break;
+            }
+        }
+
+        return answer;
+    }*/
+
+    // 짝지어 제거하기 end
+
+
+
+
+    // 2020 KAKAO BLIND RECRUITMENT 문자열 압축 start
+    @Test
+    void 문자열_압축() {
+
+        String s ="aabbaccc";	// 7
+//        String s ="ababcdcdababcdcd";	// 9
+//        String s ="abcabcdede";	// 8
+//        String s ="abcabcabcabcdededededede";	// 14
+//        String s ="xababcdcdababcdcd";	// 17
+        System.out.println("result:: " + 문자열_압축_함수(s));
+    }
+
+    private int 문자열_압축_함수(String s) {
+        int answer = 0;
+
+
+        return answer;
+    }
+    // 2020 KAKAO BLIND RECRUITMENT 문자열 압축 end
+
+
     @Test
     public void test() {
 
