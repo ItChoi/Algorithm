@@ -485,21 +485,72 @@ public class Level2 {
 //        String s ="bbaabaaaab";	// 8 2b2ab4ab
 //        String s ="zzzbbabbabba";	// 7 zzz3bba
 //        String s ="ababccccabab";	// 2ab
-        System.out.println("result:: " + 문자열_압축_함수(s));
+
+        System.out.println("result:: "  + 문자열_압축_함수(s));
     }
 
     private int 문자열_압축_함수(String s) {
-        // 가장 짧게 압축하기.
         int answer = 0;
+        String answerStr = "";
 
-        int minLength = Integer.MAX_VALUE;
+        int banIndex = s.length() / 2;
+        int tempBanIndex = banIndex;
+        boolean isJjaksu = s.length() % 2 == 0;
+
+        boolean end = false;
+        while(!end) {
+            String frontStr = "";
+            String backStr = "";
+
+            for (int i = 0; i < tempBanIndex; i++) {
+                frontStr += s.charAt(i);
+                backStr += s.charAt(tempBanIndex + i);
+            }
+
+            if (frontStr.equals(backStr)) {
+                answerStr += "2" + frontStr;
+
+                if (tempBanIndex != banIndex) {
+                    for (int j = tempBanIndex - 1; j < banIndex; j++) {
+
+                    }
+                }
+
+                end = true;
+            }
+
+        }
+
+
+
+        /*int minLength = Integer.MAX_VALUE;
         int cutIndex = 1;
         String str = "";
-        boolean isFail = false;
+        boolean isExceedOne = false;
+        boolean isDivide = false;
         for (int i = 0; i < s.length() - 1; i++) {
-            str += s.charAt(i);
+            char currentChar = s.charAt(i);
+            char nextChar = s.charAt(i + 1);
+
+            if (!isExceedOne && currentChar == nextChar) {
+                // 일치
+                cutIndex++;
+            } else {
+                // 불일치
+                if (!isExceedOne && cutIndex > 1) {
+                    // 일치 후 불일치 ex)aac -> 2a
+                    str += (cutIndex + currentChar);
+                    isExceedOne = true;
+                    continue;
+                }
+
+                isExceedOne = true;
+            }
+        }*/
+
+        /*str += s.charAt(i);
             String nextStrs = "";
-            int compareIndex = i * i + 1;
+            int compareIndex = (i + 1) * i;
 
             int j = i + 1;
             for (; j < compareIndex; i++) {
@@ -507,19 +558,16 @@ public class Level2 {
             }
 
             if (str.equals(nextStrs)) {
-                isFail = true;
+                isFail = false;
                 cutIndex = j + 1;
-            }
+            }*/
 
-
-        }
-
-        if (!isFail) {
+        /*if (!isFail) {
             answer = s.length();
-        }
+        }*/
 
 
-        return answer;
+        return answerStr.length();
     }
     // 2020 KAKAO BLIND RECRUITMENT 문자열 압축 end
 
