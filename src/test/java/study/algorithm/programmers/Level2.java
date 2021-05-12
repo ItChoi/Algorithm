@@ -471,17 +471,52 @@ public class Level2 {
     // 2020 KAKAO BLIND RECRUITMENT 문자열 압축 start
     @Test
     void 문자열_압축() {
-
-        String s ="aabbaccc";	// 7
-//        String s ="ababcdcdababcdcd";	// 9
-//        String s ="abcabcdede";	// 8
+        String s ="aabbaccc";	// 7 - 2a2ba3c
+//        String s ="ababcdcdababcdcd";	// 9 - 2ababcdcd
+//        String s ="abcabcdede";	// 8 - 2abcdede
 //        String s ="abcabcabcabcdededededede";	// 14
 //        String s ="xababcdcdababcdcd";	// 17
+//        String s ="aaaaaaaaaab";	//10ab => 4
+//        String s ="xxxxxxxxxxyyy"; // -> "10x3y" -> 5
+//        String s = "a"; // -> "a" -> 1
+//        String s ="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // -> "100x" -> 4
+//        String s ="zxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // -> "z100x" -> 5
+//        String s ="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxz"; // -> "100xz" -> 5
+//        String s ="bbaabaaaab";	// 8 2b2ab4ab
+//        String s ="zzzbbabbabba";	// 7 zzz3bba
+//        String s ="ababccccabab";	// 2ab
         System.out.println("result:: " + 문자열_압축_함수(s));
     }
 
     private int 문자열_압축_함수(String s) {
+        // 가장 짧게 압축하기.
         int answer = 0;
+
+        int minLength = Integer.MAX_VALUE;
+        int cutIndex = 1;
+        String str = "";
+        boolean isFail = false;
+        for (int i = 0; i < s.length() - 1; i++) {
+            str += s.charAt(i);
+            String nextStrs = "";
+            int compareIndex = i * i + 1;
+
+            int j = i + 1;
+            for (; j < compareIndex; i++) {
+                nextStrs += s.charAt(j);
+            }
+
+            if (str.equals(nextStrs)) {
+                isFail = true;
+                cutIndex = j + 1;
+            }
+
+
+        }
+
+        if (!isFail) {
+            answer = s.length();
+        }
 
 
         return answer;
