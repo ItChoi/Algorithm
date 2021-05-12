@@ -938,6 +938,56 @@ public class Main {
     // 12. 멘토링 end
 
 
-
     // Array(1, 2차원 배열) end
+
+
+    // Tow pointers, Sliding window[효율성 : O(n^2)-->O(n)] START
+
+
+
+    // 1. 두 배열 합치기(two pointers algorithm) START
+    @Test
+    void 두_배열_합치기() {
+        /*int[] arr1 = {1, 3, 5};
+        int[] arr2 = {2, 3, 6, 7, 9};*/
+        int[] arr1 = {2, 3, 6, 7, 9};
+        int[] arr2 = {1, 3, 5};
+        for (Integer integer : 두_배열_합치기_함수(arr1, arr2)) {
+            System.out.println("result: " + integer);
+        }
+    }
+
+    private List<Integer> 두_배열_합치기_함수(int[] arr1, int[] arr2) {
+        List<Integer> answer = new ArrayList<>();
+
+        int j = 0;
+        for (int i = 0; i < arr1.length; i++) {
+            for (; j < arr2.length; j++) {
+                if (arr1[i] < arr2[j]) {
+                    answer.add(arr1[i]);
+                    break;
+                } else {
+                    answer.add(arr2[j]);
+                }
+            }
+
+            if (i == arr1.length - 1 && j < arr2.length) {
+                for (; j < arr2.length; j++) {
+                    answer.add(arr2[j]);
+                }
+            } else if (j == arr2.length - 1 && i < arr1.length) {
+                for (; i < arr1.length; i++) {
+                    answer.add(arr1[i]);
+                }
+            }
+        }
+
+        return answer;
+    }
+    // 1. 두 배열 합치기(two pointers algorithm) END
+
+
+
+
+    // Tow pointers, Sliding window[효율성 : O(n^2)-->O(n)] END
 }
