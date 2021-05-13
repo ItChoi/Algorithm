@@ -987,6 +987,172 @@ public class Main {
     // 1. 두 배열 합치기(two pointers algorithm) END
 
 
+    // 2. 공통원소 구하기 START
+    @Test
+    void 공통원소_구하기() {
+        int[] arr1 = {1, 3, 9, 5, 2};
+        int[] arr2 = {3, 2, 5, 7, 8};
+        for (Integer integer : 공통원소_구하기_함수(arr1, arr2)) {
+            System.out.println("result = " + integer);
+        }
+    }
+
+    private List<Integer> 공통원소_구하기_함수(int[] arr1, int[] arr2) {
+        List<Integer> answer = new ArrayList<>();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        int n = arr1.length;
+        int m = arr2.length;
+
+        int p1 = 0;
+        int p2 = 0;
+
+        while (p1 < n && p2 < m) {
+            if (arr1[p1] == arr2[p2]) {
+                answer.add(arr1[p1++]);
+                p2++;
+            } else if (arr1[p1] < arr2[p2]) {
+                p1++;
+            } else {
+                p2++;
+            }
+        }
+
+        /* my resolve
+        int length1 = arr1.length;
+        int length2 = arr2.length;
+
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        int p1 = 0;
+        int p2 = 0;
+        while (p1 < length1 && p2 < length2) {
+            if (arr1[p1] == arr2[p2]) {
+                answer.add(arr1[p1]);
+                p1++;
+                p2++;
+            } else {
+                p1++;
+            }
+        }
+
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
+                if (arr1[i] == arr2[j]) {
+                    answer.add(arr1[i]);
+                    break;
+                }
+            }
+        }
+
+        Collections.sort(answer);*/
+        return answer;
+    }
+    // 2. 공통원소 구하기 END
+
+    // 3. 최대 매출 START
+    @Test
+    void 최대_매출() {
+        int n = 10;
+        int k = 3;
+        int[] arr = {12, 15, 11, 20, 25, 10, 20, 19, 13, 15};
+        System.out.println("result::: " + 최대_매출_함수(n, k, arr));
+    }
+    private int 최대_매출_함수(int n, int k, int[] arr) {
+        int answer = 0;
+        int sum = 0;
+
+        for (int i = 0; i < k; i++) sum += arr[i];
+        answer = sum;
+
+        for (int i = k; i < n; i++) {
+            sum += (arr[i] - arr[i - k]);
+            answer = Math.max(answer, sum);
+        }
+
+
+
+        /* my resolve
+        int tempMax = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (i >= k) {
+                if (answer < tempMax) {
+                    answer = tempMax;
+                }
+                tempMax -= arr[i-k];
+            }
+
+            tempMax += arr[i];
+        }
+        for (int i = 0; i < arr.length - k; i++) {
+            int tempMax = 0;
+            for (int j = i; j < i + k; j++) {
+                tempMax += arr[j];
+            }
+
+            if (max < tempMax) {
+                max = tempMax;
+            }
+        }*/
+
+        return answer;
+    }
+    // 3. 최대 매출 END
+
+
+    // 4. 연속 부분수열
+    @Test
+    void 연속_부분수열() {
+        int n = 8;
+        int m = 6;
+        /*int[] arr = {1, 2, 1, 3, 1, 1, 1, 2};*/
+        int[] arr = {1, 1, 1, 1, 1, 1, 5, 1};
+        System.out.println("연속_부분수열_함수 = " + 연속_부분수열_함수(n, m, arr));
+    }
+    private int 연속_부분수열_함수(int n, int m, int[] arr) {
+        int answer = 0;
+        /*int sum = 0;
+        int lt = 0;
+        for (int rt = 0; rt < n; rt++) {
+            sum += arr[rt];
+            if (sum == m) {
+                answer++;
+            }
+
+            while (sum >= m) {
+                sum -= arr[lt++];
+                if (sum == m) answer++;
+            }
+        }*/
+
+
+        // my resolve
+        int lt = 0;
+        int rt = 0;
+        int sum = 0;
+        while (rt < n) {
+            if (sum <= m) {
+                sum += arr[rt++];
+            }
+            if (sum == m) {
+                sum -= arr[lt++];
+                answer++;
+            } else if (sum > m) {
+                sum -= arr[lt++];
+                if (sum == m) {
+                    answer++;
+                }
+            }
+        }
+
+
+
+        return answer;
+    }
+
+
 
 
     // Tow pointers, Sliding window[효율성 : O(n^2)-->O(n)] END
