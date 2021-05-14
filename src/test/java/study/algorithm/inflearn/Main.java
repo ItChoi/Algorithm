@@ -957,9 +957,29 @@ public class Main {
         }
     }
 
+
     private List<Integer> 두_배열_합치기_함수(int[] arr1, int[] arr2) {
         List<Integer> answer = new ArrayList<>();
+        int n = arr1.length;
+        int m = arr2.length;
 
+        int p1 = 0;
+        int p2 = 0;
+
+        while (p1 < n && p2 < m) {
+            if (arr1[p1] < arr2[p2]) {
+                answer.add(arr1[p1++]);
+            } else {
+                answer.add(arr2[p2++]);
+            }
+        }
+
+        while (p1 < n) answer.add(arr1[p1++]);
+        while (p2 < m) answer.add(arr2[p2++]);
+
+
+
+        /* 내가 푼 것
         int j = 0;
         for (int i = 0; i < arr1.length; i++) {
             for (; j < arr2.length; j++) {
@@ -980,12 +1000,18 @@ public class Main {
                     answer.add(arr1[i]);
                 }
             }
-        }
+        }*/
 
         return answer;
     }
     // 1. 두 배열 합치기(two pointers algorithm) END
 
+    // 2. 공통원소 구하기 START
+    @Test
+    void 공통원소_구하기() {
+
+    }
+    // 2. 공통원소 구하기 END
 
 
 
