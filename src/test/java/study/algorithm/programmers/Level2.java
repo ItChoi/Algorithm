@@ -490,36 +490,65 @@ public class Level2 {
     }
 
     private int 문자열_압축_함수(String s) {
+        // aabbaccc	// 7 - 2a2ba3c
+        // abcabcfe
+        // abcdabcd
+        s = "abcabcfe";
         int answer = 0;
         String answerStr = "";
-
-        int banIndex = s.length() / 2;
-        int tempBanIndex = banIndex;
         boolean isJjaksu = s.length() % 2 == 0;
+        int banIndex = s.length() / 2;
+        for (int i = 0; i < s.length(); i++) {
+            String frontStr = "";
+            String backStr = "";
+            for (int j = 0; j < banIndex; j++) {
+                frontStr += s.charAt(i + j);
+            }
+            for (int j = banIndex; j < banIndex * 2; j++) {
+                backStr += s.charAt(banIndex + i + j);
+            }
+            /*for (int j = banIndex - 1; j >= 0; j--) {
+                backStr += s.charAt(banIndex + i + j);
+            }*/
 
-        boolean end = false;
-        while(!end) {
+
+            if (frontStr.equals(backStr)) {
+                answerStr += "2" + frontStr;
+                i = banIndex * 2 - 1;
+                banIndex = s.length() - (banIndex * 2);
+            } else {
+                banIndex = s.length() / 2 - (i + 1);
+                i--;
+            }
+        }
+
+        System.out.println("answer = " + answerStr);
+
+
+
+
+
+
+
+        /*while(!end) {
             String frontStr = "";
             String backStr = "";
 
-            for (int i = 0; i < tempBanIndex; i++) {
+            for (int i = 0; i < banIndex; i++) {
                 frontStr += s.charAt(i);
-                backStr += s.charAt(tempBanIndex + i);
+                backStr += s.charAt(banIndex + i);
             }
 
             if (frontStr.equals(backStr)) {
                 answerStr += "2" + frontStr;
 
                 if (tempBanIndex != banIndex) {
-                    for (int j = tempBanIndex - 1; j < banIndex; j++) {
+                    for (int j = banIndex - 1; j < banIndex; j++) {
 
                     }
                 }
-
-                end = true;
             }
-
-        }
+        }*/
 
 
 
