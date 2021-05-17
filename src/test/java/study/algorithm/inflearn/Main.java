@@ -1249,15 +1249,30 @@ public class Main {
     private int 최대_길이_연속부분수열_함수(int n, int k, int[] arr) {
         int answer = 0;
 
+        int cnt = 0;
+        int lt = 0;
+        for (int rt = 0; rt < n; rt++) {
+            if (arr[rt] == 0) cnt++;
+
+            while (cnt > k) {
+                if (arr[lt] == 0) cnt --;
+                lt++;
+            }
+
+            answer = Math.max(answer, rt - lt + 1);
+        }
+
+
+        /* 내가 푼 것
         int limitCount = 0;
         int tempLength = 0;
         int j = 0;
         for (int rt = 0; rt < arr.length; rt++) {
-            if (limitCount == k) j++;
             if (arr[rt] == 1) {
                 tempLength++;
             } else {
                 limitCount++;
+                j++;
                 if (limitCount > k) {
                     if (answer < tempLength) {
                         answer = tempLength;
@@ -1270,7 +1285,7 @@ public class Main {
                 }
 
             }
-        }
+        }*/
 
 
 
