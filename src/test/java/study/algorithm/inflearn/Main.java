@@ -1009,13 +1009,6 @@ public class Main {
     // 2. 공통원소 구하기 START
     @Test
     void 공통원소_구하기() {
-
-    }
-    // 2. 공통원소 구하기 END
-
-    // 2. 공통원소 구하기 START
-    @Test
-    void 공통원소_구하기() {
         int[] arr1 = {1, 3, 9, 5, 2};
         int[] arr2 = {3, 2, 5, 7, 8};
         for (Integer integer : 공통원소_구하기_함수(arr1, arr2)) {
@@ -1177,6 +1170,101 @@ public class Main {
 
         return answer;
     }
+
+    // 5. 연속된 자연수의 합 START
+    @Test
+    void 연속된_자연수의_합() {
+        int n = 15;
+        System.out.println("연속된_자연수의_합_함수(n) = " + 연속된_자연수의_합_함수(n));
+    }
+
+    private int 연속된_자연수의_합_함수(int n) {
+        int answer = 0;
+        int cnt = 1;
+        n--;
+        while (n > 0) {
+            cnt++;
+            n = n - cnt;
+            if (n % cnt == 0) {
+                answer++;
+            }
+        }
+
+
+        /*int sum = 0;
+        int lt = 0;
+        int m = n / 2 + 1;
+        int[] arr = new int[m];
+
+        for (int i = 0; i < m; i++) {
+            arr[i] = i + 1;
+        }
+
+        for (int rt = 0; rt < m; rt++) {
+            sum += arr[rt];
+            if (sum == n) {
+                answer++;
+            }
+
+            while (sum >= n) {
+                sum -= arr[lt++];
+                if (sum == n) {
+                    answer++;
+                }
+            }
+        }*/
+
+        /* 내가 푼 것
+        int sum = 0;
+        int lt = 1;
+        for (int rt = 1; rt < n; rt++) {
+            sum += rt;
+            if (sum == n) {
+                answer++;
+            }
+
+            while (n <= sum) {
+                sum -= lt++;
+                if (sum == n) {
+                    answer++;
+                }
+            }
+        }*/
+
+        return answer;
+    }
+    // 5. 연속된 자연수의 합 END
+
+    // 6. 최대 길이 연속부분수열 START
+    @Test
+    void 최대_길이_연속부분수열() {
+        int n = 14;
+        int k = 2;
+        int[] arr = {1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1};
+        System.out.println("최대_길이_연속부분수열_함수() = " + 최대_길이_연속부분수열_함수(n, k, arr));
+    }
+
+    private int 최대_길이_연속부분수열_함수(int n, int k, int[] arr) {
+        int answer = 0;
+
+        int limitCount = 0;
+        int tempLength = 0;
+        int lt = 0;
+        for (int rt = 0; rt < arr.length; rt++) {
+            if (arr[rt] == 1) {
+                tempLength++;
+            } else {
+
+            }
+        }
+
+
+
+
+        return answer;
+    }
+    // 6. 최대 길이 연속부분수열 END
+
 
 
 
