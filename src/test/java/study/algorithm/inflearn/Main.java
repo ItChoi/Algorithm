@@ -1240,7 +1240,9 @@ public class Main {
     void 최대_길이_연속부분수열() {
         int n = 14;
         int k = 2;
-        int[] arr = {1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1};
+        //int[] arr = {1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1};
+        //int[] arr = {1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1};
+        int[] arr = {1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1};
         System.out.println("최대_길이_연속부분수열_함수() = " + 최대_길이_연속부분수열_함수(n, k, arr));
     }
 
@@ -1249,11 +1251,23 @@ public class Main {
 
         int limitCount = 0;
         int tempLength = 0;
-        int lt = 0;
+        int j = 0;
         for (int rt = 0; rt < arr.length; rt++) {
+            if (limitCount == k) j++;
             if (arr[rt] == 1) {
                 tempLength++;
             } else {
+                limitCount++;
+                if (limitCount > k) {
+                    if (answer < tempLength) {
+                        answer = tempLength;
+                    }
+
+                    limitCount = k - 1;
+                    tempLength = rt - j;
+                } else {
+                    tempLength++;
+                }
 
             }
         }
