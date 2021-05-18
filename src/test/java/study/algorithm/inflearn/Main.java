@@ -3,10 +3,7 @@ package study.algorithm.inflearn;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -1294,9 +1291,101 @@ public class Main {
     }
     // 6. 최대 길이 연속부분수열 END
 
-
-
-
-
     // Tow pointers, Sliding window[효율성 : O(n^2)-->O(n)] END
+
+    // 1. 학급 회장(해쉬) START
+    @Test
+    void 학급_회장() {
+        int n = 15;
+        String str = "BACBACCACCBDEDE";
+        System.out.println("학급_회장_함수(n, str) = " + 학급_회장_함수(n, str));
+    }
+
+    private String 학급_회장_함수(int n, String str) {
+        String answer = "";
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (char x : str.toCharArray()) {
+            map.put(x, map.getOrDefault(x, 0) + 1);
+        }
+
+        int max = Integer.MIN_VALUE;
+        for (char key : map.keySet()) {
+            if (map.get(key) > max) {
+                max = map.get(key);
+                answer = key + "";
+            }
+        }
+
+
+        /* 내가 푼 것
+        Map<String, Integer> map = new HashMap<>();
+        for (char c : str.toCharArray()) {
+            String s = String.valueOf(c);
+            if (map.containsKey(s)) {
+                map.put(s, map.get(s) + 1);
+            } else {
+                map.put(s, 1);
+            }
+        }
+
+        int max = 0;
+        for (String s : map.keySet()) {
+            Integer count = map.get(s);
+            if (max < count) {
+                max = count;
+                answer = s;
+            }
+        }*/
+
+        return answer;
+    }
+    // 1. 학급 회장(해쉬) END
+
+    // 2. 아나그램(해쉬) START
+    @Test
+    void 아나그램() {
+        /*String str1 = "AbaAeCe";
+        String str2 = "baeeACA";*/
+        String str1 = "abaCC";
+        String str2 = "Caaab";
+        System.out.println("result = " + 아나그램_함수(str1, str2));
+    }
+
+    private String 아나그램_함수(String str1, String str2) {
+        // TODO::::::: 인강 듣기
+        String answer = "YES";
+
+        Map<Character, Integer> map1 = new HashMap<>();
+        Map<Character, Integer> map2 = new HashMap<>();
+
+
+        for (char c : str1.toCharArray()) {
+            map1.put(c, map1.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : str2.toCharArray()) {
+            map2.put(c, map2.getOrDefault(c, 0) + 1);
+        }
+
+
+        for (Character key : map1.keySet()) {
+            if (!map2.containsKey(key) || !map1.get(key).equals(map2.get(key))) {
+                answer = "NO";
+            }
+        }
+
+        return answer;
+    }
+
+    // 2. 아나그램(해쉬) END
+
+
+
+    // HashMap, TreeSet (해쉬, 정렬지원 Set) START
+
+
+
+    // HashMap, TreeSet (해쉬, 정렬지원 Set) END
 }
