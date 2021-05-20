@@ -1293,6 +1293,10 @@ public class Main {
 
     // Tow pointers, Sliding window[효율성 : O(n^2)-->O(n)] END
 
+
+    // HashMap, TreeSet (해쉬, 정렬지원 Set) START
+
+
     // 1. 학급 회장(해쉬) START
     @Test
     void 학급_회장() {
@@ -1354,7 +1358,20 @@ public class Main {
     }
 
     private String 아나그램_함수(String str1, String str2) {
-        // TODO::::::: 인강 듣기
+        String answer = "YES";
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (char x : str1.toCharArray()) {
+            map.put(x, map.getOrDefault(x, 0) + 1);
+        }
+
+        for (char x : str2.toCharArray()) {
+            if (!map.containsKey(x) || map.get(x) == 0) return "NO";
+            map.put(x, map.get(x) - 1);
+        }
+
+        return answer;
+
+        /* 내가 푼 것
         String answer = "YES";
 
         Map<Character, Integer> map1 = new HashMap<>();
@@ -1369,22 +1386,69 @@ public class Main {
             map2.put(c, map2.getOrDefault(c, 0) + 1);
         }
 
-
         for (Character key : map1.keySet()) {
             if (!map2.containsKey(key) || !map1.get(key).equals(map2.get(key))) {
                 answer = "NO";
             }
         }
 
-        return answer;
+        return answer;*/
     }
 
     // 2. 아나그램(해쉬) END
 
+    // 3. 매출액의 종류(Hash, sliding window) START
+    @Test
+    void 매출액의_종류() {
+        int n = 7;
+        int k = 4;
+        int[] arr = {20, 12, 20, 10, 23, 17, 10};
+        for (Integer integer : 매출액의_종류_함수(n, k, arr)) {
+            System.out.println("result = " + integer);
+        }
+    }
 
+    private List<Integer> 매출액의_종류_함수(int n, int k, int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
 
-    // HashMap, TreeSet (해쉬, 정렬지원 Set) START
+        for (int i = 0; i < k - 1; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        }
 
+        int lt = 0;
+        for (int rt = k - 1; rt < n; rt++) {
+            map.put(arr[rt], map.getOrDefault(arr[rt], 0) + 1);
+            answer.add(map.size());
+            map.put(arr[lt], map.get(arr[lt]) - 1);
+            if (map.get(arr[lt]) == 0) map.remove(arr[lt]);
+            lt++;
+        }
+
+        return answer;
+
+        /* 내가 푼 것
+        List<Integer> answer = new ArrayList<>();
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int lt = 0;
+        for (int rt = 0; rt <= n; rt++) {
+            if (rt >= k) {
+                for (int i = lt; i < rt; i++) {
+                    int key = arr[i];
+                    map.put(key, map.getOrDefault(map.get(key), 0) + 1);
+                }
+                answer.add(map.size());
+
+                map.clear();
+                lt++;
+            }
+        }
+
+        return answer;*/
+    }
+
+    // 3. 매출액의 종류(Hash, sliding window) END
 
 
     // HashMap, TreeSet (해쉬, 정렬지원 Set) END
