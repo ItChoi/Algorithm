@@ -1459,7 +1459,31 @@ public class Main {
     }
 
     private int 모든_아나그램_찾기_함수(String s, String t) {
-        // TODO 인강 보기 & 문제 풀기
+        int answer = 0;
+        Map<Character, Integer> am = new HashMap<>();
+        Map<Character, Integer> bm = new HashMap<>();
+
+        for (char x : t.toCharArray()) {
+            bm.put(x, bm.getOrDefault(x, 0) + 1);
+        }
+
+        int L = t.length() - 1;
+        for (int i = 0; i < L; i++) {
+            am.put(s.charAt(i), am.getOrDefault(s.charAt(i), 0) + 1);
+        }
+
+        int lt = 0;
+        for (int rt = L; rt < s.length(); rt++) {
+            am.put(s.charAt(rt), am.getOrDefault(s.charAt(rt), 0) + 1);
+            if (am.equals(bm)) answer++;
+            am.put(s.charAt(lt), am.get(s.charAt(lt)) - 1);
+            if (am.get(s.charAt(lt)) == 0) am.remove(s.charAt(lt));
+            lt++;
+        }
+
+
+
+        /* 내가 푼 것
         int answer = 0;
         Map<Character, Integer> sMap = new HashMap<>();
         Map<Character, Integer> tMap = new HashMap<>();
@@ -1467,23 +1491,31 @@ public class Main {
         for (int i = 0; i < t.length(); i++) {
             char sc = s.charAt(i);
             char tc = t.charAt(i);
-            sMap.put(sc, sMap.getOrDefault(sMap.get(sc), 0));
+            sMap.put(sc, sMap.getOrDefault(sc, 0) + 1);
+            tMap.put(tc, tMap.getOrDefault(tc, 0) + 1);
         }
 
-        int lt = 0;
-        int rt = t.length();
-        while (rt < s.length()) {
+        int tLength = t.length();
+        for (int rt = tLength; rt < s.length(); rt++) {
+            boolean status = true;
+            for (Character c : sMap.keySet()) {
+                if (!tMap.containsKey(c) || sMap.get(c) == 0) {
+                    status = false;
+                    break;
+                }
 
+                sMap.put(c, sMap.get(c) - 1);
+            }
+            sMap.clear();
 
+            if (status) answer++;
 
-            lt++;
-            rt++;
-        }
-
-
-
-
-
+            int lt = rt - tLength + 1;
+            for (; lt <= rt; lt++) {
+                char c = s.charAt(lt);
+                sMap.put(c, sMap.getOrDefault(c, 0) + 1);
+            }
+        }*/
 
         return answer;
     }
