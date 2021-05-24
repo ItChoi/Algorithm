@@ -1450,6 +1450,46 @@ public class Main {
 
     // 3. 매출액의 종류(Hash, sliding window) END
 
+    // 4. 모든 아나그램 찾기(Hash, sliding window : 시간복잡도 O(n)) START
+    @Test
+    void 모든_아나그램_찾기() {
+        String s = "bacaAacba";
+        String t = "abc";
+        System.out.println("RESULT: " + 모든_아나그램_찾기_함수(s, t));
+    }
+
+    private int 모든_아나그램_찾기_함수(String s, String t) {
+        // TODO 인강 보기 & 문제 풀기
+        int answer = 0;
+        Map<Character, Integer> sMap = new HashMap<>();
+        Map<Character, Integer> tMap = new HashMap<>();
+        
+        for (int i = 0; i < t.length(); i++) {
+            char sc = s.charAt(i);
+            char tc = t.charAt(i);
+            sMap.put(sc, sMap.getOrDefault(sMap.get(sc), 0));
+        }
+
+        int lt = 0;
+        int rt = t.length();
+        while (rt < s.length()) {
+
+
+
+            lt++;
+            rt++;
+        }
+
+
+
+
+
+
+        return answer;
+    }
+    // 4. 모든 아나그램 찾기(Hash, sliding window : 시간복잡도 O(n)) END
+
+
 
     // HashMap, TreeSet (해쉬, 정렬지원 Set) END
 }
