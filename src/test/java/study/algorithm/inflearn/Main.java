@@ -1521,7 +1521,46 @@ public class Main {
     }
     // 4. 모든 아나그램 찾기(Hash, sliding window : 시간복잡도 O(n)) END
 
+    // 5. K번째 큰 수(영상 후반 TreeSet 추가설명) START
+    // TreeSet은 이진 탐색 트리 구조로 이루어져 있다. -> 추가 삭제에는 시간이 걸리지만, 정렬, 검색에 높은 성능을 보이는 자료구조
+    @Test
+    void K번째_큰_수() {
+        int n = 10;
+        int k = 3;
+        int[] arr = {13, 15, 34, 23, 45, 65, 33, 11, 26, 42};
+        System.out.println("RESULT: " + K번째_큰_수_함수(n, k, arr));
+    }
 
+    private int K번째_큰_수_함수(int n, int k, int[] arr) {
+        int answer = -1;
+        // TreeSet - 디폴트가 오름차순, 내림차순으로 해야할 때 파라미터(Collections.reverseOrder()) 추가
+        TreeSet<Integer> Tset = new TreeSet<>(Collections.reverseOrder());
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int l = j + 1; l < n; l++) {
+                    Tset.add(arr[i] + arr[j] + arr[l]);
+                }
+            }
+        }
+
+        int cnt = 0;
+        for (Integer x : Tset) {
+            System.out.println(x);
+
+            cnt++;
+            if (cnt == k) return x;
+        }
+
+        return answer;
+
+
+
+        // TODO 풀어보기
+        /*int answer = 0;
+        return answer;*/
+    }
+    // 5. K번째 큰 수(영상 후반 TreeSet 추가설명) END
 
     // HashMap, TreeSet (해쉬, 정렬지원 Set) END
 }
