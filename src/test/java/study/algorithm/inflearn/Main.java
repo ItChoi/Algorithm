@@ -1562,5 +1562,67 @@ public class Main {
     }
     // 5. K번째 큰 수(영상 후반 TreeSet 추가설명) END
 
+
+    // Stack, Queue(자료구조) START
+
+    // 1. 올바른 괄호 START
+    @Test
+    void 올바른_괄호() {
+//        String str = "(()(()))(()";
+//        String str = "(())()";
+//        String str = "(()()))";
+//        String str = "(()())";
+        System.out.println("RESULT: " + 올바른_괄호_함수(str));
+    }
+
+    private String 올바른_괄호_함수(String str) {
+        String answer = "YES";
+        Stack<Character> stack = new Stack<>();
+
+        for (char x : str.toCharArray()) {
+            if (x == '(') {
+                stack.push(x);
+            } else {
+                if (stack.isEmpty()) return "NO";
+                stack.pop();
+            }
+        }
+
+        if (!stack.isEmpty()) return "NO";
+
+        return answer;
+
+
+        // 내가 푼 것 - 규칙 잘못 봄
+        /*String answer = "YES";
+        Stack<Character> stack = new Stack();
+        for (char c : str.toCharArray()) {
+            stack.push(c);
+        }
+
+        boolean status = true;
+        int cnt = 0;
+        for (Character c : stack) {
+            if ("(".equals(String.valueOf(c))) {
+                cnt++;
+                if (!status && cnt != 0) {
+                    answer = "NO";
+                    break;
+                }
+            } else {
+                status = false;
+                cnt--;
+            }
+            if (cnt == 0) status = true;
+
+        }
+
+        return answer;*/
+    }
+
+    // 1. 올바른 괄호 END
+
+    // Stack, Queue(자료구조) END
+
     // HashMap, TreeSet (해쉬, 정렬지원 Set) END
 }
