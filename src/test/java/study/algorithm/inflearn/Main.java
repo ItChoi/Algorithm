@@ -1568,7 +1568,7 @@ public class Main {
     // 1. 올바른 괄호 START
     @Test
     void 올바른_괄호() {
-//        String str = "(()(()))(()";
+        String str = "(()(()))(()";
 //        String str = "(())()";
 //        String str = "(()()))";
 //        String str = "(()())";
@@ -1621,6 +1621,51 @@ public class Main {
     }
 
     // 1. 올바른 괄호 END
+
+    // 2. 괄호문자제거 START
+    @Test
+    void 괄호문자제거() {
+        String str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+        System.out.println("RESULT: " + 괄호문자제거_함수(str));
+    }
+
+    private String 괄호문자제거_함수(String str) {
+        String answer = "";
+        Stack<Character> stack = new Stack<>();
+
+        for (char x : str.toCharArray()) {
+            if (x == ')') {
+                while (stack.pop() != '(');
+            } else {
+                stack.push(x);
+            }
+        }
+
+        for (int i = 0; i < stack.size(); i++) {
+            answer += stack.get(i);
+        }
+
+        return answer;
+
+        // 내가 푼 것
+        /*String answer = "";
+        Stack<Character> stack = new Stack<>();
+
+        for (char x : str.toCharArray()) {
+            if (x == '(') {
+                stack.push(x);
+            } else if (x == ')') {
+                stack.pop();
+            } else {
+                if (stack.isEmpty() || !stack.contains('(')) {
+                    stack.push(x);
+                }
+            }
+        }
+
+        return stack.toString();*/
+    }
+    // 2. 괄호문자제거 END
 
     // Stack, Queue(자료구조) END
 
