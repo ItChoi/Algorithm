@@ -1667,6 +1667,55 @@ public class Main {
     }
     // 2. 괄호문자제거 END
 
+    // 3. 크레인 인형뽑기(카카오) START
+    @Test
+    void 크레인_인형뽑기() {
+        int[][] board = {
+            {0, 0, 0, 0, 0},
+            {0, 0, 1, 0, 3},
+            {0, 2, 5, 0, 1},
+            {4, 2, 4, 4, 2},
+            {3, 5, 1, 3, 1}
+        };
+        int[] moves = {1, 5, 3, 5, 1, 2, 1, 4};
+        System.out.println("RESULT: " + 크레인_인형뽑기_함수(board, moves));
+    }
+
+    private int 크레인_인형뽑기_함수(int[][] board, int[] moves) {
+        int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < moves.length; i++) {
+            int moveNum = moves[i] - 1;
+            for (int j = 0; j < board.length; j++) {
+                if (board[j][moveNum] > 0) {
+                    stack.push(board[j][moveNum]);
+                    board[j][moveNum] = 0;
+                    break;
+                }
+            }
+
+            int size = stack.size();
+            while (stack.size() >= 2) {
+                int pre = size - 2;
+                int cur = size - 1;
+                if (stack.get(pre).equals(stack.get(cur))) {
+                    stack.pop();
+                    stack.pop();
+                    answer++;
+                } else {
+                    break;
+                }
+            }
+        }
+
+
+
+
+        return answer;
+    }
+    // 3. 크레인 인형뽑기(카카오) END
+
     // Stack, Queue(자료구조) END
 
     // HashMap, TreeSet (해쉬, 정렬지원 Set) END
