@@ -1678,12 +1678,34 @@ public class Main {
             {3, 5, 1, 3, 1}
         };
         int[] moves = {1, 5, 3, 5, 1, 2, 1, 4};
+        // 4, 3, 1, 1, 2, 3, 4
         System.out.println("RESULT: " + 크레인_인형뽑기_함수(board, moves));
     }
 
     private int 크레인_인형뽑기_함수(int[][] board, int[] moves) {
         int answer = 0;
         Stack<Integer> stack = new Stack<>();
+
+        for (int pos : moves) {
+            for (int i = 0; i < board.length; i++) {
+                if (board[i][pos - 1] != 0) {
+                    int tmp = board[i][pos - 1];
+                    board[i][pos - 1] = 0;
+
+                    if (!stack.isEmpty() && tmp == stack.peek()) {
+                        answer += 2;
+                        stack.pop();
+                    } else {
+                        stack.push(tmp);
+                    }
+                    break;
+                }
+            }
+        }
+
+
+        // 내가 푼 것
+        /*Stack<Integer> stack = new Stack<>();
 
         for (int i = 0; i < moves.length; i++) {
             int moveNum = moves[i] - 1;
@@ -1695,22 +1717,20 @@ public class Main {
                 }
             }
 
-            int size = stack.size();
             while (stack.size() >= 2) {
+                int size = stack.size();
                 int pre = size - 2;
                 int cur = size - 1;
                 if (stack.get(pre).equals(stack.get(cur))) {
                     stack.pop();
+                    answer++;
                     stack.pop();
                     answer++;
                 } else {
                     break;
                 }
             }
-        }
-
-
-
+        }*/
 
         return answer;
     }
