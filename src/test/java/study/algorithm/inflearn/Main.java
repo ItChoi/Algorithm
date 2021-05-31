@@ -1736,6 +1736,70 @@ public class Main {
     }
     // 3. 크레인 인형뽑기(카카오) END
 
+    // 4. 후위식 연산(postfix) START
+    @Test
+    void 후위식_연산() {
+        String str = "352+*9-";
+        System.out.println("result: " + 후위식_연산_함수(str));
+    }
+
+    private int 후위식_연산_함수(String str) {
+        int answer = 0;
+
+        Stack<Integer> stack = new Stack<>();
+
+        for (char x : str.toCharArray()) {
+            if (Character.isDigit(x)) {
+                stack.push(x - 48);
+            } else {
+                int rt = stack.pop();
+                int lt = stack.pop();
+                if (x == '+') {
+                    stack.push(lt + rt);
+                } else if (x == '-') {
+                    stack.push(lt - rt);
+                } else if (x == '*') {
+                    stack.push(lt * rt);
+                } else if (x == '/') {
+                    stack.push(lt / rt);
+                }
+            }
+        }
+        answer = stack.pop();
+        return answer;
+
+        // 내가 푼 것
+        /*int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+
+        for (char c : str.toCharArray()) {
+            if (!(c > 48 && c < 58)) {
+                int pop1 = stack.pop();
+                int pop2 = stack.pop();
+
+                if (c == '+') {
+                    stack.push(pop2 + pop1);
+                } else if (c == '-') {
+                    stack.push(pop2 - pop1);
+                } else if (c == '*') {
+                    stack.push(pop2 * pop1);
+                } else if (c == '/') {
+                    stack.push(pop2 / pop1);
+                }
+
+                continue;
+            }
+
+            stack.push(Integer.parseInt(c+""));
+        }
+
+        answer = stack.pop();
+
+        return answer;*/
+    }
+
+    // 4. 후위식 연산(postfix) END
+
     // Stack, Queue(자료구조) END
 
     // HashMap, TreeSet (해쉬, 정렬지원 Set) END
