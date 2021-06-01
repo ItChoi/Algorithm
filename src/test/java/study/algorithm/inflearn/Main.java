@@ -1800,6 +1800,52 @@ public class Main {
 
     // 4. 후위식 연산(postfix) END
 
+    // 5. 쇠막대기 START (*)
+    @Test
+    void 쇠막대기() {
+        String str = "()(((()())(())()))(())";
+        //String str = "(((()(()()))(())()))(()())";
+        System.out.println("result: " + 쇠막대기_함수(str));
+    }
+
+    private int 쇠막대기_함수(String str) {
+        int answer = 0;
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(') {
+                stack.push('(');
+            } else {
+                stack.pop();
+                if (str.charAt(i - 1) == '(') {
+                    answer += stack.size();
+                } else {
+                    answer++;
+                }
+            }
+        }
+        return answer;
+
+
+        // 내가 푼 것
+        /*int answer = 0;
+        Stack<Character> stack = new Stack<>();
+        for (char x : str.toCharArray()) {
+            if (x == '(') {
+                stack.push(x);
+            } else {
+                Character pop = stack.pop();
+                if (pop == '(') {
+                    answer += stack.size();
+                } else {
+                    answer++;
+                }
+            }
+        }
+        return answer;*/
+    }
+    // 5. 쇠막대기 END
+
+
     // Stack, Queue(자료구조) END
 
     // HashMap, TreeSet (해쉬, 정렬지원 Set) END
