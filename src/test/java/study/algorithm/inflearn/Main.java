@@ -1845,6 +1845,67 @@ public class Main {
     }
     // 5. 쇠막대기 END
 
+    // 6. 공주 구하기 START
+    @Test
+    void 공주_구하기() {
+        int n = 8;
+        int k = 3;
+        System.out.println("result: " + 공주_구하기_함수(n, k));
+    }
+
+    private int 공주_구하기_함수(int n, int k) {
+        int answer = 0 ;
+        Queue<Integer> Q = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            Q.offer(i);
+        }
+
+        while (!Q.isEmpty()) {
+            for (int i = 1; i < k; i++) {
+                Q.offer(Q.poll());
+            }
+            Q.poll();
+            if (Q.size() == 1) {
+                answer = Q.poll();
+                break;
+            }
+        }
+        
+        return answer;
+        
+        // 내가 푼 것
+        /*Queue<Integer> que = new LinkedList<>();
+        int cnt = 0;
+        for (int i = 1; i <= n; i++) {
+            if (que.contains(i)) {
+                if (i == n) {
+                    i = 0;
+                } else {
+                    continue;
+                }
+            } else {
+                if (++cnt == k) {
+                    que.add(i);
+                    cnt = 0;
+                }
+
+                if (i == n) {
+                    i = 0;
+                }
+
+                if (que.size() == n) break;
+            }
+        }
+
+        while (que.size() != 1) {
+            que.poll();
+        }
+
+        return que.poll();*/
+    }
+
+    // 6. 공주 구하기 END
+
 
     // Stack, Queue(자료구조) END
 
