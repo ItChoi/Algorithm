@@ -1562,6 +1562,7 @@ public class Main {
     }
     // 5. K번째 큰 수(영상 후반 TreeSet 추가설명) END
 
+    // HashMap, TreeSet (해쉬, 정렬지원 Set) END
 
     // Stack, Queue(자료구조) START
 
@@ -1906,8 +1907,53 @@ public class Main {
 
     // 6. 공주 구하기 END
 
+    // 7. 교육과정설계 START
+    @Test
+    void 교육과정설계() {
+        String a = "CBA";
+        String b = "CBDAGE";
+//        String b = "CFDBGHA";
+        System.out.println("result: " + 교육과정설계_함수(a, b));
+    }
+
+    private String 교육과정설계_함수(String a, String b) {
+        String answer = "YES";
+        Queue<Character> Q = new LinkedList<>();
+        for (char x : a.toCharArray()) {
+            Q.offer(x);
+        }
+
+        for (char x : b.toCharArray()) {
+            if (Q.contains(x)) {
+                if (x != Q.poll()) {
+                    return "NO";
+                }
+            }
+        }
+        if (!Q.isEmpty()) return "NO";
+        return answer;
+
+        // 내가 푼 것
+        /*Queue<Character> que = new LinkedList<>();
+        for (char x : b.toCharArray()) {
+            que.offer(x);
+        }
+        int totalCnt = 0;
+        int j = 0;
+        for (int i = 0; i < b.length(); i++) {
+            Character pollVal = que.poll();
+            if (a.contains(pollVal + "")) {
+                if (a.charAt(j++) != pollVal) {
+                    return "NO";
+                }
+                totalCnt++;
+            }
+        }
+        return totalCnt == a.length() ? "YES" : "NO";*/
+    }
+
+    // 7. 교육과정설계 END
+
 
     // Stack, Queue(자료구조) END
-
-    // HashMap, TreeSet (해쉬, 정렬지원 Set) END
 }
