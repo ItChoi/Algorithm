@@ -1954,6 +1954,79 @@ public class Main {
 
     // 7. 교육과정설계 END
 
+    // 8. 응급실 START
+    @Test
+    void 응급실() {
+        /*int n = 5;
+        int m = 2;
+        int[] arr = {60, 50, 70, 80, 90};*/
+
+        int n = 6;
+        int m = 3;
+        int[] arr = {70, 60, 90, 60, 60, 60};
+        System.out.println("test: " + 응급실_함수(n, m, arr));
+    }
+    private int 응급실_함수(int n, int m, int[] arr) {
+        class Person {
+            int id;
+            int priority;
+            public Person(int id, int priority) {
+                this.id = id;
+                this.priority = priority;
+            }
+        }
+
+        int answer = 0;
+        Queue<Person> Q = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            Q.offer(new Person(i, arr[i]));
+        }
+
+        while (!Q.isEmpty()) {
+            Person tmp = Q.poll();
+            for (Person x : Q) {
+                if (x.priority > tmp.priority) {
+                    Q.add(tmp);
+                    tmp = null;
+                    break;
+                }
+            }
+
+            if (tmp != null) {
+                answer++;
+                if (tmp.id == m) return answer;
+            }
+        }
+
+        return answer;
+
+
+
+
+
+        // 내가 푼 것
+        /*int answer = 0;
+        Queue<Integer> que = new LinkedList<>();
+        for (int i : arr) {
+            que.offer(i);
+        }
+        while (answer != (m + 1)) {
+            boolean isSuccess = true;
+            Integer poll = que.poll();
+            for (Integer i : que) {
+                if (poll < i) {
+                    que.offer(poll);
+                    isSuccess = false;
+                    break;
+                }
+            }
+            if (isSuccess) {
+                answer++;
+            }
+        }
+        return answer;*/
+    }
+    // 8. 응급실 END
 
     // Stack, Queue(자료구조) END
 }
