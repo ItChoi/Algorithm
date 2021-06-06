@@ -2029,4 +2029,116 @@ public class Main {
     // 8. 응급실 END
 
     // Stack, Queue(자료구조) END
+
+
+    // Sorting and Searching(정렬, 이분검색과 결정알고리즘) START
+
+    // 1. 선택정렬 START
+    @Test
+    void 선택정렬() {
+        int n = 6;
+        int[] arr = {13, 5, 11, 7, 23, 15};
+        for (Integer i : 선택정렬_함수(n, arr)) {
+            System.out.println("result: " + i);
+        }
+    }
+    private int[] 선택정렬_함수(int n, int[] arr) {
+        for (int i = 0; i < n - 1; i++) {
+            int idx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[idx]) idx = j;
+            }
+
+            int tmp = arr[i];
+            arr[i] = arr[idx];
+            arr[idx] = tmp;
+        }
+
+        return arr;
+    }
+    // 내가 푼 것 - 배열을 왜 사용안했을까 하하하하핳ㅎ
+    /*private List<Integer> 선택정렬_함수(int n, int[] arr) {
+        List<Integer> answer = Arrays.stream(arr).boxed().collect(Collectors.toList());
+        for (int i = 0; i < n; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (answer.get(minIndex) > answer.get(j)) {
+                    minIndex = j;
+                }
+            }
+            if (minIndex != i) {
+                int a = answer.get(i);
+                answer.add(i, answer.get(minIndex));
+                answer.remove(i + 1);
+                answer.add(minIndex, a);
+                answer.remove(minIndex + 1);
+            }
+        }
+        return answer;
+    }*/
+
+    // 1. 선택정렬 END
+
+    // 2. 버블 정렬 START
+    @Test
+    void 버블_정렬() {
+        int n = 6;
+        int[] arr = {13, 5, 11, 7, 23, 15};
+        for (int i : 버블_정렬_함수(n, arr)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 버블_정렬_함수(int n, int[] arr) {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                }
+            }
+        }
+        return arr;
+        // 내가 푼 것
+        /*for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n - i; j++) {
+                if (arr[i] > arr[j]) {
+                    int tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                }
+            }
+        }
+        return arr;*/
+    }
+    // 2. 버블 정렬 END
+
+    // 3. 삽입 정렬 START
+    @Test
+    void 삽입_정렬() {
+        int n = 6;
+        int[] arr = {11, 7, 5, 6, 10, 9};
+        for (int i : 삽입_정렬_함수(n, arr)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 삽입_정렬_함수(int n, int[] arr) {
+        for (int i = 1; i < n; i++) {
+            int idx = i;
+            for (int j = i; j > 0; j--) {
+                if (arr[j - 1] > arr[i]) {
+                    idx = j - 1;
+                }
+            }
+            if (idx != (i)) {
+                arr[0]
+            }
+        }
+        return arr;
+    }
+    // 3. 삽입 정렬 END
+
+    // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }
