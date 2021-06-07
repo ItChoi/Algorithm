@@ -2119,6 +2119,7 @@ public class Main {
     void 삽입_정렬() {
         int n = 6;
         int[] arr = {11, 7, 5, 6, 10, 9};
+        // 7, 11, 5
         for (int i : 삽입_정렬_함수(n, arr)) {
             System.out.println("result: " + i);
         }
@@ -2126,6 +2127,20 @@ public class Main {
 
     private int[] 삽입_정렬_함수(int n, int[] arr) {
         for (int i = 1; i < n; i++) {
+            int tmp = arr[i];
+            int j = i - 1;
+            for (; j >= 0; j--) {
+                if (arr[j] > tmp) {
+                    arr[j + 1] = arr[j];
+                } else {
+                    break;
+                }
+            }
+            arr[j + 1] = tmp;
+        }
+
+        // 내가 푼 것
+        /*for (int i = 1; i < n; i++) {
             int idx = i;
             for (int j = i; j > 0; j--) {
                 if (arr[j - 1] > arr[i]) {
@@ -2133,9 +2148,13 @@ public class Main {
                 }
             }
             if (idx != (i)) {
-                arr[0]
+                int tmp = arr[i];
+                for (int k = i; k > idx; k--) {
+                    arr[k] = arr[k - 1];
+                }
+                arr[idx] = tmp;
             }
-        }
+        }*/
         return arr;
     }
     // 3. 삽입 정렬 END
