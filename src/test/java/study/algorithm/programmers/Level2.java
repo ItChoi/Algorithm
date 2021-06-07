@@ -467,6 +467,31 @@ public class Level2 {
 
 
 
+    // Summer/Winter Coding(~2018) 점프와 순간 이동
+    @Test
+    void 점프와_순간_이동() {
+//        int n = 5; // 2
+        int n = 6; // 2
+//        int n = 5000; // 5
+        System.out.println("result: " + 점프와_순간_이동_함수(n));
+    }
+
+    private int 점프와_순간_이동_함수(int n) {
+        int answer = 0;
+        int cnt = 1;
+        int multipliedByNum = 2;
+        while (cnt < n) {
+            if ((cnt * multipliedByNum) > n) {
+                cnt = cnt * multipliedByNum;
+            } else {
+                cnt++;
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+
 
     // 2020 KAKAO BLIND RECRUITMENT 문자열 압축 start
     @Test
