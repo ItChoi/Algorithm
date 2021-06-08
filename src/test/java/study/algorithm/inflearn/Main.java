@@ -2159,5 +2159,38 @@ public class Main {
     }
     // 3. 삽입 정렬 END
 
+    // 4. LRU(캐시, 카카오 변형) (Least Recently Used) START
+    @Test
+    void LRU() {
+        int s = 5;
+        int n = 9;
+        int[] arr = {1, 2, 3, 2, 6, 2, 3, 5, 7};
+        for (int i : LRU_함수(s, n, arr)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] LRU_함수(int s, int n, int[] arr) {
+        int[] answer = new int[s];
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = s - 1; j > 0; j--) {
+                if (arr[j] == arr[i]) {
+                    int tmp = arr[i];
+                    for (int k = j; k > 0; k--) {
+
+                    }
+                }
+                if (arr[j] != 0) {
+
+                }
+            }
+        }
+
+        return answer;
+    }
+
+    // 4. LRU(캐시, 카카오 변형) (Least Recently Used) END
+
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }
