@@ -467,27 +467,46 @@ public class Level2 {
 
 
 
-    // Summer/Winter Coding(~2018) 점프와 순간 이동
+    // Summer/Winter Coding(~2018) 점프와 순간 이동 - 문제 해석 능력을 키우자. 어떤 포인트에 집중 할 지 파악하기.
     @Test
     void 점프와_순간_이동() {
 //        int n = 5; // 2
-        int n = 6; // 2
-//        int n = 5000; // 5
+//        int n = 6; // 2
+        int n = 5000; // 5
         System.out.println("result: " + 점프와_순간_이동_함수(n));
     }
 
     private int 점프와_순간_이동_함수(int n) {
         int answer = 0;
+        while (n > 0) {
+            if (n % 2 == 0) {
+                n /= 2;
+            } else {
+                n -= 1;
+                answer++;
+            }
+        }
+
+        /* ...오마이갓
+        int answer = 1;
         int cnt = 1;
         int multipliedByNum = 2;
+        // n = 6
         while (cnt < n) {
-            if ((cnt * multipliedByNum) > n) {
-                cnt = cnt * multipliedByNum;
+            int realVal = cnt * multipliedByNum; // 2
+            if (realVal < n) {
+                int tempVal = (realVal) * multipliedByNum; // 4
+                if (tempVal < n && (n - tempVal) <= cnt) { //
+                    cnt++;
+                } else {
+                    answer++;
+                }
+                cnt = realVal;
             } else {
                 cnt++;
                 answer++;
             }
-        }
+        }*/
 
         return answer;
     }
