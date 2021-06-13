@@ -467,7 +467,7 @@ public class Level2 {
 
 
 
-    // Summer/Winter Coding(~2018) 점프와 순간 이동 - 문제 해석 능력을 키우자. 어떤 포인트에 집중 할 지 파악하기.
+    // Summer/Winter Coding(~2018) 점프와 순간 이동 START - 문제 해석 능력을 키우자. 어떤 포인트에 집중 할 지 파악하기.
     @Test
     void 점프와_순간_이동() {
 //        int n = 5; // 2
@@ -510,43 +510,66 @@ public class Level2 {
 
         return answer;
     }
+    // Summer/Winter Coding(~2018) 점프와 순간 이동 END
 
 
-    // 2020 KAKAO BLIND RECRUITMENT 문자열 압축 start
+    // 월간 코드 챌린지 시즌1 삼각 달팽이 START
     @Test
-    void 문자열_압축() {
-        String s ="aabbaccc";	// 7 - 2a2ba3c
-//        String s ="ababcdcdababcdcd";	// 9 - 2ababcdcd
-//        String s ="abcabcdede";	// 8 - 2abcdede
-//        String s ="abcabcabcabcdededededede";	// 14
-//        String s ="xababcdcdababcdcd";	// 17
-//        String s ="aaaaaaaaaab";	//10ab => 4
-//        String s ="xxxxxxxxxxyyy"; // -> "10x3y" -> 5
-//        String s = "a"; // -> "a" -> 1
-//        String s ="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // -> "100x" -> 4
-//        String s ="zxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // -> "z100x" -> 5
-//        String s ="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxz"; // -> "100xz" -> 5
-//        String s ="bbaabaaaab";	// 8 2b2ab4ab
-//        String s ="zzzbbabbabba";	// 7 zzz3bba
-//        String s ="ababccccabab";	// 2ab
-        System.out.println("result:: "  + 문자열_압축_함수(s));
+    void 삼각_달팽이() {
+        System.out.println("!!@@:: " + 1 % 3);
+//        int n = 4;
+        int n = 5;
+//        int n = 6;
+        for (int i : 삼각_달팽이_함수(n)) {
+            System.out.println("result: :" + i);
+        }
+
     }
 
-    private int 문자열_압축_함수(String s) {
-        int answer = 0;
+    private int[] 삼각_달팽이_함수(int n) {
+        int[] answer = new int[n * (n + 1) / 2];
+        int[][] tmpData = new int[n][n];
+        int num = 1;
+        int x = -1;
+        int y = 0;
+        for (int i = 0; i < n; i++) {
+            int jLength = n - i;
+            for (int j = 0; j < jLength; j++) {
+                if (i % 3 == 0) {
+                    x++;
+                } else if (i % 3 == 1) {
+                    y++;
+                } else if (i % 3 == 2) {
+                    x--;
+                    y--;
+                }
 
-        for (int i = 0; i < s.length(); i++) {
+                tmpData[x][y] = num++;
+            }
+        }
 
+        int j = 0;
+        for (int[] tmpDatum : tmpData) {
+            for (int i : tmpDatum) {
+                if (i == 0) break;
+                answer[j++] = i;
+            }
         }
 
         return answer;
     }
-    // 2020 KAKAO BLIND RECRUITMENT 문자열 압축 end
+    // 월간 코드 챌린지 시즌1 삼각 달팽이 END
 
-
+    // 월간 코드 챌린지 시즌1 이진 변환 반복하기 START
     @Test
-    public void test() {
+    void 이진_변환_반복하기() {
 
     }
+
+    p
+
+    // 월간 코드 챌린지 시즌1 이진 변환 반복하기 END
+
+
 
 }
