@@ -563,10 +563,34 @@ public class Level2 {
     // 월간 코드 챌린지 시즌1 이진 변환 반복하기 START
     @Test
     void 이진_변환_반복하기() {
-
+//        String s = "110010101001";
+        String s = "01110";
+//        String s = "1111111";
+        for (int i : 이진_변환_반복하기_함수(s)) {
+            System.out.println("result: " + i);
+        }
     }
 
-    p
+    private int[] 이진_변환_반복하기_함수(String s) {
+        int convertCount = 0;
+        int zeroCount = 0;
+
+        int sLength = s.length();
+        while (sLength != 1) {
+            for (char c : s.toCharArray()) {
+                if (c == '0') {
+                    zeroCount++;
+                }
+            }
+
+            sLength = s.replaceAll("0", "").length();
+            s = Integer.toBinaryString(sLength);
+            convertCount++;
+        }
+
+        int[] answer = {convertCount, zeroCount};
+        return answer;
+    }
 
     // 월간 코드 챌린지 시즌1 이진 변환 반복하기 END
 
