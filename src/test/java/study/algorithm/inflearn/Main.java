@@ -2224,5 +2224,42 @@ public class Main {
 
     // 4. LRU(캐시, 카카오 변형) (Least Recently Used) END
 
+    // 5. 중복 확인 START
+    @Test
+    void 중복_확인() {
+        int n = 8;
+        int[] arr = {
+                20, 25, 52, 30,
+                39, 33, 43, 33
+        };
+        System.out.println("result: " + 중복_확인_함수(n, arr));
+    }
+
+    private String 중복_확인_함수(int n, int[] arr) {
+        Arrays.sort(arr);
+
+        for (int i = 0; i < n; i++) {
+            int start = i;
+            int last = n;
+            int banSize = n / 2;
+
+        }
+
+
+        /*for (; start < last; start++) {
+            size = size / 2;
+            if (arr[start] >= middleNum) {
+                if (arr[start] == middleNum) return "D";
+                start = size;
+            } else {
+                last = size;
+            }
+        }*/
+
+        return "U";
+    }
+    // 5. 중복 확인 END
+
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }
+
