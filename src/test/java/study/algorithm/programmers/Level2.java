@@ -592,7 +592,41 @@ public class Level2 {
         return answer;
     }
 
+    // 연습문제 숫자의 표현 START
+    @Test
+    void 숫자의_표현() {
+        int n = 15;
+        System.out.println("result: " + 숫자의_표현_함수(n));
+    }
+
+    private int 숫자의_표현_함수(int n) {
+        int answer = 0;
+
+        int sum = 0;
+        int lt = 1;
+        for (int rt = 1; rt <= n; rt++) {
+            sum += rt;
+            if (sum <= n) {
+                if (sum == n) {
+                    answer++;
+                }
+            }
+
+            while (sum >= n && (sum + rt) >- n) {
+                sum -= lt++;
+                if (sum == n) {
+                    answer++;
+                }
+            }
+        }
+
+        return answer;
+    }
+    // 연습문제 숫자의 표현 END
+
     // 월간 코드 챌린지 시즌1 이진 변환 반복하기 END
+
+
 
 
 
