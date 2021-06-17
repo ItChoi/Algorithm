@@ -2237,25 +2237,11 @@ public class Main {
 
     private String 중복_확인_함수(int n, int[] arr) {
         Arrays.sort(arr);
-
-        for (int i = 0; i < n; i++) {
-            int start = i;
-            int last = n;
-            int banSize = n / 2;
-
-        }
-
-
-        /*for (; start < last; start++) {
-            size = size / 2;
-            if (arr[start] >= middleNum) {
-                if (arr[start] == middleNum) return "D";
-                start = size;
-            } else {
-                last = size;
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] == arr[i + 1]) {
+                return "D";
             }
-        }*/
-
+        }
         return "U";
     }
     // 5. 중복 확인 END
