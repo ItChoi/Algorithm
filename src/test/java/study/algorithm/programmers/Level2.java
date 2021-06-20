@@ -627,31 +627,47 @@ public class Level2 {
     // 연습문제 땅따먹기 START
     @Test
     void 땅따먹기() {
-        int[][] land = {
+        /*int[][] land = {
             {1, 2, 3, 5},
             {5, 6, 7, 8},
             {4, 3, 2, 1}
+        };*/
+
+        int[][] land = {
+            {4, 3, 2, 1},
+            {2, 2, 2, 1},
+            {6, 6, 6, 4},
+            {8, 7, 6, 5}
         };
         System.out.println("result: " + 땅따먹기_함수(land));
     }
 
     private int 땅따먹기_함수(int[][] land) {
-        int answer = 0;
-
         int noTargetIndex = 0;
         int max = 0;
         for (int i = 0; i < land[0].length; i++) {
-            int sum = 0;
-            sum += land[0][i];
             noTargetIndex = i;
+            int sum = land[0][i];
 
+            for (int j = 1; j < land.length; j++) {
+                int hangMax = 0;
+                int tmpIndex = 0;
+                for (int k = 0; k < land[j].length; k++) {
+                    if (noTargetIndex == k) continue;
+                    if (hangMax < land[j][k]) {
+                        hangMax = land[j][k];
+                        tmpIndex = k;
+                    }
+                }
+                sum += hangMax;
+                noTargetIndex = tmpIndex;
+            }
 
-
-            /*if (noTargetIndex == j) continue;*/
             if (max < sum) max = sum;
+
         }
 
-        return answer;
+        return max;
     }
 
     // 연습문제 땅따먹기 END
