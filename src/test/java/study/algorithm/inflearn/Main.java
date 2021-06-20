@@ -2171,26 +2171,81 @@ public class Main {
     }
 
     private int[] LRU_함수(int s, int n, int[] arr) {
-        int[] answer = new int[s];
-
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = s - 1; j > 0; j--) {
-                if (arr[j] == arr[i]) {
-                    int tmp = arr[i];
-                    for (int k = j; k > 0; k--) {
-
-                    }
-                }
-                if (arr[j] != 0) {
-
+        int[] cache = new int[s];
+        for (int x : arr) {
+            int pos = -1;
+            for (int i = 0; i < s; i++) {
+                if (x == cache[i]) {
+                    pos = i;
                 }
             }
+
+            if (pos == -1) {
+                for (int i = s - 1; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+            } else {
+                for (int i = pos; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+            }
+
+            cache[0] = x;
         }
 
-        return answer;
+        return cache;
+
+        // 내가 푼 것
+        /*int[] answer = new int[s];
+        for (int i = 0; i < arr.length; i++) {
+            int zeroIndex = -1;
+            int targetIndex = s - 1;
+            for (int j = targetIndex; j >= 0; j--) {
+                if (arr[j] == arr[i]) {
+                    targetIndex = j;
+                } else {
+                    if (answer[j] == 0) {
+                        zeroIndex = j;
+                    }
+                }
+            }
+
+            if (zeroIndex >= 0) {
+                answer[zeroIndex] = arr[i];
+            } else {
+                for (int j = targetIndex; j >= 1; j--) {
+                    answer[j] = answer[j - 1];
+                }
+                answer[0] = arr[i];
+            }
+        }
+        return answer;*/
     }
 
     // 4. LRU(캐시, 카카오 변형) (Least Recently Used) END
 
+    // 5. 중복 확인 START
+    @Test
+    void 중복_확인() {
+        int n = 8;
+        int[] arr = {
+                20, 25, 52, 30,
+                39, 33, 43, 33
+        };
+        System.out.println("result: " + 중복_확인_함수(n, arr));
+    }
+
+    private String 중복_확인_함수(int n, int[] arr) {
+        Arrays.sort(arr);
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] == arr[i + 1]) {
+                return "D";
+            }
+        }
+        return "U";
+    }
+    // 5. 중복 확인 END
+
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }
+
