@@ -595,5 +595,62 @@ public class Level2 {
     // 월간 코드 챌린지 시즌1 이진 변환 반복하기 END
 
 
+    // Summer/Winter Coding(~2018) 영어 끝말잇기 START
+    @Test
+    void 영어_끝말잇기() {
+        String test = "testa";
+        String peekEndStr = test.substring(test.length() - 1);
+        System.out.println("test: " + peekEndStr);
+        int n = 3;
+//        String[] words = {
+//                "tank", "kick", "know", "wheel",
+//                "land", "dream", "mother", "robot", "tank"
+//        };
+//        String[] words = {
+//                "hello", "observe", "effect", "take",
+//                "either", "recognize", "encourage", "ensure",
+//                "establish", "hang", "gather", "refer",
+//                "reference", "estimate", "executive"
+//        };
+        String[] words = {
+                "hello", "one", "even", "never",
+                "now", "world", "draw"
+        };
+        for (int i : 영어_끝말잇기_함수(n, words)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 영어_끝말잇기_함수(int n, String[] words) {
+        int nNum = 0;
+        int count = 0;
+
+        Stack<String> alreadyExists = new Stack<>();
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            String peekEndStr = alreadyExists.isEmpty() ? "" : alreadyExists.peek().substring(alreadyExists.peek().length() - 1);
+            boolean fail = !word.startsWith(peekEndStr);
+            if (alreadyExists.contains(word) || fail) {
+                if (i < n) {
+                    nNum = i;
+                    count = 1;
+                } else {
+                    if (fail) {
+                        nNum = i / n;
+                        count = i / n;
+                    } else {
+                        nNum = i / n + 1;
+                        count = i / n + 1;
+                    }
+                }
+                break;
+            }
+
+            alreadyExists.add(word);
+        }
+
+        return new int[]{nNum, count};
+    }
+    // Summer/Winter Coding(~2018) 영어 끝말잇기 END
 
 }
