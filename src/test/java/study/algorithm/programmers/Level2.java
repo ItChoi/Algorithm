@@ -751,6 +751,25 @@ public class Level2 {
     }
     // Summer/Winter Coding(~2018) 영어 끝말잇기 END
 
+    // 2020 카카오 인턴십 수식 최대화 START
+    @Test
+    void 수식_최대화() {
+        String expression = "100-200*300-500+20"; // 60420
+        //String expression = "50*6-3*2"; // 300
+        //String expression = "200-300-500-600*40+500+500"; // 1248000
+        System.out.println("result: " + 수식_최대화_함수(expression));
+    }
+
+    private long 수식_최대화_함수(String expression) {
+        long answer = 0;
+        String[] prior = {"+", "-", "*"};
+
+
+
+
+        return answer;
+    }
+    // 2020 카카오 인턴십 수식 최대화 END
 
 
 }
