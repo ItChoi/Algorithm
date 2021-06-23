@@ -2246,6 +2246,41 @@ public class Main {
     }
     // 5. 중복 확인 END
 
+    // 6. 장난꾸러기 START
+    @Test
+    void 장난꾸러기() {
+        int n = 9;
+        int[] arr = {120, 125, 152, 130, 135, 135, 143, 127, 160}; // 3, 8
+//        int[] arr = {160, 125, 127, 130, 135, 135, 143, 152, 120}; // 1, 9
+//        int[] arr = {125, 120, 127, 130, 135, 135, 143, 152, 160}; // 1, 2
+//        int[] arr = {120, 125, 127, 130, 135, 135, 143, 160, 152}; // 8, 9
+//        int[] arr = {120, 125, 127, 130, 135, 143, 135, 152, 160}; // 6, 7
+//        int[] arr = {120, 125, 130, 127, 135, 135, 143, 152, 160}; // 3, 4
+        for (int i : 장난꾸러기_함수(n, arr)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 장난꾸러기_함수(int n, int[] arr) {
+        int[] answer = new int[2];
+
+        int j = 0;
+        for (int i = arr.length - 1; i > 0; i--) {
+            if (arr[i - 1] > arr[i]) {
+                answer[j++] = i;
+            } else if (arr[i - 1] < arr[i]) {
+                answer[j++] = i;
+            }
+
+            if (j == answer.length) break;
+        }
+
+        if (answer[1] == 0) answer[1] = arr[0];
+
+        return answer;
+    }
+    // 6. 장난꾸러기 END
+
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }
 
