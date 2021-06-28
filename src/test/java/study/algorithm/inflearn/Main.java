@@ -2261,25 +2261,65 @@ public class Main {
         }
     }
 
-    private int[] 장난꾸러기_함수(int n, int[] arr) {
-        int[] answer = new int[2];
+    private List<Integer> 장난꾸러기_함수(int n, int[] arr) {
+        ArrayList<Integer> answer = new ArrayList<>();
+        // 얕은 복사
+        // int[] tmp = arr;
 
-        int j = 0;
-        for (int i = arr.length - 1; i > 0; i--) {
-            if (arr[i - 1] > arr[i]) {
-                answer[j++] = i;
-            } else if (arr[i - 1] < arr[i]) {
-                answer[j++] = i;
-            }
+        // 깊은 복사
+        int[] tmp = arr.clone();
+        Arrays.sort(tmp);
 
-            if (j == answer.length) break;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != tmp[i]) answer.add(arr[i]);
         }
 
-        if (answer[1] == 0) answer[1] = arr[0];
 
         return answer;
     }
     // 6. 장난꾸러기 END
+
+    // 7. 좌표 정렬 START
+    class Point implements Comparable<Point> {
+        int x;
+        int y;
+        Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+        @Override
+        public int compareTo(Point o) {
+            // 기준 잡을 객체를 앞에다 두고 음수 값이 리턴되게 하자.
+            if (this.x  == o.x) {
+                return this.y - o.y;
+            } else {
+                return this.x - o.x;
+            }
+        }
+    }
+    
+    @Test
+    void 좌표_정렬() {
+        int n = 5;
+
+        ArrayList<Point> arr = new ArrayList<>();
+        arr.add(new Point(2, 7));
+        arr.add(new Point(1, 3));
+        arr.add(new Point(1, 2));
+        arr.add(new Point(2, 5));
+        arr.add(new Point(3, 6));
+
+        for (Point point : 좌표_정렬_함수(n, arr)) {
+            System.out.println("result: " + point.x + ", " + point.y);
+        }
+    }
+
+    private List<Point> 좌표_정렬_함수(int n, List<Point> arr) {
+        Collections.sort(arr);
+        return arr;
+    }
+    // 7. 좌표 정렬 END
+
 
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }

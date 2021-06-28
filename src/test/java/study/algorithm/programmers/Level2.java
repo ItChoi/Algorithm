@@ -763,7 +763,19 @@ public class Level2 {
 
     private long 수식_최대화_함수(String expression) {
         long answer = 0;
-        int factorial = 0;
+
+        String[] prior = {"+", "-", "*"};
+        int[][] priorArray = {
+            {0, 1, 2}, {0, 2, 1},
+            {1, 0, 2}, {1, 2, 0},
+            {2, 1, 0}, {2, 0, 1}
+        };
+
+
+
+
+
+
 
 
 
