@@ -772,14 +772,6 @@ public class Level2 {
         };
 
 
-
-
-
-
-
-
-
-
         int max = 0;
         //for (int )
 
@@ -790,6 +782,23 @@ public class Level2 {
         return answer;
     }
     // 2020 카카오 인턴십 수식 최대화 END
+
+    // Summer/Winter Coding(~2018) 방문 길이 START
+    @Test
+    void 방문_길이() {
+        String dirs = "ULURRDLLU";	// 7
+//        String dirs = "LULLLLLLU";	// 7
+        System.out.println("result: " + 방문_길이_함수(dirs));
+    }
+
+    private int 방문_길이_함수(String dirs) {
+        int answer = 0;
+
+
+        return answer;
+    }
+    // Summer/Winter Coding(~2018) 방문 길이 END
+
 
 
 }
