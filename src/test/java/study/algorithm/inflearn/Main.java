@@ -2287,13 +2287,14 @@ public class Main {
             this.x = x;
             this.y = y;
         }
+
         @Override
         public int compareTo(Point o) {
-            // 기준 잡을 객체를 앞에다 두고 음수 값이 리턴되게 하자.
-            if (this.x  == o.x) {
-                return this.y - o.y;
+            if (this.x == o.x) {
+                //return this.y - o.y;
+                return o.y - this.y;
             } else {
-                return this.x - o.x;
+                return o.x - this.x;
             }
         }
     }
@@ -2319,6 +2320,67 @@ public class Main {
         return arr;
     }
     // 7. 좌표 정렬 END
+
+    // 8. 이분검색 START
+    @Test
+    void 이분검색() {
+        int n = 8;
+        int m = 32;
+        int[] arr = {23, 87, 65, 12, 57, 32, 99, 81};
+        System.out.println("result: " + 이분검색_함수(n, m, arr));
+    }
+
+    private int 이분검색_함수(int n, int m, int[] arr) {
+        int answer = 0;
+        // binary search를 배운다는 느낌으로!
+        // 이분 검색은 무조건 정렬이 되어 있어야 한다.
+        Arrays.sort(arr);
+        int lt = 0;
+        int rt = n - 1;
+
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+            if (arr[mid] == m) {
+                answer = mid + 1;
+                break;
+            }
+
+            if (arr[mid] > m) {
+                rt = mid - 1;
+            } else {
+                lt = mid + 1;
+            }
+        }
+
+
+        //내가 푼 것
+        /*Arrays.sort(arr);
+        for (int i : arr) {
+            answer++;
+            if (i == m) break;
+        }
+
+        Arrays.sort(arr);
+        int lt = 0;
+        int rt = arr.length - 1;
+
+        while (lt < rt) {
+            int mid = (lt + rt) / 2;
+            if (m == arr[mid]) {
+                answer = mid + 1;
+                break;
+            } else if (m < arr[mid]) {
+                rt = mid + 1;
+            } else {
+                lt = mid - 1;
+            }
+        }
+        */
+
+
+        return answer;
+    }
+    // 8. 이분검색 END
 
 
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
