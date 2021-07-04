@@ -763,21 +763,61 @@ public class Level2 {
 
     private long 수식_최대화_함수(String expression) {
         long answer = 0;
-        int factorial = 0;
 
-
-
+        String[] prior = {"*", "+", "-"};
+        int[][] priorIndex = {
+                {0, 1, 2}, {0, 2, 1},
+                {1, 2, 0}, {1, 0, 2},
+                {2, 0, 1}, {2, 1, 0}
+        };
 
         int max = 0;
-        //for (int )
 
-
-
-
+        for (char c : expression.toCharArray()) {
+            
+        }
 
         return answer;
     }
     // 2020 카카오 인턴십 수식 최대화 END
 
+    // Summer/Winter Coding(~2018) 방문 길이 START
+    @Test
+    void 방문_길이() {
+//        String dirs = "ULURRDLLU";	//7
+//        String dirs = "LULLLLLLU";	//7
+//        String dirs = "LLLLRLRLRLL"; //6
+//        String dirs = "UUUUDUDUDUUU"; //6
+//        String dirs = "LURDLURDLURDLURDRULD"; //7
+//        String dirs = "RRRRRRRRRRRRRRRRRRRRRUUUUUUUUUUUUULU"; //11
+        String dirs = "UDU";
+        System.out.println("result: " + 방문_길이_함수(dirs));
+    }
+
+    private int 방문_길이_함수(String dirs) {
+        int lt = 5;
+        int rt = 5;
+        Set<String> set = new HashSet<>();
+        for (char c : dirs.toCharArray()) {
+            String temp = lt + "" + rt;
+            if (c == 'U' && lt > 0) {
+                lt--;
+            } else if (c == 'D' && lt < 10) {
+                lt++;
+            } else if (c == 'L' && rt > 0) {
+                rt--;
+            } else if (c == 'R' && rt < 10) {
+                rt++;
+            } else {
+                continue;
+            }
+
+            set.add(temp + lt + rt);
+            set.add("" + lt + rt + temp);
+        }
+
+        return set.size() / 2;
+    }
+    // Summer/Winter Coding(~2018) 방문 길이 END
 
 }
