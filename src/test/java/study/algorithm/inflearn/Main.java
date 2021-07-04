@@ -2261,25 +2261,127 @@ public class Main {
         }
     }
 
-    private int[] 장난꾸러기_함수(int n, int[] arr) {
-        int[] answer = new int[2];
+    private List<Integer> 장난꾸러기_함수(int n, int[] arr) {
+        ArrayList<Integer> answer = new ArrayList<>();
+        // 얕은 복사
+        // int[] tmp = arr;
 
-        int j = 0;
-        for (int i = arr.length - 1; i > 0; i--) {
-            if (arr[i - 1] > arr[i]) {
-                answer[j++] = i;
-            } else if (arr[i - 1] < arr[i]) {
-                answer[j++] = i;
-            }
+        // 깊은 복사
+        int[] tmp = arr.clone();
+        Arrays.sort(tmp);
 
-            if (j == answer.length) break;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != tmp[i]) answer.add(arr[i]);
         }
 
-        if (answer[1] == 0) answer[1] = arr[0];
 
         return answer;
     }
     // 6. 장난꾸러기 END
+
+    // 7. 좌표 정렬 START
+    class Point implements Comparable<Point> {
+        int x;
+        int y;
+        Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int compareTo(Point o) {
+            if (this.x == o.x) {
+                //return this.y - o.y;
+                return o.y - this.y;
+            } else {
+                return o.x - this.x;
+            }
+        }
+    }
+    
+    @Test
+    void 좌표_정렬() {
+        int n = 5;
+
+        ArrayList<Point> arr = new ArrayList<>();
+        arr.add(new Point(2, 7));
+        arr.add(new Point(1, 3));
+        arr.add(new Point(1, 2));
+        arr.add(new Point(2, 5));
+        arr.add(new Point(3, 6));
+
+        for (Point point : 좌표_정렬_함수(n, arr)) {
+            System.out.println("result: " + point.x + ", " + point.y);
+        }
+    }
+
+    private List<Point> 좌표_정렬_함수(int n, List<Point> arr) {
+        Collections.sort(arr);
+        return arr;
+    }
+    // 7. 좌표 정렬 END
+
+    // 8. 이분검색 START
+    @Test
+    void 이분검색() {
+        int n = 8;
+        int m = 32;
+        int[] arr = {23, 87, 65, 12, 57, 32, 99, 81};
+        System.out.println("result: " + 이분검색_함수(n, m, arr));
+    }
+
+    private int 이분검색_함수(int n, int m, int[] arr) {
+        int answer = 0;
+        // binary search를 배운다는 느낌으로!
+        // 이분 검색은 무조건 정렬이 되어 있어야 한다.
+        Arrays.sort(arr);
+        int lt = 0;
+        int rt = n - 1;
+
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+            if (arr[mid] == m) {
+                answer = mid + 1;
+                break;
+            }
+
+            if (arr[mid] > m) {
+                rt = mid - 1;
+            } else {
+                lt = mid + 1;
+            }
+        }
+
+
+        //내가 푼 것
+        /*Arrays.sort(arr);
+        for (int i : arr) {
+            answer++;
+            if (i == m) break;
+        }
+
+        Arrays.sort(arr);
+        int lt = 0;
+        int rt = arr.length - 1;
+
+        while (lt < rt) {
+            int mid = (lt + rt) / 2;
+            if (m == arr[mid]) {
+                answer = mid + 1;
+                break;
+            } else if (m < arr[mid]) {
+                rt = mid + 1;
+            } else {
+                lt = mid - 1;
+            }
+        }
+        */
+
+
+        return answer;
+    }
+    // 8. 이분검색 END
+
 
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }

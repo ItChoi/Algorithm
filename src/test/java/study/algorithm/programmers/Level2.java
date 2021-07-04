@@ -772,10 +772,11 @@ public class Level2 {
         };
 
         int max = 0;
+        //for (int )
 
-        for (char c : expression.toCharArray()) {
-            
-        }
+
+
+
 
         return answer;
     }
