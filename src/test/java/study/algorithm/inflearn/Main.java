@@ -2382,6 +2382,36 @@ public class Main {
     }
     // 8. 이분검색 END
 
+    // 9. 뮤직비디오(결정알고리즘) START
+    @Test
+    void 뮤직비디오() {
+        int n = 9;
+        int m = 3;
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        System.out.println("result: " + 뮤직비디오_함수(n, m, arr));
+    }
+
+    private int 뮤직비디오_함수(int n, int m, int[] arr) {
+        // 45
+        int sum = 0;
+        for (int i : arr) sum+= i;
+        int compareNum = sum / 3;
+
+        // 15, 13, 17
+        sum = 0;
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+            if (sum >= compareNum) {
+                if (sum > max) max = sum;
+                sum = 0;
+            }
+        }
+
+        return max;
+    }
+    // 9. 뮤직비디오(결정알고리즘) END
+
 
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
 }
