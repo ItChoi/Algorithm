@@ -2391,24 +2391,67 @@ public class Main {
         System.out.println("result: " + 뮤직비디오_함수(n, m, arr));
     }
 
-    private int 뮤직비디오_함수(int n, int m, int[] arr) {
-        // 45
+    public int count(int[] arr, int capacity) {
+        int cnt = 1;
         int sum = 0;
-        for (int i : arr) sum+= i;
-        int compareNum = sum / 3;
-
-        // 15, 13, 17
-        sum = 0;
-        int max = 0;
-        for (int i = 0; i < arr.length; i++) {
-            sum += arr[i];
-            if (sum >= compareNum) {
-                if (sum > max) max = sum;
-                sum = 0;
+        for (int x : arr) {
+            if (sum + x > capacity) {
+                cnt++;
+                sum = x;
+            } else {
+                sum += x;
             }
         }
 
-        return max;
+        return cnt;
+    }
+
+    private int 뮤직비디오_함수(int n, int m, int[] arr) {
+        int answer = 0;
+        int lt = Arrays.stream(arr).max().getAsInt();
+        int rt = Arrays.stream(arr).sum();
+
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+            if (count(arr, mid) <= m) {
+                answer = mid;
+                rt = mid - 1;
+            } else {
+                lt = mid + 1;
+            }
+        }
+
+        return answer;
+
+        // 내가 푼 것
+        /*int answer = 0;
+        int lt = arr[arr.length - 1];
+        int rt = 0;
+        for (int i : arr) rt += i;
+        while (lt < rt) {
+            int mid = (lt + rt) / 2;
+
+            int sum = 0;
+            int j = 1;
+            for (int i = 1; i <= arr.length; i++) {
+                if (mid < sum + i) {
+                    j++;
+                    if (j > m) break;
+
+                    sum = 0;
+                }
+                sum += i;
+            }
+
+            if (j <= m) {
+                answer = mid;
+                rt = mid - 1;
+            } else {
+                lt = mid + 1;
+            }
+        }
+
+        return answer;*/
     }
     // 9. 뮤직비디오(결정알고리즘) END
 
