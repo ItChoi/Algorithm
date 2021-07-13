@@ -2391,7 +2391,7 @@ public class Main {
         System.out.println("result: " + 뮤직비디오_함수(n, m, arr));
     }
 
-    public int count(int[] arr, int capacity) {
+    /*public int count(int[] arr, int capacity) {
         int cnt = 1;
         int sum = 0;
         for (int x : arr) {
@@ -2404,14 +2404,14 @@ public class Main {
         }
 
         return cnt;
-    }
+    }*/
 
     private int 뮤직비디오_함수(int n, int m, int[] arr) {
         int answer = 0;
         int lt = Arrays.stream(arr).max().getAsInt();
         int rt = Arrays.stream(arr).sum();
 
-        while (lt <= rt) {
+        /*while (lt <= rt) {
             int mid = (lt + rt) / 2;
             if (count(arr, mid) <= m) {
                 answer = mid;
@@ -2419,7 +2419,7 @@ public class Main {
             } else {
                 lt = mid + 1;
             }
-        }
+        }*/
 
         return answer;
 
@@ -2455,7 +2455,138 @@ public class Main {
     }
     // 9. 뮤직비디오(결정알고리즘) END
 
+    // 10. 마구간 정하기(결정알고리즘) START
+    @Test
+    void 마구간_정하기() {
+        /*int c = 5;
+        int n = 3;*/
+        int n = 5;
+        int c = 3;
+        int[] arr = {1, 2, 8, 4, 9};
+        System.out.println("test: " + 마구간_정하기_함수(c, n, arr));
+    }
+    public int count(int[] arr, int dist) {
+        int cnt = 1;
+        int ep = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] - ep >= dist) {
+                cnt++;
+                ep = arr[i];
+            }
+        }
+
+        return cnt;
+    }
+    private int 마구간_정하기_함수(int c, int n, int[] arr) {
+        int answer = 0;
+        Arrays.sort(arr);
+
+        int lt = 1;
+        int rt = arr[n - 1];
+
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+            if (count(arr, mid) >= c) {
+                answer = mid;
+                lt = mid + 1;
+            } else {
+                rt = mid - 1;
+            }
+        }
+
+        return answer;
+        // 내가 푼 것 - 틀렸나?
+        /*int answer = 0;
+        int lt = Arrays.stream(arr).min().getAsInt();
+        int rt = Arrays.stream(arr).max().getAsInt();
+        Arrays.sort(arr);
+        while (lt < rt) {
+            int mid = (lt + rt) / 2;
+            int ep = 1;
+            int cnt = 1;
+
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] - ep <= mid) {
+                    cnt++;
+                    ep = arr[i];
+                }
+            }
+
+            if (cnt <= n) {
+                answer = mid;
+                lt = mid + 1;
+            } else {
+                rt = mid - 1;
+            }
+        }
+
+        return answer;*/
+    }
+    // 10. 마구간 정하기(결정알고리즘) END
+
 
     // Sorting and Searching(정렬, 이분검색과 결정알고리즘) END
+
+    // Recursive, Tree, Graph(DFS, BFS 기초) START
+    // 섹션 7은 이론, 실습! 점수 채점 하지 않는다~ -> 문제에 없넹
+    // 1. 재귀함수(스택프레임) START
+    // 재귀함수 (DFS) -> 깊이 우선 탐색의 약자
+    // 반복문의 형태
+    @Test
+    void 재귀함수_DFS() {
+        // 재귀함수: 자기가 자기 자신을 호출하는 함수!
+        int n = 3;
+        재귀함수_DFS_함수(n);
+    }
+
+    void 재귀함수_DFS_함수(int n) {
+        if (n == 0) return;
+        else {
+            // TODO 로그 위치에 따라 숫자 정렬이 다르다!
+            // DFS는 스택프레임을 사용 (스택 자료구조 사용)
+            System.out.print(n + " ");
+            재귀함수_DFS_함수(n - 1);
+            System.out.print(n + " ");
+        }
+
+    }
+    // 1. 재귀함수(스택프레임) END
+
+    // 2. 이진수 출력(재귀) START
+    @Test
+    void 이진수_출력() {
+        int n = 11;
+        이진수_출력_함수(n);
+    }
+
+    void 이진수_출력_함수(int n) {
+        if (n == 0) return;
+
+        System.out.print(n % 2 + " ");
+        이진수_출력_함수(n/2);
+    }
+    // 2. 이진수 출력(재귀) END
+
+    // 3. 팩토리얼 START
+    @Test
+    void 팩토리얼() {
+        int n = 5;
+        팩토리얼_함수(n);
+    }
+
+    void 팩토리얼_함수(int n) {
+        if (n == 0) return;
+
+        팩토리얼_함수(n * (n-1));
+        System.out.print("n " + n);
+
+    }
+    // 3. 팩토리얼 END
+
+
+
+    // Recursive, Tree, Graph(DFS, BFS 기초) END
+
+
 }
 
