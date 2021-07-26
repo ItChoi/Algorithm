@@ -2571,18 +2571,46 @@ public class Main {
     @Test
     void 팩토리얼() {
         int n = 5;
-        팩토리얼_함수(n);
+        System.out.println("result: " + 팩토리얼_함수(n));
     }
 
-    void 팩토리얼_함수(int n) {
-        if (n == 0) return;
-
-        팩토리얼_함수(n * (n-1));
-        System.out.print("n " + n);
-
+    int 팩토리얼_함수(int n) {
+        if (n == 1) return 1;
+        return n * 팩토리얼_함수(n-1);
     }
     // 3. 팩토리얼 END
 
+    // 4. 피보나치 재귀(메모이제이션) START
+    // DFS와 for문 중 for문이 성능이 더 좋다.
+    // 재귀는 스택 프레임이기 떄문이다!
+    static int[] fibo;
+    @Test
+    void 피보나치_재귀() {
+        int n = 10;
+        //System.out.println("result: " + 피보나치_재귀_함수(n));
+        fibo = new int[n+1];
+        피보나치_재귀_함수(n);
+        for (int i = 1; i <= n; i++) {
+            System.out.print(fibo[i] + " ");
+
+        }
+
+    }
+
+    int 피보나치_재귀_함수(int n) {
+        /*if (n == 1) return 1;
+        else if (n == 2) return 1;*/
+        // 대부분 이렇게 짜는데 안좋은 코드다.
+        //if (n == 1 || n == 2) return 1;
+        //else return 피보나치_재귀_함수(n - 2) + 피보나치_재귀_함수(n - 1);
+        /*if (n == 1 || n == 2) return fibo[n] = 1;
+        else return fibo[n] = 피보나치_재귀_함수(n - 2) + 피보나치_재귀_함수(n - 1);*/
+        if (fibo[n] > 0) return fibo[n]; // 메모이제이션 하면 8초 걸리던게 -> 1초!!!!!
+        if (n == 1 || n == 2) return fibo[n] = 1;
+        else return fibo[n] = 피보나치_재귀_함수(n - 2) + 피보나치_재귀_함수(n - 1);
+    }
+
+    // 4. 피보나치 재귀(메모이제이션) END
 
 
     // Recursive, Tree, Graph(DFS, BFS 기초) END

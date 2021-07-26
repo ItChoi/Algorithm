@@ -821,4 +821,31 @@ public class Level2 {
     }
     // Summer/Winter Coding(~2018) 방문 길이 END
 
+    // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 START
+    @Test
+    void 방금그곡() {
+        //"HELLO"
+        String m = "ABCDEFG";
+        String[] musicinfos = {"12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"};
+        //"FOO"
+//        String m = "CC#BCC#BCC#BCC#B";
+//        String[] musicinfos = {"03:00,03:30,FOO,CC#B", "04:00,04:08,BAR,CC#BCC#BCC#B"};
+        //"WORLD"
+//        String m = "ABC";
+//        String[] musicinfos = {"12:00,12:14,HELLO,C#DEFGAB", "13:00,13:05,WORLD,ABCDEF"};
+        System.out.println("result: " + 방금그곡_함수(m, musicinfos));
+    }
+
+    private String 방금그곡_함수(String m, String[] musicinfos) {
+        String answer = "";
+
+        return answer;
+    }
+
+    // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 END
+
+    @Test
+    void 원격_테스트() {
+        System.out.println("와....");
+    }
 }
