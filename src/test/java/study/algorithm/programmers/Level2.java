@@ -1,7 +1,13 @@
 package study.algorithm.programmers;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.format.datetime.DateFormatter;
+import org.springframework.format.datetime.joda.LocalDateTimeParser;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
@@ -826,26 +832,67 @@ public class Level2 {
     void 방금그곡() {
         //"HELLO"
         String m = "ABCDEFG";
-        String[] musicinfos = {"12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"};
+        String[] musicinfos = {
+                "12:00,12:14,HELLO,CDEFGAB",
+                "13:00,13:05,WORLD,ABCDEF"
+        };
         //"FOO"
 //        String m = "CC#BCC#BCC#BCC#B";
 //        String[] musicinfos = {"03:00,03:30,FOO,CC#B", "04:00,04:08,BAR,CC#BCC#BCC#B"};
         //"WORLD"
 //        String m = "ABC";
 //        String[] musicinfos = {"12:00,12:14,HELLO,C#DEFGAB", "13:00,13:05,WORLD,ABCDEF"};
+
+        /**
+         * 1. 방금 들은 곡 제목 찾기
+         * 2. 한 음악 반복 재생 할 때도 있다.
+         * 3. 한 음악을 중간에 끊는 경우도 있다.
+         * 4. 조건 일치 하는 곳 여러 개 일 때 재생 시간 > 먼저 입력
+         * 5. 조건 불일치 None 반환
+         */
         System.out.println("result: " + 방금그곡_함수(m, musicinfos));
     }
 
     private String 방금그곡_함수(String m, String[] musicinfos) {
         String answer = "";
 
+        String selectTitle = "";
+        int selectTime = 0;
+        int a = 0;
+        for (String musicinfo : musicinfos) {
+            String[] args = musicinfo.split(",");
+            int startSeconds = getSeconds(args[0]);
+            int endSeconds = getSeconds(args[1]);
+            String title = args[2];
+            String content = args[3];
+
+            int ingTime = endSeconds - startSeconds;
+            int j = 0;
+            int k = 0;
+
+            Stack<Character> tempChar = new Stack<>();
+            for (int i = 0; i < ingTime; i++) {
+                if (content.length() == i) j = 0;
+                if (m.charAt(k++) != content.charAt(j)) {
+                    if (k != 0) tempChar.clear();
+                    k = 0;
+                    continue;
+                }
+                tempChar.push(content.charAt(j));
+            }
+            if (title.equals(tempChar.toString())) {
+
+            }
+
+        }
+
         return answer;
     }
 
-    // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 END
-
-    @Test
-    void 원격_테스트() {
-        System.out.println("와....");
+    private int getSeconds(String startTime) {
+        String[] time = startTime.split(":");
+        return (Integer.parseInt(time[0]) * 60) + Integer.parseInt(time[1]);
     }
+
+    // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 END
 }

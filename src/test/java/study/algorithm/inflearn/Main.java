@@ -2613,6 +2613,50 @@ public class Main {
     // 4. 피보나치 재귀(메모이제이션) END
 
 
+    // 5. 이진트리순회(DFS : Depth-First Search) START
+    Node root;
+    @Test
+    void 이진트리순회() {
+        /**
+         * 이진트리 순회 (깊이 우선 탐색)
+         * 전위순회: 부모 방문, 왼쪽 자식, 오른쪽 자식
+         * 중위순회: 왼쪽 자식, 부모, 오른쪽 자식
+         * 후위순회: 왼쪽 자식, 오른쪽 자식, 부모
+         */
+        root = new Node(1);
+        root.lt = new Node(2);
+        root.rt = new Node(3);
+        root.lt.lt = new Node(4);
+        root.lt.rt = new Node(5);
+        root.rt.lt = new Node(6);
+        root.rt.rt = new Node(7);
+        이진트리순회_함수(root);
+    }
+
+    void 이진트리순회_함수(Node root) {
+        if (root == null) {
+            return;
+        } else {
+            // TODO: 재귀 Stack으로 전위, 중위, 후위 그려보기.
+            //System.out.print(root.data + " "); // 전위 순회
+            이진트리순회_함수(root.lt);
+            //System.out.print(root.data + " "); // 중위 순회
+            이진트리순회_함수(root.rt);
+            //System.out.print(root.data + " "); // 후위 순회
+        }
+    }
+
+    class Node {
+        int data;
+        Node lt, rt;
+        public Node(int val) {
+            data = val;
+            lt = rt = null;
+        }
+    }
+
+    // 5. 이진트리순회(DFS : Depth-First Search) END
+
     // Recursive, Tree, Graph(DFS, BFS 기초) END
 
 
