@@ -1,16 +1,11 @@
 package study.algorithm.programmers;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.format.datetime.DateFormatter;
-import org.springframework.format.datetime.joda.LocalDateTimeParser;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -895,4 +890,73 @@ public class Level2 {
     }
 
     // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 END
+
+    @Test
+    void 더_맵게() {
+        /**
+         * 스코빌 지수
+         * 1. 섞은 음식의 스코빌 지수 = 가장 맵지 않은 음식의 스코빌 지수 + (두 번 째로 맵지 않은 음식의 스코빌 지수 * 2)
+         * 2. 모든 음식 스코빌 지수 K 이상이 될 때 까지 반복하여 섞음
+         * 3. 모든 음식의 스코빌 지수가 K 이상으로 만들기 위해 섞어야 하는 최소 횟수 리턴
+         */
+        // 2
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{1, 2, 3, 9, 10, 12}, 7)); //, 2)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{1, 1, 1}, 4)); //, 2)
+        System.out.println("result: 4 " + 더_맵게_함수(new int[]{10, 10, 10, 10, 10}, 100)); //, 4)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{1, 2, 3, 9, 10, 12}, 7)); //, 2)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{0, 2, 3, 9, 10, 12}, 7)); //, 2)
+        System.out.println("result: 3 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 7)); //, 3)
+        System.out.println("result: -1 " + 더_맵게_함수(new int[]{0, 0, 0, 0}, 7)); //, -1)
+        System.out.println("result: -1 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 7000)); //, -1)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 1)); //, 2)
+        System.out.println("result: -1 " + 더_맵게_함수(new int[]{0, 0}, 1)); //, -1)
+        System.out.println("result: 1 " + 더_맵게_함수(new int[]{1, 0}, 1)); //, 1)
+        System.out.println("result: 0 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 0)); //, 0)
+        System.out.println("result: 0 " + 더_맵게_함수(new int[]{0, 0}, 0)); //, 0)
+        System.out.println("result: 1 " + 더_맵게_함수(new int[]{1, 2}, 3)); //, 0)
+    }
+
+    /* 내가 푼 것 (틀림 - 테스트 케이스 못 찾겠음)
+    private int 더_맵게_함수(int[] scoville, int K) {
+        int answer = 0;
+
+        Arrays.sort(scoville);
+        boolean isValid = false;
+        for (int i = 1; i < scoville.length; i++) {
+            int t1 = scoville[i - 1];
+            int t2 = scoville[i];
+
+            if (t1 < K || t2 < K) {
+                int min = Math.min(t1, t2);
+                int max = Math.max(t1, t2);
+                scoville[i] = min + (max * 2);
+                answer++;
+                if (scoville[i] >= K) isValid = true;
+            } else {
+                isValid = true;
+            }
+        }
+
+        return isValid ? answer : -1;
+    }*/
+
+    // 소스 코드 참고 - Prio9rityQueue
+    private int 더_맵게_함수(int[] scoville, int K) {
+        int answer = 0;
+
+        PriorityQueue<Integer> que = new PriorityQueue<>();
+        for (int i : scoville) que.offer(i);
+
+        boolean isValid = false;
+        while (que.peek() < K) {
+            if (que.size() < 2) return -1;
+            int t1 = que.poll();
+            int t2 = que.poll();
+            que.offer(Math.min(t1, t2) + (Math.max(t1, t2) * 2));
+            answer++;
+        }
+
+        return answer;
+    }
+
 }
