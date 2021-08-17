@@ -2657,6 +2657,51 @@ public class Main {
 
     // 5. 이진트리순회(DFS : Depth-First Search) END
 
+
+    // 6. 부분집합 구하기(DFS) START
+    /**
+     * 자연수 N이 주어지면 1부터 N까지의 원소를 갖는 집합의 부분집합을 모두 출력하는 프로그램을 작성하세요.
+     * 3 입력
+     * 1 2 3
+     * 1 2
+     * 1 3
+     * 1
+     * 2 3
+     * 2
+     * 3
+     * - 이진 트리를 배웠는데, 이것도 두 갈래로 뻗는 트리를 만들면 된다. (상태 트리)
+     *
+     */
+    int n;
+    int[] ch; // 체크 하고 안하고를 해서 숫자를 부분집합으로 사용 하는지 안하는지
+    @Test
+    void 부분집합_구하기() {
+        n = 3;
+        ch = new int[n + 1];
+        부분집합_구하기_함수(1);
+    }
+
+    void 부분집합_구하기_함수(int L) {
+        if (L == n + 1) {
+            String tmp = "";
+            for (int i = 1; i <= n; i++) {
+                if (ch[i] == 1) {
+                    tmp += i + " ";
+                }
+            }
+            if (tmp.length() > 0) System.out.println(tmp);
+        } else {
+            // 두 갈래로 뻗는다. (1은 사용, 0은 미사용)
+            ch[L] = 1;
+            부분집합_구하기_함수(L + 1); // 왼
+            ch[L] = 0;
+            부분집합_구하기_함수(L + 1); // 오른
+        }
+    }
+
+    // 6. 부분집합 구하기(DFS) END
+
+
     // Recursive, Tree, Graph(DFS, BFS 기초) END
 
 
