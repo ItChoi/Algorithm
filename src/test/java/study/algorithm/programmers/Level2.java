@@ -891,6 +891,7 @@ public class Level2 {
 
     // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 END
 
+    // 더_맵게 START
     @Test
     void 더_맵게() {
         /**
@@ -958,5 +959,25 @@ public class Level2 {
 
         return answer;
     }
-    // test
+    // 더_맵게 END
+
+    // 깊이/너비 우선 탐색(DFS/BFS) - 타겟 넘버 START
+    @Test
+    void 타겟_넘버() {
+        System.out.println("result: 5 " + 타겟_넘버_함수(new int[]{1, 1, 1, 1, 1}, 3));
+        System.out.println("result: 3 " + 타겟_넘버_함수(new int[]{1, 2, 1, 2}, 2));
+        System.out.println("result: 1 " + 타겟_넘버_함수(new int[]{1, 2, 1, 2}, 6));
+    }
+
+    int 타겟_넘버_함수(int[] numbers, int target) {
+        int answer = 0;
+
+        
+
+        return answer;
+    }
+
+
+    // 깊이/너비 우선 탐색(DFS/BFS) - 타겟 넘버 END
+
 }
