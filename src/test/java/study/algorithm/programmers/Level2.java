@@ -220,6 +220,53 @@ public class Level2 {
     // 해시 - 위장 end
 
 
+    // 월간 코드 챌린지 시즌1 - 두 개 뽑아서 더하기 start
+    @Test
+    public void 두개_뽑아서_더하기() {
+        //int[] numbers = {2,1,3,4,1};
+        //int[] numbers = {5,0,2,7};
+        int[] numbers = {1, 2, 4, 8, 16, 32, 64};
+        for (int i : 두개_뽑아서_더하기_함수(numbers)) {
+            System.out.println("result: " + i);
+        }
+
+    }
+
+    private int[] 두개_뽑아서_더하기_함수(int[] numbers) {
+        Set<Integer> set = new HashSet<>();
+
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = 0 ; j < numbers.length; j++) {
+                if (i != j) {
+                    set.add(numbers[i] + numbers[j]);
+                }
+            }
+        }
+        return set.stream().sorted().mapToInt(a -> a.intValue()).toArray();
+    }
+    // 월간 코드 챌린지 시즌1 - 두 개 뽑아서 더하기 end
+
+
+
+
+
+    // 월간 코드 챌린지 시즌1 - 3진법 뒤집기 start
+    @Test
+    public void 삼진법_뒤집기() {
+        int n = 45;
+        // int n = 125
+        System.out.println("result: " + 삼진법_뒤집기_함수(n));
+    }
+
+    private int 삼진법_뒤집기_함수(int n) {
+        int answer = 0;
+
+        return answer;
+    }
+
+    // 월간 코드 챌린지 시즌1 - 3진법 뒤집기 end
+
+
     // 스택/큐 다리를 지나는 트럭 start
     @Test
     public void 다리를_지나는_트럭() {
