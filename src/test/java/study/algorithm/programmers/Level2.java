@@ -3,7 +3,9 @@ package study.algorithm.programmers;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -196,10 +198,10 @@ public class Level2 {
             {"blue_sunglasses", "eyewear"},
             {"green_turban", "headgear"}
         };
-        System.out.println("result: " + 위장_함수(clothes));
+        System.out.println("result: " + 위장함수(clothes));
     }
 
-    private int 위장_함수(String[][] clothes) {
+    private int 위장함수(String[][] clothes) {
         int answer = 1;
         Map<String, Integer> map = new HashMap<>();
 
@@ -265,4 +267,743 @@ public class Level2 {
     // 월간 코드 챌린지 시즌1 - 3진법 뒤집기 end
 
 
+    // 스택/큐 다리를 지나는 트럭 start
+    @Test
+    public void 다리를_지나는_트럭() {
+        // TEST START
+
+        // TEST END
+        int bridge_length = 2;
+        int weight = 10;
+        int[] truck_weights = {7, 4, 5, 6};
+        /*int bridge_length = 100;
+        int weight = 100;
+        int[] truck_weights = {10,10,10,10,10,10,10,10,10,10};*/
+
+        System.out.println("result: " + 다리를_지나는_트럭_함수(bridge_length, weight, truck_weights));
+    }
+
+    private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        Queue<Integer> que = new ConcurrentLinkedQueue<>();
+
+        int totalWeight = 0;
+        for (int truckWeight : truck_weights) {
+            while (true) {
+                if (que.isEmpty()) {
+                    answer++;
+                    que.add(truckWeight);
+                    totalWeight += truckWeight;
+                    break;
+                } else if (que.size() == bridge_length) {
+                    totalWeight -= que.poll();
+                } else {
+                    if (totalWeight + truckWeight > weight) {
+                        answer++;
+                        que.add(0);
+                    } else {
+                        answer++;
+                        que.add(truckWeight);
+                        totalWeight += truckWeight;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return answer + bridge_length;
+    // TODO: 완벽하게 이해하기.
+    /*private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        Queue<Integer> que = new LinkedList<>();
+
+        int totalWeight = 0;
+        for (Integer truckWeight : truck_weights) {
+            while (true) {
+                if (que.isEmpty()) {
+                    que.add(truckWeight);
+                    answer++;
+                    totalWeight += truckWeight;
+                    break;
+                } else if (que.size() == bridge_length) {
+                    totalWeight -= que.poll();
+                } else {
+                    if (totalWeight + truckWeight > weight) {
+                        answer++;
+                        que.add(0);
+                    } else {
+                        answer++;
+                        que.add(truckWeight);
+                        totalWeight += truckWeight;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return answer + bridge_length;*/
+    }
+
+    /*private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        Queue<Integer> que = new LinkedList<>();
+        int truckWeightsLength = truck_weights.length;
+
+        int totalWeigh = 0;
+        for (int i = 0; i < truckWeightsLength; i++) {
+            int count = que.size() == 1 ? bridge_length - 1 : bridge_length;
+
+            while (true) {
+                if (que.isEmpty()) {
+                    int truckWeight = truck_weights[i];
+                    totalWeigh += truckWeight;
+                    que.add(truckWeight);
+                } else if (i != truckWeightsLength -1 && weight >= (totalWeigh + truck_weights[i + 1])) {
+                    int nextTructWeight = truck_weights[i + 1];
+                    count--;
+                    answer++;
+                    totalWeigh += nextTructWeight;
+                    que.add(nextTructWeight);
+                    continue;
+                } else {
+                    if (count-- <= 0) {
+                        totalWeigh -= que.poll();
+                        break;
+                    }
+                    answer++;
+                }
+            }
+        }
+
+        return answer + 1;
+    }*/
+
+    /*private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        Map<Integer, Integer> passingTruck = new HashMap<>();
+
+        int totalWeigh = 0;
+        int truckWeightsLength = truck_weights.length;
+        for (int i = 0; i < truckWeightsLength; i++) {
+            totalWeigh += truck_weights[i];
+            passingTruck.put(truck_weights[i], bridge_length);
+
+            if (i != truckWeightsLength - 1 && weight > (totalWeigh + truck_weights[i + 1])) {
+                continue;
+            }
+
+            List<Integer> removeTargetList = new ArrayList<>();
+            boolean isWorking = true;
+            while (isWorking) {
+                answer++;
+                for (Integer key : passingTruck.keySet()) {
+                    int val = passingTruck.get(key) - 1;
+                    passingTruck.put(key, val);
+
+                    if (val == 0) {
+                        removeTargetList.add(key);
+                        totalWeigh -= key;
+                        isWorking = false;
+                    }
+                }
+            }
+
+            for (Integer key : removeTargetList) {
+                passingTruck.remove(key);
+            }
+        }
+        return answer;
+    }*/
+
+    /*private int 다리를_지나는_트럭_함수1(int bridge_length, int weight, int[] truck_weights) {
+        int answer = 0;
+        int totalWeight = 0;
+        List<Integer> tempTruckWeights = Arrays.stream(truck_weights).boxed().collect(Collectors.toList());
+        Map<Integer, Integer> passingTruckMap = new HashMap<>();
+        int pointer = 0;
+
+        int truckSize = tempTruckWeights.size();
+        for (int i = 0; i < truckSize; i++) {
+            totalWeight += tempTruckWeights.get(i);
+            passingTruckMap.put(i, tempTruckWeights.get(i));
+
+            int j = i + 1;
+            if (j < truckSize) {
+                for (; j < truckSize; j++) {
+                    if (weight < (totalWeight + tempTruckWeights.get(j))) {
+                        break;
+                    }
+
+                    totalWeight += tempTruckWeights.get(j);
+                    //passingTruckList.add(j);
+                    passingTruckMap.put(j, tempTruckWeights.get(j));
+                    i = j;
+                }
+            }
+
+            for (int k = 0; k < bridge_length; k++) {
+                for (Integer index : passingTruckMap.keySet()) {
+                    if (passingTruckMap.get(index) == 0) {
+                        totalWeight -= passingTruckMap.get(index);
+                        passingTruckMap.remove(index);
+                        break;
+                    }
+                    passingTruckMap.put(index, passingTruckMap.get(index) - 1);
+                    answer++;
+                }
+            }
+        }
+        return answer;
+    }*/
+    // 스택/큐 다리를 지나는 트럭 end
+
+    // 짝지어 제거하기 start
+    @Test
+    void 짝지어_제거하기() {
+//        String s = "baabaa";
+//        String s = "cdcd";
+
+        String s = "abccbaf";	//1
+//        String s = "abcccba";	//0
+//        String s = "abccccbaaa";	//1
+//        String s = "abccaabaa";	//0
+//        String s = "a";	//0
+        System.out.println("result: " + 짝지어_제거하기_함수(s));
+    }
+
+    // stack 이용 하여 풀기 -> 자료 구조를 잘 활용하자.
+    private int 짝지어_제거하기_함수(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (!stack.isEmpty() && stack.peek() == c) {
+                stack.pop();
+            } else {
+                stack.push(c);
+            }
+        }
+
+        return stack.isEmpty() ? 1 : 0;
+    }
+
+    // 내가 푼 것 -> 효율성 0.....
+    /*private int 짝지어_제거하기_함수(String s) {
+        int answer = 0;
+        while (true) {
+            int cnt = 0;
+            for (int i = 0; i < s.length() -1; i++) {
+                char c = s.charAt(i);
+                if (c == s.charAt(i + 1)) {
+                    cnt++;
+                    String temp = c + "" + c;
+                    s = s.replaceFirst(temp, "");
+                    break;
+                }
+            }
+
+            if (s.length() == 0) {
+                answer = 1;
+                break;
+            } else if (cnt == 0) {
+                break;
+            }
+        }
+
+        return answer;
+    }*/
+
+    // 짝지어 제거하기 end
+
+
+
+    // Summer/Winter Coding(~2018) 점프와 순간 이동 START - 문제 해석 능력을 키우자. 어떤 포인트에 집중 할 지 파악하기.
+    @Test
+    void 점프와_순간_이동() {
+//        int n = 5; // 2
+//        int n = 6; // 2
+        int n = 5000; // 5
+        System.out.println("result: " + 점프와_순간_이동_함수(n));
+    }
+
+    private int 점프와_순간_이동_함수(int n) {
+        int answer = 0;
+        while (n > 0) {
+            if (n % 2 == 0) {
+                n /= 2;
+            } else {
+                n -= 1;
+                answer++;
+            }
+        }
+
+        /* ...오마이갓
+        int answer = 1;
+        int cnt = 1;
+        int multipliedByNum = 2;
+        // n = 6
+        while (cnt < n) {
+            int realVal = cnt * multipliedByNum; // 2
+            if (realVal < n) {
+                int tempVal = (realVal) * multipliedByNum; // 4
+                if (tempVal < n && (n - tempVal) <= cnt) { //
+                    cnt++;
+                } else {
+                    answer++;
+                }
+                cnt = realVal;
+            } else {
+                cnt++;
+                answer++;
+            }
+        }*/
+
+        return answer;
+    }
+    // Summer/Winter Coding(~2018) 점프와 순간 이동 END
+
+
+    // 월간 코드 챌린지 시즌1 삼각 달팽이 START
+    @Test
+    void 삼각_달팽이() {
+        System.out.println("!!@@:: " + 1 % 3);
+//        int n = 4;
+        int n = 5;
+//        int n = 6;
+        for (int i : 삼각_달팽이_함수(n)) {
+            System.out.println("result: :" + i);
+        }
+
+    }
+
+    private int[] 삼각_달팽이_함수(int n) {
+        int[] answer = new int[n * (n + 1) / 2];
+        int[][] tmpData = new int[n][n];
+        int num = 1;
+        int x = -1;
+        int y = 0;
+        for (int i = 0; i < n; i++) {
+            int jLength = n - i;
+            for (int j = 0; j < jLength; j++) {
+                if (i % 3 == 0) {
+                    x++;
+                } else if (i % 3 == 1) {
+                    y++;
+                } else if (i % 3 == 2) {
+                    x--;
+                    y--;
+                }
+
+                tmpData[x][y] = num++;
+            }
+        }
+
+        int j = 0;
+        for (int[] tmpDatum : tmpData) {
+            for (int i : tmpDatum) {
+                if (i == 0) break;
+                answer[j++] = i;
+            }
+        }
+
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌1 삼각 달팽이 END
+
+    // 월간 코드 챌린지 시즌1 이진 변환 반복하기 START
+    @Test
+    void 이진_변환_반복하기() {
+//        String s = "110010101001";
+        String s = "01110";
+//        String s = "1111111";
+        for (int i : 이진_변환_반복하기_함수(s)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 이진_변환_반복하기_함수(String s) {
+        int convertCount = 0;
+        int zeroCount = 0;
+
+        int sLength = s.length();
+        while (sLength != 1) {
+            for (char c : s.toCharArray()) {
+                if (c == '0') {
+                    zeroCount++;
+                }
+            }
+
+            sLength = s.replaceAll("0", "").length();
+            s = Integer.toBinaryString(sLength);
+            convertCount++;
+        }
+
+        int[] answer = {convertCount, zeroCount};
+        return answer;
+    }
+
+    // 연습문제 숫자의 표현 START
+    @Test
+    void 숫자의_표현() {
+        int n = 15;
+        System.out.println("result: " + 숫자의_표현_함수(n));
+    }
+
+    private int 숫자의_표현_함수(int n) {
+        int answer = 0;
+
+        int sum = 0;
+        int lt = 1;
+        for (int rt = 1; rt <= n; rt++) {
+            sum += rt;
+            if (sum <= n) {
+                if (sum == n) {
+                    answer++;
+                }
+            }
+
+            while (sum >= n && (sum + rt) >- n) {
+                sum -= lt++;
+                if (sum == n) {
+                    answer++;
+                }
+            }
+        }
+
+        return answer;
+    }
+    // 연습문제 숫자의 표현 END
+
+    // 연습문제 땅따먹기 START
+    @Test
+    void 땅따먹기() {
+        /*int[][] land = {
+            {1, 2, 3, 5},
+            {5, 6, 7, 8},
+            {4, 3, 2, 1}
+        };*/
+
+        int[][] land = {
+            {4, 3, 2, 1},
+            {2, 2, 2, 1},
+            {6, 6, 6, 4},
+            {8, 7, 6, 5}
+        };
+
+        /*int[][] land = {
+            {9, 5, 2, 3},
+            {9, 8, 6, 7},
+            {8, 9, 7, 1},
+            {100, 9, 8, 1}
+        };*/
+        System.out.println("result: " + 땅따먹기_함수(land));
+    }
+
+    private int 땅따먹기_함수(int[][] land) {
+        for(int i=1; i<land.length; i++){
+            land[i][0] += Math.max(Math.max(land[i-1][1], land[i-1][2]), land[i-1][3]);
+            land[i][1] += Math.max(Math.max(land[i-1][0], land[i-1][2]), land[i-1][3]);
+            land[i][2] += Math.max(Math.max(land[i-1][1], land[i-1][0]), land[i-1][3]);
+            land[i][3] += Math.max(Math.max(land[i-1][1], land[i-1][2]), land[i-1][0]);
+        }
+
+        int[] answer = land[land.length-1];
+        Arrays.sort(answer);
+
+        return answer[answer.length-1];
+        /*int noTargetIndex = 0;
+        int max = 0;
+        for (int i = 0; i < land[0].length; i++) {
+            noTargetIndex = i;
+            int sum = land[0][i];
+
+            for (int j = 1; j < land.length; j++) {
+                int hangMax = 0;
+                int tmpIndex = 0;
+                for (int k = 0; k < land[j].length; k++) {
+                    if (noTargetIndex == k) continue;
+                    if (hangMax < land[j][k]) {
+                        hangMax = land[j][k];
+                        tmpIndex = k;
+                    }
+                }
+                sum += hangMax;
+                noTargetIndex = tmpIndex;
+            }
+
+            if (max < sum) max = sum;
+
+        }
+
+        return max;*/
+    }
+
+    // 연습문제 땅따먹기 END
+
+    // 월간 코드 챌린지 시즌1 이진 변환 반복하기 END
+
+
+    // Summer/Winter Coding(~2018) 영어 끝말잇기 START
+    @Test
+    void 영어_끝말잇기() {
+        String test = "testa";
+        String peekEndStr = test.substring(test.length() - 1);
+        System.out.println("test: " + peekEndStr);
+        int n = 3;
+//        String[] words = {
+//                "tank", "kick", "know", "wheel",
+//                "land", "dream", "mother", "robot", "tank"
+//        };
+//        String[] words = {
+//                "hello", "observe", "effect", "take",
+//                "either", "recognize", "encourage", "ensure",
+//                "establish", "hang", "gather", "refer",
+//                "reference", "estimate", "executive"
+//        };
+        String[] words = {
+                "hello", "one", "even", "never",
+                "now", "world", "draw"
+        };
+        for (int i : 영어_끝말잇기_함수(n, words)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 영어_끝말잇기_함수(int n, String[] words) {
+        int nNum = 0;
+        int count = 0;
+
+        Stack<String> alreadyExists = new Stack<>();
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            String peekEndStr = alreadyExists.isEmpty() ? "" : alreadyExists.peek().substring(alreadyExists.peek().length() - 1);
+            boolean fail = !word.startsWith(peekEndStr);
+            if (alreadyExists.contains(word) || fail) {
+                if (i < n) {
+                    nNum = i;
+                    count = 1;
+                } else {
+                    if (fail) {
+                        nNum = i / n;
+                        count = i / n;
+                    } else {
+                        nNum = i / n + 1;
+                        count = i / n + 1;
+                    }
+                }
+                break;
+            }
+
+            alreadyExists.add(word);
+        }
+
+        return new int[]{nNum, count};
+    }
+    // Summer/Winter Coding(~2018) 영어 끝말잇기 END
+
+    // 2020 카카오 인턴십 수식 최대화 START
+    @Test
+    void 수식_최대화() {
+        String expression = "100-200*300-500+20"; // 60420
+        System.out.println("test: " + expression.contains("/"));
+        //String expression = "50*6-3*2"; // 300
+        //String expression = "200-300-500-600*40+500+500"; // 1248000
+        System.out.println("result: " + 수식_최대화_함수(expression));
+    }
+
+    private long 수식_최대화_함수(String expression) {
+        long answer = 0;
+
+        String[] prior = {"*", "+", "-"};
+        int[][] priorIndex = {
+                {0, 1, 2}, {0, 2, 1},
+                {1, 2, 0}, {1, 0, 2},
+                {2, 0, 1}, {2, 1, 0}
+        };
+
+        int max = 0;
+        //for (int )
+
+
+
+
+
+        return answer;
+    }
+    // 2020 카카오 인턴십 수식 최대화 END
+
+    // Summer/Winter Coding(~2018) 방문 길이 START
+    @Test
+    void 방문_길이() {
+//        String dirs = "ULURRDLLU";	//7
+//        String dirs = "LULLLLLLU";	//7
+//        String dirs = "LLLLRLRLRLL"; //6
+//        String dirs = "UUUUDUDUDUUU"; //6
+//        String dirs = "LURDLURDLURDLURDRULD"; //7
+//        String dirs = "RRRRRRRRRRRRRRRRRRRRRUUUUUUUUUUUUULU"; //11
+        String dirs = "UDU";
+        System.out.println("result: " + 방문_길이_함수(dirs));
+    }
+
+    private int 방문_길이_함수(String dirs) {
+        int lt = 5;
+        int rt = 5;
+        Set<String> set = new HashSet<>();
+        for (char c : dirs.toCharArray()) {
+            String temp = lt + "" + rt;
+            if (c == 'U' && lt > 0) {
+                lt--;
+            } else if (c == 'D' && lt < 10) {
+                lt++;
+            } else if (c == 'L' && rt > 0) {
+                rt--;
+            } else if (c == 'R' && rt < 10) {
+                rt++;
+            } else {
+                continue;
+            }
+
+            set.add(temp + lt + rt);
+            set.add("" + lt + rt + temp);
+        }
+
+        return set.size() / 2;
+    }
+    // Summer/Winter Coding(~2018) 방문 길이 END
+
+    // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 START
+    @Test
+    void 방금그곡() {
+        //"HELLO"
+        String m = "ABCDEFG";
+        String[] musicinfos = {
+                "12:00,12:14,HELLO,CDEFGAB",
+                "13:00,13:05,WORLD,ABCDEF"
+        };
+        //"FOO"
+//        String m = "CC#BCC#BCC#BCC#B";
+//        String[] musicinfos = {"03:00,03:30,FOO,CC#B", "04:00,04:08,BAR,CC#BCC#BCC#B"};
+        //"WORLD"
+//        String m = "ABC";
+//        String[] musicinfos = {"12:00,12:14,HELLO,C#DEFGAB", "13:00,13:05,WORLD,ABCDEF"};
+
+        /**
+         * 1. 방금 들은 곡 제목 찾기
+         * 2. 한 음악 반복 재생 할 때도 있다.
+         * 3. 한 음악을 중간에 끊는 경우도 있다.
+         * 4. 조건 일치 하는 곳 여러 개 일 때 재생 시간 > 먼저 입력
+         * 5. 조건 불일치 None 반환
+         */
+        System.out.println("result: " + 방금그곡_함수(m, musicinfos));
+    }
+
+    private String 방금그곡_함수(String m, String[] musicinfos) {
+        String answer = "";
+
+        String selectTitle = "";
+        int selectTime = 0;
+        int a = 0;
+        for (String musicinfo : musicinfos) {
+            String[] args = musicinfo.split(",");
+            int startSeconds = getSeconds(args[0]);
+            int endSeconds = getSeconds(args[1]);
+            String title = args[2];
+            String content = args[3];
+
+            int ingTime = endSeconds - startSeconds;
+            int j = 0;
+            int k = 0;
+
+            Stack<Character> tempChar = new Stack<>();
+            for (int i = 0; i < ingTime; i++) {
+                if (content.length() == i) j = 0;
+                if (m.charAt(k++) != content.charAt(j)) {
+                    if (k != 0) tempChar.clear();
+                    k = 0;
+                    continue;
+                }
+                tempChar.push(content.charAt(j));
+            }
+            if (title.equals(tempChar.toString())) {
+
+            }
+
+        }
+
+        return answer;
+    }
+
+    private int getSeconds(String startTime) {
+        String[] time = startTime.split(":");
+        return (Integer.parseInt(time[0]) * 60) + Integer.parseInt(time[1]);
+    }
+
+    // 2018 KAKAO BLIND RECRUITMENT [3차] 방금그곡 END
+
+    @Test
+    void 더_맵게() {
+        /**
+         * 스코빌 지수
+         * 1. 섞은 음식의 스코빌 지수 = 가장 맵지 않은 음식의 스코빌 지수 + (두 번 째로 맵지 않은 음식의 스코빌 지수 * 2)
+         * 2. 모든 음식 스코빌 지수 K 이상이 될 때 까지 반복하여 섞음
+         * 3. 모든 음식의 스코빌 지수가 K 이상으로 만들기 위해 섞어야 하는 최소 횟수 리턴
+         */
+        // 2
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{1, 2, 3, 9, 10, 12}, 7)); //, 2)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{1, 1, 1}, 4)); //, 2)
+        System.out.println("result: 4 " + 더_맵게_함수(new int[]{10, 10, 10, 10, 10}, 100)); //, 4)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{1, 2, 3, 9, 10, 12}, 7)); //, 2)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{0, 2, 3, 9, 10, 12}, 7)); //, 2)
+        System.out.println("result: 3 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 7)); //, 3)
+        System.out.println("result: -1 " + 더_맵게_함수(new int[]{0, 0, 0, 0}, 7)); //, -1)
+        System.out.println("result: -1 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 7000)); //, -1)
+        System.out.println("result: 2 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 1)); //, 2)
+        System.out.println("result: -1 " + 더_맵게_함수(new int[]{0, 0}, 1)); //, -1)
+        System.out.println("result: 1 " + 더_맵게_함수(new int[]{1, 0}, 1)); //, 1)
+        System.out.println("result: 0 " + 더_맵게_함수(new int[]{0, 0, 3, 9, 10, 12}, 0)); //, 0)
+        System.out.println("result: 0 " + 더_맵게_함수(new int[]{0, 0}, 0)); //, 0)
+        System.out.println("result: 1 " + 더_맵게_함수(new int[]{1, 2}, 3)); //, 0)
+    }
+
+    /* 내가 푼 것 (틀림 - 테스트 케이스 못 찾겠음)
+    private int 더_맵게_함수(int[] scoville, int K) {
+        int answer = 0;
+
+        Arrays.sort(scoville);
+        boolean isValid = false;
+        for (int i = 1; i < scoville.length; i++) {
+            int t1 = scoville[i - 1];
+            int t2 = scoville[i];
+
+            if (t1 < K || t2 < K) {
+                int min = Math.min(t1, t2);
+                int max = Math.max(t1, t2);
+                scoville[i] = min + (max * 2);
+                answer++;
+                if (scoville[i] >= K) isValid = true;
+            } else {
+                isValid = true;
+            }
+        }
+
+        return isValid ? answer : -1;
+    }*/
+
+    // 소스 코드 참고 - Prio9rityQueue
+    private int 더_맵게_함수(int[] scoville, int K) {
+        int answer = 0;
+
+        PriorityQueue<Integer> que = new PriorityQueue<>();
+        for (int i : scoville) que.offer(i);
+
+        boolean isValid = false;
+        while (que.peek() < K) {
+            if (que.size() < 2) return -1;
+            int t1 = que.poll();
+            int t2 = que.poll();
+            que.offer(Math.min(t1, t2) + (Math.max(t1, t2) * 2));
+            answer++;
+        }
+
+        return answer;
+    }
+    // test
 }

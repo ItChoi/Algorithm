@@ -36,3 +36,6 @@ gradlew
 gradlew.bat
 settings.gradle
 gradle/wrapper
+
+### custom ignore
+src/test/java/study/algorithm/codingtest/**
