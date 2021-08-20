@@ -995,7 +995,6 @@ public class Level2 {
         PriorityQueue<Integer> que = new PriorityQueue<>();
         for (int i : scoville) que.offer(i);
 
-        boolean isValid = false;
         while (que.peek() < K) {
             if (que.size() < 2) return -1;
             int t1 = que.poll();
@@ -1018,13 +1017,35 @@ public class Level2 {
 
     int 타겟_넘버_함수(int[] numbers, int target) {
         int answer = 0;
-
-        
+        int n = numbers.length;
+        int[] ch = new int[n];
+        answer += 타겟_넘버_함수_DFS(numbers, ch, target, 0);
 
         return answer;
     }
 
+    int 타겟_넘버_함수_DFS(int[] numbers, int[] ch, int target, int index) {
+        int answer = 0;
+        if (index == numbers.length) {
+            int sum = 0;
+            for (int i = 0; i < numbers.length; i++) {
+                if (ch[i] == 1) {
+                    sum += numbers[i];
+                } else {
+                    sum -= numbers[i];
+                }
+            }
+            if (sum == target) return 1;
+        } else {
+            int tempIndex = index + 1;
+            ch[index] = 1;
+            answer += 타겟_넘버_함수_DFS(numbers, ch, target, tempIndex);
+            ch[index] = 0;
+            answer += 타겟_넘버_함수_DFS(numbers, ch, target, tempIndex);
+        }
 
+        return answer;
+    }
     // 깊이/너비 우선 탐색(DFS/BFS) - 타겟 넘버 END
 
 }
