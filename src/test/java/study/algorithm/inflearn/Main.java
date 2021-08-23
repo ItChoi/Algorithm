@@ -2702,8 +2702,6 @@ public class Main {
     // 6. 부분집합 구하기(DFS) END
 
 
-    // Recursive, Tree, Graph(DFS, BFS 기초) END
-
     // 7. 이진트리 레벨탐색(BFS : Breadth-First Search) START
     class Node1 {
         int data;
@@ -2716,7 +2714,7 @@ public class Main {
             rt = null;
         }
     }
-    
+
     @Test
     void 레벨탐색() {
         Node1 root = new Node1(1);
@@ -2728,7 +2726,7 @@ public class Main {
         root.rt.rt = new Node1(7);
         레벨탐색_함수(root);
     }
-    
+
     void 레벨탐색_함수(Node1 root) {
         Queue<Node1> Q = new LinkedList<>();
         Q.offer(root);
@@ -2749,6 +2747,74 @@ public class Main {
         }
     }
     // 7. 이진트리 레벨탐색(BFS : Breadth-First Search) END
+
+    // 8. 송아지 찾기 1(BFS : 상태트리탐색) START
+    @Test
+    void 송아지_찾기() {
+        System.out.println("result 3 " + 송아지_찾기_함수_BFS(5, 14));
+        System.out.println("result 4 " + 송아지_찾기_함수_BFS(5, 13));
+        System.out.println("result 2 " + 송아지_찾기_함수_BFS(5, 11));
+        System.out.println("result 3 " + 송아지_찾기_함수_BFS(5, 12));
+        System.out.println("result 0 " + 송아지_찾기_함수_BFS(5, 5));
+        System.out.println("result 1 " + 송아지_찾기_함수_BFS(5, 6));
+
+    }
+
+    int answer1 = 0;
+    int[] dis1 = {1, -1, 5};
+    int[] ch1;
+    private int 송아지_찾기_함수_BFS(int s, int e) {
+        Queue<Integer> Q = new LinkedList<>();
+
+        ch1 = new int[10001];
+        ch1[s] = 1;
+        Q.offer(s);
+        int L = 0;
+        while (!Q.isEmpty()) {
+            int len = Q.size();
+            for (int i = 0; i < len; i++) {
+                int x = Q.poll();
+                if (x == e) return L;
+                for (int j = 0; j < 3; j++) {
+                    int nx = x + dis1[j];
+                    //if (nx == e) return L + 1;
+                    if (nx >= 1 && nx <= 10000 && ch1[nx] == 0) {
+                        ch1[nx] = 1;
+                        Q.offer(nx);
+                    }
+                }
+            }
+            L++;
+        }
+
+        return 0;
+    }
+     /*//내가 푼 것
+    private int 송아지_찾기_함수_BFS(int s, int e) {
+        int answer = 0;
+
+        int n = 5;
+        int tempNum = 0;
+        while (s != e) {
+            tempNum = s + n;
+            if (tempNum < e) {
+                s = tempNum;
+            } else if (((tempNum - s) / 2 + 1) <= e - s) {
+                s = tempNum;
+            } else {
+                if (s < e) {
+                    s++;
+                } else {
+                    s--;
+                }
+            }
+            answer++;
+        }
+        return answer;
+    }*/
+    // 8. 송아지 찾기 1(BFS : 상태트리탐색) END
+
+    // Recursive, Tree, Graph(DFS, BFS 기초) END
 
 
 }
