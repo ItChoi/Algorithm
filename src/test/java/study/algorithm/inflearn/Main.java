@@ -2704,6 +2704,52 @@ public class Main {
 
     // Recursive, Tree, Graph(DFS, BFS 기초) END
 
+    // 7. 이진트리 레벨탐색(BFS : Breadth-First Search) START
+    class Node1 {
+        int data;
+        Node1 lt;
+        Node1 rt;
+
+        public Node1(int val) {
+            data = val;
+            lt = null;
+            rt = null;
+        }
+    }
+    
+    @Test
+    void 레벨탐색() {
+        Node1 root = new Node1(1);
+        root.lt = new Node1(2);
+        root.rt = new Node1(3);
+        root.lt.lt = new Node1(4);
+        root.lt.rt = new Node1(5);
+        root.rt.lt = new Node1(6);
+        root.rt.rt = new Node1(7);
+        레벨탐색_함수(root);
+    }
+    
+    void 레벨탐색_함수(Node1 root) {
+        Queue<Node1> Q = new LinkedList<>();
+        Q.offer(root);
+
+        int L = 0;
+        while (!Q.isEmpty()) {
+            int len = Q.size();
+            System.out.print(L + " : ");
+            for (int i = 0; i < len; i++) {
+                Node1 cur = Q.poll();
+                System.out.print(cur.data);
+                if (cur.lt != null) Q.offer(cur.lt);
+                if (cur.rt != null) Q.offer(cur.rt);
+            }
+            L++;
+            System.out.println();
+
+        }
+    }
+    // 7. 이진트리 레벨탐색(BFS : Breadth-First Search) END
+
 
 }
 
