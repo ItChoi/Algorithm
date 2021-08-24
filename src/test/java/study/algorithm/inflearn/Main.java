@@ -2759,8 +2759,39 @@ public class Main {
         System.out.println("result 1 " + 송아지_찾기_함수_BFS(5, 6));
 
     }
+    // 이해했는지 풀어보기
+    private int 송아지_찾기_함수_BFS(int s, int e) {
+        int answer = 0;
+        int[] dis = {-1, 1, 5};
+        int[] ch = new int[10001];
 
-    int answer1 = 0;
+        Queue<Integer> que = new LinkedList<>();
+        ch[s] = 1;
+        que.offer(s);
+        int L = 0;
+        while (!que.isEmpty()) {
+            int qSize = que.size();
+
+            for (int i = 0; i < qSize; i++) {
+                int value = que.poll();
+                if (value == e) return L;
+
+                for (int j = 0; j < dis.length; j++) {
+                    int childValue = value + dis[j];
+                    if (childValue > 0 && childValue <= 10000 && ch[childValue] == 0) {
+                        if (childValue == e) return L + 1;
+                        ch[childValue] = 1;
+                        que.offer(childValue);
+                    }
+                }
+            }
+            L++;
+        }
+
+        return answer;
+    }
+
+    /* 인강 풀이
     int[] dis1 = {1, -1, 5};
     int[] ch1;
     private int 송아지_찾기_함수_BFS(int s, int e) {
@@ -2777,7 +2808,7 @@ public class Main {
                 if (x == e) return L;
                 for (int j = 0; j < 3; j++) {
                     int nx = x + dis1[j];
-                    //if (nx == e) return L + 1;
+                    if (nx == e) return L + 1;
                     if (nx >= 1 && nx <= 10000 && ch1[nx] == 0) {
                         ch1[nx] = 1;
                         Q.offer(nx);
@@ -2788,7 +2819,8 @@ public class Main {
         }
 
         return 0;
-    }
+    }*/
+    
      /*//내가 푼 것
     private int 송아지_찾기_함수_BFS(int s, int e) {
         int answer = 0;
@@ -2814,8 +2846,106 @@ public class Main {
     }*/
     // 8. 송아지 찾기 1(BFS : 상태트리탐색) END
 
+
+    // 9. Tree 말단노드까지의 가장 짧은 경로(DFS) START
+    @Test
+    void Tree_말단노드까지의_가장_짧은_경로_DFS() {
+        Node2 root;
+        root = new Node2(1);
+        root.lt = new Node2(2);
+        root.rt = new Node2(3);
+        root.lt.lt = new Node2(4);
+        root.lt.rt = new Node2(5);
+        //System.out.println(Tree_말단노드까지의_가장_짧은_경로_DFS(0, root));
+        System.out.println(Tree_말단노드까지의_가장_짧은_경로_BFS(root));
+    }
+
+    class Node2 {
+        int data;
+        Node2 lt;
+        Node2 rt;
+        public Node2(int val) {
+            this.data = val;
+            lt = null;
+            rt = null;
+        }
+    }
+
+    private int Tree_말단노드까지의_가장_짧은_경로_DFS(int L, Node2 root) {
+        if (root.lt == null && root.rt == null) {
+            return L;
+        } else {
+            return Math.min(Tree_말단노드까지의_가장_짧은_경로_DFS(L + 1, root.lt), Tree_말단노드까지의_가장_짧은_경로_DFS(L + 1, root.rt));
+        }
+    }
+
+    private int Tree_말단노드까지의_가장_짧은_경로_BFS(Node2 root) {
+        Queue<Node2> Q = new LinkedList<>();
+        Q.offer(root);
+        int L = 0;
+
+        while (!Q.isEmpty()) {
+            int len = Q.size();
+            for (int i = 0; i < len; i++) {
+                Node2 cur = Q.poll();
+                if (cur.lt == null && cur.rt == null) return L;
+                if (cur.lt != null) Q.offer(cur.lt);
+                if (cur.rt != null) Q.offer(cur.rt);
+            }
+            L++;
+        }
+
+        return 0;
+    }
+    // 9. Tree 말단노드까지의 가장 짧은 경로(DFS) END
+
+    // 12. 경로탐색(DFS) START
+    int n1 = 5;
+    int m1 = 9;
+    int answer1 = 0;
+    int[][] graph1 = new int[n1 + 1][n1 + 1];
+    int[] ch1 = new int[n1 + 1];
+    @Test
+    void 경로탐색() {
+        graph1[1][2] = 1;
+        graph1[1][3] = 1;
+        graph1[1][4] = 1;
+
+        graph1[2][1] = 1;
+        graph1[2][3] = 1;
+        graph1[2][5] = 1;
+
+        graph1[3][4] = 1;
+
+        graph1[4][2] = 1;
+        graph1[4][5] = 1;
+
+        ch1[1] = 1;
+        경로탐색_함수(1);
+        System.out.println("answer1: " + answer1);
+        System.out.println("answer1: " + answer1);
+    }
+
+    void 경로탐색_함수(int v) {
+        if (v == n1) {
+            answer1++;
+        } else {
+            for (int i = 1; i <= n1; i++) {
+                if (graph1[v][i] == 1 && ch1[i] ==0) {
+                    ch1[i] = 1;
+                    경로탐색_함수(i);
+                    ch1[i] = 0;
+                }
+            }
+        }
+
+    }
+
+
+    // 12. 경로탐색(DFS) EMD
+
+
+
     // Recursive, Tree, Graph(DFS, BFS 기초) END
-
-
 }
 
