@@ -1048,4 +1048,48 @@ public class Level2 {
     }
     // 깊이/너비 우선 탐색(DFS/BFS) - 타겟 넘버 END
 
+    // 2019 KAKAO BLIND RECRUITMENT - 오픈채팅방 START
+    @Test
+    void 오픈채팅방() {
+        System.out.println("result: " + 오픈채팅방_함수(new String[]{"Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"}));
+    }
+    
+    private String[] 오픈채팅방_함수(String[] record) {
+        Map<String, String> map = new HashMap<>();
+        final String ENTER = "Enter";
+        final String LEAVE = "Leave";
+        final String CHANGE = "Change";
+
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < record.length; i++) {
+            String[] divStr = record[i].split(" ");
+            String action = divStr[0];
+            String uid = divStr[1];
+            String nick = divStr.length == 3 ? divStr[2] : "";
+
+            String findMapValByUid = map.getOrDefault(uid, "");
+            if ("".equals(findMapValByUid) || ENTER.equals(action) || CHANGE.equals(action)) map.put(uid, nick);
+
+            if (ENTER.equals(action)) {
+                result.add(uid + "님이 들어왔습니다.");
+            } else if (LEAVE.equals(action)) {
+                result.add(uid + "님이 나갔습니다.");
+            }
+        }
+
+        String[] answer = new String[result.size()];
+        int i = 0;
+        for (String s : result) {
+            //String cutUid = s.substring(0, 7);
+            String cutUid = s.substring(0, s.lastIndexOf("님"));
+            answer[i++] = s.replace(cutUid, map.get(cutUid));
+
+        }
+
+        return answer;
+    }
+
+
+    // 2019 KAKAO BLIND RECRUITMENT - 오픈채팅방 END
+
 }
