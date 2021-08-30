@@ -1092,4 +1092,34 @@ public class Level2 {
 
     // 2019 KAKAO BLIND RECRUITMENT - 오픈채팅방 END
 
+    // 해시 - 전화번호 목록 START
+    @Test
+    void 전화번호_목록() {
+        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"119", "97674223", "1195524421"}));
+        System.out.println("result: true " + 전화번호_목록_함수(new String[] {"123","456","789"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"12","123","1235","567","88"}));
+        System.out.println("result: true " + 전화번호_목록_함수(new String[] {"1234", "1235", "567"}));
+        System.out.println("result: true " + 전화번호_목록_함수(new String[] {"2", "32"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"11", "22", "33", "44", "123", "345", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"11", "22", "33", "44", "345", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"34566789", "11", "22", "33", "44", "345667", "345", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"34566789", "11", "22", "33", "44", "345667", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"34566789", "345667"}));
+    }
+
+    private boolean 전화번호_목록_함수(String[] phone_book) {
+        Arrays.sort(phone_book);
+
+        for (int i = 1; i < phone_book.length; i++) {
+            String prev = phone_book[i - 1];
+            String next = phone_book[i];
+            if (prev.startsWith(next) || next.startsWith(prev)) return false;
+        }
+
+        return true;
+    }
+
+
+
+    // 해시 - 전화번호 목록 END
 }
