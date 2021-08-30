@@ -82,7 +82,7 @@ public class Main {
             String tmp = new StringBuilder(x).reverse().toString();
             answer.add(tmp);
             */
-            
+
             // 방법 2 직접 뒤집기
             char[] s = x.toCharArray();
             int lt = 0;
@@ -1871,9 +1871,9 @@ public class Main {
                 break;
             }
         }
-        
+
         return answer;
-        
+
         // 내가 푼 것
         /*Queue<Integer> que = new LinkedList<>();
         int cnt = 0;
@@ -2298,7 +2298,7 @@ public class Main {
             }
         }
     }
-    
+
     @Test
     void 좌표_정렬() {
         int n = 5;
@@ -2923,7 +2923,6 @@ public class Main {
         ch1[1] = 1;
         경로탐색_함수(1);
         System.out.println("answer1: " + answer1);
-        System.out.println("answer1: " + answer1);
     }
 
     void 경로탐색_함수(int v) {
@@ -2944,7 +2943,110 @@ public class Main {
 
     // 12. 경로탐색(DFS) EMD
 
+    // 13. 경로탐색(인접리스트, ArrayList) START
+    int n2 = 5;
+    int m2 = 9;
+    int answer2 = 0;
+    ArrayList<ArrayList<Integer>> graph2 = new ArrayList<>();
 
+    int[] ch2 = new int[n2 + 1];
+    @Test
+    void 경로탐색_인접리스트() {
+        graph2.add(new ArrayList<>(0));
+        graph2.add(new ArrayList<>(1));
+        graph2.add(new ArrayList<>(2));
+        graph2.add(new ArrayList<>(3));
+        graph2.add(new ArrayList<>(4));
+        graph2.add(new ArrayList<>(5));
+
+        graph2.get(1).add(2);
+        graph2.get(1).add(3);
+        graph2.get(1).add(4);
+
+        graph2.get(2).add(1);
+        graph2.get(2).add(3);
+        graph2.get(2).add(5);
+
+        graph2.get(3).add(4);
+
+        graph2.get(4).add(2);
+        graph2.get(4).add(5);
+
+        ch2[1] = 1;
+        경로탐색_인접리스트_함수(1);
+        System.out.println("answer2: " + answer2);
+        System.out.println("answer2: " + answer2);
+    }
+
+    void 경로탐색_인접리스트_함수(int v) {
+        if (v == n2) {
+            answer2++;
+        } else {
+            // for문 보다 for each 하는 것이 좋다. (array list - 인접 리스트의 경우)
+            for (int nv : graph2.get(v)) {
+                if (ch2[nv] == 0) {
+                    ch2[nv] = 1;
+                    경로탐색_인접리스트_함수(nv);
+                    ch2[nv] = 0;
+                }
+            }
+        }
+    }
+
+    // 13. 경로탐색(인접리스트, ArrayList) END
+
+
+    // 14. 그래프 최단거리(BFS) START
+    int n3 = 6;
+    int m3 = 9;
+    ArrayList<ArrayList<Integer>> graph3 = new ArrayList<>();
+    int[] ch3 = new int[n3 + 1];
+    int[] dis3 = new int[n3 + 1];
+    @Test
+    void 그래프_최단거리() {
+        graph3.add(new ArrayList<>(0));
+        graph3.add(new ArrayList<>(1));
+        graph3.add(new ArrayList<>(2));
+        graph3.add(new ArrayList<>(3));
+        graph3.add(new ArrayList<>(4));
+        graph3.add(new ArrayList<>(5));
+        graph3.add(new ArrayList<>(6));
+
+        graph3.get(1).add(3);
+        graph3.get(1).add(4);
+
+        graph3.get(4).add(5);
+        graph3.get(4).add(6);
+
+        graph3.get(6).add(2);
+
+        그래프_최단거리_함수(1);
+
+        for (int i : dis3) {
+            System.out.println("i : " + i);
+        }
+    }
+
+    void 그래프_최단거리_함수(int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        ch3[v] = 1;
+        dis3[v] = 0;
+        queue.offer(v);
+        while (!queue.isEmpty()) {
+            int cv = queue.poll();
+            for (int nv : graph3.get(cv)) {
+                if (ch3[nv] == 0) {
+                    ch3[nv] = 1;
+                    queue.offer(nv);
+                    dis3[nv] = dis3[cv] + 1;
+                }
+            }
+        }
+
+    }
+
+
+    // 14. 그래프 최단거리(BFS) END
 
     // Recursive, Tree, Graph(DFS, BFS 기초) END
 }
