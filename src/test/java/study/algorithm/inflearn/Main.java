@@ -3044,10 +3044,52 @@ public class Main {
         }
 
     }
-
-
     // 14. 그래프 최단거리(BFS) END
-
     // Recursive, Tree, Graph(DFS, BFS 기초) END
+
+
+    // DFS, BFS 활용 START
+
+    // 1. 합이 같은 부분집합 START
+    int n4 = 6;
+    int[] arr4 = new int[] {1, 3, 5, 6, 8, 10};
+    String answer4 = "YES";
+    int total4 = 0;
+    int[] ch4 = new int[n4];
+    //, int[] arr;
+    @Test
+    void 합이_같은_부분집합() {
+        //System.out.println("result: 6 " + 합이_같은_부분집합_함수(6, new int[] {1, 3, 5, 6, 7, 10}));
+        for (int i : arr4) total4 += i;
+        합이_같은_부분집합_함수(1, 0);
+        ch4[0] = 1;
+        System.out.println("result: " + answer4);
+
+    }
+
+    private int 합이_같은_부분집합_함수(int l, int sum) {
+        if (l == n4) return 0;
+        if (total4 - sum == sum) {
+            answer4 = "YES";
+            return 0;
+        } else {
+            if (ch4[l] == 0) {
+                ch4[l] = 1;
+                합이_같은_부분집합_함수(l + 1, sum + arr4[l]);
+            } else {
+                ch4[l] = 0;
+                합이_같은_부분집합_함수(l + 1, sum);
+            }
+        }
+
+        return 0;
+    }
+
+
+    // 1. 합이 같은 부분집합 END
+
+
+    // DFS, BFS 활용 END
+
 }
 
