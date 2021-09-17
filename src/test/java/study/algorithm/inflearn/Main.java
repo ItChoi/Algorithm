@@ -3078,8 +3078,56 @@ public class Main {
         }
     }
 
-
     // 1. 합이 같은 부분집합 END
+
+    // 2. 바둑이 승차(DFS) START
+    int c5 = 259;
+    int n5 = 5;
+    int answer5 = 0;
+    @Test
+    void 바둑이_승차() {
+        int[] n = {81, 58, 42, 33, 61};
+        바둑이_승차_함수(0, 0, n);
+        System.out.println("result 242: " + answer5);
+    }
+
+    private void 바둑이_승차_함수(int l, int sum, int[] n) {
+        if (c5 <= sum) return;
+        if (l == n5) {
+            if (answer5 < sum) answer5 = sum;
+        } else {
+            바둑이_승차_함수(l + 1, sum + n[l], n);
+            바둑이_승차_함수(l + 1, sum, n);
+        }
+    }
+
+    /* 내가 푼 것
+    private void 바둑이_승차_함수(int l, int sum, int[] n) {
+        if (c5 <= sum) return;
+        if (l == n5) {
+            if (answer5 < sum) answer5 = sum;
+        } else {
+            바둑이_승차_함수(l + 1, sum + n[l], n);
+            바둑이_승차_함수(l + 1, sum, n);
+        }
+    }*/
+
+
+    // 2. 바둑이 승차(DFS) END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // DFS, BFS 활용 END
