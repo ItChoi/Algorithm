@@ -3115,6 +3115,36 @@ public class Main {
 
     // 2. 바둑이 승차(DFS) END
 
+    // 3. 최대점수 구하기(DFS) START
+    int n6 = 5;
+    int m6 = 20;
+    int[][] arr = {
+            {10, 5},
+            {25, 12},
+            {15, 8},
+            {6, 3},
+            {7, 4}
+    };
+    int answer6 = 0;
+
+    @Test
+    void 최대점수_구하기() {
+        최대점수_구하기_함수(0, 0, 0, arr);
+        System.out.println("result: 41 " + answer6);
+    }
+
+    private void 최대점수_구하기_함수(int l, int sum, int time, int[][] arr) {
+        if (time > m6) return;
+        if (l == n6) {
+            if (answer6 < sum) answer6 = sum;
+        } else {
+            최대점수_구하기_함수(l + 1, sum + arr[l][0], time + arr[l][1], arr);
+            최대점수_구하기_함수(l + 1, sum, time, arr);
+        }
+
+    }
+
+    // 3. 최대점수 구하기(DFS) END
 
 
 

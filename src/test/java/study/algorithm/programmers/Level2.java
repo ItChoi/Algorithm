@@ -1118,8 +1118,36 @@ public class Level2 {
 
         return true;
     }
-
-
-
     // 해시 - 전화번호 목록 END
+
+    // Summer/Winter Coding(2019) - 멀쩡한 사각형 START
+    @Test
+    void 멀쩡한_사각형() {
+        System.out.println("result: 80 " + 멀쩡한_사각형_함수(8, 12));
+    }
+
+    private long 멀쩡한_사각형_함수(int w, int h) {
+        // 96 - 20 -
+        return ((long) w * h) - (w + h - 유클리드호제_함수(w, h));
+    }
+
+    private int 유클리드호제_함수(int w, int h) {
+        int f = Math.max(w, h);
+        int s = Math.min(w, h);
+
+        while (s > 0 && f % s != 0) {
+            int temp = f % s;
+            f = s;
+            s = temp;
+        }
+
+        return s;
+    }
+    // Summer/Winter Coding(2019) - 멀쩡한 사각형 END
+
+
+
+
+
+
 }
