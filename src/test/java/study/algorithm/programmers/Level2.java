@@ -1145,9 +1145,87 @@ public class Level2 {
     }
     // Summer/Winter Coding(2019) - 멀쩡한 사각형 END
 
+    // 2021 Dev-Matching: 웹 백엔드 개발자(상반기) - 행렬 테두리 회전하기 START
+    @Test
+    void 행렬_테두리_회전하기() {
+        // [1, 1, 5, 3]
+        int rows = 3;
+        int columns = 3;
+        int[][] queries = new int[][] {
+                {1, 1, 2, 2},
+                {1, 2, 2, 3},
+                {2, 1, 3, 2},
+                {2, 2, 3, 3}
+        };
 
+        // [1]
+        /*int rows = 100;
+        int columns = 97;
+        int[][] queries = new int[][] {
+                {1, 1, 100, 97}
+        };*/
 
+        // [8, 10, 25]
+        /*int rows = 6;
+        int columns = 6;
+        int[][] queries = new int[][] {
+                {2, 2, 5, 4},
+                {3, 3, 6, 6},
+                {5, 1, 6, 3}
+        };*/
 
+        for (int i : 행렬_테두리_회전하기_함수(rows, columns, queries)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 행렬_테두리_회전하기_함수(int rows, int columns, int[][] queries) {
+        int[] result = new int[queries.length];
+        int[][] repo = new int[rows + 1][columns + 1];
+        int k = 1;
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= columns; j++) {
+                repo[i][j] = k++;
+            }
+        }
+
+        int index = 0;
+        for (int i = 0; i < queries.length; i++) {
+            int aRow = queries[i][0];
+            int aCol = queries[i][1];
+            int bRow = queries[i][2];
+            int bCol = queries[i][3];
+
+            int minNum = Integer.MAX_VALUE;
+            int lt = aRow;
+            int rt = aCol;
+            int tempA = repo[lt][rt];
+            int tempB = 0;
+            while (true) {
+                if (tempA < minNum) minNum = tempA;
+                if (aRow == lt && bCol > rt) {
+                    rt++;
+                } else if (bCol == rt && bRow > lt) {
+                    lt++;
+                } else if (bRow == lt && aCol < rt) {
+                    rt--;
+                } else {
+                    lt--;
+                }
+                tempB = repo[lt][rt];
+
+                repo[lt][rt] = tempA;
+                tempA = tempB;
+                if (lt == aRow && rt == aCol) break;
+            }
+
+            result[index++] = minNum;
+        }
+
+        return result;
+    }
+
+    // 2021 Dev-Matching: 웹 백엔드 개발자(상반기) - 행렬 테두리 회전하기 END
 
 
 }
