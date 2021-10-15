@@ -3146,6 +3146,29 @@ public class Main {
 
     // 3. 최대점수 구하기(DFS) END
 
+    // 4. 중복순열(채점지원안됨) START
+    int[] pm7;
+    int n7, m7;
+    @Test
+    void 중복순열() {
+        n7 = 3;
+        m7 = 2;
+        pm7 = new int[m7];
+        중복순열_함수(0);
+    }
+
+    private void 중복순열_함수(int L) {
+        if (L == m7) {
+            for (int x : pm7) System.out.print(x + " ");
+            System.out.println();
+        } else {
+            for (int i = 1; i<= n7; i++) {
+                pm7[L] = i;
+                중복순열_함수(L + 1);
+            }
+        }
+    }
+    // 4. 중복순열(채점지원안됨) END
 
 
 

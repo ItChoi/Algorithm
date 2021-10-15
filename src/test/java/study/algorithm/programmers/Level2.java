@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -1224,8 +1222,96 @@ public class Level2 {
 
         return result;
     }
-
     // 2021 Dev-Matching: 웹 백엔드 개발자(상반기) - 행렬 테두리 회전하기 END
 
+    // 2021 KAKAO BLIND RECRUITMENT - 메뉴 리뉴얼 START
+    @Test
+    void 메뉴_리뉴얼() {
+        // ["AC", "ACDE", "BCFG", "CDE"]
+        /*String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        int[] course = {2, 3, 4};*/
+
+        // ["ACD", "AD", "ADE", "CD", "XYZ"]
+        /**
+         * ad 3
+         * cd 3
+         * acd 2
+         * ade 2
+         * xyz 2
+         */
+        String[] orders = {"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"};
+        int[] course = {2, 3, 5};
+
+        // ["WX", "XY"]
+        /*String[] orders = {"XYZ", "XWY", "WXA"};
+        int[] course = {2, 3, 4};*/
+
+        for (String i : 메뉴_리뉴얼_함수(orders, course)) System.out.println("result: " + i);
+    }
+
+    private String[] 메뉴_리뉴얼_함수(String[] orders, int[] course) {
+        Map<String, Integer> setMenu = new HashMap<>();
+
+        for (int i = 0; i < orders.length; i++) {
+            boolean isExists = false;
+            String targetMenu = orders[i];
+            if (setMenu.containsKey(targetMenu)) isExists = true;
+
+            for (int j = i + 1; j < orders.length; j++) {
+                String order = orders[j];
+                int count = 0;
+                String createSetMenu = "";
+
+                for (int k = 0; k < order.length(); k++) {
+                    String strC = String.valueOf(order.charAt(k));
+                    if (targetMenu.contains(strC)) {
+                        count++;
+                        createSetMenu += strC;
+                    }
+                }
+
+                if (count >= 2) {
+                    if (isExists && targetMenu.equals(createSetMenu)) continue;
+                    setMenu.put(createSetMenu, setMenu.getOrDefault(createSetMenu, 1) + 1);
+                }
+            }
+        }
+
+        int i = 0;
+        for (String key : setMenu.keySet()) {
+            System.out.println(++i + ": key: " + key + ", val: " + setMenu.get(key));
+        }
+
+
+        return null;
+    }
+    // 2021 KAKAO BLIND RECRUITMENT - 메뉴 리뉴얼 END
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
