@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.stream.IntStream;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -13,14 +14,14 @@ public class Level2 {
     // 스택/큐 - 주식가격 start
     @Test
     public void 주식가격() {
-        int[] prices = {1,2,3,2,3};
+        int[] prices = {1, 2, 3, 2, 3};
         for (int price : 주식가격_함수(prices)) {
             System.out.println("result: " + price);
         }
     }
 
     private int[] 주식가격_함수(int[] prices) {
-        int[] answer = new int [prices.length];
+        int[] answer = new int[prices.length];
 
         for (int i = 0; i < prices.length; i++) {
             int count = 0;
@@ -192,9 +193,9 @@ public class Level2 {
     @Test
     public void 위장() {
         String[][] clothes = {
-            {"yellow_hat", "headgear"},
-            {"blue_sunglasses", "eyewear"},
-            {"green_turban", "headgear"}
+                {"yellow_hat", "headgear"},
+                {"blue_sunglasses", "eyewear"},
+                {"green_turban", "headgear"}
         };
         System.out.println("result: " + 위장함수(clothes));
     }
@@ -234,7 +235,7 @@ public class Level2 {
         Set<Integer> set = new HashSet<>();
 
         for (int i = 0; i < numbers.length; i++) {
-            for (int j = 0 ; j < numbers.length; j++) {
+            for (int j = 0; j < numbers.length; j++) {
                 if (i != j) {
                     set.add(numbers[i] + numbers[j]);
                 }
@@ -243,9 +244,6 @@ public class Level2 {
         return set.stream().sorted().mapToInt(a -> a.intValue()).toArray();
     }
     // 월간 코드 챌린지 시즌1 - 두 개 뽑아서 더하기 end
-
-
-
 
 
     // 월간 코드 챌린지 시즌1 - 3진법 뒤집기 start
@@ -310,7 +308,7 @@ public class Level2 {
         }
 
         return answer + bridge_length;
-    // TODO: 완벽하게 이해하기.
+        // TODO: 완벽하게 이해하기.
     /*private int 다리를_지나는_트럭_함수(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
         Queue<Integer> que = new LinkedList<>();
@@ -461,7 +459,7 @@ public class Level2 {
 //        String s = "baabaa";
 //        String s = "cdcd";
 
-        String s = "abccbaf";	//1
+        String s = "abccbaf";    //1
 //        String s = "abcccba";	//0
 //        String s = "abccccbaaa";	//1
 //        String s = "abccaabaa";	//0
@@ -510,7 +508,6 @@ public class Level2 {
     }*/
 
     // 짝지어 제거하기 end
-
 
 
     // Summer/Winter Coding(~2018) 점프와 순간 이동 START - 문제 해석 능력을 키우자. 어떤 포인트에 집중 할 지 파악하기.
@@ -658,7 +655,7 @@ public class Level2 {
                 }
             }
 
-            while (sum >= n && (sum + rt) >- n) {
+            while (sum >= n && (sum + rt) > -n) {
                 sum -= lt++;
                 if (sum == n) {
                     answer++;
@@ -680,10 +677,10 @@ public class Level2 {
         };*/
 
         int[][] land = {
-            {4, 3, 2, 1},
-            {2, 2, 2, 1},
-            {6, 6, 6, 4},
-            {8, 7, 6, 5}
+                {4, 3, 2, 1},
+                {2, 2, 2, 1},
+                {6, 6, 6, 4},
+                {8, 7, 6, 5}
         };
 
         /*int[][] land = {
@@ -696,17 +693,17 @@ public class Level2 {
     }
 
     private int 땅따먹기_함수(int[][] land) {
-        for(int i=1; i<land.length; i++){
-            land[i][0] += Math.max(Math.max(land[i-1][1], land[i-1][2]), land[i-1][3]);
-            land[i][1] += Math.max(Math.max(land[i-1][0], land[i-1][2]), land[i-1][3]);
-            land[i][2] += Math.max(Math.max(land[i-1][1], land[i-1][0]), land[i-1][3]);
-            land[i][3] += Math.max(Math.max(land[i-1][1], land[i-1][2]), land[i-1][0]);
+        for (int i = 1; i < land.length; i++) {
+            land[i][0] += Math.max(Math.max(land[i - 1][1], land[i - 1][2]), land[i - 1][3]);
+            land[i][1] += Math.max(Math.max(land[i - 1][0], land[i - 1][2]), land[i - 1][3]);
+            land[i][2] += Math.max(Math.max(land[i - 1][1], land[i - 1][0]), land[i - 1][3]);
+            land[i][3] += Math.max(Math.max(land[i - 1][1], land[i - 1][2]), land[i - 1][0]);
         }
 
-        int[] answer = land[land.length-1];
+        int[] answer = land[land.length - 1];
         Arrays.sort(answer);
 
-        return answer[answer.length-1];
+        return answer[answer.length - 1];
         /*int noTargetIndex = 0;
         int max = 0;
         for (int i = 0; i < land[0].length; i++) {
@@ -819,9 +816,6 @@ public class Level2 {
 
         int max = 0;
         //for (int )
-
-
-
 
 
         return answer;
@@ -1051,7 +1045,7 @@ public class Level2 {
     void 오픈채팅방() {
         System.out.println("result: " + 오픈채팅방_함수(new String[]{"Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo", "Change uid4567 Ryan"}));
     }
-    
+
     private String[] 오픈채팅방_함수(String[] record) {
         Map<String, String> map = new HashMap<>();
         final String ENTER = "Enter";
@@ -1093,16 +1087,16 @@ public class Level2 {
     // 해시 - 전화번호 목록 START
     @Test
     void 전화번호_목록() {
-        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"119", "97674223", "1195524421"}));
-        System.out.println("result: true " + 전화번호_목록_함수(new String[] {"123","456","789"}));
-        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"12","123","1235","567","88"}));
-        System.out.println("result: true " + 전화번호_목록_함수(new String[] {"1234", "1235", "567"}));
-        System.out.println("result: true " + 전화번호_목록_함수(new String[] {"2", "32"}));
-        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"11", "22", "33", "44", "123", "345", "12345", "4567", "34566"}));
-        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"11", "22", "33", "44", "345", "12345", "4567", "34566"}));
-        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"34566789", "11", "22", "33", "44", "345667", "345", "12345", "4567", "34566"}));
-        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"34566789", "11", "22", "33", "44", "345667", "12345", "4567", "34566"}));
-        System.out.println("result: false " + 전화번호_목록_함수(new String[] {"34566789", "345667"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[]{"119", "97674223", "1195524421"}));
+        System.out.println("result: true " + 전화번호_목록_함수(new String[]{"123", "456", "789"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[]{"12", "123", "1235", "567", "88"}));
+        System.out.println("result: true " + 전화번호_목록_함수(new String[]{"1234", "1235", "567"}));
+        System.out.println("result: true " + 전화번호_목록_함수(new String[]{"2", "32"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[]{"11", "22", "33", "44", "123", "345", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[]{"11", "22", "33", "44", "345", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[]{"34566789", "11", "22", "33", "44", "345667", "345", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[]{"34566789", "11", "22", "33", "44", "345667", "12345", "4567", "34566"}));
+        System.out.println("result: false " + 전화번호_목록_함수(new String[]{"34566789", "345667"}));
     }
 
     private boolean 전화번호_목록_함수(String[] phone_book) {
@@ -1149,7 +1143,7 @@ public class Level2 {
         // [1, 1, 5, 3]
         int rows = 3;
         int columns = 3;
-        int[][] queries = new int[][] {
+        int[][] queries = new int[][]{
                 {1, 1, 2, 2},
                 {1, 2, 2, 3},
                 {2, 1, 3, 2},
@@ -1228,28 +1222,185 @@ public class Level2 {
     @Test
     void 메뉴_리뉴얼() {
         // ["AC", "ACDE", "BCFG", "CDE"]
-        /*String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
-        int[] course = {2, 3, 4};*/
+        // AC 2
+        System.out.println("AC: 4, CDE: 3, BCFG: 2, ACDE: 2");
+        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        int[] course = {2, 3, 4};
 
         // ["ACD", "AD", "ADE", "CD", "XYZ"]
-        /**
-         * ad 3
-         * cd 3
-         * acd 2
-         * ade 2
-         * xyz 2
-         */
+        /*System.out.println("AD: 3, CD: 3, ACD: 2, ADE: 2, XYZ: 2");
         String[] orders = {"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"};
-        int[] course = {2, 3, 5};
+        int[] course = {2, 3, 5};*/
 
         // ["WX", "XY"]
-        /*String[] orders = {"XYZ", "XWY", "WXA"};
+        /*System.out.println("WX: 2, XY: 2");
+        String[] orders = {"XYZ", "XWY", "WXA"};
         int[] course = {2, 3, 4};*/
+
+        // ["AB"]
+        /*String[] orders = {
+                "ABCDE", "AB", "CDAB", "ABDE",
+                "XABYZ", "ABXYZ", "ABCD",
+                "ABCDE", "ABCDE", "ABCDE",
+                "AB", "AB", "AB", "AB", "AB",
+                "AB", "AB", "AB", "AB", "AB"
+        };
+        int[] course = {2};*/
 
         for (String i : 메뉴_리뉴얼_함수(orders, course)) System.out.println("result: " + i);
     }
 
+    // TODO 참고
+    int maxLength;
+    Map<String, Integer> orderMapWithMenu = new HashMap<>();
     private String[] 메뉴_리뉴얼_함수(String[] orders, int[] course) {
+        PriorityQueue<String> qQue = new PriorityQueue<>();
+
+        for (int i = 0; i < course.length; i++) {
+            orderMapWithMenu.clear();
+            maxLength = 0;
+
+            for (int j = 0; j < orders.length; j++) {
+                메뉴_리뉴얼_함수_recur(course[i], 0, 0, "", orders[j]);
+            }
+
+            for (String key : orderMapWithMenu.keySet()) {
+                if (orderMapWithMenu.get(key) == maxLength && maxLength > 1) {
+                    qQue.offer(key);
+                }
+            }
+
+        }
+
+        String[] result = new String[qQue.size()];
+
+        int i = 0;
+        while (!qQue.isEmpty()) {
+            result[i++] = qQue.poll();
+        }
+        return result;
+    }
+
+    private void 메뉴_리뉴얼_함수_recur(int targetLength, int index, int count, String str, String order) {
+        if (targetLength == count) {
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String menu = "";
+            for (int i = 0; i < chars.length; i++) menu += chars[i];
+            int value = orderMapWithMenu.getOrDefault(menu, 0) + 1;
+            orderMapWithMenu.put(menu, value);
+            maxLength = Math.max(value, maxLength);
+            return;
+        }
+
+        for (int i = index; i < order.length(); i++) {
+            메뉴_리뉴얼_함수_recur(targetLength, i + 1, count + 1, str + order.charAt(i), order);
+        }
+    }
+
+
+
+
+
+
+
+
+    /*HashMap<String,Integer> map;
+    int m;
+    private String[] 메뉴_리뉴얼_함수(String[] orders, int[] course) {
+        PriorityQueue<String> pQue = new PriorityQueue<>();
+        for (int i = 0; i < course.length; i++){
+            map = new HashMap<>();
+            m = 0;
+            for (int j = 0; j < orders.length; j++) {
+                메뉴_리뉴얼_함수_recur(0, "", course[i], 0, orders[j]);
+            }
+            for (String s : map.keySet()){
+                if (map.get(s) == m && m > 1){
+                    pQue.offer(s);
+                }
+            }
+        }
+        String  ans[] = new String[pQue.size()];
+        int k=0;
+        while (!pQue.isEmpty()){
+            ans[k++] = pQue.poll();
+        }
+        return ans;
+    }
+
+    private void 메뉴_리뉴얼_함수_recur(int cnt, String str, int targetNum, int idx, String word) {
+        if (cnt == targetNum){
+            char[] c = str.toCharArray();
+            Arrays.sort(c);
+            String temps="";
+            for (int i = 0;i < c.length; i++) temps += c[i];
+            map.put(temps, map.getOrDefault(temps,0) + 1);
+            m = Math.max(m, map.get(temps));
+            return;
+        }
+        for (int i = idx; i < word.length(); i++){
+            char now = word.charAt(i);
+            메뉴_리뉴얼_함수_recur(cnt + 1,str + now, targetNum,i + 1, word);
+        }
+    }*/
+
+
+    /*private String[] 메뉴_리뉴얼_함수(String[] orders, int[] course) {
+        Map<String, Integer> ordersCountingMap = new HashMap<>();
+        Map<Integer, Integer> maxCountMapByStrLength = new HashMap<>();
+
+        List<String> containSetMenuList = new ArrayList<>();
+        for (int i = 1; i < orders.length; i++) {
+            String targetOrder = orders[i];
+
+            for (int j = 0; j < i; j++) {
+                String comparingOrder = orders[j];
+                int count = 0;
+                String dump = "";
+
+                for (int k = 0; k < orders[j].length(); k++) {
+                    String strC = String.valueOf(comparingOrder.charAt(k));
+                    if (targetOrder.contains(strC)) {
+                        count++;
+                        dump += strC;
+
+                        if (count >= 2) {
+                            if (!containSetMenuList.contains(dump)) {
+                                int length = dump.length();
+                                int value = ordersCountingMap.getOrDefault(dump, 1) + 1;
+                                ordersCountingMap.put(dump, value);
+                                containSetMenuList.add(dump);
+
+                                if (value > maxCountMapByStrLength.getOrDefault(length, 0)) {
+                                    maxCountMapByStrLength.put(length, value);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            containSetMenuList.clear();
+        }
+
+        List<String> resultList = new ArrayList<>();
+        for (String key : ordersCountingMap.keySet()) {
+            int length = key.length();
+            int value = ordersCountingMap.get(key);
+
+            if (Arrays.stream(course).anyMatch(i -> i == value)) {
+                if (maxCountMapByStrLength.get(length) == value) {
+                    resultList.add(key);
+                }
+            }
+        }
+
+        Collections.sort(resultList);
+        String[] result = new String[resultList.size()];
+        return resultList.toArray(result);
+    }*/
+
+    /*private String[] 메뉴_리뉴얼_함수(String[] orders, int[] course) {
         Map<String, Integer> setMenu = new HashMap<>();
 
         for (int i = 0; i < orders.length; i++) {
@@ -1271,7 +1422,7 @@ public class Level2 {
                 }
 
                 if (count >= 2) {
-                    if (isExists && targetMenu.equals(createSetMenu)) continue;
+                    if (isExists && (targetMenu.equals(createSetMenu))) continue;
                     setMenu.put(createSetMenu, setMenu.getOrDefault(createSetMenu, 1) + 1);
                 }
             }
@@ -1284,7 +1435,7 @@ public class Level2 {
 
 
         return null;
-    }
+    }*/
     // 2021 KAKAO BLIND RECRUITMENT - 메뉴 리뉴얼 END
 
 }

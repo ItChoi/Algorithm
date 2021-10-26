@@ -3170,6 +3170,29 @@ public class Main {
     }
     // 4. 중복순열(채점지원안됨) END
 
+    // 5. 동전교환 START
+
+    int n8 = 3; // 동전의 종류 개수
+    int[] m8 = {1, 2, 5}; // 동전의 종류
+
+    @Test
+    void 동전교환() {
+        int p = 15; // 금액
+        동전교환_함수(p, 0);
+    }
+
+    private int 동전교환_함수(int price, int count) {
+        // 내가 푼 것
+
+
+
+
+
+        return 0;
+    }
+
+    // 5. 동전교환 END
+
 
 
 
