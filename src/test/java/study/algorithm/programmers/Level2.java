@@ -1,6 +1,7 @@
 package study.algorithm.programmers;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -1437,6 +1438,55 @@ public class Level2 {
         return null;
     }*/
     // 2021 KAKAO BLIND RECRUITMENT - 메뉴 리뉴얼 END
+
+    // 2020 KAKAO BLIND RECRUITMENT - 문자열 압축 START
+    @Test
+    void 문자열_압축() {
+        System.out.println("7 - result: " + 문자열_압축_함수("aabbaccc"));
+        System.out.println("9 - result: " + 문자열_압축_함수("ababcdcdababcdcd"));
+        System.out.println("8 - result: " + 문자열_압축_함수("abcabcdede"));
+        System.out.println("14 - result: " + 문자열_압축_함수("abcabcabcabcdededededede"))	;
+        System.out.println("17 - result: " + 문자열_압축_함수("xababcdcdababcdcd"))	;
+
+    }
+
+    private int 문자열_압축_함수(String s) {
+        int length = s.length();
+        int minLength = s.length();
+        for (int i = 1; i <= length / 2; i++) {
+            String result = "";
+            int count = 1;
+            String temp = "";
+            int lt = 0;
+            int rt = i;
+            while (lt < length) {
+                String str = s.substring(lt, Math.min(rt, length));
+
+                if (!"".equals(temp)) {
+                    if (temp.equals(str)) {
+                        count++;
+                    } else {
+                        result += count > 1 ? temp + count : temp;
+                        count = 1;
+                    }
+                }
+
+                temp = str;
+                lt = rt;
+                rt += i;
+                if (lt >= length) result += count > 1 ? temp + count : temp;
+            }
+
+            minLength = Math.min(minLength, result.length());
+        }
+
+        return minLength;
+    }
+
+
+
+    // 2020 KAKAO BLIND RECRUITMENT - 문자열 압축 END
+
 
 }
 
