@@ -1251,7 +1251,7 @@ public class Level2 {
         for (String i : 메뉴_리뉴얼_함수(orders, course)) System.out.println("result: " + i);
     }
 
-    // TODO 참고
+    // TODO 참고 - 다시 풀어보기
     int maxLength;
     Map<String, Integer> orderMapWithMenu = new HashMap<>();
     private String[] 메뉴_리뉴얼_함수(String[] orders, int[] course) {
@@ -1482,10 +1482,97 @@ public class Level2 {
 
         return minLength;
     }
-
-
-
     // 2020 KAKAO BLIND RECRUITMENT - 문자열 압축 END
+
+    // 2017 카카오코드 예선 - 카카오프렌즈 컬러링북 START
+    @Test
+    void 카카오프렌즈_컬러링북() {
+        // result [4, 5]
+//        int m = 6;
+//        int n = 4;
+        /*int[][] picture =
+                {
+                    {1, 1, 1, 0},
+                    {1, 2, 2, 0},
+                    {1, 0, 0, 1},
+                    {0, 0, 0, 1},
+                    {0, 0, 0, 3},
+                    {0, 0, 0, 3}
+                };*/
+
+        // 0, 0
+        //int[][] picture = new int[][] {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}};
+
+        // 3, 1
+        /*int m = 5;
+        int n = 5;
+        int[][] picture = new int[][] {
+                {1, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 1}
+        };*/
+
+        // 1, 25
+        int m = 5;
+        int n = 5;
+        int[][] picture = new int[][] {
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1}
+        };
+
+        // 2, 24
+        //int[][] picture = new int[][] {{1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 100, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}};
+
+        // 2, 6
+        //int[][] picture = new int[][] {{1, 1, 1, 0}, {1, 1, 1, 0}, {0, 0, 0, 1}, {0, 0, 0, 1}, {0, 0, 0, 1}, {0, 0, 0, 1}};
+
+        // 12, 120
+        //int[][] picture = new int[][] {{0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0}, {0, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0}, {0, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 0}, {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0}, {0, 1, 3, 3, 3, 1, 1, 1, 1, 1, 1, 3, 3, 3, 1, 0}, {0, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 0}, {0, 0, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 0, 0}, {0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0}};
+        for (int i : 카카오프렌즈_컬러링북_함수(m, n, picture)) System.out.println("result: " + i);
+
+    }
+
+    private int[] 카카오프렌즈_컬러링북_함수(int m, int n, int[][] picture) {
+        int numberOfArea = 0;
+        int maxSizeOfOneArea = 0;
+
+        boolean[][] checkVisitArray = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (picture[i][j] == 0) continue;
+                int count = 카카오프렌즈_컬러링북_함수_DFS(i, j, i, j, picture, checkVisitArray);
+                if (count > 0) {
+                    numberOfArea++;
+                    if (maxSizeOfOneArea < count) maxSizeOfOneArea = count;
+                }
+            }
+        }
+
+        int[] answer = new int[2];
+        answer[0] = numberOfArea;
+        answer[1] = maxSizeOfOneArea;
+        return answer;
+    }
+
+    private int 카카오프렌즈_컬러링북_함수_DFS(int x, int y, int xx, int yy, int[][] picture, boolean[][] isVisitArray) {
+        if (isVisitArray[xx][yy] || picture[x][y] != picture[xx][yy]) return 0;
+        isVisitArray[xx][yy] = true;
+        if (picture[xx][yy] == 0) return 0;
+
+        int count = 1;
+        if (xx - 1 > 0) count += 카카오프렌즈_컬러링북_함수_DFS(x, y, xx - 1, yy, picture, isVisitArray);
+        if (xx + 1 < picture.length) count += 카카오프렌즈_컬러링북_함수_DFS(x, y, xx + 1, yy, picture, isVisitArray);
+        if (yy - 1 > 0) count += 카카오프렌즈_컬러링북_함수_DFS(x, y, xx, yy - 1, picture, isVisitArray);
+        if (yy + 1 < picture[xx].length) count += 카카오프렌즈_컬러링북_함수_DFS(x, y, xx, yy + 1, picture, isVisitArray);
+
+        return count;
+    }
+    // 2017 카카오코드 예선 - 카카오프렌즈 컬러링북 END
 
 
 }
