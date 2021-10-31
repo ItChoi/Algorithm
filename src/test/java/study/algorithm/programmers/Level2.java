@@ -1574,6 +1574,76 @@ public class Level2 {
     }
     // 2017 카카오코드 예선 - 카카오프렌즈 컬러링북 END
 
+    // 정렬 - 가장 큰 수 START
+    @Test
+    void 가장_큰_수() {
+        System.out.println("6210 result: " + 가장_큰_수_함수(new int[]{6, 10, 2}));
+        System.out.println("9534330 result: " + 가장_큰_수_함수(new int[]{3, 30, 34, 5, 9}));
+    }
+
+    int maxValue1 = Integer.MIN_VALUE;
+    private String 가장_큰_수_함수(int[] numbers) {
+        for (int i = 0; i < numbers.length; i++) {
+            가장_큰_수_함수_DFS(i, 0, numbers);
+        }
+
+        return String.valueOf(maxValue1);
+    }
+
+    private void 가장_큰_수_함수_DFS(int index, int count, int[] numbers) {
+        if (count == numbers.length) {
+            return;
+        }
+
+        for (int j = 0; j < numbers.length; j++) {
+            if (index == j) continue;
+
+        }
+
+    }
+
+    // 정렬 - 가장 큰 수 END
+
+
+    // 2020 KAKAO BLIND RECRUITMENT - 괄호 변환 START
+    @Test
+    void 괄호_변환() {
+        System.out.println("(()())() result: " + 괄호_변환_함수("(()())()"));
+        System.out.println("() result: " + 괄호_변환_함수(")("));
+        System.out.println("()(())() result: " + 괄호_변환_함수("()))((()"));
+    }
+
+    private String 괄호_변환_함수(String p) {
+        String result = "";
+        /**
+         * 1. 올바른인지 균형잡힌인지 체크
+         * 2. ( '(')와 ')'의 개수는 항상 같다.
+         * 3. 입력이 비어있으면 빈 문자열 반환
+         * 4. 균형잡힌 -> 올바른으로 변환 가능
+         *  - 문자열 w를 두 균형잡힌 문자열로 u, v로 분리
+         *  - u는 더 이상 분리 x, v는 빈 문자열이 될 수도 있다.
+         *  - 문자열 u가 올바른 문자열 O
+         *      - v에 대해 1단계부터 다시 수행 (Loop)
+         *      - 수행 결과 문자열을 u에 이어 붙인 후 반환
+         *
+         *  - ^문자열 u가 올바른 문자열 X
+         *      - 빈 문자열에 첫 번째 문자로 '('를 붙인다.
+         *      - 문자열 v에 1단계부터 재귀적 수행 결과 문자열 이어 붙인다.
+         *      - ')'를 다시 붙인다.
+         *      - u의 첫 번째와 마지막 문자 제거 후 나머지 문자열 괄호 방향을 뒤집어서 뒤에 붙인다.
+         *      - 생성된 문자열 반환
+         */
+        if ("".equals(result)) return "";
+
+        Stack<Character> stack = new Stack<>();
+        String u = "";
+        String v = "";
+
+        return result;
+    }
+
+
+    // 2020 KAKAO BLIND RECRUITMENT - 괄호 변환 END
 
 }
 
