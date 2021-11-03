@@ -3171,26 +3171,67 @@ public class Main {
     // 4. 중복순열(채점지원안됨) END
 
     // 5. 동전교환 START
-
     int n8 = 3; // 동전의 종류 개수
-    int[] m8 = {1, 2, 5}; // 동전의 종류
-
+    //int[] m8 = {1, 2, 5}; // 동전의 종류
+    Integer[] m8 = {1, 2, 5}; // 동전의 종류 - Collections.reverseOrder() 사용하려면 원시타입은 안되고 wrapping으로 선언
+    int count8 = Integer.MAX_VALUE;
+    int m88 = 15;
     @Test
     void 동전교환() {
         int p = 15; // 금액
-        동전교환_함수(p, 0);
+        /*동전교환_함수(p, 0, 0);
+        System.out.println("result: " + count8);*/
+
+        Arrays.sort(m8, Collections.reverseOrder());
+        //for (Integer integer : m8) System.out.println("integer = " + integer);
+        동전교환_함수_참고(0, 0, m8);
+        System.out.println("result: " + count8);
     }
 
-    private int 동전교환_함수(int price, int count) {
-        // 내가 푼 것
+    // 내가 푼 것
+    private void 동전교환_함수(int price, int sumPrice, int count) {
+        /**
+         * 1. DFS로 누적 금액이 지정 금액과 같으면 리턴
+         * 2. DFS로 누적 금액에서 어떤 금액을 넣어도 지정 금액을 초과 할 때 리턴
+         * 3. 반환 받은 값이랑 count랑 비교
+         */
+        if (price < sumPrice) return;
+        if (price == sumPrice) {
+            if (count8 > count) count8 = count;
+            return;
+        }
 
-
-
-
-
-        return 0;
+        for (int i = 0; i < m8.length; i++) {
+            동전교환_함수(price, sumPrice + m8[i], count + 1);
+        }
     }
+    // 인프런 강사님이 푼 것 1 - 타임 리밋
+    /*private void 동전교환_함수_참고(int L, int sum, int[] arr) {
+        if (sum > m88) return;
+        if (L >= m88) return; // L의 5로 해서 구했다고 헀을 때 이 값 보다 초과되는 경우는 연산을 할 필요가 없다. - 시간 복잡도에서 줄이기 노하우!
+        if (sum == m88) {
+            count8 = Math.min(count8, L); // Math.min()을 자꾸 까먹는다..... 활용하기!
+        } else {
+            for (int i = 0; i < n8; i++) {
+                동전교환_함수_참고(L + 1, sum + arr[i], arr);
+            }
+        }
+    }*/
 
+    // 인프런 강사님이 푼 것 1 - 타임 리밋 리팩토링
+    private void 동전교환_함수_참고(int L, int sum, Integer[] arr) {
+        if (sum > m88) return;
+        if (L >= m88) return; // L의 5로 해서 구했다고 헀을 때 이 값 보다 초과되는 경우는 연산을 할 필요가 없다. - 시간 복잡도에서 줄이기 노하우! ***
+        if (sum == m88) {
+            count8 = Math.min(count8, L); // Math.min()을 자꾸 까먹는다..... 활용하기! ***
+        } else {
+            // 작은 금액부터 큰 금액이었는데, 거꾸로! (큰 금액부터 적용!) *** (자료구조를 reverse하기 ex: Arrays.sort(arr, Collections.reverseOrder());
+            for (int i = 0; i < n8; i++) {
+                //for (int i = n8 - 1; i > 0; i--) {
+                동전교환_함수_참고(L + 1, sum + arr[i], arr);
+            }
+        }
+    }
     // 5. 동전교환 END
 
 
