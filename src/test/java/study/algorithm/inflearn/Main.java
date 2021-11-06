@@ -3235,9 +3235,91 @@ public class Main {
     // 5. 동전교환 END
 
 
+    // 6. 순열 구하기(채점지원안됨) START
+    @Test
+    void 순열_구하기() {
+        /*int n = 3;
+        int m = 2;
+        int[] arr = {3, 6, 9};
+        int[] checkArr = new int[arr.length];
+        순열_구하기_함수(n, m, arr, checkArr, 0);*/
+        int n = 3;
+        int m = 2;
+        int[] arr = {3, 6, 9};
+        int[] ch = new int[n];
+        int[] pm = new int[m];
+        순열_구하기_함수(0, n, m, arr, ch, pm);
+
+    }
+    // 내가 푼 것 - 푸는중
+    /*private void 순열_구하기_함수(int n , int m, int[] arr, int[] checkArr,int index) {
+        if (index == m) {
+            for (int i = 0; i < checkArr.length; i++) {
+                if (checkArr[i] == 1) System.out.printf("%2d", arr[i]);
+            }
+            System.out.println();
+            return;
+        }
 
 
+        for (int i = 0; i < arr.length; i++) {
+            if (checkArr[i] == 1) continue;
+            checkArr[i] = 1;
+            순열_구하기_함수(n, m, arr, checkArr, i);
+            checkArr[i] = 0;
+        }
+    }*/
+    // 인프런 강사님이 푼 것
+    private void 순열_구하기_함수(int L, int n, int m, int[] arr, int[] ch, int[] pm) {
+        if (L == m) {
+            for (int x : pm) System.out.print(x + " ");
+            System.out.println();
+        } else {
+            for (int i = 0; i < n; i++) {
+                if (ch[i] == 0) {
+                    ch[i] = 1;
+                    pm[L] = arr[i];
+                    순열_구하기_함수(L + 1, n, m, arr, ch, pm);
+                    ch[i] = 0;
+                }
+            }
+        }
+    }
+    // 6. 순열 구하기(채점지원안됨) END
 
+    // 7. 조합의 경우수(메모이제이션) START
+    @Test
+    void 조합의_경우수() {
+        int n = 33;
+        int r = 19;
+        int[][] arr = new int[n + 1][r + 1];
+
+        System.out.println("result: " + 조합의_경우수_함수(n, r, arr));
+    }
+
+    // 내가 푼 것
+    /*private int 조합의_경우수_함수(int n, int r, int[][] arr) {
+        if (arr[n][r] != 0) return arr[n][r];
+        if (r == 0 || n == r) return 1;
+
+        int result = 0;
+        int nVal = 조합의_경우수_함수(n - 1, r - 1, arr);
+        result += nVal;
+        arr[n - 1][r - 1] = nVal;
+        int rVal = 조합의_경우수_함수(n - 1, r, arr);
+        arr[n - 1][r] = rVal;
+        result += rVal;
+
+        return result;
+    }*/
+    // 강사님이 푼 것
+    private int 조합의_경우수_함수(int n, int r, int[][] arr) {
+        if (arr[n][r] > 0) return arr[n][r];
+        if (n == r || r == 0) return 1;
+        // 값에 넣어주고 그 값을 리턴하는 형식으로 하네...
+        else return arr[n][r] = 조합의_경우수_함수(n - 1, r - 1, arr) + 조합의_경우수_함수(n - 1, r, arr);
+    }
+    // 7. 조합의 경우수(메모이제이션) END
 
 
 
