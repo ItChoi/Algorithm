@@ -3321,6 +3321,91 @@ public class Main {
     }
     // 7. 조합의 경우수(메모이제이션) END
 
+    // 8. 수열 추측하기 START
+    boolean flag1 = false; // 재귀로 답을 찾을 경우 멈추게 할 플래그 값
+    @Test
+    void 수열_추측하기() {
+        int n = 4;
+        int f = 16;
+        int[] b = new int[n]; // Combination 값 저장
+        int[] p = new int[n]; // 순열 저장
+        int[] ch = new int[n + 1]; // 순열 체크 (중복 순열이 아니라 체크 배열 필요!)
+        int[][] dy = new int[35][35]; // 조합 수 (메모이제이션을 위한 배열)
+
+        for (int i = 0; i < n; i++) b[i] = 수열_추측하기_combi(n - 1, i, dy);
+        수열_추측하기_DFS(0, 0, f, b, p, ch);
+    }
+    // combination 값을 구하는 함수
+    private int 수열_추측하기_combi(int n, int r, int[][] dy) {
+        if (dy[n][r] > 0) return dy[n][r];
+        if (n == r || r == 0) return 1;
+        return dy[n][r] = 수열_추측하기_combi(n - 1, r - 1, dy) + 수열_추측하기_combi(n - 1, r, dy);
+    }
+
+    private void 수열_추측하기_DFS(int L, int sum, int f, int[] b, int[] p, int[] ch) {
+        if (flag1) return;
+        if (L == b.length) {
+            if (sum == f) {
+                for (int x : p) {
+                    System.out.print(x + " ");
+                }
+                flag1 = true;
+            }
+        } else {
+            // TODO 상태 트리 그려보기
+            for (int i = 1; i <= b.length; i++) {
+                if (ch[i] == 0) {
+                    ch[i] = 1;
+                    p[L] = i;
+                    수열_추측하기_DFS(L + 1, sum + (p[L] * b[L]), f, b, p, ch);
+                    ch[i] = 0;
+                }
+            }
+        }
+    }
+
+    // 내가 푼 것 - 푸는 중
+    /*@Test
+    void 수열_추측하기() {
+        int n = 4;
+        int f = 16;
+        int[][] repo = new int[n + 1][n + 1];
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) arr[i] = 수열_추측하기_함수1(n - 1,  i, arr, repo);
+
+        int[] result = new int[n];
+        for (int i = 1; i <= n; i++) result[i - 1] = i;
+        수열_추측하기_함수2(f, result, arr);
+
+        for (int i : result) {
+            System.out.println("result = " + i);
+        }
+
+
+    }
+
+    private int 수열_추측하기_함수1(int n, int r, int[] intArr, int[][] repo) {
+        if (repo[n][r] != 0) return repo[n][r];
+        if (n == r || r == 0) return 1;
+        return repo[n][r] = 수열_추측하기_함수1(n - 1, r - 1, intArr, repo) + 수열_추측하기_함수1(n - 1, r, intArr, repo);
+    }
+
+    private void 수열_추측하기_함수2(int f, int[] newArr, int[] intArr) {
+        if (checkValues(f, newArr, intArr)) return;
+
+    }
+
+
+    private boolean checkValues(int f, int[] newArr, int[] intArr) {
+        int sum = 0;
+        for (int i = 0; i < newArr.length; i++) {
+            sum += newArr[i] * intArr[i];
+        }
+        return sum == f;
+    }*/
+
+
+    // 8. 수열 추측하기 END
 
 
 

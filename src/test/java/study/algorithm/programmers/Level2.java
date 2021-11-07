@@ -1680,9 +1680,23 @@ public class Level2 {
 
         return true;
     }
-
-
     // 2020 KAKAO BLIND RECRUITMENT - 괄호 변환 END
+
+    // [1차] 뉴스 클러스터링 START
+    @Test
+    void 뉴스_클러스터링() {
+        System.out.println("16384 result: " + 뉴스_클러스터링_함수("FRANCE",	"french"));
+        System.out.println("65536 result: " + 뉴스_클러스터링_함수("handshake", "shake hands"));
+        System.out.println("43690 result: " + 뉴스_클러스터링_함수("aa1+aa2", "AAAA12"));
+        System.out.println("65536 result: " + 뉴스_클러스터링_함수("E=M*C^2", "e=m*c^2"));
+    }
+
+    private int 뉴스_클러스터링_함수(String str1, String str2) {
+        return 0;
+    }
+
+
+    // [1차] 뉴스 클러스터링 END
 
 }
 
