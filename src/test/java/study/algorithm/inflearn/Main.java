@@ -3434,6 +3434,45 @@ public class Main {
     // 9. 조합 구하기(채점지원안됨) END
 
     // 10. 미로탐색(DFS) START
+    int result1 = 0;
+    //강
+    @Test
+    void 미로탐색() {
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+        int[][] board = {
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 1, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 1, 1, 0, 1, 0, 1, 1},
+                {0, 1, 1, 0, 0, 0, 0, 1},
+                {0, 1, 1, 0, 1, 1, 0, 0},
+                {0, 1, 0, 0, 0, 0, 0, 0}
+        };
+        board[1][1] = 1;
+        미로탐색_함수(1, 1, dx, dy, board);
+        System.out.println("result: " + result1);
+    }
+    private void 미로탐색_함수(int x, int y, int[] dx, int[] dy, int[][] board) {
+        if (x == 7 && y == 7) {
+            result1++;
+            return;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 1 && nx <= 7 && ny >= 1 && ny <= 7 && board[nx][ny] == 0) {
+                board[nx][ny] = 1;
+                미로탐색_함수(nx, ny, dx, dy, board);
+                board[nx][ny] = 0;
+            }
+        }
+
+    }
+    //내
+    /*
     @Test
     void 미로탐색() {
         int[][] board = {
@@ -3445,37 +3484,120 @@ public class Main {
                 {1, 1, 0, 1, 1, 0, 0},
                 {1, 0, 0, 0, 0, 0, 0}
         };
-        int[] move = {-1, 1, 1, -1};
-
-        System.out.println(미로탐색_함수(0, 0, move, board));
+        //int[] dArr = {-1, 1, 1, -1};
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+        미로탐색_함수(0, 0, board, dx, dy);
+        System.out.println("result: " + result10);
     }
 
-    private int 미로탐색_함수(int x, int y, int[] move, int[][] board) {
-        int boardLength = board.length - 1;
-        if (x == boardLength && y == boardLength) {
-            return 1;
+    private void 미로탐색_함수(int x, int y, int[][] board, int[] dx, int[] dy) {
+        int bLength = board.length - 1;
+        if (x < 0 || y < 0 || x > bLength || y > bLength) return;
+        if (x == bLength & y == bLength) {
+            result1++;
+            return;
         }
-
-        int result = 0;
-        for (int i = 0; i < move.length; i++) {
-            if (board[x][y] == 1) continue;
-            int xx = 0;
-            int yy = 0;
-            if (i <= move.length / 2) {
-                xx = x + move[i];
-            } else {
-                yy = y + move[i];
-            }
-
-            if (xx > boardLength || 0 > xx || yy > boardLength || 0 > yy) continue;
+        for (int i = 0; i < dx.length; i++) {
+            if (board[x][y] == 1) return;
             board[x][y] = 1;
+            미로탐색_함수(x + dx[i], y + dy[i], board, dx, dy);
+            board[x][y] = 0;
+        }
+    }*/
+    // 10. 미로탐색(DFS) END
 
-            result += 미로탐색_함수(x + xx, y + yy, move, board);
+    // 11. 미로의 최단거리 통로(BFS) START
+    int result2 = Integer.MAX_VALUE;
+    //내 - BFS인데 DFS로 풀어버렸네 ㅠㅠ BFS 클래스 노드 사용해서 해보기.
+    /*@Test
+    void 미로의_최단거리_통로() {
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+        int[][] board = {
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 1, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 1, 1, 0, 1, 0, 1, 1},
+                {0, 1, 1, 0, 0, 0, 0, 1},
+                {0, 1, 1, 0, 1, 1, 0, 0},
+                {0, 1, 0, 0, 0, 0, 0, 0}
+        };
+        int[][] dis = new int[board.length][board[0].length];
+        board[1][1] = 1;
+        미로의_최단거리_통로_함수(1, 1, 1, dx, dy, board, dis);
+        System.out.println("result: " + result2);
+    }
+
+    private void 미로의_최단거리_통로_함수(int x, int y, int L, int[] dx, int[] dy, int[][] board, int[][] dis) {
+        if (x == 7 && y == 7) {
+            if (result2 > L) result2 = L;
+            return;
         }
 
-        return result;
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && nx <= 7 && ny >= 0 && ny <= 7 && board[nx][ny] == 0) {
+                board[nx][ny] = 1;
+                미로의_최단거리_통로_함수(nx, ny, L + 1, dx, dy, board, dis);
+                board[nx][ny] = 0;
+            }
+        }
+    }*/
+
+    //강
+    @Test
+    void 미로의_최단거리_통로() {
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+        int[][] board = {
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 1, 1, 1, 1, 1, 0},
+                {0, 0, 0, 0, 1, 0, 0, 0},
+                {0, 1, 1, 0, 1, 0, 1, 1},
+                {0, 1, 1, 0, 0, 0, 0, 1},
+                {0, 1, 1, 0, 1, 1, 0, 0},
+                {0, 1, 0, 0, 0, 0, 0, 0}
+        };
+        int[][] dis = new int[board.length][board[0].length];
+        미로의_최단거리_통로_함수(1, 1, dx, dy, board, dis);
+        if (dis[7][7] == 0) {
+            System.out.println("-1");
+        } else {
+            System.out.println(dis[7][7]);
+        }
     }
-    // 10. 미로탐색(DFS) END
+
+    class Point1 {
+        public int x, y;
+        public Point1(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    private void 미로의_최단거리_통로_함수(int x, int y, int[] dx, int[] dy, int[][] board, int[][] dis) {
+        Queue<Point1> Q = new LinkedList<>();
+        Q.offer(new Point1(x, y));
+        board[x][y] = 1;
+
+        while (!Q.isEmpty()) {
+            Point1 tmp = Q.poll();
+            for (int i = 0; i < 4; i++) {
+                int nx = tmp.x + dx[i];
+                int ny = tmp.y + dy[i];
+                if (nx >= 1 && nx <= 7 && ny >= 1 && ny <= 7 && board[nx][ny] == 0) {
+                    board[nx][ny] = 1;
+                    Q.offer(new Point1(nx, ny));
+                    dis[nx][ny] = dis[tmp.x][tmp.y] + 1;
+                }
+            }
+        }
+    }
+    // 11. 미로의 최단거리 통로(BFS) END
 
 
 
