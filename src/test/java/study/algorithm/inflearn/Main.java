@@ -3408,7 +3408,74 @@ public class Main {
     // 8. 수열 추측하기 END
 
 
+    // 9. 조합 구하기(채점지원안됨) START
+    @Test
+    void 조합_구하기() {
+        int n = 4;
+        int m = 3;
+        int[] combi = new int[m];
+        조합_구하기_함수(0, 1, n, m, combi);
+    }
 
+    private void 조합_구하기_함수(int L, int S, int n, int m, int[] combi) {
+        if (L == m) {
+            for (int i : combi) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+            return;
+        }
+
+        for (int i = S; i <= n; i++) {
+            combi[L] = i;
+            조합_구하기_함수(L + 1, i + 1, n, m, combi);
+        }
+    }
+    // 9. 조합 구하기(채점지원안됨) END
+
+    // 10. 미로탐색(DFS) START
+    @Test
+    void 미로탐색() {
+        int[][] board = {
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 1, 1, 1, 1, 0},
+                {0, 0, 0, 1, 0, 0, 0},
+                {1, 1, 0, 1, 0, 1, 1},
+                {1, 1, 0, 0, 0, 0, 1},
+                {1, 1, 0, 1, 1, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0}
+        };
+        int[] move = {-1, 1, 1, -1};
+
+        System.out.println(미로탐색_함수(0, 0, move, board));
+    }
+
+    private int 미로탐색_함수(int x, int y, int[] move, int[][] board) {
+        int boardLength = board.length - 1;
+        if (x == boardLength && y == boardLength) {
+            return 1;
+        }
+
+        int result = 0;
+        for (int i = 0; i < move.length; i++) {
+            if (board[x][y] == 1) continue;
+            int xx = 0;
+            int yy = 0;
+            if (i <= move.length / 2) {
+                xx = x + move[i];
+            } else {
+                yy = y + move[i];
+            }
+
+            if (xx > boardLength || 0 > xx || yy > boardLength || 0 > yy) continue;
+            board[x][y] = 1;
+
+            result += 미로탐색_함수(x + xx, y + yy, move, board);
+        }
+
+        return result;
+    }
+    // 10. 미로탐색(DFS) END
 
 
 
