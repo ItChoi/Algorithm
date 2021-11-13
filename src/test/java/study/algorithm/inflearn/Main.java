@@ -3548,7 +3548,7 @@ public class Main {
     }*/
 
     //강
-    @Test
+    /*@Test
     void 미로의_최단거리_통로() {
         int[] dx = {-1, 0, 1, 0};
         int[] dy = {0, 1, 0, -1};
@@ -3598,6 +3598,133 @@ public class Main {
         }
     }
     // 11. 미로의 최단거리 통로(BFS) END
+
+    // 12. 토마토(BFS 활용) START
+    //강
+    @Test
+    void 토마토() {
+        int n = 4;
+        int m = 6;
+        int[][] board = {
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, -1, 0, 0, 0},
+                {0, 0, 0, 1, 0, -1, 0},
+                {0, 0, 0, -1, 0, 0, 0},
+                {0, 0, 0, 0, 0, -1, 1}
+        };
+        int[][] dis = new int[n][m];
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+        int result = 토마토_함수(n, m, board, dis, dx, dy);
+        System.out.println("result = " + result);
+    }
+
+    private int 토마토_함수(int n, int m, int[][] board, int[][] dis, int[] dx, int[] dy) {
+        Queue<Point1> Q = new LinkedList<>();
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (board[i][j] == 1) Q.offer(new Point1(i, j));
+            }
+        }
+        while(!Q.isEmpty()) {
+            Point1 tmp = Q.poll();
+            for (int i = 0; i < 4; i++) {
+                int nx = tmp.x + dx[i];
+                int ny = tmp.y + dy[i];
+                if (nx >= 0 && nx < n && ny >= 0 && ny < m && board[nx][ny] == 0) {
+                    board[nx][ny] = 1;
+                    Q.offer(new Point1(nx, ny));
+                    dis[nx][ny] = dis[tmp.x][tmp.y] + 1;
+                }
+            }
+        }
+
+        boolean flag = true;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (board[i][j] == 0) flag = false;
+            }
+        }
+
+        if (flag) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    result = Math.max(result, dis[i][j]);
+                }
+                System.out.println(result);
+            }
+        } else {
+            System.out.println("-1");
+            return -1;
+        }
+
+        return result;
+    }*/
+
+    //내
+    @Test
+    void 토마토() {
+        int n = 4;
+        int m = 6;
+        int[][] board = {
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, -1, 0, 0, 0},
+                {0, 0, 0, 1, 0, -1, 0},
+                {0, 0, 0, -1, 0, 0, 0},
+                {0, 0, 0, 0, 0, -1, 1}
+        };
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+        int result = 토마토_함수(dx, dy, n, m, board);
+        System.out.println(result);
+    }
+
+    class Tomato {
+        public int x;
+        public int y;
+        Tomato(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    private int 토마토_함수(int[] dx, int[] dy, int n, int m, int[][] board) {
+        Queue<Tomato> Q = new LinkedList<>();
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                int tomato = board[i][j];
+                if (tomato == 1) {
+                    Q.offer(new Tomato(i, j));
+                }
+            }
+        }
+
+        int qSize = Q.size();
+        int qCount = 0;
+        while(!Q.isEmpty()) {
+            Tomato poll = Q.poll();
+            qCount++;
+            for (int i = 0; i < 4; i++) {
+                int nx = poll.x + dx[i];
+                int ny = poll.y + dy[i];
+                if (nx > 0 && nx <= n && ny > 0 && ny <= m && board[nx][ny] == 0) {
+                    board[nx][ny] = 1;
+                    Q.offer(new Tomato(nx, ny));
+                }
+            }
+
+            if (qSize == qCount && !Q.isEmpty()) {
+                qSize = Q.size();
+                qCount = 0;
+                count++;
+            }
+        }
+
+        return count == 0 ? -1 : count;
+    }
+    // 12. 토마토(BFS 활용) END
 
 
 
