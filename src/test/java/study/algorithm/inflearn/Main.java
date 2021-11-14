@@ -1,10 +1,9 @@
 package study.algorithm.inflearn;
 
-import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
+import study.algorithm.programmers.Level2;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * 자바(Java) 알고리즘 문제풀이 : 코딩테스트 대비 (인프런 강의)
@@ -3726,6 +3725,93 @@ public class Main {
     }
     // 12. 토마토(BFS 활용) END
 
+    // 13. 섬나라 아일랜드 START
+    int result3 = 0;
+    // 내
+    /*@Test
+    void 섬나라_아일랜드() {
+        int n = 7;
+        int[] dx = {-1, -1, 0, 1, 1, 1, 0, -1};
+        int[] dy = {0, 1, 1, 1, 0, -1, -1, -1};
+        int[][] islands = {
+            {1 ,1 ,0 ,0 ,0 ,1 ,0},
+            {0 ,1 ,1 ,0 ,1 ,1 ,0},
+            {0 ,1 ,0 ,0 ,0 ,0 ,0},
+            {0 ,0 ,0 ,1 ,0 ,1 ,1},
+            {1 ,1 ,0 ,1 ,1 ,0 ,0},
+            {1 ,0 ,0 ,0 ,1 ,0 ,0},
+            {1 ,0 ,1 ,0 ,1 ,0 ,0},
+        };
+        섬나라_아일랜드_함수(n, islands, dx, dy);
+        System.out.println("result3: " + result3);
+    }
+
+    private void 섬나라_아일랜드_함수(int n, int[][] islands, int[] dx, int[] dy) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (islands[i][j] == 1) {
+                    islands[i][j] = 0;
+                    섬나라_아일랜드_함수_DFS(i, j, n, islands, dx, dy);
+                    result3++;
+                }
+            }
+        }
+    }
+
+    private void 섬나라_아일랜드_함수_DFS(int x, int y, int n, int[][] islands, int[] dx, int[] dy) {
+        for (int i = 0; i < dx.length; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && nx < n && ny >= 0 && ny < n && islands[nx][ny] == 1) {
+                islands[nx][ny] = 0;
+                섬나라_아일랜드_함수_DFS(nx, ny, n, islands, dx, dy);
+            }
+        }
+    }*/
+
+    // 강
+    // 13. 섬나라 아일랜드 END
+    @Test
+    void 섬나라_아일랜드() {
+        int n = 7;
+        int[] dx = {-1, -1, 0, 1, 1, 1, 0, -1};
+        int[] dy = {0, 1, 1, 1, 0, -1, -1, -1};
+        int[][] islands = {
+                {1 ,1 ,0 ,0 ,0 ,1 ,0},
+                {0 ,1 ,1 ,0 ,1 ,1 ,0},
+                {0 ,1 ,0 ,0 ,0 ,0 ,0},
+                {0 ,0 ,0 ,1 ,0 ,1 ,1},
+                {1 ,1 ,0 ,1 ,1 ,0 ,0},
+                {1 ,0 ,0 ,0 ,1 ,0 ,0},
+                {1 ,0 ,1 ,0 ,1 ,0 ,0},
+        };
+        섬나라_아일랜드_함수(n, islands, dx, dy);
+        System.out.println("result: " + result3);
+
+    }
+
+    private void 섬나라_아일랜드_함수(int n, int[][] islands, int[] dx, int[] dy) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (islands[i][j] == 1) {
+                    result3++;
+                    islands[i][j] = 0;
+                    섬나라_아일랜드_함수_DFS(i, j, n, islands, dx, dy);
+                }
+            }
+        }
+    }
+
+    private void 섬나라_아일랜드_함수_DFS(int x, int y, int n, int[][] islands, int[] dx, int[] dy) {
+        for (int i = 0; i < 8; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if (nx >= 0 && nx < n && ny >= 0 && ny < n && islands[nx][ny] == 1) {
+                islands[nx][ny] = 0;
+                섬나라_아일랜드_함수_DFS(nx, ny, n, islands, dx, dy);
+            }
+        }
+    }
 
 
 

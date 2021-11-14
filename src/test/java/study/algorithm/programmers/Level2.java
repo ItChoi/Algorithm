@@ -1,11 +1,9 @@
 package study.algorithm.programmers;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.stream.IntStream;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
