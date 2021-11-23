@@ -3814,8 +3814,131 @@ public class Main {
     }
 
 
+    // 14. 섬나라 아일랜드(BFS) START
+    @Test
+    void 섬나라_아일랜드_BFS() {
+        int n = 7;
+        int[][] islands = {
+                {1, 1, 0, 0, 0, 1, 0},
+                {0, 1, 1, 0, 1, 1, 0},
+                {0, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0, 1, 1},
+                {1, 1, 0, 1, 1, 0, 0},
+                {1, 0, 0, 0, 1, 0, 0},
+                {1, 0, 1, 0, 1, 0, 0}
+        };
+        int[] dx = {-1, -1, 0, 1, 1, 1, 0, -1};
+        int[] dy = {0, 1, 1, 1, 0, -1, -1, -1};
+        System.out.println("result: " + 섬나라_아일랜드_BFS_함수(n, islands, dx, dy));
+    }
+
+    class Island {
+        int x;
+        int y;
+
+        public Island(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    private int 섬나라_아일랜드_BFS_함수(int n, int[][] islands, int[] dx, int[] dy) {
+        int result = 0;
+        Queue<Island> que = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (islands[i][j] == 1) {
+                    result++;
+                    islands[i][j] = 0;
+                    que.offer(new Island(i, j));
+                    섬나라_아일랜드_BFS_함수_BFS(i, j, n, islands, que, dx, dy);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private void 섬나라_아일랜드_BFS_함수_BFS(int x, int y, int n, int[][] islands, Queue<Island> que, int[] dx, int[] dy) {
+        while (!que.isEmpty()) {
+            Island island = que.poll();
+            for (int i = 0; i < dx.length; i++) {
+                int nx = island.x + dx[i];
+                int ny = island.y + dy[i];
+                if (nx >= 0 && nx < n && ny >= 0 && ny < n && islands[nx][ny] == 1) {
+                    islands[nx][ny] = 0;
+                    que.offer(new Island(nx, ny));
+                }
+            }
+        }
+    }
+    // 14. 섬나라 아일랜드(BFS) END
 
 
+
+    //15. 피자 배달 거리(삼성 SW역량평가 기출문제 : DFS활용) START
+    int result4 = Integer.MAX_VALUE;
+    @Test
+    void 피자_배달_거리() {
+        int n = 4;
+        int m = 4;
+        int[][] area = {
+                {0, 1, 2, 0},
+                {1, 0, 2, 1},
+                {0, 2, 1, 2},
+                {2, 0, 1, 2},
+        };
+        List<Point> homeList = new ArrayList<>();
+        List<Point> pizzaList = new ArrayList<>();
+        int[] combi = new int[m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int val = area[i][j];
+                if (val == 1) {
+                    homeList.add(new Point(i, j));
+                } else if (val == 2) {
+                    pizzaList.add(new Point(i, j));
+                }
+            }
+        }
+
+        class Point {
+            int x;
+            int y;
+            public Point(int x, int y) {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        피자_배달_거리_함수_DFS(0, 0, n, m, homeList, pizzaList, combi);
+        System.out.println("result: " + result4);
+    }
+
+    private void 피자_배달_거리_함수_DFS(int L, int s, int n, int m, List<Point> homeList, List<Point> pizzaList, int[] combi) {
+        if (L == m) {
+            int sum = 0;
+            for (Point home : homeList) {
+                int min = Integer.MAX_VALUE;
+                for (int j : combi) {
+                    Point pizza = pizzaList.get(j);
+                    int absVal = Math.abs(home.x - pizza.x) + Math.abs(home.y - pizza.y);
+                    if (min > absVal) min = absVal;
+                }
+                sum += min;
+            }
+
+            if (result4 > sum) result4 = sum;
+            return;
+        }
+
+        for (int i = s; i < pizzaList.size(); i++) {
+            combi[L] = i;
+            피자_배달_거리_함수_DFS(L + 1, i + 1, n, m, homeList, pizzaList, combi);
+        }
+    }
+    //15. 피자 배달 거리(삼성 SW역량평가 기출문제 : DFS활용) END
     // DFS, BFS 활용 END
 
 }
