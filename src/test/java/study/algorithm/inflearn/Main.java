@@ -3941,5 +3941,75 @@ public class Main {
     //15. 피자 배달 거리(삼성 SW역량평가 기출문제 : DFS활용) END
     // DFS, BFS 활용 END
 
+    // Greedy Algorithm START
+
+
+    // 2. 회의실 배정 START
+    @Test
+    void 회의실_배정() {
+        int n = 5;
+        int[][] times = {
+                {1, 4},
+                {2, 3},
+                {3, 5},
+                {4, 6},
+                {5, 7}
+        };
+
+        /*int n = 3;
+        int[][] times = {
+                {3, 3},
+                {1, 3},
+                {2, 3}
+        };*/
+        System.out.println("result: " + 회의실_배정_함수(n, times));
+
+    }
+
+    class MeetingRoom implements Comparable<MeetingRoom> {
+        int start;
+        int end;
+
+        public MeetingRoom(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        public int compareTo(MeetingRoom o) {
+            if (this.end == o.end) return this.start - this.end;
+            return this.end - o.end;
+        }
+    }
+
+    private int 회의실_배정_함수(int n, int[][] times) {
+        int result = 0;
+        List<MeetingRoom> meetingRoomList = new ArrayList<>();
+        for (int[] time : times) {
+            meetingRoomList.add(new MeetingRoom(time[0], time[1]));
+        }
+
+        Collections.sort(meetingRoomList);
+        result++;
+        int tStart = meetingRoomList.get(0).start;
+        int tEnd = meetingRoomList.get(0).end;
+
+        for (int i = 1; i < meetingRoomList.size(); i++) {
+            MeetingRoom target = meetingRoomList.get(i);
+            if (tEnd <= target.start) {
+                result++;
+                tStart = target.start;
+                tEnd = target.end;
+            }
+        }
+
+        return result;
+    }
+
+    // 2. 회의실 배정 END
+
+
+    // Greedy Algorithm END
+
 }
 

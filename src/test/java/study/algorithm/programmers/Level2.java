@@ -1693,8 +1693,20 @@ public class Level2 {
         return 0;
     }
 
-
     // [1차] 뉴스 클러스터링 END
+
+    // 탐욕법(Greedy) 조이스틱 START
+    @Test
+    void 조이스틱() {
+
+    }
+
+    private int 조이스틱_함수(String name) {
+
+        return 0;
+    }
+
+    // 탐욕법(Greedy) 조이스틱 END
 
 }
 
