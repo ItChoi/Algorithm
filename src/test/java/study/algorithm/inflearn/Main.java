@@ -4005,8 +4005,104 @@ public class Main {
 
         return result;
     }
-
     // 2. 회의실 배정 END
+
+    // 3. 결혼식 START
+    // 강
+    /**
+     * 배운점
+     * - 정렬 대상 객체를 어떻게 구성하느냐에 따라 시간 복잡도를 줄일 수 있다.
+     * - Math 함수를 자꾸 까먹는다. 활용하기.
+     */
+    @Test
+    void 결혼식() {
+        List<Time1> arr = Arrays.asList(
+                new Time1(14, 's'),
+                new Time1(18, 'e'),
+                new Time1(12, 's'),
+                new Time1(15, 'e'),
+                new Time1(15, 's'),
+                new Time1(20, 'e'),
+                new Time1(20, 's'),
+                new Time1(30, 'e'),
+                new Time1(5, 's'),
+                new Time1(14, 'e')
+        );
+        System.out.println("result: " + 결혼식_함수(arr));
+    }
+    class Time1 implements Comparable<Time1> {
+        public int time;
+        public char state;
+        public Time1(int time, char state) {
+            this.time = time;
+            this.state = state;
+        }
+        @Override
+        public int compareTo(Time1 o) {
+            if (this.time == o.time) return this.state - o.state;
+            return this.time - o.time;
+        }
+    }
+    private int 결혼식_함수(List<Time1> arr) {
+        int answer = Integer.MIN_VALUE;
+        Collections.sort(arr);
+        int cnt = 0;
+        for (Time1 ob : arr) {
+            if (ob.state == 's') cnt++;
+            else cnt--;
+            answer = Math.max(answer, cnt);
+        }
+        return answer;
+    }
+
+    // 내
+    /*@Test
+    void 결혼식() {
+        List<Friend> friends = Arrays.asList(
+                new Friend(14, 18),
+                new Friend(12, 15),
+                new Friend(15, 20),
+                new Friend(20, 30),
+                new Friend(5, 14)
+        );
+        System.out.println("result: " + 결혼식_함수(friends));
+    }
+    class Friend implements Comparable<Friend> {
+        int start;
+        int end;
+        public Friend(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+        @Override
+        public int compareTo(Friend o) {
+            if (this.start == o.start) return this.end - this.start;
+            return this.start - o.start;
+        }
+    }
+
+
+    private int 결혼식_함수(List<Friend> friends) {
+        int result = 0;
+        Collections.sort(friends);
+
+        for (int i = 0; i < friends.size(); i++) {
+            Friend targetF = friends.get(i);
+            int tempResult = 1;
+            for (int j = i + 1; j < friends.size(); j++) {
+                Friend compareF = friends.get(j);
+                if (compareF.start >= targetF.end) break;
+                if (compareF.start >= targetF.start || (compareF.end >= targetF.start && compareF.end < targetF.end)) {
+                    tempResult++;
+                }
+            }
+            if (result < tempResult) result = tempResult;
+        }
+
+        return result;
+    }*/
+    // 3. 결혼식 END
+
 
 
     // Greedy Algorithm END
