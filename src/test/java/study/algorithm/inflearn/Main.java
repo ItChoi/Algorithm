@@ -1,7 +1,6 @@
 package study.algorithm.inflearn;
 
 import org.junit.jupiter.api.Test;
-import study.algorithm.programmers.Level2;
 
 import java.util.*;
 
@@ -4103,7 +4102,55 @@ public class Main {
     }*/
     // 3. 결혼식 END
 
+    // 4. 최대 수입 스케쥴(PriorityQueue 응용문제) START
+    @Test
+    void 최대_수입_스케줄() {
+        List<Lecture> list = Arrays.asList(
+                new Lecture(50, 2),
+                new Lecture(20, 1),
+                new Lecture(40, 2),
+                new Lecture(60, 3),
+                new Lecture(30, 3),
+                new Lecture(30, 1)
+        );
+        Collections.sort(list);
+        System.out.println("150, result: " + 최대_수입_스케줄_함수(list));
+    }
 
+    class Lecture implements Comparable<Lecture> {
+        int money;
+        int time;
+        public Lecture(int money, int time) {
+            this.money = money;
+            this.time = time;
+        }
+        @Override
+        public int compareTo(Lecture o) {
+            return o.time - this.time;
+        }
+    }
+
+    private int 최대_수입_스케줄_함수(List<Lecture> list) {
+        int max = list.get(0).time;
+        int n = list.size();
+        int answer = 0;
+        PriorityQueue<Integer> que = new PriorityQueue<>(Collections.reverseOrder());
+
+        int j = 0;
+        for (int i = max; i >= 1; i--) {
+            for (; j < n; j++) {
+                if (list.get(j).time < i) break;
+                que.offer(list.get(j).money);
+            }
+            if (!que.isEmpty()) answer += que.poll();
+        }
+
+
+
+        return answer;
+    }
+
+    // 4. 최대 수입 스케쥴(PriorityQueue 응용문제) END
 
     // Greedy Algorithm END
 
