@@ -4152,6 +4152,92 @@ public class Main {
 
     // 4. 최대 수입 스케쥴(PriorityQueue 응용문제) END
 
+    // 5. 다익스트라 알고리즘(채점지원안됨) START
+    /**
+     * 다익스트라 알고리즘 적용시 전제 조건이 있다. 그래프의 가중치 값이 음수가 나오면 절대 안된다. 다 양수 (0 포함)
+     * O(n)으로 돌면서 최소 값을 찾는다.
+     *  -> n log n으로 찾는 방법이 있다. Priority Queue 사용 (이진 트리로 구성 되어 있다.)
+     * 문제: 가중치 방향 그래프에서 1번 정점에서 모든 정점으로의 최소 거리 비용 출력 (경로 없을 시 Impossible 출력)
+     *
+     * 입력
+     * 1 2 12 // 1번 정점에서 2번 정점으로 가는데 비용이 12
+     * 1 3 4
+     * 2 1 2
+     * 2 3 5
+     * 2 5 5
+     * 3 4 5
+     * 4 2 2
+     * 4 5 5
+     * 6 4 5
+     * * 출력
+     * 2 : 11
+     * 3 : 4
+     * 4 : 9
+     * 5 : 14
+     * 6 : impossible
+     *
+     */
+
+    class Edge implements Comparable<Edge> {
+        int vex;
+        int cost;
+        Edge(int vex, int cost) {
+            this.vex = vex;
+            this.cost = cost;
+        }
+        @Override
+        public int compareTo(Edge o) {
+            return this.cost - o.cost;
+        }
+    }
+
+    @Test
+    void 다익스트라_알고리즘() {
+        int n = 6; // 정점 개수
+        int m = 9; // 간선 개수
+        int[] dis = new int[n + 1];
+        List<List<Edge>> graph = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        Arrays.fill(dis, Integer.MAX_VALUE);
+        graph.get(1).add(new Edge(3, 4));
+        graph.get(2).add(new Edge(1, 2));
+        graph.get(2).add(new Edge(3, 5));
+        graph.get(2).add(new Edge(5, 5));
+        graph.get(3).add(new Edge(4, 5));
+        graph.get(4).add(new Edge(2, 2));
+        graph.get(4).add(new Edge(5, 5));
+        graph.get(6).add(new Edge(4, 5));
+
+        다익스트라_알고리즘_함수(1, dis, graph);
+        for (int i = 2; i <= n; i++) {
+            if (dis[i] != Integer.MAX_VALUE) System.out.println(i + " : " + dis[i]);
+            else System.out.println(i + " : impossible");
+        }
+    }
+
+    private void 다익스트라_알고리즘_함수(int v, int[] dis, List<List<Edge>> graph) {
+        PriorityQueue<Edge> pQ = new PriorityQueue<>();
+        pQ.offer(new Edge(v, 0));
+        dis[v] = 0;
+        while (!pQ.isEmpty()) {
+            Edge tmp = pQ.poll();
+            int now = tmp.vex;
+            int nowCost = tmp.cost;
+            if (nowCost > dis[now]) continue;
+            for (Edge ob : graph.get(now)) {
+                if (dis[ob.vex] > nowCost + ob.cost) {
+                    dis[ob.vex] = nowCost + ob.cost;
+                    pQ.offer(new Edge(ob.vex, nowCost + ob.cost));
+                }
+            }
+        }
+    }
+
+    // 5. 다익스트라 알고리즘(채점지원안됨) END
+
     // Greedy Algorithm END
 
 }
