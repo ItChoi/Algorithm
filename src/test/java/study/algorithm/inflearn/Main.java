@@ -4202,6 +4202,7 @@ public class Main {
         }
 
         Arrays.fill(dis, Integer.MAX_VALUE);
+        graph.get(1).add(new Edge(2, 12));
         graph.get(1).add(new Edge(3, 4));
         graph.get(2).add(new Edge(1, 2));
         graph.get(2).add(new Edge(3, 5));

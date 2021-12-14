@@ -1683,16 +1683,43 @@ public class Level2 {
     // [1차] 뉴스 클러스터링 START
     @Test
     void 뉴스_클러스터링() {
-        System.out.println("16384 result: " + 뉴스_클러스터링_함수("FRANCE",	"french"));
-        System.out.println("65536 result: " + 뉴스_클러스터링_함수("handshake", "shake hands"));
-        System.out.println("43690 result: " + 뉴스_클러스터링_함수("aa1+aa2", "AAAA12"));
-        System.out.println("65536 result: " + 뉴스_클러스터링_함수("E=M*C^2", "e=m*c^2"));
+//        System.out.println("16384 result: " + 뉴스_클러스터링_함수("FRANCE",	"french"));
+//        System.out.println("65536 result: " + 뉴스_클러스터링_함수("handshake", "shake hands"));
+//        System.out.println("43690 result: " + 뉴스_클러스터링_함수("aa1+aa2", "AAAA12"));
+//        System.out.println("65536 result: " + 뉴스_클러스터링_함수("E=M*C^2", "e=m*c^2"));
+//        System.out.println("0 result: " + 뉴스_클러스터링_함수("A+C", "DEF"));
+        System.out.println("0 result: " + 뉴스_클러스터링_함수("DEF", "A+C"));
     }
 
     private int 뉴스_클러스터링_함수(String str1, String str2) {
-        return 0;
+        List<String> list1 = 뉴스_클러스터링_함수_divStr(str1.toLowerCase());
+        List<String> list2 = 뉴스_클러스터링_함수_divStr(str2.toLowerCase());
+        if (list1.size() == 0 && list2.size() == 0) return 65536;
+
+        int intersectionCount = 0;
+        for (String s1 : list1) {
+            if (list2.contains(s1)) {
+                intersectionCount++;
+                list2.remove(s1);
+            }
+        }
+        int unionCount = list1.size() + list2.size();
+
+        return (int) (((double) intersectionCount / unionCount) * 65536);
     }
 
+    private List<String> 뉴스_클러스터링_함수_divStr(String str) {
+        List<String> divStrList = new ArrayList<>();
+        String regEx = "^[a-zA-Z]*";
+        for (int i = 0; i < str.length() - 1; i++) {
+            String subStr = str.substring(i, i + 2);
+            if (subStr.matches(regEx)) {
+                divStrList.add(subStr);
+            }
+        }
+
+        return divStrList;
+    }
     // [1차] 뉴스 클러스터링 END
 
     // 탐욕법(Greedy) 조이스틱 START
