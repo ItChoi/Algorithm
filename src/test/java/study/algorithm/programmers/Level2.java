@@ -1725,12 +1725,48 @@ public class Level2 {
     // 탐욕법(Greedy) 조이스틱 START
     @Test
     void 조이스틱() {
-
+        System.out.println("56: " + 조이스틱_함수("JEROEN"));
+        //System.out.println("23: " + 조이스틱_함수("JAN"));
     }
 
     private int 조이스틱_함수(String name) {
+        /**
+         A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
+         0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+
+         Z  Y  X  W  V  U  T  S  R  Q  P  O  N  M  L  K  J  I  H  G  F  E  D  C  B  A
+         0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+         */
+
+        // 알파벳 맞추기 (위, 아래: A->Z 가능)
+        // 커서 이동 방향 정하기
+        // 커서 이동 - 재귀
+
+        int i = 0;
+        while (i != name.length()) {
+
+        }
+        char c = name.charAt(i);
+        int result = findAlphabet(c);
 
         return 0;
+    }
+
+    private int findAlphabet(char c) {
+        char compareC = 'A';
+        if (c == compareC) return 0;
+
+        char tempA = compareC;
+        char tempB = 'Z';
+
+        int count = 0;
+        int compareInt = 1;
+        while (true) {
+            count++;
+            if (c == (tempA + compareInt)) return count;
+            if (c == (tempB - compareInt)) return count + 1;
+            compareInt++;
+        }
     }
 
     // 탐욕법(Greedy) 조이스틱 END
