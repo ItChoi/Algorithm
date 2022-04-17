@@ -1794,7 +1794,7 @@ public class Level2 {
                     map.put(i, map.getOrDefault(i, 0) + 1);
                 });
 
-        int[] answer = new int[map.size()];
+        /*int[] answer = new int[map.size()];
 
         LinkedList<Map.Entry<Integer, Integer>> entries = new LinkedList<>(map.entrySet());
         Collections.sort(entries, ((o1, o2) -> o2.getValue().compareTo(o1.getValue())));
@@ -1804,7 +1804,10 @@ public class Level2 {
             answer[i++] = entry.getKey();
         }
 
-        return answer;
+        return answer;*/
+
+        return map.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .map(Map.Entry::getKey).mapToInt(x -> x).toArray();
     }
     // 2019 카카오 개발자 겨울 인턴십 - 튜플 END
 
