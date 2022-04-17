@@ -1790,10 +1790,8 @@ public class Level2 {
         Arrays.stream(s.split("\\W"))
                 .filter(str -> str.length() > 0)
                 .forEach(str -> {
-                    if (true) {
-                        int i = Integer.parseInt(str);
-                        map.put(i, map.getOrDefault(i, 0) + 1);
-                    }
+                    int i = Integer.parseInt(str);
+                    map.put(i, map.getOrDefault(i, 0) + 1);
                 });
 
         int[] answer = new int[map.size()];
