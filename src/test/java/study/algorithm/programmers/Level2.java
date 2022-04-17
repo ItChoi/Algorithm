@@ -1789,8 +1789,8 @@ public class Level2 {
         Map<Integer, Integer> map = new LinkedHashMap<>();
         Arrays.stream(s.split("\\W"))
                 .filter(str -> str.length() > 0)
-                .forEach(str -> {
-                    int i = Integer.parseInt(str);
+                .mapToInt(Integer::parseInt)
+                .forEach(i -> {
                     map.put(i, map.getOrDefault(i, 0) + 1);
                 });
 
