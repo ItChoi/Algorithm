@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.stream.Collectors;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -1770,6 +1771,44 @@ public class Level2 {
     }
 
     // 탐욕법(Greedy) 조이스틱 END
+
+    // 2019 카카오 개발자 겨울 인턴십 - 튜플 START
+    @Test
+    void 튜플() {
+//        String s = "{{2},{2,1},{2,1,3},{2,1,3,4}}";	// [2, 1, 3, 4]
+        String s = "{{1,2,3},{2,1},{1,2,4,3},{2}}";	// [2, 1, 3, 4]
+//        String s = "{{20,111},{111}}";	// [111, 20]
+//        String s = "{{123}}";	// [123]
+//        String s = "{{4,2,3},{3},{2,3,4,1},{2,3}}";	// [3, 2, 4, 1]
+        for (int i : 튜플_함수(s)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 튜플_함수(String s) {
+        Map<Integer, Integer> map = new LinkedHashMap<>();
+        Arrays.stream(s.split("\\W"))
+                .filter(str -> str.length() > 0)
+                .forEach(str -> {
+                    if (true) {
+                        int i = Integer.parseInt(str);
+                        map.put(i, map.getOrDefault(i, 0) + 1);
+                    }
+                });
+
+        int[] answer = new int[map.size()];
+
+        LinkedList<Map.Entry<Integer, Integer>> entries = new LinkedList<>(map.entrySet());
+        Collections.sort(entries, ((o1, o2) -> o2.getValue().compareTo(o1.getValue())));
+
+        int i = 0;
+        for (Map.Entry<Integer, Integer> entry : entries) {
+            answer[i++] = entry.getKey();
+        }
+
+        return answer;
+    }
+    // 2019 카카오 개발자 겨울 인턴십 - 튜플 END
 
 }
 
