@@ -854,4 +854,76 @@ public class Level1 {
         return answer;
     }
     // 2020 카카오 인턴십 - 키패드 누르기 end
+
+    // 2022 KAKAO BLIND RECRUITMENT - 신고 결과 받기 START
+    /**
+     * 각 유저 한 번에 한 명 신고
+     *  - 신고 횟수 제한 없다.
+     *  - 서로 다른 유저를 계속 신고 가능
+     *
+     * k번 이상 신고당할시 게시판 이용 정지
+     *  - 유저 정지시 신고한 유저들에게 메일 발송
+     *  - 신고 히스토리 취합하여 한꺼번에 이용 정지 후 정지 메일 발송
+     */
+
+    @Test
+    void 신고_결과_받기() {
+        String[] id_list = {"muzi", "frodo", "apeach", "neo"};
+        String[] report = {"muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"};
+        int k = 2;
+        for (int i : 신고_결과_받기_함수(id_list, report, k)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 신고_결과_받기_함수(String[] id_list, String[] report, int k) {
+        Map<String, Integer> reportCountWithId = new HashMap<>();
+        Map<String, List<String>> reportIdsWithReportedId = new HashMap<>();
+        Map<String, Integer> resultRepoWithId = new HashMap<>();
+
+        for (String id : id_list) {
+            reportCountWithId.put(id, 0);
+            reportIdsWithReportedId.put(id, new ArrayList<>());
+            resultRepoWithId.put(id, 0);
+        }
+
+        int length = 0;
+        for (String reportInfo : report) {
+            String[] idInfos = reportInfo.split(" ");
+
+            String reportId = idInfos[0];
+            String reportedId = idInfos[1];
+
+            List<String> reporterList = reportIdsWithReportedId.get(reportedId);
+            if (!reporterList.contains(reportId)) {
+                reporterList.add(reportId);
+                Integer value = reportCountWithId.getOrDefault(reportedId, 1);
+                if (value == 0) {
+                    length++;
+                } else {
+                    reportCountWithId.put(reportedId, value - 1);
+                }
+            }
+        }
+
+        for (String key : reportCountWithId.keySet()) {
+            if (reportCountWithId.get(key) == k) {
+                for (String id : reportIdsWithReportedId.get(key)) {
+                    resultRepoWithId.put(id, resultRepoWithId.getOrDefault(id, 0) + 1);
+                }
+            }
+        }
+
+        int[] answer = new int[length];
+        int i = 0;
+
+        for (Integer value : resultRepoWithId.values()) {
+            answer[i++] = value;
+        }
+
+        return answer;
+    }
+
+
+    // 2022 KAKAO BLIND RECRUITMENT - 신고 결과 받기 END
 }
