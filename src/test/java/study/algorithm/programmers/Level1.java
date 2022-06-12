@@ -877,17 +877,16 @@ public class Level1 {
     }
 
     private int[] 신고_결과_받기_함수(String[] id_list, String[] report, int k) {
-        Map<String, Integer> reportCountWithId = new HashMap<>();
-        Map<String, List<String>> reportIdsWithReportedId = new HashMap<>();
-        Map<String, Integer> resultRepoWithId = new HashMap<>();
+        Map<String, Integer> reportedCountWithId = new HashMap<>();
+        Map<String, List<String>> reportIdsWithReportedId = new LinkedHashMap<>();
+        Map<String, Integer> resultRepoWithId = new LinkedHashMap<>();
 
         for (String id : id_list) {
-            reportCountWithId.put(id, 0);
+            reportedCountWithId.put(id, 0);
             reportIdsWithReportedId.put(id, new ArrayList<>());
             resultRepoWithId.put(id, 0);
         }
 
-        int length = 0;
         for (String reportInfo : report) {
             String[] idInfos = reportInfo.split(" ");
 
@@ -895,26 +894,23 @@ public class Level1 {
             String reportedId = idInfos[1];
 
             List<String> reporterList = reportIdsWithReportedId.get(reportedId);
+            Integer reportedCount = reportedCountWithId.get(reportedId);
+
             if (!reporterList.contains(reportId)) {
                 reporterList.add(reportId);
-                Integer value = reportCountWithId.getOrDefault(reportedId, 1);
-                if (value == 0) {
-                    length++;
-                } else {
-                    reportCountWithId.put(reportedId, value - 1);
+                reportedCountWithId.put(reportedId, reportedCount + 1);
+            }
+        }
+
+        for (String key : reportedCountWithId.keySet()) {
+            if (reportedCountWithId.get(key) >= k) {
+                for (String reportingId : reportIdsWithReportedId.get(key)) {
+                    resultRepoWithId.put(reportingId, resultRepoWithId.get(reportingId) + 1);
                 }
             }
         }
 
-        for (String key : reportCountWithId.keySet()) {
-            if (reportCountWithId.get(key) == k) {
-                for (String id : reportIdsWithReportedId.get(key)) {
-                    resultRepoWithId.put(id, resultRepoWithId.getOrDefault(id, 0) + 1);
-                }
-            }
-        }
-
-        int[] answer = new int[length];
+        int[] answer = new int[resultRepoWithId.size()];
         int i = 0;
 
         for (Integer value : resultRepoWithId.values()) {
