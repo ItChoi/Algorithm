@@ -877,6 +877,8 @@ public class Level1 {
     }
 
     private int[] 신고_결과_받기_함수(String[] id_list, String[] report, int k) {
+        List<String> report_list = Arrays.stream(report).distinct().collect(Collectors.toList());
+
         Map<String, Integer> reportedCountWithId = new HashMap<>();
         Map<String, List<String>> reportIdsWithReportedId = new LinkedHashMap<>();
         Map<String, Integer> resultRepoWithId = new LinkedHashMap<>();
@@ -887,7 +889,7 @@ public class Level1 {
             resultRepoWithId.put(id, 0);
         }
 
-        for (String reportInfo : report) {
+        for (String reportInfo : report_list) {
             String[] idInfos = reportInfo.split(" ");
 
             String reportId = idInfos[0];
@@ -910,14 +912,7 @@ public class Level1 {
             }
         }
 
-        int[] answer = new int[resultRepoWithId.size()];
-        int i = 0;
-
-        for (Integer value : resultRepoWithId.values()) {
-            answer[i++] = value;
-        }
-
-        return answer;
+        return resultRepoWithId.values().stream().mapToInt(Integer::intValue).toArray();
     }
 
 
