@@ -917,4 +917,63 @@ public class Level1 {
 
 
     // 2022 KAKAO BLIND RECRUITMENT - 신고 결과 받기 END
+
+    // 2021 Dev-Matching: 웹 백엔드 개발자(상반기) - 로또의 최고 순위와 최저 순위 START
+    @Test
+    void 로또_최고_순위와_최저_순위() {
+        // [3, 5]
+//        int[] lottos = {44, 1, 0, 0, 31, 25};
+//        int[] win_nums = {31, 10, 45, 1, 6, 19};
+
+        // [1, 6]
+        int[] lottos = {0, 0, 0, 0, 0, 0};
+        int[] win_nums = {38, 19, 20, 40, 15, 25};
+
+        // [1, 1]
+//        int[] lottos = {45, 4, 35, 20, 3, 9};
+//        int[] win_nums = {20, 9, 3, 45, 4, 35};
+
+        for (int i : 로또_최고_순위와_최저_순위_함수(lottos, win_nums)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    public int[] 로또_최고_순위와_최저_순위_함수(int[] lottos, int[] win_nums) {
+        // 31, 10, 45, 1,  6, 19 -> 1, 6, 10, 19, 31, 45
+        // 44,  1,  0, 0, 31, 25 -> 0, 0,  1, 25, 31, 45
+        Arrays.sort(lottos);
+        Arrays.sort(win_nums);
+
+        int bestCount = 0;
+        int rank = win_nums.length;
+        int matchingCount = 0;
+
+        int lottosIndex = 0;
+        // TODO: 2중 for문 대신 map을 활용해도 될 듯
+        for (int userNum : lottos) {
+            if (userNum == 0) {
+                bestCount++;
+                continue;
+            }
+
+            for (int j = lottosIndex; j < win_nums.length; j++) {
+                int winNum = win_nums[j];
+                if (userNum < winNum) {
+                    lottosIndex = j;
+                    break;
+                }
+                if (userNum == winNum) {
+                    matchingCount++;
+                    if (matchingCount >= 2) rank--;
+                    lottosIndex = j + 1;
+                    break;
+                }
+            }
+        }
+
+        int maxRank = rank - bestCount;
+
+        return new int[] {maxRank == 0 ? 1 : maxRank, rank};
+    }
+    // 2021 Dev-Matching: 웹 백엔드 개발자(상반기) - 로또의 최고 순위와 최저 순위 END
 }
