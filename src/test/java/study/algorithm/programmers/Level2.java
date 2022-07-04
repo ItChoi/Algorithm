@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -1810,6 +1812,32 @@ public class Level2 {
                 .map(Map.Entry::getKey).mapToInt(x -> x).toArray();
     }
     // 2019 카카오 개발자 겨울 인턴십 - 튜플 END
+
+    // N개의 최소공배수 START
+    @Test
+    void N개의_최소공배수() {
+        System.out.println("result: " + N개의_최소공배수_함수(new int[] {2,6,8,14}));
+        //System.out.println("result: " + N개의_최소공배수_함수(new int[] {1,2,3}));
+    }
+
+    public int N개의_최소공배수_함수(int[] arr) {
+        Arrays.sort(arr);
+        int length = arr.length;
+        int answer = arr[length - 1];;
+
+        int j = 2;
+        for (int i = 0; i < length - 1; i++) {
+            if (answer % arr[i] != 0) {
+                i = -1;
+                answer = arr[length - 1] * j++;
+                continue;
+            }
+        }
+
+        return answer;
+    }
+
+    // N개의 최소공배수 END
 
 }
 
