@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.stream.Collectors;
 
 /**
  * 프로그래머스 알고리즘 문제 2레벨을 풀어보자.
@@ -1842,70 +1843,81 @@ public class Level2 {
     void 메뉴_리뉴얼_재도전() {
         // ["AC", "ACDE", "BCFG", "CDE"]
         // AC 2
-        System.out.println("AC: 4, CDE: 3, BCFG: 2, ACDE: 2");
-        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
-        int[] course = {2, 3, 4};
+        //System.out.println("AC: 4, CDE: 3, BCFG: 2, ACDE: 2");
+//        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+//        int[] course = {2, 3, 4};
 
         // ["ACD", "AD", "ADE", "CD", "XYZ"]
-        /*System.out.println("AD: 3, CD: 3, ACD: 2, ADE: 2, XYZ: 2");
-        String[] orders = {"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"};
-        int[] course = {2, 3, 5};*/
+        //System.out.println("AD: 3, CD: 3, ACD: 2, ADE: 2, XYZ: 2");
+//        String[] orders = {"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"};
+//        int[] course = {2, 3, 5};
 
         // ["WX", "XY"]
-        /*System.out.println("WX: 2, XY: 2");
-        String[] orders = {"XYZ", "XWY", "WXA"};
-        int[] course = {2, 3, 4};*/
+        //System.out.println("WX: 2, XY: 2");
+//        String[] orders = {"XYZ", "XWY", "WXA"};
+//        int[] course = {2, 3, 4};
 
         // ["AB"]
-        /*String[] orders = {
+        String[] orders = {
                 "ABCDE", "AB", "CDAB", "ABDE",
                 "XABYZ", "ABXYZ", "ABCD",
                 "ABCDE", "ABCDE", "ABCDE",
                 "AB", "AB", "AB", "AB", "AB",
                 "AB", "AB", "AB", "AB", "AB"
         };
-        int[] course = {2};*/
+        int[] course = {2};
 
         for (String i : 메뉴_리뉴얼_재도전_함수(orders, course)) System.out.println("result: " + i);
     }
 
     private String[] 메뉴_리뉴얼_재도전_함수(String[] orders, int[] course) {
         Arrays.sort(orders);
-
         Map<String, Integer> countWithAlphabet = new HashMap<>();
-        //Map<Integer, Integer> maxCountWithCourseLength = new
-
-        for (String order : orders) {
-            메뉴_리뉴얼_재도전_함수(0, "", order, countWithAlphabet, course);
+        Map<Integer, Integer> maxLengthWithCourse = new HashMap<>();
+        for (int c : course) {
+            maxLengthWithCourse.put(c, 0);
         }
 
+        for (String order : orders) {
+            char[] chars = order.toCharArray();
+            Arrays.sort(chars);
+            String tempOrder = String.valueOf(chars);
+            메뉴_리뉴얼_재도전_함수(0, "", tempOrder, countWithAlphabet, maxLengthWithCourse);
+        }
 
+        List<String> results = new ArrayList<>();
+        for (String key : countWithAlphabet.keySet()) {
+            Integer maxLength = maxLengthWithCourse.get(key.length());
+            if (maxLength < 2) continue;
+            if (countWithAlphabet.get(key) == maxLength) {
+                results.add(key);
+            }
+        }
 
-        return null;
+        Collections.sort(results);
+        return results.toArray(new String[results.size()]);
+
     }
 
-    private void 메뉴_리뉴얼_재도전_함수(int index, String value, String order, Map<String, Integer> countWithAlphabet, int[] course) {
+    private void 메뉴_리뉴얼_재도전_함수(int index, String value, String order, Map<String, Integer> countWithAlphabet, Map<Integer, Integer> maxLengthWithCourse) {
         for (int i = index; i < order.length(); i++) {
             String temp = value + order.charAt(i);
 
-            if (temp.length() >= 2) {
-                boolean isProcess = false;
+            int tempLength = temp.length();
+            if (tempLength >= 2) {
+                if (!maxLengthWithCourse.containsKey(tempLength)) continue;
 
-                for (int num : course) {
-                    if (num == temp.length()) {
-                        isProcess = true;
-                        break;
-                    }
+                int count = countWithAlphabet.getOrDefault(temp, 0) + 1;
+                if (maxLengthWithCourse.get(tempLength) < count) {
+                    maxLengthWithCourse.put(tempLength, count);
                 }
-                if (!isProcess) continue;
 
-                countWithAlphabet.put(temp, countWithAlphabet.getOrDefault(temp, 0) + 1);
+                countWithAlphabet.put(temp, count);
             }
 
-            메뉴_리뉴얼_재도전_함수(i + 1, temp, order,countWithAlphabet, course);
+            메뉴_리뉴얼_재도전_함수(i + 1, temp, order,countWithAlphabet, maxLengthWithCourse);
         }
     }
-
 
 }
 
