@@ -1,5 +1,6 @@
 package study.algorithm.programmers;
 
+import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -1844,8 +1845,8 @@ public class Level2 {
         // ["AC", "ACDE", "BCFG", "CDE"]
         // AC 2
         //System.out.println("AC: 4, CDE: 3, BCFG: 2, ACDE: 2");
-//        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
-//        int[] course = {2, 3, 4};
+        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        int[] course = {2, 3, 4};
 
         // ["ACD", "AD", "ADE", "CD", "XYZ"]
         //System.out.println("AD: 3, CD: 3, ACD: 2, ADE: 2, XYZ: 2");
@@ -1858,19 +1859,23 @@ public class Level2 {
 //        int[] course = {2, 3, 4};
 
         // ["AB"]
-        String[] orders = {
-                "ABCDE", "AB", "CDAB", "ABDE",
-                "XABYZ", "ABXYZ", "ABCD",
-                "ABCDE", "ABCDE", "ABCDE",
-                "AB", "AB", "AB", "AB", "AB",
-                "AB", "AB", "AB", "AB", "AB"
-        };
-        int[] course = {2};
+//        String[] orders = {
+//                "ABCDE", "AB", "CDAB", "ABDE",
+//                "XABYZ", "ABXYZ", "ABCD",
+//                "ABCDE", "ABCDE", "ABCDE",
+//                "AB", "AB", "AB", "AB", "AB",
+//                "AB", "AB", "AB", "AB", "AB"
+//        };
+//        int[] course = {2};
+
+        // ["ACD", "AD", "ADE", "CD", "XYZ"]
+//        String[] orders = {"ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"};
+//        int[] course = {2, 3};
 
         for (String i : 메뉴_리뉴얼_재도전_함수(orders, course)) System.out.println("result: " + i);
     }
 
-    private String[] 메뉴_리뉴얼_재도전_함수(String[] orders, int[] course) {
+    /*private String[] 메뉴_리뉴얼_재도전_함수(String[] orders, int[] course) {
         Arrays.sort(orders);
         Map<String, Integer> countWithAlphabet = new HashMap<>();
         Map<Integer, Integer> maxLengthWithCourse = new HashMap<>();
@@ -1909,7 +1914,7 @@ public class Level2 {
 
                 int count = countWithAlphabet.getOrDefault(temp, 0) + 1;
                 if (maxLengthWithCourse.get(tempLength) < count) {
-                    maxLengthWithCourse.put(tempLength, count);
+                    maxLengthWithCourse.put(tempLength, Math.max(maxLengthWithCourse.get(tempLength), count));
                 }
 
                 countWithAlphabet.put(temp, count);
@@ -1917,8 +1922,63 @@ public class Level2 {
 
             메뉴_리뉴얼_재도전_함수(i + 1, temp, order,countWithAlphabet, maxLengthWithCourse);
         }
+    }*/
+
+    int maxLength1 = 0;
+    Map<String, Integer> countWithAlphabet = new HashMap<>();
+    private String[] 메뉴_리뉴얼_재도전_함수(String[] orders, int[] course) {
+        List<String> results = new ArrayList<>();
+        for (int c : course) {
+            maxLength1 = 0;
+            countWithAlphabet.clear();
+
+            for (String order : orders) {
+                char[] chars = order.toCharArray();
+                Arrays.sort(chars);
+                String tempOrder = String.valueOf(chars);
+                메뉴_리뉴얼_재도전_함수(c, 0, "", tempOrder);
+            }
+
+            LinkedHashMap<String, Integer> orderedMapWithKey = convertOrderedMap(countWithAlphabet);
+            for (String key : orderedMapWithKey.keySet()) {
+                Integer count = orderedMapWithKey.get(key);
+                if (count < maxLength1 || count < 2) break;
+
+                results.add(key);
+            }
+        }
+
+        Collections.sort(results);
+        return results.toArray(new String[results.size()]);
     }
 
+    private LinkedHashMap<String, Integer> convertOrderedMap(Map<String, Integer> countWithAlphabet) {
+        List<Map.Entry<String, Integer>> entries = new LinkedList<>(countWithAlphabet.entrySet());
+        entries.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+
+        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : entries) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+    }
+
+    private void 메뉴_리뉴얼_재도전_함수(int validLength, int index, String value, String order) {
+        if (value.length() == validLength) return;
+        for (int i = index; i < order.length(); i++) {
+            String temp = value + order.charAt(i);
+            int tempLength = temp.length();
+
+            if (validLength == tempLength) {
+                int count = countWithAlphabet.getOrDefault(temp, 0) + 1;
+                maxLength1 = Math.max(count, maxLength1);
+                countWithAlphabet.put(temp, count);
+            }
+
+            메뉴_리뉴얼_재도전_함수(validLength, i + 1, temp, order);
+        }
+    }
 }
 
 
