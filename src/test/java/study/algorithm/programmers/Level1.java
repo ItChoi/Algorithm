@@ -980,8 +980,10 @@ public class Level1 {
     // 2021 KAKAO BLIND RECRUITMENT 신규 아이디 추천 START
     @Test
     void 신규_아이디_추천() {
-//        System.out.println("result: " + 신규_아이디_추천("...!@BaT#*..y.abcdefghijklm"));
-//        System.out.println("result: " + 신규_아이디_추천("z-+.^."));
+        System.out.println("result: " + 신규_아이디_추천("a...a")); // "a.a"
+        System.out.println("result: " + 신규_아이디_추천("-.~!@#$%&*()=+[{]}:?,<>/.-")); //-.-
+        System.out.println("result: " + 신규_아이디_추천("...!@BaT#*..y.abcdefghijklm"));
+        System.out.println("result: " + 신규_아이디_추천("z-+.^."));
         System.out.println("result: " + 신규_아이디_추천("=.="));
         System.out.println("result: " + 신규_아이디_추천("123_.def"));
         System.out.println("result: " + 신규_아이디_추천("abcdefghijklmn.p"));
@@ -989,7 +991,7 @@ public class Level1 {
 
     public String 신규_아이디_추천(String new_id) {
         String newId = new_id.toLowerCase()
-            .replaceAll("[^(a-z0-9-_.)]", "");
+            .replaceAll("[^a-z0-9-_.]", "");
 
         do {
             newId = newId.replaceAll("\\.\\.", ".");
@@ -1001,7 +1003,7 @@ public class Level1 {
             newId = "a";
         } else {
             if (newId.length() >= 16) {
-                newId = newId.substring(0, 15);
+                newId = newId.substring(0, 15).replaceFirst("^\\.", "").replaceFirst("\\.$", "");
             }
         }
 
