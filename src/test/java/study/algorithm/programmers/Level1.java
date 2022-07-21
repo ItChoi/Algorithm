@@ -976,4 +976,40 @@ public class Level1 {
         return new int[] {maxRank == 0 ? 1 : maxRank, rank};
     }
     // 2021 Dev-Matching: 웹 백엔드 개발자(상반기) - 로또의 최고 순위와 최저 순위 END
+
+    // 2021 KAKAO BLIND RECRUITMENT 신규 아이디 추천 START
+    @Test
+    void 신규_아이디_추천() {
+//        System.out.println("result: " + 신규_아이디_추천("...!@BaT#*..y.abcdefghijklm"));
+//        System.out.println("result: " + 신규_아이디_추천("z-+.^."));
+        System.out.println("result: " + 신규_아이디_추천("=.="));
+        System.out.println("result: " + 신규_아이디_추천("123_.def"));
+        System.out.println("result: " + 신규_아이디_추천("abcdefghijklmn.p"));
+    }
+
+    public String 신규_아이디_추천(String new_id) {
+        String newId = new_id.toLowerCase()
+            .replaceAll("[^(a-z0-9-_.)]", "");
+
+        do {
+            newId = newId.replaceAll("\\.\\.", ".");
+        } while(!newId.equals(newId.replaceAll("\\.\\.", ".")));
+
+        newId = newId.replaceFirst("^\\.", "").replaceFirst("\\.$", "");
+
+        if ("".equals(newId)) {
+            newId = "a";
+        } else {
+            if (newId.length() >= 16) {
+                newId = newId.substring(0, 15);
+            }
+        }
+
+        while (newId.length() < 3) {
+            newId += String.valueOf(newId.charAt(newId.length() - 1));
+        }
+
+        return newId;
+    }
+    // 2021 KAKAO BLIND RECRUITMENT 신규 아이디 추천 END
 }
