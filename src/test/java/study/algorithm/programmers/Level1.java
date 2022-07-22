@@ -1,11 +1,19 @@
 package study.algorithm.programmers;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
 
 /**
  * 프로그래머스 알고리즘 문제 1레벨을 풀어보자.
@@ -1031,6 +1039,66 @@ public class Level1 {
 
         return set.size() > getCount ? getCount : set.size();
     }
-
     // 해시 폰켓몬 END
+
+    // 2021 카카오 채용연계형 인턴십 숫자 문자열과 영단어 START
+    @Test
+    void 숫자_문자열과_영단어() {
+        System.out.println("result: " + 숫자_문자열과_영단어("one4seveneight"));
+        System.out.println("result: " + 숫자_문자열과_영단어("23four5six7"));
+        System.out.println("result: " + 숫자_문자열과_영단어("2three45sixseven"));
+        System.out.println("result: " + 숫자_문자열과_영단어("123"));
+    }
+
+    public int 숫자_문자열과_영단어(String s) {
+        String pattern = "[0-9]";
+        StringBuilder result = new StringBuilder();
+
+        StringBuilder tempSb = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            String strC = String.valueOf(c);
+            if (strC.matches(pattern)) {
+                result.append(strC);
+                continue;
+            }
+
+            tempSb.append(strC);
+            String convertStr = convertNumber(tempSb.toString());
+            if (!"".equals(convertStr)) {
+                tempSb.setLength(0);
+                result.append(convertStr);
+            }
+        }
+
+        return Integer.parseInt(result.toString());
+    }
+
+    private String convertNumber(String str) {
+        switch (str) {
+            case "zero" :
+                return "0";
+            case "one" :
+                return "1";
+            case "two" :
+                return "2";
+            case "three" :
+                return "3";
+            case "four" :
+                return "4";
+            case "five" :
+                return "5";
+            case "six" :
+                return "6";
+            case "seven" :
+                return "7";
+            case "eight" :
+                return "8";
+            case "nine" :
+                return "9";
+            default:
+                return "";
+        }
+    }
+
+    // 2021 카카오 채용연계형 인턴십 숫자 문자열과 영단어 END
 }
