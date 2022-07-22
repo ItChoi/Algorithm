@@ -1012,4 +1012,25 @@ public class Level1 {
         return newId;
     }
     // 2021 KAKAO BLIND RECRUITMENT 신규 아이디 추천 END
+
+    // 해시 폰켓몬 START
+    @Test
+    void 폰켓몬() {
+        System.out.println("result: " + 폰켓몬(new int[] {3,1,2,3}));
+        System.out.println("result: " + 폰켓몬(new int[] {3,3,3,2,2,4}));
+        System.out.println("result: " + 폰켓몬(new int[] {3,3,3,2,2,2}));
+    }
+
+    public int 폰켓몬(int[] nums) {
+        int getCount = nums.length / 2;
+
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+
+        return set.size() > getCount ? getCount : set.size();
+    }
+
+    // 해시 폰켓몬 END
 }
