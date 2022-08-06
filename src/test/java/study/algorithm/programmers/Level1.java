@@ -1,15 +1,6 @@
 package study.algorithm.programmers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -1103,6 +1094,116 @@ public class Level1 {
     }
     // 2021 카카오 채용연계형 인턴십 숫자 문자열과 영단어 END
 
+    // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 START
+    @Test
+    void 캐시() {
+        //캐시크기(cacheSize)	도시이름(cities)	실행시간
+        //50
+//        int cacheSize = 3;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA"
+//        };
+
+        //21
+//        int cacheSize = 3;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul"
+//        };
+
+        //60
+//        int cacheSize = 2;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"
+//        };
+
+        //52
+//        int cacheSize = 5;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"
+//        };
+
+        // 16
+//        int cacheSize = 2;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "NewYork", "newyork"
+//        };
+
+        // 25
+//        int cacheSize = 0;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA"
+//        };
+
+        // 11
+//        int cacheSize = 3;
+//        String[] cities = {
+//            "A", "B", "A"
+//        };
+
+        // 10
+        int cacheSize = 0;
+        String[] cities = {
+            "LA", "LA"
+        };
+
+        System.out.println("result: " + 캐시(cacheSize, cities));
+
+
+    }
+
+    private int 캐시(int cacheSize, String[] cities) {
+        if (cacheSize == 0) {
+            return cities.length * 5;
+        }
+
+        int answer = 0;
+
+        final int CACHE_HIT = 1;
+        final int CACHE_MISS = 5;
+
+        List<String> LRU = new LinkedList<>();
+
+        for (int i = 0; i < cities.length; i++) {
+            String city = cities[i].toLowerCase();
+
+            // if (LRU.contains(city)) { // indexOf 활용 가능
+            if (LRU.indexOf(city) >= 0) {
+                answer += CACHE_HIT;
+                LRU.remove(city);
+            } else {
+                answer += CACHE_MISS;
+                if (LRU.size() >= cacheSize) {
+                    LRU.remove(0);
+                }
+            }
+
+            LRU.add(city);
+        }
+
+        return answer;
+    }
+
+
+    // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // 2021 KAKAO BLIND RECRUITMENT 순위 검색 START
     @Test
     void 순위검색() {
@@ -1115,59 +1216,4 @@ public class Level1 {
     }
     // 2021 KAKAO BLIND RECRUITMENT 순위 검색 END
 
-
-
-    // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 START
-    @Test
-    void 캐시() {
-        //캐시크기(cacheSize)	도시이름(cities)	실행시간
-        //50
-        int cacheSize = 3;
-        String[] cities = {
-            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA"
-        };
-
-        /*
-        //21
-        int cacheSize = 3;
-        String[] cities = {
-            "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul"
-        };
-
-        //60
-        int cacheSize = 2;
-        String[] cities = {
-            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"
-        };
-
-        //52
-        int cacheSize = 5;
-        String[] cities = {
-            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"
-        };
-
-        // 16
-        int cacheSize = 2;
-        String[] cities = {
-            "Jeju", "Pangyo", "NewYork", "newyork"
-        };
-
-        // 25
-        int cacheSize = 0;
-        String[] cities = {
-            "Jeju", "Pangyo", "Seoul", "NewYork", "LA"
-        };*/
-
-        System.out.println("result: " + 캐시(cacheSize, cities));
-
-
-    }
-
-    private int 캐시(int cacheSize, String[] cities) {
-        int answer = 0;
-        return answer;
-    }
-
-
-    // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 END
 }
