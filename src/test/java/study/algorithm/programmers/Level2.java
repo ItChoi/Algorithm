@@ -1979,6 +1979,149 @@ public class Level2 {
             메뉴_리뉴얼_재도전_함수(validLength, i + 1, temp, order);
         }
     }
+
+    // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 START
+    @Test
+    void 캐시() {
+        //캐시크기(cacheSize)	도시이름(cities)	실행시간
+        //50
+//        int cacheSize = 3;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA"
+//        };
+
+        //21
+//        int cacheSize = 3;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul", "Jeju", "Pangyo", "Seoul"
+//        };
+
+        //60
+//        int cacheSize = 2;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"
+//        };
+
+        //52
+//        int cacheSize = 5;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "SanFrancisco", "Seoul", "Rome", "Paris", "Jeju", "NewYork", "Rome"
+//        };
+
+        // 16
+//        int cacheSize = 2;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "NewYork", "newyork"
+//        };
+
+        // 25
+//        int cacheSize = 0;
+//        String[] cities = {
+//            "Jeju", "Pangyo", "Seoul", "NewYork", "LA"
+//        };
+
+        // 11
+//        int cacheSize = 3;
+//        String[] cities = {
+//            "A", "B", "A"
+//        };
+
+        // 10
+        int cacheSize = 0;
+        String[] cities = {
+                "LA", "LA"
+        };
+
+        System.out.println("result: " + 캐시(cacheSize, cities));
+
+
+    }
+
+    private int 캐시(int cacheSize, String[] cities) {
+        if (cacheSize == 0) {
+            return cities.length * 5;
+        }
+
+        int answer = 0;
+
+        final int CACHE_HIT = 1;
+        final int CACHE_MISS = 5;
+
+        List<String> LRU = new LinkedList<>();
+
+        for (int i = 0; i < cities.length; i++) {
+            String city = cities[i].toLowerCase();
+
+            // if (LRU.contains(city)) { // indexOf 활용 가능
+            if (LRU.indexOf(city) >= 0) {
+                answer += CACHE_HIT;
+                LRU.remove(city);
+            } else {
+                answer += CACHE_MISS;
+                if (LRU.size() >= cacheSize) {
+                    LRU.remove(0);
+                }
+            }
+
+            LRU.add(city);
+        }
+
+        return answer;
+    }
+
+
+    // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 END
+
+    // 2021 KAKAO BLIND RECRUITMENT 순위 검색 START
+    @Test
+    void 순위검색() {
+        String[] info = {"java backend junior pizza 150", "python frontend senior chicken 210", "python frontend senior chicken 150", "cpp backend senior pizza 260", "java backend junior chicken 80", "python backend senior chicken 50"};
+        String[] query = {"java and backend and junior and pizza 100", "python and frontend and senior and chicken 200", "cpp and - and senior and pizza 250", "- and backend and senior and - 150", "- and - and - and chicken 100", "- and - and - and - 150"};
+        for (int i : 순위검색(info, query)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 순위검색(String[] info, String[] query) {
+        int[] answer = new int[query.length];
+        final String ALL_PERMIT = "-";
+
+        //:Arrays.sort(info, (o1, o2) -> Integer.parseInt(o1.substring(o1.lastIndexOf(" ") + 1).compareTo(Integer.parseInt(o2.substring(o2.lastIndexOf(" ") + 1))));
+
+        int count;
+        int index = 0;
+        for (String q : query) {
+            count = 0;
+            String[] qInfo = q.replaceAll("and ", "").split(" ");
+            String qLang = qInfo[0];
+            String qJob = qInfo[1];
+            String qCor = qInfo[2];
+            String qFood = qInfo[3];
+            String qScore = qInfo[4];
+
+            for (String i : info) {
+                int score = Integer.parseInt(i.substring(i.lastIndexOf(" ") + 1));
+
+                if (ALL_PERMIT.equals(qScore) || Integer.parseInt(qScore) <= score) {
+                    if (i.startsWith(qLang) || ALL_PERMIT.equals(qLang)) {
+                        if (i.indexOf(qJob) != -1 || ALL_PERMIT.equals(qJob)) {
+                            if (i.indexOf(qCor) != -1 || ALL_PERMIT.equals(qCor)) {
+                                if (i.indexOf(qFood) != -1 || ALL_PERMIT.equals(qFood)) {
+                                    count++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            answer[index++] = count;
+        }
+
+        return answer;
+    }
+
+    // 2021 KAKAO BLIND RECRUITMENT 순위 검색 END
 }
 
 
