@@ -1186,34 +1186,55 @@ public class Level1 {
 
     // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 END
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // 2021 KAKAO BLIND RECRUITMENT 순위 검색 START
     @Test
     void 순위검색() {
-
+        String[] info = {"java backend junior pizza 150", "python frontend senior chicken 210", "python frontend senior chicken 150", "cpp backend senior pizza 260", "java backend junior chicken 80", "python backend senior chicken 50"};
+        String[] query = {"java and backend and junior and pizza 100", "python and frontend and senior and chicken 200", "cpp and - and senior and pizza 250", "- and backend and senior and - 150", "- and - and - and chicken 100", "- and - and - and - 150"};
+        for (int i : 순위검색(info, query)) {
+            System.out.println("result: " + i);
+        }
     }
 
     private int[] 순위검색(String[] info, String[] query) {
-        int[] answer = {};
+        int[] answer = new int[query.length];
+        final String ALL_PERMIT = "-";
+
+        //:Arrays.sort(info, (o1, o2) -> Integer.parseInt(o1.substring(o1.lastIndexOf(" ") + 1).compareTo(Integer.parseInt(o2.substring(o2.lastIndexOf(" ") + 1))));
+
+        int count;
+        int index = 0;
+        for (String q : query) {
+            count = 0;
+            String[] qInfo = q.replaceAll("and ", "").split(" ");
+            String qLang = qInfo[0];
+            String qJob = qInfo[1];
+            String qCor = qInfo[2];
+            String qFood = qInfo[3];
+            String qScore = qInfo[4];
+
+            for (String i : info) {
+                int score = Integer.parseInt(i.substring(i.lastIndexOf(" ") + 1));
+
+                if (ALL_PERMIT.equals(qScore) || Integer.parseInt(qScore) <= score) {
+                    if (i.startsWith(qLang) || ALL_PERMIT.equals(qLang)) {
+                        if (i.indexOf(qJob) != -1 || ALL_PERMIT.equals(qJob)) {
+                            if (i.indexOf(qCor) != -1 || ALL_PERMIT.equals(qCor)) {
+                                if (i.indexOf(qFood) != -1 || ALL_PERMIT.equals(qFood)) {
+                                    count++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            answer[index++] = count;
+        }
+
         return answer;
     }
+
     // 2021 KAKAO BLIND RECRUITMENT 순위 검색 END
 
 }
