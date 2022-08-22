@@ -2086,11 +2086,43 @@ public class Level2 {
         int[] answer = new int[query.length];
         final String ALL_PERMIT = "-";
 
-        //:Arrays.sort(info, (o1, o2) -> Integer.parseInt(o1.substring(o1.lastIndexOf(" ") + 1).compareTo(Integer.parseInt(o2.substring(o2.lastIndexOf(" ") + 1))));
+        List<String> queries = new LinkedList<>();
+        List<Integer> queryScores = new LinkedList<>();
+        for (String infoData : info) {
+            String strScore = infoData.substring(infoData.lastIndexOf(" ") + 1);
+
+            if (ALL_PERMIT.equals(strScore)) {
+                queries.add(0, infoData);
+                queryScores.add(0, 0);
+                continue;
+            }
+
+            int score = Integer.parseInt(strScore);
+            if (queryScores.size() == 0) {
+                queries.add(infoData);
+                queryScores.add(score);
+                continue;
+            }
+
+            for (int i = 0; i < queryScores.size(); i++) {
+                Integer qScore = queryScores.get(i);
+
+                if (qScore >= score) { // 100 >= 200
+                    queries.add(i, infoData);
+                    queryScores.add(i, score);
+                    break;
+                } else if (i == queryScores.size() - 1) {
+                    queries.add(infoData);
+                    queryScores.add(score);
+                    break;
+                }
+            }
+        }
 
         int count;
         int index = 0;
-        for (String q : query) {
+        for (int i = 0; i < queries.size(); i++) {
+            String q = queries.get(i);
             count = 0;
             String[] qInfo = q.replaceAll("and ", "").split(" ");
             String qLang = qInfo[0];
@@ -2099,14 +2131,14 @@ public class Level2 {
             String qFood = qInfo[3];
             String qScore = qInfo[4];
 
-            for (String i : info) {
-                int score = Integer.parseInt(i.substring(i.lastIndexOf(" ") + 1));
-
+            for (String j : info) {
+                int score = Integer.parseInt(j.substring(j.lastIndexOf(" ") + 1));
+                // TODO: 스코어 기반 정렬 후 조건문 break 필요할듯
                 if (ALL_PERMIT.equals(qScore) || Integer.parseInt(qScore) <= score) {
-                    if (i.startsWith(qLang) || ALL_PERMIT.equals(qLang)) {
-                        if (i.indexOf(qJob) != -1 || ALL_PERMIT.equals(qJob)) {
-                            if (i.indexOf(qCor) != -1 || ALL_PERMIT.equals(qCor)) {
-                                if (i.indexOf(qFood) != -1 || ALL_PERMIT.equals(qFood)) {
+                    if (j.startsWith(qLang) || ALL_PERMIT.equals(qLang)) {
+                        if (j.indexOf(qJob) != -1 || ALL_PERMIT.equals(qJob)) {
+                            if (j.indexOf(qCor) != -1 || ALL_PERMIT.equals(qCor)) {
+                                if (j.indexOf(qFood) != -1 || ALL_PERMIT.equals(qFood)) {
                                     count++;
                                 }
                             }
