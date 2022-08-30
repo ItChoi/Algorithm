@@ -2086,69 +2086,71 @@ public class Level2 {
         int[] answer = new int[query.length];
         final String ALL_PERMIT = "-";
 
-        List<String> queries = new LinkedList<>();
-        List<Integer> queryScores = new LinkedList<>();
-        for (String infoData : info) {
-            String strScore = infoData.substring(infoData.lastIndexOf(" ") + 1);
-
-            if (ALL_PERMIT.equals(strScore)) {
-                queries.add(0, infoData);
-                queryScores.add(0, 0);
-                continue;
-            }
-
-            int score = Integer.parseInt(strScore);
-            if (queryScores.size() == 0) {
-                queries.add(infoData);
-                queryScores.add(score);
-                continue;
-            }
-
-            for (int i = 0; i < queryScores.size(); i++) {
-                Integer qScore = queryScores.get(i);
-
-                if (qScore >= score) { // 100 >= 200
-                    queries.add(i, infoData);
-                    queryScores.add(i, score);
-                    break;
-                } else if (i == queryScores.size() - 1) {
-                    queries.add(infoData);
-                    queryScores.add(score);
-                    break;
-                }
-            }
+        Map<String, List<Integer>> scoreWithStr = new HashMap<>();
+        for (String i : info) {
+            String iStr = i.substring(0, i.lastIndexOf(" ")).replaceAll(" ", "");
+            int iScore = Integer.parseInt(i.substring(i.lastIndexOf(" ") + 1));
+            System.out.println("iStr = " + iStr);
+            System.out.println("iScore = " + iScore);
+            List<Integer> list = scoreWithStr.getOrDefault(iStr, new ArrayList<>());
+            list.add(iScore);
+            scoreWithStr.put(iStr, list);
         }
 
-        int count;
-        int index = 0;
-        for (int i = 0; i < queries.size(); i++) {
-            String q = queries.get(i);
-            count = 0;
-            String[] qInfo = q.replaceAll("and ", "").split(" ");
-            String qLang = qInfo[0];
-            String qJob = qInfo[1];
-            String qCor = qInfo[2];
-            String qFood = qInfo[3];
-            String qScore = qInfo[4];
 
-            for (String j : info) {
-                int score = Integer.parseInt(j.substring(j.lastIndexOf(" ") + 1));
-                // TODO: 스코어 기반 정렬 후 조건문 break 필요할듯
-                if (ALL_PERMIT.equals(qScore) || Integer.parseInt(qScore) <= score) {
-                    if (j.startsWith(qLang) || ALL_PERMIT.equals(qLang)) {
-                        if (j.indexOf(qJob) != -1 || ALL_PERMIT.equals(qJob)) {
-                            if (j.indexOf(qCor) != -1 || ALL_PERMIT.equals(qCor)) {
-                                if (j.indexOf(qFood) != -1 || ALL_PERMIT.equals(qFood)) {
-                                    count++;
-                                }
-                            }
-                        }
+        List<String> keyList = new ArrayList<>(scoreWithStr.keySet());
+        keyList.sort((s1, s2) -> s1.compareTo(s2));
+        for (String s : keyList) {
+            System.out.println("scoreWithStr.get(s) = " + scoreWithStr.get(s));
+        }
+
+
+        /*int j = 0;
+        for (String q : query) {
+            String[] qDiv = q.replaceAll("and ", "").split(" ");
+            String qScoreStr = qDiv[qDiv.length - 1];
+            String qLang = qDiv[0];
+            String qPart = qDiv[1];
+            String qCareer = qDiv[2];
+            String qFood = qDiv[3];
+
+            boolean isCheckLang = !ALL_PERMIT.equals(qLang);
+            boolean isCheckPart = !ALL_PERMIT.equals(qPart);
+            boolean isCheckCareer = !ALL_PERMIT.equals(qCareer);
+            boolean isCheckFood = !ALL_PERMIT.equals(qFood);
+
+            boolean isCheckScore = !ALL_PERMIT.equals(qScoreStr);
+            int qScore = isCheckScore ? Integer.parseInt(qScoreStr) : 0;
+
+            int count = 0;
+            for (String i : info) {
+                if (isCheckScore) {
+                    int iScore = Integer.parseInt(i.substring(i.lastIndexOf(" ") + 1));
+                    if (iScore < qScore) continue;
+
+                    String[] iDiv = i.replaceAll("and ", "").split(" ");
+                    String iLang = iDiv[0];
+                    String iPart = iDiv[1];
+                    String iCareer = iDiv[2];
+                    String iFood = iDiv[3];
+
+                    if (isCheckLang) {
+                        if (!iLang.equals(qLang)) continue;
+                    }
+                    if (isCheckPart) {
+                        if (!iPart.equals(qPart)) continue;
+                    }
+                    if (isCheckCareer) {
+                        if (!iCareer.equals(qCareer)) continue;
+                    }
+                    if (isCheckFood) {
+                        if (!iFood.equals(qFood)) continue;
                     }
                 }
+                count++;
             }
-
-            answer[index++] = count;
-        }
+            answer[j++] = count;
+        }*/
 
         return answer;
     }
