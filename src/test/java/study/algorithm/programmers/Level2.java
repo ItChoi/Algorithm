@@ -2086,26 +2086,18 @@ public class Level2 {
         int[] answer = new int[query.length];
         final String ALL_PERMIT = "-";
 
-        Map<String, List<Integer>> scoreWithStr = new HashMap<>();
+        Map<String, Integer> infoWithScore = new HashMap<>();
         for (String i : info) {
-            String iStr = i.substring(0, i.lastIndexOf(" ")).replaceAll(" ", "");
             int iScore = Integer.parseInt(i.substring(i.lastIndexOf(" ") + 1));
-            System.out.println("iStr = " + iStr);
-            System.out.println("iScore = " + iScore);
-            List<Integer> list = scoreWithStr.getOrDefault(iStr, new ArrayList<>());
-            list.add(iScore);
-            scoreWithStr.put(iStr, list);
+            infoWithScore.put(i, iScore);
         }
 
-
-        List<String> keyList = new ArrayList<>(scoreWithStr.keySet());
-        keyList.sort((s1, s2) -> s1.compareTo(s2));
-        for (String s : keyList) {
-            System.out.println("scoreWithStr.get(s) = " + scoreWithStr.get(s));
-        }
+        List<String> sortedInfos = infoWithScore.keySet().stream()
+            .sorted(((o1, o2) -> infoWithScore.get(o2).compareTo(infoWithScore.get(o1))))
+            .collect(Collectors.toList());
 
 
-        /*int j = 0;
+        int j = 0;
         for (String q : query) {
             String[] qDiv = q.replaceAll("and ", "").split(" ");
             String qScoreStr = qDiv[qDiv.length - 1];
@@ -2123,10 +2115,10 @@ public class Level2 {
             int qScore = isCheckScore ? Integer.parseInt(qScoreStr) : 0;
 
             int count = 0;
-            for (String i : info) {
+            for (String i : sortedInfos) {
                 if (isCheckScore) {
                     int iScore = Integer.parseInt(i.substring(i.lastIndexOf(" ") + 1));
-                    if (iScore < qScore) continue;
+                    if (iScore < qScore) break;
 
                     String[] iDiv = i.replaceAll("and ", "").split(" ");
                     String iLang = iDiv[0];
@@ -2150,7 +2142,7 @@ public class Level2 {
                 count++;
             }
             answer[j++] = count;
-        }*/
+        }
 
         return answer;
     }
