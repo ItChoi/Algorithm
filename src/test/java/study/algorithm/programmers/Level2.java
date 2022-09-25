@@ -2148,6 +2148,38 @@ public class Level2 {
     }
 
     // 2021 KAKAO BLIND RECRUITMENT 순위 검색 END
+
+    // 올바른 괄호 START
+    @Test
+    void 올바른_괄호() {
+        // true
+        System.out.println("result: " + 올바른_괄호("()()"));
+        // true
+        System.out.println("result: " + 올바른_괄호("(())()"));
+        // false
+        System.out.println("result: " + 올바른_괄호(")()("));
+        // false
+        System.out.println("result: " + 올바른_괄호("(()("));
+    }
+
+    private boolean 올바른_괄호(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+
+                stack.pop();
+            }
+        }
+
+        return stack.isEmpty();
+    }
+
+    // 올바른 괄호 END
 }
 
 
