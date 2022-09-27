@@ -2068,9 +2068,41 @@ public class Level2 {
 
         return answer;
     }
-
-
     // 2018 KAKAO BLIND RECRUITMENT [1차] 캐시 END
+
+    // JadenCase 문자열 만들기 START
+
+    @Test
+    void JadenCase_문자열_만들기() {
+        // "3people Unfollowed Me"
+//        System.out.println("result: " + JadenCase_문자열_만들기("3people unFollowed me"));
+        // "For The Last Week"
+//        System.out.println("result: " + JadenCase_문자열_만들기("for the last week"));
+        // A A A A A A A A A A
+//        System.out.println("result: " + JadenCase_문자열_만들기("a a a a a a a a a a "));
+        // A A A A
+        System.out.println("result: " + JadenCase_문자열_만들기("a   a   a a"));
+    }
+
+    private String JadenCase_문자열_만들기(String s) {
+        StringBuilder answer = new StringBuilder();
+        String[] s1 = s.split(" ");
+
+        for (String a : s1) {
+            if ("".equals(a)) {
+                continue;
+            }
+
+            answer.append(a.substring(0, 1).toUpperCase());
+            answer.append(a.substring(1).toLowerCase() + " ");
+        }
+
+        return answer.toString().trim();
+    }
+
+    // JadenCase 문자열 만들기 END
+
+
 
     // 2021 KAKAO BLIND RECRUITMENT 순위 검색 START
     @Test
