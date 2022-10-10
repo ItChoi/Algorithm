@@ -1093,4 +1093,42 @@ public class Level1 {
         }
     }
     // 2021 카카오 채용연계형 인턴십 숫자 문자열과 영단어 END
+
+    // 월간 코드 챌린지 시즌3 나머지가 1이 되는 수 찾기 START
+    @Test
+    void 나머지가_1이_되는_수_찾기() {
+        System.out.println("3: " + 나머지가_1이_되는_수_찾기(10));
+        System.out.println("11: " + 나머지가_1이_되는_수_찾기(12));
+    }
+
+    private int 나머지가_1이_되는_수_찾기(int n) {
+        for (int i = 1; i < n; i++) {
+            if (n % i == 1) return i;
+        }
+
+        return n;
+    }
+    // 월간 코드 챌린지 시즌3 나머지가 1이 되는 수 찾기 END
+
+    // 월간 코드 챌린지 시즌2 - 음양 더하기 START
+    @Test
+    void 음양_더하기() {
+        System.out.println("9: " + 음양_더하기(new int[] {4, 7, 12}, new boolean[] {true, false, true}));
+        System.out.println("0: " + 음양_더하기(new int[] {1, 2, 3}, new boolean[] {false, false, true}));
+    }
+
+    public int 음양_더하기(int[] absolutes, boolean[] signs) {
+        int answer = 0;
+
+        for (int i = 0; i < absolutes.length; i++) {
+            int number = absolutes[i];
+            boolean sign = signs[i];
+            answer = sign ? answer + number : answer - number;
+        }
+
+        return answer;
+    }
+
+    // 월간 코드 챌린지 시즌2 - 음양 더하기 END
+
 }
