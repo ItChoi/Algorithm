@@ -1131,4 +1131,88 @@ public class Level1 {
 
     // 월간 코드 챌린지 시즌2 - 음양 더하기 END
 
+    // 월간 코드 챌린지 시즌3 없는 숫자 더하기 START
+    @Test
+    void 없는_숫자_더하기() {
+        System.out.println("14: " + 없는_숫자_더하기(new int[] {1,2,3,4,6,7,8,0}));
+        //System.out.println("6: " + 없는_숫자_더하기(new int[] {5,8,4,0,6,7,9}));
+    }
+
+    public int 없는_숫자_더하기(int[] numbers) {
+        Arrays.sort(numbers);
+
+        int answer = 0;
+
+        int[] temp = new int[10];
+        for (int i : numbers) {
+            temp[i] = i;
+        }
+
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i] == 0) {
+                answer += i;
+            }
+        }
+
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌3 없는 숫자 더하기 END
+
+    // 월간 코드 챌린지 시즌1 - 내적 START
+    @Test
+    void 내적() {
+        System.out.println("3: " + 내적(new int[] {1,2,3,4}, new int[] {-3,-1,0,2}));
+        System.out.println("3: " + 내적(new int[] {-1, 0, 1}, new int[]{1, 0, -1}));
+    }
+
+    public int 내적(int[] a, int[] b) {
+        int answer = 1234567890;
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌1 - 내적 END
+
+    // JadenCase 문자열 만들기 START
+    @Test
+    void JadenCase_문자열_만들기() {
+        // 3people Unfollowed Me
+        System.out.println("result: " + JadenCase_문자열_만들기("3people unFollowed me "));
+        // For The Last Week"
+        System.out.println("result: " + JadenCase_문자열_만들기("for the last week"));
+    }
+
+    public String JadenCase_문자열_만들기(String s) {
+        List<String> result = new ArrayList<>();
+        while (!s.isEmpty()) {
+            int isIndexOfWhiteSpace = s.indexOf(" ");
+            boolean isLastWhiteSpace = false;
+            if (s.length() - 1 == isIndexOfWhiteSpace) {
+                isLastWhiteSpace = true;
+            }
+            int beginIndex;
+            String targetStr;
+            if (isIndexOfWhiteSpace == -1) {
+                beginIndex = s.length();
+                targetStr = s.substring(0, beginIndex);
+                s = s.substring(beginIndex);
+            } else {
+                beginIndex = isIndexOfWhiteSpace;
+
+                targetStr = s.substring(0, (isLastWhiteSpace ? beginIndex + 1 : beginIndex));
+                s = s.substring(beginIndex == s.length() ? beginIndex : beginIndex + 1);
+            }
+
+            if (targetStr.length() == 0) {
+                result.add("");
+            } else if (targetStr.length() == 1) {
+                result.add(targetStr.toUpperCase());
+            } else {
+                result.add(String.valueOf(targetStr.charAt(0)).toUpperCase() + String.valueOf(targetStr.substring(1, targetStr.length()).toLowerCase()));
+            }
+        }
+
+
+
+        return result.stream().collect(Collectors.joining(" "));
+    }
+    // JadenCase 문자열 만들기 END
 }

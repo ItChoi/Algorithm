@@ -2075,29 +2075,21 @@ public class Level2 {
     @Test
     void JadenCase_문자열_만들기() {
         // "3people Unfollowed Me"
-//        System.out.println("result: " + JadenCase_문자열_만들기("3people unFollowed me"));
+        System.out.println("result: " + JadenCase_문자열_만들기("3people unFollowed me"));
         // "For The Last Week"
-//        System.out.println("result: " + JadenCase_문자열_만들기("for the last week"));
+        System.out.println("result: " + JadenCase_문자열_만들기("for the last week"));
         // A A A A A A A A A A
-//        System.out.println("result: " + JadenCase_문자열_만들기("a a a a a a a a a a "));
+        System.out.println("result: " + JadenCase_문자열_만들기("a a a a a a a a a a "));
         // A A A A
         System.out.println("result: " + JadenCase_문자열_만들기("a   a   a a"));
     }
 
     private String JadenCase_문자열_만들기(String s) {
         StringBuilder answer = new StringBuilder();
-        String[] s1 = s.split(" ");
 
-        for (String a : s1) {
-            if ("".equals(a)) {
-                continue;
-            }
 
-            answer.append(a.substring(0, 1).toUpperCase());
-            answer.append(a.substring(1).toLowerCase() + " ");
-        }
 
-        return answer.toString().trim();
+        return "";
     }
 
     // JadenCase 문자열 만들기 END
