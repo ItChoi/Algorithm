@@ -1,6 +1,5 @@
 package study.algorithm.programmers;
 
-import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -2202,8 +2201,88 @@ public class Level2 {
 
         return stack.isEmpty();
     }
-
     // 올바른 괄호 END
+
+    // Summer/Winter Coding(~2018) 영어 끝말잇기 RETRY START
+    @Test
+    void 영어_끝말잇기_RETRY() {
+        String test = "testa";
+        String peekEndStr = test.substring(test.length() - 1);
+        System.out.println("test: " + peekEndStr);
+        /*int n = 3;
+        String[] words = {
+                "tank", "kick", "know", "wheel",
+                "land", "dream", "mother", "robot", "tank"
+        };*/
+        /*int n = 5;
+        String[] words = {
+                "hello", "observe", "effect", "take",
+                "either", "recognize", "encourage", "ensure",
+                "establish", "hang", "gather", "refer",
+                "reference", "estimate", "executive"
+        };*/
+        int n = 2;
+        String[] words = {
+            "hello", "one", "even", "never",
+            "now", "world", "draw"
+        };
+
+        for (int i : 영어_끝말잇기_RETRY_함수(n, words)) {
+            System.out.println("result: " + i);
+        }
+    }
+
+    private int[] 영어_끝말잇기_RETRY_함수(int n, String[] words) {
+        int targetPersonNum = 1;
+        int indexOrder = 1;
+
+        Set<String> usedWords = new HashSet<>();
+        boolean isWrong = false;
+        char preLastChar = ' ';
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            usedWords.add(word);
+
+            if (usedWords.size() != i + 1 || (preLastChar != ' ' && word.charAt(0) != preLastChar)) {
+                isWrong = true;
+                break;
+            }
+
+            preLastChar = word.charAt(word.length() - 1);
+
+            targetPersonNum++;
+            if (targetPersonNum > n) {
+                targetPersonNum = 1;
+                indexOrder++;
+            }
+        }
+
+        return isWrong ? new int[] {targetPersonNum, indexOrder} : new int[] {0, 0};
+    }
+    // Summer/Winter Coding(~2018) 영어 끝말잇기 RETRY END
+
+    // 완전탐색 카펫 START
+    @Test
+    void 카펫() {
+        for (int result : 카펫(10, 2)) {
+            System.out.println("result [4, 3]: " + result);
+        }
+
+        /*for (int result : 카펫(8, 1)) {
+            System.out.println("result [3, 3]: " + result);
+        }*/
+
+        /*for (int result : 카펫(24, 24)) {
+            System.out.println("result [8, 6]: " + result);
+        }*/
+    }
+
+    public int[] 카펫(int brown, int yellow) {
+        int[] answer = {};
+
+        return answer;
+    }
+    // 완전탐색 카펫 END
 }
 
 
