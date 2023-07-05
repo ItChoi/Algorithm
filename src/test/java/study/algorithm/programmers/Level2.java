@@ -2264,23 +2264,50 @@ public class Level2 {
     // 완전탐색 카펫 START
     @Test
     void 카펫() {
-        for (int result : 카펫(10, 2)) {
-            System.out.println("result [4, 3]: " + result);
-        }
 
-        /*for (int result : 카펫(8, 1)) {
-            System.out.println("result [3, 3]: " + result);
-        }*/
+        System.out.println("test12: " + Math.sqrt(12));
+        System.out.println("test9: " + Math.sqrt(9));
+        System.out.println("test48: " + Math.sqrt(48));
+        System.out.println("test56: " + Math.sqrt(56));
+        System.out.println("test28: " + Math.sqrt(28));
+        System.out.println("test72: " + Math.sqrt(72));
+        System.out.println("test25: " + Math.sqrt(25));
+//        for (int result : 카펫(10, 2)) {
+//            System.out.println("result [4, 3]: " + result);
+//        }
+//
+//        for (int result : 카펫(8, 1)) {
+//            System.out.println("result [3, 3]: " + result);
+//        }
+//
+//        for (int result : 카펫(24, 24)) {
+//            System.out.println("result [8, 6]: " + result);
+//        }
+//
+//        for (int result : 카펫(26, 30)) {
+//            System.out.println("result [8, 7]: " + result);
+//        }
+//
+//        for (int result : 카펫(18, 10)) {
+//            System.out.println("result [7, 4]: " + result);
+//        }
+//
+//        for (int result : 카펫(50, 22)) {
+//            System.out.println("result [24, 3]: " + result);
+//        }
+//
+//        for (int result : 카펫(16, 9)) {
+//            System.out.println("result [5, 5]: " + result);
+//        }
 
-        /*for (int result : 카펫(24, 24)) {
-            System.out.println("result [8, 6]: " + result);
-        }*/
     }
 
     public int[] 카펫(int brown, int yellow) {
-        int[] answer = {};
+        int sum = brown + yellow;
+        int width = 3;
+        int height = 3;
 
-        return answer;
+        return new int[] {width, height};
     }
     // 완전탐색 카펫 END
 }
