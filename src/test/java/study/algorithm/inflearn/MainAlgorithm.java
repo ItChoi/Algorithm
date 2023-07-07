@@ -166,7 +166,7 @@ public class MainAlgorithm {
     // 5. 특정 문자 뒤집기 END
 
     // 6. 중복문자제거 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         String str = kb.nextLine();
@@ -183,6 +183,69 @@ public class MainAlgorithm {
         return set.stream()
             .map(String::valueOf)
             .collect(Collectors.joining());
-    }
+    }*/
     // 6. 중복문자제거 END
+
+    // 7. 회문 문자열 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.nextLine();
+
+        System.out.println(T.solution(str));
+    }
+
+    public String solution(String str) {
+        str = str.toLowerCase();
+        int sLength = str.length();
+
+        for (int i = 0; i < sLength; i++) {
+            int compareJ = sLength - i - 1;
+            if (str.charAt(i) != str.charAt(compareJ)) {
+                return "NO";
+            }
+        }
+
+        return "YES";
+    }*/
+    // 7. 회문 문자열 END
+
+    // 8. 유효한 팰린드롬 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.nextLine();
+
+        System.out.println(T.solution(str));
+    }
+
+    public String solution(String str) {
+        str = str.replaceAll("[^a-zA-Z]", "").toLowerCase();
+        int sLength = str.length();
+
+        for (int i = 0; i < sLength; i++) {
+            int compareJ = sLength - i - 1;
+            if (str.charAt(i) != str.charAt(compareJ)) {
+                return "NO";
+            }
+        }
+
+        return "YES";
+    }*/
+    // 8. 유효한 팰린드롬 END
+
+    // 9. 숫자만 추출 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.nextLine();
+
+        System.out.println(T.solution(str));
+    }
+
+    public int solution(String str) {
+        return Integer.valueOf(str.replaceAll("[^0-9]", ""));
+    }
+    // 9. 숫자만 추출 END
+
 }
