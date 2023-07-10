@@ -235,7 +235,7 @@ public class MainAlgorithm {
     // 8. 유효한 팰린드롬 END
 
     // 9. 숫자만 추출 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         String str = kb.nextLine();
@@ -245,7 +245,92 @@ public class MainAlgorithm {
 
     public int solution(String str) {
         return Integer.valueOf(str.replaceAll("[^0-9]", ""));
-    }
+    }*/
     // 9. 숫자만 추출 END
+
+    // 10. 문자거리 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        String s = kb.next();
+        char t = kb.next().charAt(0);
+
+        System.out.println(T.solution(s, t));
+    }
+
+    public int[] solution(String s,
+                           char t) {
+        int[] answer = new int[s.length()];
+
+        int sLength = s.length();
+        for (int i = 0; i < sLength; i++) {
+            if (s.charAt(i) == t) {
+                answer[i] = 0;
+                continue;
+            }
+
+            int lt = i;
+            int rt = i;
+
+            int targetNum = 1;
+            while (lt > 0 || rt < sLength) {
+                lt--;
+                rt++;
+                if (lt > 0 && s.charAt(lt) == t) {
+                    answer[i] = targetNum;
+                    break;
+                }
+                if (rt < sLength && s.charAt(rt) == t) {
+                    answer[i] = targetNum;
+                    break;
+                }
+
+                targetNum++;
+            }
+        }
+        return answer;
+    }*/
+    // 10. 문자거리 END
+
+    // 11. 문자열 압축 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+
+        System.out.println(T.solution(str));
+    }
+
+    public String solution(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        int sLength = s.length();
+        int j = 1;
+        for (int i = 0; i < sLength; i++) {
+            char sCharAt = s.charAt(i);
+
+            if (i + 1 == sLength) {
+                sb.append(sCharAt);
+                if (j > 1) {
+                    sb.append(j);
+                }
+                continue;
+            }
+
+            if (sCharAt == s.charAt(i + 1)) {
+                j++;
+            } else {
+                sb.append(sCharAt);
+                if (j > 1) {
+                    sb.append(j);
+                }
+
+                j = 1;
+            }
+        }
+
+        return sb.toString();
+    }
+    // 11. 문자열 압축 END
 
 }
