@@ -2,12 +2,8 @@ package study.algorithm.inflearn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * 자바(Java) 알고리즘 문제풀이 입문: 코딩테스트 대비 - 김태원 (인프런 강의) -> 재복습
@@ -293,7 +289,7 @@ public class MainAlgorithm {
     // 10. 문자거리 END
 
     // 11. 문자열 압축 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         String str = kb.next();
@@ -330,7 +326,184 @@ public class MainAlgorithm {
         }
 
         return sb.toString();
-    }
+    }*/
     // 11. 문자열 압축 END
+
+    // 12. 암호 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        String str = kb.next();
+
+        System.out.println(T.solution(num, str));
+    }
+
+    public String solution(int num,
+                           String str) {
+        int dLength = 7;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < num; i++) {
+            String encryption = str.substring(0, dLength);
+            String targetStr = encryption.replace('#', '1').replace('*', '0');
+
+            char c = (char) Integer.parseInt(targetStr, 2);
+            sb.append(c);
+
+            str = str.substring(dLength);
+        }
+
+
+        return sb.toString();
+    }*/
+    // 12. 암호 END
+
+    // 2. 큰 수 출력하기 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            list.add(kb.nextInt());
+        }
+
+        System.out.println(T.solution(num, list));
+    }
+
+    public List<Integer> solution(int num,
+                           List<Integer> list) {
+        List<Integer> result = new ArrayList<>();
+        result.add(list.get(0));
+
+        for (int i = 1; i < num; i++) {
+            Integer target = list.get(i);
+            if (list.get(i - 1) < target) {
+                result.add(target);
+            }
+        }
+
+        return result;
+    }*/
+    // 2. 큰 수 출력하기 END
+
+    // 3. 보이는 학생 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        List<Integer> list1 = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            list1.add(kb.nextInt());
+        }
+
+        List<Integer> list2 = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            list2.add(kb.nextInt());
+        }
+
+        for (String s : T.solution(num, list1, list2)) {
+            System.out.println(s);
+        }
+    }
+
+    public List<String> solution(int num,
+                        List<Integer> user1,
+                        List<Integer> user2) {
+        List<String> result = new ArrayList<>(num);
+        for (int i = 0; i < num; i++) {
+            Integer u1 = user1.get(i);
+            Integer u2 = user2.get(i);
+            int a = u1 - u2;
+            if (a == 0) {
+                result.add("D");
+            } else {
+                if (a == -1 || a == 2) {
+                    result.add("B");
+                } else {
+                    result.add("A");
+                }
+            }
+        }
+
+        return result;
+    }*/
+    // 3. 보이는 학생 END
+
+    // 4. 피보나치 수열 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+
+        for (Integer integer : T.solution(num)) {
+            System.out.print(integer + " ");
+        }
+    }
+
+    public List<Integer> solution(int num) {
+        List<Integer> result = new ArrayList<>(num);
+
+        result.add(1);
+        result.add(1);
+        for (int i = 2; i < num; i++) {
+            result.add(result.get(i - 2) + result.get(i - 1));
+        }
+
+        return result;
+    }*/
+    // 4. 피보나치 수열 END
+
+    // 5. 소수(에라토스테네스 체) START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+
+        System.out.print(T.solution(num));
+    }
+
+    public int solution(int num) {
+        int result = 0;
+        boolean[] isSosu = new boolean[num + 1];
+        Arrays.fill(isSosu, true);
+
+        for (int i = 2; i * i <= num; i++) {
+            for (int j = i * i; j <= num; j += i) {
+                isSosu[j] = false;
+            }
+        }
+
+        for (int i = 2; i < isSosu.length; i++) {
+            if (isSosu[i]) {
+                result++;
+            }
+        }
+
+        return result;
+    }*/
+    // 5. 소수(에라토스테네스 체) END
+
+    // 6. 뒤집은 소수 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        List<Integer> numbers = new ArrayList<>(num);
+        for (int i = 0; i < num; i++) {
+            numbers.add(kb.nextInt());
+        }
+
+        System.out.print(T.solution(num, numbers));
+    }
+
+    public int solution(int num,
+                        List<Integer> numbers) {
+        int result = 0;
+        // TODO: 풀기
+        return result;
+    }
+    // 6. 뒤집은 소수 END
+
 
 }
