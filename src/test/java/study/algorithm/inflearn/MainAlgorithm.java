@@ -623,7 +623,7 @@ public class MainAlgorithm {
     // 8. 등수구하기 END
 
     // 9. 격자판 최대합 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int num = kb.nextInt();
@@ -660,8 +660,58 @@ public class MainAlgorithm {
 
         max = Math.max(max, Math.max(diagonalT, diagonalB));
         return max;
-    }
+    }*/
     // 9. 격자판 최대합 END
+
+    // 10. 봉우리 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        int[][] numbers = new int[num][num];
+        for (int i = 0; i < num; i++) {
+            for (int j = 0; j < num; j++) {
+                numbers[i][j] = kb.nextInt();
+            }
+        }
+
+        System.out.print(T.solution(num, numbers));
+    }
+
+    public int solution(int num,
+                        int[][] numbers) {
+        int result = 0;
+
+        int[] checkH = {-1, 0, 1, 0};
+        int[] checkW = {0, 1, 0, -1};
+
+        for (int i = 0; i < num; i++) {
+            for (int j = 0; j < num; j++) {
+                boolean isBong = true;
+                int target = numbers[i][j];
+                for (int k = 0; k < checkH.length; k++) {
+                    int tempI = i + checkH[k];
+                    int tempJ = j + checkW[k];
+                    if (tempI < 0 || tempI >= num || tempJ < 0 || tempJ >= num) {
+                        continue;
+                    }
+
+                    if (target <= numbers[tempI][tempJ]) {
+                        isBong = false;
+                        break;
+                    }
+                }
+
+                if (isBong) {
+                    j++;
+                    result++;
+                }
+            }
+        }
+
+        return result;
+    }
+    // 10. 봉우리 END
 
 
 }
