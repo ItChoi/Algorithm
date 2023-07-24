@@ -487,7 +487,7 @@ public class MainAlgorithm {
     // 5. 소수(에라토스테네스 체) END
 
     // 6. 뒤집은 소수 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int num = kb.nextInt();
@@ -552,8 +552,68 @@ public class MainAlgorithm {
         return numbers.stream()
             .max(Comparator.comparing(Integer::intValue))
             .orElse(0);
-    }
+    }*/
     // 6. 뒤집은 소수 END
 
+    // 7. 점수계산 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        List<Integer> numbers = new ArrayList<>(num);
+        for (int i = 0; i < num; i++) {
+            numbers.add(kb.nextInt());
+        }
+
+        System.out.println(T.solution(num, numbers));
+    }
+
+    public int solution(int num,
+                        List<Integer> numbers) {
+        int result = 0;
+
+        int k = 0;
+        for (Integer number : numbers) {
+            if (number == 0) {
+                k = 0;
+                continue;
+            }
+
+            result += 1 + k++;
+        }
+
+        return result;
+    }*/
+    // 7. 점수계산 END
+
+    // 8. 등수구하기 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        List<Integer> numbers = new ArrayList<>(num);
+        for (int i = 0; i < num; i++) {
+            numbers.add(kb.nextInt());
+        }
+
+        for (Integer integer : T.solution(num, numbers)) {
+            System.out.print(integer + " ");
+        }
+    }
+
+    public List<Integer> solution(int num,
+                                  List<Integer> numbers) {
+        /**
+         * 87 89 92 100 76
+         *  4  3  2   1  5
+         */
+        List<Integer> result = new ArrayList<>();
+
+
+
+
+        return result;
+    }
+    // 8. 등수구하기 END
 
 }
