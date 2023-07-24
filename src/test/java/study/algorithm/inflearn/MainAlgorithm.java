@@ -587,7 +587,7 @@ public class MainAlgorithm {
     // 7. 점수계산 END
 
     // 8. 등수구하기 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int num = kb.nextInt();
@@ -603,17 +603,65 @@ public class MainAlgorithm {
 
     public List<Integer> solution(int num,
                                   List<Integer> numbers) {
-        /**
-         * 87 89 92 100 76
-         *  4  3  2   1  5
-         */
         List<Integer> result = new ArrayList<>();
 
+        int numberSize = numbers.size();
+        for (int i = 0; i < numberSize; i++) {
+            int score = 1;
+            Integer target = numbers.get(i);
+            for (int j = 0; j < numberSize; j++) {
+                if (i == j) continue;
 
+                if (target < numbers.get(j)) score++;
+            }
 
+            result.add(score);
+        }
 
         return result;
-    }
+    }*/
     // 8. 등수구하기 END
+
+    // 9. 격자판 최대합 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        int[][] numbers = new int[num][num];
+        for (int i = 0; i < num; i++) {
+            for (int j = 0; j < num; j++) {
+                numbers[i][j] = kb.nextInt();
+            }
+        }
+
+        System.out.print(T.solution(num, numbers));
+    }
+
+    public int solution(int num,
+                        int[][] numbers) {
+        int max = 0;
+
+        int diagonalT = 0;
+        int diagonalB = 0;
+        for (int i = 0; i < num; i++) {
+            int width = 0;
+            int height = 0;
+
+            for (int j = 0; j < num; j++) {
+                width += numbers[i][j];
+                height += numbers[j][i];
+            }
+
+            diagonalT += numbers[i][i];
+            diagonalB += numbers[num - i - 1][num - i - 1];
+
+            max = Math.max(max, Math.max(width, height));
+        }
+
+        max = Math.max(max, Math.max(diagonalT, diagonalB));
+        return max;
+    }
+    // 9. 격자판 최대합 END
+
 
 }
