@@ -664,7 +664,7 @@ public class MainAlgorithm {
     // 9. 격자판 최대합 END
 
     // 10. 봉우리 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int num = kb.nextInt();
@@ -710,8 +710,86 @@ public class MainAlgorithm {
         }
 
         return result;
-    }
+    }*/
     // 10. 봉우리 END
 
+    // 11. 임시반장 정하기 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int num = kb.nextInt();
+        int[][] numbers = new int[num][5];
+        for (int i = 0; i < num; i++) {
+            for (int j = 0; j < 5; j++) {
+                numbers[i][j] = kb.nextInt();
+            }
+        }
+
+        System.out.print(T.solution(num, numbers));
+    }
+
+    public int solution(int num,
+                        int[][] numbers) {
+        int result = 1;
+        int max = 0;
+        int numLeng = numbers.length;
+        for (int i = 0; i < numLeng; i++) {
+            int[] ch = new int[numLeng];
+
+            for (int j = 0; j < numbers[i].length; j++) {
+                int target = numbers[i][j];
+
+                for (int k = 0; k < numLeng; k++) {
+                    if (i == k) continue;
+                    if (ch[k] == 1) continue;
+
+                    int compare = numbers[k][j];
+                    if (target == compare) {
+                        ch[k] = 1;
+                    }
+                }
+            }
+
+            int temp = 0;
+            for (int c : ch) {
+                if (c == 1) temp++;
+            }
+
+            if (max < temp) {
+                max = temp;
+                result = i + 1;
+            }
+        }
+
+        return result;
+    }*/
+    // 11. 임시반장 정하기 END
+
+    // 12. 멘토링 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int width = kb.nextInt();
+        int height = kb.nextInt();
+        int[][] numbers = new int[height][width];
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = 0; j < numbers[i].length; j++) {
+                numbers[i][j] = kb.nextInt();
+            }
+        }
+
+        System.out.print(T.solution(width, height, numbers));
+    }
+
+    public int solution(int width,
+                        int height,
+                        int[][] numbers) {
+        int result = 1;
+
+
+
+        return result;
+    }
+    // 12. 멘토링 END
 
 }
