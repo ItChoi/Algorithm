@@ -769,24 +769,41 @@ public class MainAlgorithm {
     public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
-        int width = kb.nextInt();
-        int height = kb.nextInt();
-        int[][] numbers = new int[height][width];
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[][] numbers = new int[m][n];
         for (int i = 0; i < numbers.length; i++) {
             for (int j = 0; j < numbers[i].length; j++) {
                 numbers[i][j] = kb.nextInt();
             }
         }
 
-        System.out.print(T.solution(width, height, numbers));
+        System.out.println(T.solution(n, m, numbers));
     }
 
-    public int solution(int width,
-                        int height,
+    public int solution(int n,
+                        int m,
                         int[][] numbers) {
-        int result = 1;
+        int result = 0;
 
+        for (int i = 1; i <= n; i++) {
+            int[] ch = new int[n + 1];
+            ch[0] = 1;
 
+            for (int j = 0; j < m; j++) {
+
+                boolean isEnd = false;
+                for (int k = 0; k < n; k++) {
+                    int compareNum = numbers[j][k];
+                    if (i == compareNum) isEnd = true;
+                    if (isEnd) ch[compareNum] = 1;
+                }
+            }
+
+            for (int c = 0; c < ch.length; c++) {
+                if (ch[c] == 0) result++;
+            }
+        }
 
         return result;
     }
