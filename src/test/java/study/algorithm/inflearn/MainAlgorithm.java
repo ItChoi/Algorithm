@@ -766,7 +766,7 @@ public class MainAlgorithm {
     // 11. 임시반장 정하기 END
 
     // 12. 멘토링 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -806,7 +806,92 @@ public class MainAlgorithm {
         }
 
         return result;
-    }
+    }*/
     // 12. 멘토링 END
+
+    // 1. 두 배열 합치기 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] numbers1 = new int[n];
+        for (int i = 0; i < numbers1.length; i++) {
+            numbers1[i] = kb.nextInt();
+        }
+
+        int m = kb.nextInt();
+        int[] numbers2 = new int[m];
+        for (int i = 0; i < numbers2.length; i++) {
+            numbers2[i] = kb.nextInt();
+        }
+
+        for (int i : T.solution(n, numbers1, m, numbers2)) {
+            System.out.print(i + " ");
+        }
+    }
+
+    public int[] solution(int n,
+                        int[] numbers1,
+                        int m,
+                        int[] numbers2) {
+        int size = n + m;
+        int[] result = new int[size];
+
+        int i = 0;
+        int lt = 0;
+        int rt = 0;
+        while (i < size) {
+            if (lt >= n || numbers1[lt] > numbers2[rt]) {
+                result[i++] = numbers2[rt++];
+            } else {
+                result[i++] = numbers1[lt++];
+            }
+        }
+
+        return result;
+    }*/
+    // 1. 두 배열 합치기 END
+
+    // 2. 공통원소 구하기 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] numbers1 = new int[n];
+        for (int i = 0; i < numbers1.length; i++) {
+            numbers1[i] = kb.nextInt();
+        }
+
+        int m = kb.nextInt();
+        int[] numbers2 = new int[m];
+        for (int i = 0; i < numbers2.length; i++) {
+            numbers2[i] = kb.nextInt();
+        }
+
+        for (int i : T.solution(n, numbers1, m, numbers2)) {
+            System.out.print(i + " ");
+        }
+    }
+
+    public int[] solution(int n,
+                          int[] numbers1,
+                          int m,
+                          int[] numbers2) {
+        int minSize = Math.min(n, m);
+        int maxSize = Math.max(n, m);
+        int[] result = new int[minSize];
+
+        Arrays.sort(numbers1);
+        Arrays.sort(numbers2);
+
+        int i = 0;
+        int lt = 0;
+        int rt = 0;
+
+
+        return result;
+    }
+    // 2. 공통원소 구하기 END
+
 
 }
