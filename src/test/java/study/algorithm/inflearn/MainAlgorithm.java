@@ -853,7 +853,7 @@ public class MainAlgorithm {
     // 1. 두 배열 합치기 END
 
     // 2. 공통원소 구하기 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -873,25 +873,245 @@ public class MainAlgorithm {
         }
     }
 
-    public int[] solution(int n,
+    public List<Integer> solution(int n,
                           int[] numbers1,
                           int m,
                           int[] numbers2) {
-        int minSize = Math.min(n, m);
-        int maxSize = Math.max(n, m);
-        int[] result = new int[minSize];
+        List<Integer> result = new ArrayList<>(Math.max(n, m));
 
         Arrays.sort(numbers1);
         Arrays.sort(numbers2);
 
-        int i = 0;
+        int lt = 0;
+        int rt = 0;
+        int lNum = numbers1[lt];
+        int rNum = numbers2[rt];
+        while (lt < n && rt < m) {
+            if (lNum == rNum) {
+                lt++;
+                rt++;
+                result.add(lNum);
+            } else if (lNum < rNum) {
+                lt++;
+            } else {
+                rt++;
+            }
+
+            if (lt < n) {
+                lNum = numbers1[lt];
+            }
+
+            if (rt < m) {
+                rNum = numbers2[rt];
+            }
+        }
+
+        return result;
+    }*/
+    // 2. 공통원소 구하기 END
+
+    // 3. 최대 매출 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] numbers = new int[n];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = kb.nextInt();
+        }
+
+        System.out.print(T.solution(n, k, numbers));
+    }
+
+    public int solution(int n,
+                        int k,
+                        int[] numbers) {
+        int max = 0;
+        for (int i = 0; i < k; i++) {
+            max += numbers[i];
+        }
+
+        int temp = max;
+        for (int i = 0; i < n - k; i++) {
+            temp -= numbers[i];
+            temp += numbers[i + k];
+            max = Math.max(max, temp);
+        }
+
+        return max;
+    }*/
+    // 3. 최대 매출 END
+
+    // 4. 연속 부분수열 START - 에디풀이
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] numbers = new int[n];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = kb.nextInt();
+        }
+
+        System.out.print(T.solution(n, k, numbers));
+    }
+
+    public int solution(int n,
+                        int k,
+                        int[] numbers) {
+        int result = 0;
         int lt = 0;
         int rt = 0;
 
+        while(rt<=n){
+            int sum = 0;
+            for (int i = lt; i < rt; i++){
+                sum += numbers[i];
+
+            }
+            if(sum == k){
+                result += 1;
+                rt += 1;
+            }
+            else if (sum < k) {
+                rt += 1;
+            }
+            else{
+                lt += 1;
+            }
+        }
 
         return result;
+    }*/
+    // 4. 연속 부분수열 END
+
+    // 4. 연속 부분수열 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] numbers = new int[n];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = kb.nextInt();
+        }
+
+        System.out.print(T.solution(n, k, numbers));
     }
-    // 2. 공통원소 구하기 END
+
+    public int solution(int n,
+                        int k,
+                        int[] numbers) {
+        int result = 0;
+
+        int checkNumber = numbers[0];
+
+        int lt = 0;
+        for (int rt = 1; rt < n; rt++) {
+            checkNumber += numbers[rt];
+            if (checkNumber == k) {
+                result++;
+            } else if (checkNumber > k) {
+                while (checkNumber > k) {
+                    checkNumber -= numbers[lt++];
+                    if (checkNumber == k) {
+                        result++;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }*/
+    // 4. 연속 부분수열 END
+
+    // 5. 연속된 자연수의 합 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        System.out.print(T.solution(n));
+    }
+
+    public int solution(int n) {
+        int result = 0;
+
+        int checkNumber = 0;
+
+        int lt = 1;
+        for (int i = 1; i < n; i++) {
+            checkNumber += i;
+            if (checkNumber == n) {
+                result++;
+            } else if (checkNumber > n) {
+                while (checkNumber > n) {
+                    checkNumber -= lt++;
+                    if (checkNumber == n) {
+                        result++;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }*/
+    // 5. 연속된 자연수의 합 END
+
+    // 6. 최대 길이 연속부분수열 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] numbers = new int[n];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = kb.nextInt();
+        }
+
+        System.out.print(T.solution(n, k, numbers));
+    }
+
+    public int solution(int n,
+                        int k,
+                        int[] numbers) {
+        int max = 0;
+
+        int tempK = k;
+        int length = 0;
+        int lt = 0;
+        for (int rt = 0; rt < n; rt++) {
+            if (numbers[rt] == 1) {
+                length++;
+            } else {
+                if (lt == 0) {
+                    lt = rt;
+                }
+
+                if (tempK > 0) {
+                    length++;
+                    tempK--;
+                } else {
+                    lt++;
+                    if (numbers[lt] == 0) {
+                        length--;
+                    }
+                    while (numbers[lt] == 1) {
+                        lt++;
+                        length--;
+                    }
+                    tempK++;
+                }
+
+            }
+
+            max = Math.max(max, length);
+        }
+
+        return max;
+    }
+    // 6. 최대 길이 연속부분수열 END
 
 
 }
