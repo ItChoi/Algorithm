@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -884,25 +886,15 @@ public class MainAlgorithm {
 
         int lt = 0;
         int rt = 0;
-        int lNum = numbers1[lt];
-        int rNum = numbers2[rt];
         while (lt < n && rt < m) {
-            if (lNum == rNum) {
+            if (numbers1[lt] == numbers2[rt]) {
+                result.add(numbers1[lt]);
                 lt++;
                 rt++;
-                result.add(lNum);
-            } else if (lNum < rNum) {
+            } else if (numbers1[lt] < numbers2[rt]) {
                 lt++;
             } else {
                 rt++;
-            }
-
-            if (lt < n) {
-                lNum = numbers1[lt];
-            }
-
-            if (rt < m) {
-                rNum = numbers2[rt];
             }
         }
 
@@ -1060,7 +1052,7 @@ public class MainAlgorithm {
     // 5. 연속된 자연수의 합 END
 
     // 6. 최대 길이 연속부분수열 START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1093,15 +1085,11 @@ public class MainAlgorithm {
                     length++;
                     tempK--;
                 } else {
+                    length = rt - (lt);
                     lt++;
-                    if (numbers[lt] == 0) {
-                        length--;
-                    }
                     while (numbers[lt] == 1) {
                         lt++;
-                        length--;
                     }
-                    tempK++;
                 }
 
             }
@@ -1110,8 +1098,31 @@ public class MainAlgorithm {
         }
 
         return max;
-    }
+    }*/
     // 6. 최대 길이 연속부분수열 END
 
+    // 1. 학급 회장(해쉬) START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        String k = kb.next();
+
+        System.out.print(T.solution(n, k));
+    }
+
+    public String solution(int n,
+                           String k) {
+        Map<Character, Integer> hash = new HashMap<>();
+        for (char c : k.toCharArray()) {
+            hash.put(c, hash.getOrDefault(c, 0) + 1);
+        }
+
+        return hash.entrySet().stream()
+            .max(Map.Entry.comparingByValue())
+            .map(Map.Entry::getKey)
+            .orElse('0').toString();
+    }
+    // 1. 학급 회장(해쉬) END
 
 }
