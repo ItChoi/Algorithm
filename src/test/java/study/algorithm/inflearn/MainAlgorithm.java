@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * 자바(Java) 알고리즘 문제풀이 입문: 코딩테스트 대비 - 김태원 (인프런 강의) -> 재복습
@@ -1102,7 +1104,7 @@ public class MainAlgorithm {
     // 6. 최대 길이 연속부분수열 END
 
     // 1. 학급 회장(해쉬) START
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1122,7 +1124,79 @@ public class MainAlgorithm {
             .max(Map.Entry.comparingByValue())
             .map(Map.Entry::getKey)
             .orElse('0').toString();
-    }
+    }*/
     // 1. 학급 회장(해쉬) END
 
+    // 2. 아나그램(해쉬) START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        String n = kb.next();
+        String k = kb.next();
+
+        System.out.print(T.solution(n, k));
+    }*/
+
+    /* 정렬로 문제 풀기
+    public String solution(String n,
+                           String k) {
+
+        char[] nCharArray = n.toCharArray();
+        char[] kCharArray = k.toCharArray();
+        Arrays.sort(nCharArray);
+        Arrays.sort(kCharArray);
+
+        for (int i = 0; i < n.length(); i++) {
+            if (nCharArray[i] != kCharArray[i]) {
+                return "NO";
+            }
+        }
+
+        return "YES";
+    }*/
+    /*public String solution(String n,
+                           String k) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : n.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : k.toCharArray()) {
+            Integer integer = map.get(c);
+            if (integer == null || integer <= 0) {
+                return "NO";
+            }
+
+            map.put(c, integer - 1);
+        }
+
+        return "YES";
+    }*/
+    // 2. 아나그램(해쉬) END
+
+    // 3. 매출액의 종류 START
+    public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] numbers = new int[n];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = kb.nextInt();
+        }
+
+        System.out.print(T.solution(n, k, numbers));
+    }
+
+    public int[] solution(int n,
+                          int k,
+                          int[] numbers) {
+
+        for (int i = 0; i < n - k; ) {
+
+        }
+
+        return null;
+    }
+    // 3. 매출액의 종류 END
 }
