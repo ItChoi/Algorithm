@@ -2265,13 +2265,13 @@ public class Level2 {
     @Test
     void 카펫() {
 
-        System.out.println("test12: " + Math.sqrt(12));
-        System.out.println("test9: " + Math.sqrt(9));
-        System.out.println("test48: " + Math.sqrt(48));
-        System.out.println("test56: " + Math.sqrt(56));
-        System.out.println("test28: " + Math.sqrt(28));
-        System.out.println("test72: " + Math.sqrt(72));
-        System.out.println("test25: " + Math.sqrt(25));
+        System.out.println("test12(4,3): " + Math.sqrt(12));
+        System.out.println("test9(3,3): " + Math.sqrt(9));
+        System.out.println("test48(8,6): " + Math.sqrt(48));
+        System.out.println("test56(8,7): " + Math.sqrt(56));
+        System.out.println("test28(7,4): " + Math.sqrt(28));
+        System.out.println("test72(24,3): " + Math.sqrt(72));
+        System.out.println("test25(5,5): " + Math.sqrt(25));
 //        for (int result : 카펫(10, 2)) {
 //            System.out.println("result [4, 3]: " + result);
 //        }
@@ -2303,13 +2303,94 @@ public class Level2 {
     }
 
     public int[] 카펫(int brown, int yellow) {
-        int sum = brown + yellow;
+        int total = brown + yellow;
         int width = 3;
         int height = 3;
+
+        for (int i = width; i < total; i++) {
+            if (total % i == 0) {
+                width = total / i;
+                height = i;
+
+                if (yellow == (width - 2) * (height - 2)) {
+                    break;
+                }
+            }
+        }
 
         return new int[] {width, height};
     }
     // 완전탐색 카펫 END
+
+    // 탐욕법(Greedy) - 구명보트 START
+    @Test
+    public void 구명보트() {
+//        System.out.println("[3] result: " + 구명보트(new int[] {70, 50, 80, 50}, 100));
+        System.out.println("[3] result: " + 구명보트(new int[] {70, 80, 60}, 100));
+    }
+
+    public int 구명보트(int[] people,
+                    int limit) {
+        Arrays.sort(people);
+        int answer = 0;
+
+        int lt = 0;
+        int rt = people.length - 1;
+        while (lt <= rt) {
+            int lWeight = people[lt];
+            int rWeight = people[rt];
+
+            if (lWeight + rWeight > limit) {
+                rt--;
+            } else {
+                lt++;
+                rt--;
+            }
+
+            answer++;
+        }
+
+        return answer;
+    }
+    // 탐욕법(Greedy) - 구명보트 END
+
+    // 2017 팁스타운 - 예상 대진표 START
+    @Test
+    void 예상_대진표() {
+        System.out.println("[3]result: " + 예상_대진표(8, 4, 7));
+    }
+
+    public int 예상_대진표(int n,
+                        int a,
+                        int b) {
+        int answer = 0;
+
+        while (a != b) {
+            a = (a + 1) / 2;
+            b = (b + 1) / 2;
+            answer++;
+        }
+
+        return answer;
+    }
+    // 2017 팁스타운 - 예상 대진표 END
+
+    // 귤 고르기 START
+    @Test
+    void 귤_고르기() {
+        System.out.println("[6]result: " + 귤_고르기(6, new int[] {1,3,2,5,4,5,2,3}));
+        System.out.println("[4]result: " + 귤_고르기(4, new int[] {1,3,2,5,4,5,2,3}));
+        System.out.println("[2]result: " + 귤_고르기(2, new int[] {1,1,1,1,2,2,2,3}));
+    }
+
+    public int 귤_고르기(int k,
+                     int[] tangerine) {
+        int answer = 0;
+
+
+        return answer;
+    }
+    // 귤 고르기 END
 }
 
 
