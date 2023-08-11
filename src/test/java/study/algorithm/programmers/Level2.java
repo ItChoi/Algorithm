@@ -2378,19 +2378,182 @@ public class Level2 {
     // 귤 고르기 START
     @Test
     void 귤_고르기() {
-        System.out.println("[6]result: " + 귤_고르기(6, new int[] {1,3,2,5,4,5,2,3}));
-        System.out.println("[4]result: " + 귤_고르기(4, new int[] {1,3,2,5,4,5,2,3}));
-        System.out.println("[2]result: " + 귤_고르기(2, new int[] {1,1,1,1,2,2,2,3}));
+        System.out.println("[3]result: " + 귤_고르기(6, new int[] {1,3,2,5,4,5,2,3}));
+//        System.out.println("[2]result: " + 귤_고르기(4, new int[] {1,3,2,5,4,5,2,3}));
+//        System.out.println("[1]result: " + 귤_고르기(2, new int[] {1,1,1,1,2,2,2,3}));
     }
 
     public int 귤_고르기(int k,
                      int[] tangerine) {
         int answer = 0;
 
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < tangerine.length; i++) {
+            int number = tangerine[i];
+            map.put(number, map.getOrDefault(number, 0) + 1);
+        }
+
+        List<Integer> list = new ArrayList<>();
+        for (Integer key : map.keySet()) {
+            Integer number = map.get(key);
+            list.add(number);
+        }
+
+        list.sort(Comparator.reverseOrder());
+        for (Integer quantity : list) {
+            if (quantity > k) {
+                break;
+            }
+
+            answer++;
+            k -= quantity;
+        }
+
+        if (k > 0) {
+            answer++;
+        }
 
         return answer;
     }
     // 귤 고르기 END
+
+    // 월간 코드 챌린지 시즌2 - 괄호 회전하기 START
+    @Test
+    void 괄호_회전하기() {
+//        System.out.println("[3]result: " + 괄호_회전하기("[](){}"));
+//        System.out.println("[2]result: " + 괄호_회전하기("}]()[{"));
+//        System.out.println("[0]result: " + 괄호_회전하기("[)(]"));
+//        System.out.println("[0]result: " + 괄호_회전하기("}}}"));
+        System.out.println("[0]result: " + 괄호_회전하기("{(["));
+    }
+    public int 괄호_회전하기(String s) {
+        int answer = 0;
+
+        String rotateS = s;
+        for (int i = 0; i < s.length(); i++) {
+            rotateS = rotateS.substring(1) + rotateS.substring(0, 1);
+
+            Stack<Character> stack = new Stack<>();
+            boolean isOk = true;
+            for (char c : rotateS.toCharArray()) {
+                if (c == '(' || c == '{' || c == '[') {
+                    stack.push(c);
+                    continue;
+                }
+
+                if (stack.isEmpty()) {
+                    isOk = false;
+                    break;
+                }
+
+                Character popC = stack.pop();
+                if (c == ')') {
+                    if (popC != '(') {
+                        isOk = false;
+                        break;
+                    }
+                }
+
+                if (c == '}') {
+                    if (popC != '{') {
+                        isOk = false;
+                        break;
+                    }
+                }
+
+                if (c == ']') {
+                    if (popC != '[') {
+                        isOk = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isOk && stack.isEmpty()) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌2 - 괄호 회전하기 END
+
+    // 연속 부분 수열 합의 개수 START
+    @Test
+    void 연속_부분_수열_합의_개수() {
+        System.out.println("[18] result: " + 연속_부분_수열_합의_개수(new int[] {7,9,1,1,4}));
+    }
+
+    public int 연속_부분_수열_합의_개수(int[] elements) {
+        Set<Integer> set = new HashSet<>();
+        int eLength = elements.length;
+        for (int i = 0; i < eLength; i++) {
+            int tempI = i;
+            int sum = 0;
+            for (int j = 1; j <= eLength; j++) {
+                sum += elements[tempI];
+                tempI = tempI + 1 >= eLength ? 0 : tempI + 1;
+
+                set.add(sum);
+            }
+        }
+
+        return set.size();
+    }
+    // 연속 부분 수열 합의 개수 END
+
+    // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 START
+    @Test
+    void n_제곱_배열_자르기() {
+        System.out.println("[3,2,2,3] result");
+        for (int i : n_제곱_배열_자르기(3, 2, 5)) {
+            System.out.println(i + " ");
+        }
+
+//        System.out.println("[4,3,3,3,4,4,4,4] result");
+//        for (int i : n_제곱_배열_자르기(4, 7, 14)) {
+//            System.out.println(i + " ");
+//        }
+    }
+    /* 시간 복잡도 실패 - 수식으로 풀어야 함
+    public int[] n_제곱_배열_자르기(int n, long left, long right) {
+        int nLeng = (int) (right - left) + 1;
+        int[] answer = new int[nLeng];
+
+        int[][] arr = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            int num = i + 1;
+            arr[i][i] = num;
+
+            for (int j = 0; j < i; j++) {
+                int k = i - (j + 1);
+                arr[k][i] = num;
+                arr[i][k] = num;
+            }
+        }
+
+        for (int i = 0; i < nLeng; i++) {
+            int idx = (int) left + i;
+            int w = idx / n;
+            int h = idx % n;
+            answer[i] = arr[w][h];
+        }
+
+        return answer;
+    }*/
+
+    public int[] n_제곱_배열_자르기(int n, long left, long right) {
+        int nLeng = (int) (right - left) + 1;
+        int[] answer = new int[nLeng];
+
+        int num = 1;
+        for (int i = 0; i < nLeng; i++) {
+
+        }
+
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 END
 }
 
 
