@@ -2554,6 +2554,147 @@ public class Level2 {
         return answer;
     }
     // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 END
+
+
+    // 할인 행사 START
+
+    /**
+     * 마트 -> 일정 금액 지불시 10일간 회원 자격 부여
+     * 마트 -> 매일 한 가지 제품 할인 행사 -> 할인 제품은 하루에 하나씩 구매 가능
+     * 이용자 -> 자신이 원하는 제품, 수량이 할인 날짜와 10일 연속 일치할 경우 회원가입
+     *
+     */
+    @Test
+    void 할인_행사() {
+        System.out.println("[3] result: " + 할인_행사(new String[] {"banana", "apple", "rice", "pork", "pot"}, new int[] {3, 2, 2, 2, 1},	new String[] {"chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"}));
+//        System.out.println("[0] result: " + 할인_행사(new String[] {"apple"},	new int[] {10},	new String[] {"banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana"}));
+//        System.out.println("[0] result: " + 할인_행사(new String[] {"apple"},	new int[] {10},	new String[] {"banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "apple"}));
+//        System.out.println("[0] result: " + 할인_행사(new String[] {"apple"},	new int[] {10},	new String[] {"banana", "apple", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "apple"}));
+//        System.out.println("[1] result: " + 할인_행사(new String[] {"banana", "apple"},	new int[] {9, 1},	new String[] {"banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "apple"}));
+//        System.out.println("[3] result: " + 할인_행사(new String[] {"banana", "apple"},	new int[] {8, 2},	new String[] {"chicken", "rice", "apple", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "apple", "banana"}));
+//        System.out.println("[0] result: " + 할인_행사(new String[] {"banana", "apple"},	new int[] {8, 2},	new String[] {"chicken", "rice", "apple", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "apple", "rice", "banana"}));
+//        System.out.println("[0] result: " + 할인_행사(new String[] {"banana", "apple"},	new int[] {8, 2},	new String[] {"chicken", "rice", "apple", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "rice", "apple"}));
+//        System.out.println("[0] result: " + 할인_행사(new String[] {"banana", "apple"},	new int[] {8, 2},	new String[] {"chicken", "rice", "apple", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "apple", "rice", "apple"}));
+//        System.out.println("[0] result: " + 할인_행사(new String[] {"banana", "apple"},	new int[] {7, 3},	new String[] {"apple", "apple", "apple", "apple", "apple", "banana", "banana", "banana", "banana", "banana", "banana", "rice", "banana"}));
+//        System.out.println("[11] result: " + 할인_행사(new String[] {"banana", "rice", "apple"},	new int[] {3, 4, 3},	new String[] {"apple", "apple", "apple", "apple", "apple", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "banana", "rice", "rice", "rice", "rice", "apple", "apple", "apple", "apple", "banana", "banana", "banana"}));
+//        System.out.println("[1] result: " + 할인_행사(new String[] {"banana", "pot"},	new int[] {3, 7},	new String[] {"banana", "pot", "pot", "pot", "pot", "pot", "pot", "pot", "banana", "banana", "pot", "pot", "pot", "pot", "pot", "pot", "pot", "banana"}));
+//        System.out.println("[9] result: " + 할인_행사(new String[] {"banana", "pot"},	new int[] {3, 7},	new String[] {"pot", "pot", "pot", "pot", "pot", "pot", "pot", "pot", "banana", "banana", "pot", "pot", "pot", "pot", "pot", "pot", "pot", "banana"}));
+    }
+
+    // 방법 1
+    /*public int 할인_행사(String[] want,
+                     int[] number,
+                     String[] discount) {
+        int answer = 0;
+
+        Map<String, Integer> basket = new HashMap<>();
+        int isNotClearCount = want.length;
+        for (int i = 0; i < want.length; i++) {
+            basket.put(want[i], number[i]);
+        }
+
+        int limitDay = 10;
+        for (int i = 0; i < limitDay; i++) {
+            String key = discount[i];
+            Integer num = basket.get(key);
+
+            if (num == null) {
+                continue;
+            }
+
+            basket.put(key, basket.get(key) - 1);
+
+            if (basket.get(key) == 0) {
+                isNotClearCount--;
+            }
+        }
+
+        if (isNotClearCount == 0) {
+            answer++;
+        }
+
+        for (int i = limitDay; i < discount.length; i++) {
+            String removeTargetKey = discount[i - limitDay];
+            Integer removeTargetNum = basket.get(removeTargetKey);
+            if (removeTargetNum != null) {
+                int num = basket.get(removeTargetKey) + 1;
+                basket.put(removeTargetKey, num);
+
+                if (num == 1) {
+                    isNotClearCount++;
+                }
+            }
+
+            String key = discount[i];
+            Integer num = basket.get(key);
+
+            if (num == null) {
+                continue;
+            }
+
+            basket.put(key, basket.get(key) - 1);
+
+            if (basket.get(key) == 0) {
+                isNotClearCount--;
+            }
+
+            if (isNotClearCount == 0) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }*/
+
+    // 방법 2
+    public int 할인_행사(String[] want,
+                     int[] number,
+                     String[] discount) {
+        int answer = 0;
+
+        int isClearKey = want.length;
+        Map<String, Integer> basket = new HashMap<>();
+        for (int i = 0; i < want.length; i++) {
+            basket.put(want[i], number[i]);
+        }
+
+        int lt = 0;
+        int rt = 0;
+        while (rt < discount.length) {
+            if (rt - lt >= 10) {
+                String restoreTarget = discount[lt];
+                Integer restoreNum = basket.get(restoreTarget);
+                if (restoreNum != null) {
+                    if (restoreNum == 0) {
+                        isClearKey++;
+                    }
+
+                    basket.put(restoreTarget, basket.get(restoreTarget) + 1);
+                }
+
+                lt++;
+            }
+
+            String targetKey = discount[rt++];
+            Integer targetNum = basket.get(targetKey);
+            if (targetNum == null) {
+                continue;
+            }
+
+            basket.put(targetKey, basket.getOrDefault(targetKey, 0) - 1);
+            if (basket.get(targetKey) == 0) {
+                isClearKey--;
+            }
+
+            if (isClearKey == 0) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+    // 할인 행사 END
+
 }
 
 
