@@ -2695,6 +2695,59 @@ public class Level2 {
     }
     // 할인 행사 END
 
+    @Test
+    void k진수에서_소수_개수_구하기() {
+        // n -> k 진수 변환 후 10진수 기준으로 소수인지 판단
+        System.out.println("[3] result: " + k진수에서_소수_개수_구하기(437674, 3));
+        //System.out.println("[2] result: " + k진수에서_소수_개수_구하기(110011, 10));
+
+    }
+
+    public int k진수에서_소수_개수_구하기(int n, int k) {
+        int answer = 0;
+        String number = Integer.toString(n, k).replaceAll("(0{2,})", "0");
+        List<Long> target = new ArrayList<>();
+
+        StringBuilder sb = new StringBuilder();
+        int numberLeng = number.length();
+        for (int i = 0; i < numberLeng; i++) {
+            char c = number.charAt(i);
+
+            if ((c == '0' && sb.length() > 0)) {
+                target.add(Long.parseLong(sb.toString()));
+                sb.setLength(0);
+                continue;
+            }
+            if (c != '0') {
+                sb.append(c);
+                if (i == numberLeng - 1) {
+                    target.add(Long.parseLong(sb.toString()));
+                }
+            }
+        }
+
+        for (Long num : target) {
+            boolean isPrime = true;
+            if (num == 1) {
+                isPrime = false;
+            } else if (num != 2) {
+                for (int j = 2; j <= (int) Math.sqrt(num); j++) {
+                    if (num % j == 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isPrime) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+
+
 }
 
 
