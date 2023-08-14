@@ -1175,6 +1175,32 @@ public class MainAlgorithm {
     // 2. 아나그램(해쉬) END
 
     // 3. 매출액의 종류 START
+    /*public static void main(String[] args) {
+        MainAlgorithm T = new MainAlgorithm();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] numbers = new int[n];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = kb.nextInt();
+        }
+
+        System.out.print(T.solution(n, k, numbers));
+    }
+
+    public int[] solution(int n,
+                          int k,
+                          int[] numbers) {
+
+        for (int i = 0; i < n - k; ) {
+
+        }
+
+        return null;
+    }*/
+    // 3. 매출액의 종류 END
+
+    // 1. 씨름 선수 START
     public static void main(String[] args) {
         MainAlgorithm T = new MainAlgorithm();
         Scanner kb = new Scanner(System.in);
@@ -1198,5 +1224,5 @@ public class MainAlgorithm {
 
         return null;
     }
-    // 3. 매출액의 종류 END
+    // 1. 씨름 선수 END
 }

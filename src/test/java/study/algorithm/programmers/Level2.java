@@ -2747,6 +2747,60 @@ public class Level2 {
         return answer;
     }
 
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] 압축 START
+    @Test
+    void 압축() {
+        // [11, 1, 27, 15]
+//        for (int a : 압축("KAKAO")) {
+//            System.out.println("result = " + a);
+//        }
+        // [20, 15, 2, 5, 15, 18, 14, 15, 20, 27, 29, 31, 36, 30, 32, 34]
+        for (int a : 압축("TOBEORNOTTOBEORTOBEORNOT")) {
+            System.out.println("result = " + a);
+        }
+        // [1, 2, 27, 29, 28, 31, 30]
+//        for (int a : 압축("ABABABABABABABAB")) {
+//            System.out.println("result = " + a);
+//        }
+    }
+
+    public int[] 압축(String msg) {
+        List<Integer> tempAnswer = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        int j = 1;
+        for (int i = 65; i <= 90; i++) {
+            String str = String.valueOf((char) i);
+            map.put(str, j++);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        Integer answer = null;
+        while (i < msg.length()) {
+            sb.append(msg.charAt(i));
+            if (map.containsKey(sb.toString())) {
+                answer = map.get(sb.toString());
+                i++;
+            } else {
+                tempAnswer.add(answer);
+                map.put(sb.toString(), map.size() + 1);
+                sb.setLength(0);
+            }
+        }
+
+        if (sb.length() > 0) {
+            tempAnswer.add(answer);
+        }
+
+        int tSize = tempAnswer.size();
+        int[] result = new int[tSize];
+        for (int k = 0; k < tSize; k++) {
+            result[k] = tempAnswer.get(k);
+        }
+
+        return result;
+    }
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] 압축 END
 
 }
 
