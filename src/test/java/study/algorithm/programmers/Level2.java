@@ -2802,6 +2802,47 @@ public class Level2 {
     }
     // 2018 KAKAO BLIND RECRUITMENT - [3차] 압축 END
 
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] n진수 게임 START
+    @Test
+    void n진수_게임() {
+        System.out.println("[0111] result: " + n진수_게임(2, 4, 2, 1));
+        System.out.println("[02468ACE11111111] result: " + n진수_게임(16, 16, 2, 1));
+        System.out.println("[13579BDF01234567] result: " + n진수_게임(16, 16, 2, 2));
+    }
+
+    public String n진수_게임(int n,
+                         int t,
+                         int m,
+                         int p) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < t * m; i++) {
+            sb.append(Integer.toString(i, n).toUpperCase());
+        }
+
+        StringBuilder result = new StringBuilder();
+        String sbStr = sb.toString();
+        for (int i = p - 1; i < sbStr.length(); i += m) {
+            if (result.length() >= t) {
+                break;
+            }
+            result.append(sbStr.charAt(i));
+        }
+
+        return result.toString();
+    }
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] n진수 게임 END
+
+    // 2022 KAKAO BLIND RECRUITMENT - 주차 요금 계산 START
+    @Test
+    void 주차_요금_계산() {
+
+    }
+
+    public int[] 주차_요금_계산(int[] fees, String[] records) {
+        int[] answer = {};
+        return answer;
+    }
+    // 2022 KAKAO BLIND RECRUITMENT - 주차 요금 계산 END
 }
 
 
