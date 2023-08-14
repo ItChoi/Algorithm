@@ -2,7 +2,11 @@ package study.algorithm.programmers;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
@@ -2835,11 +2839,74 @@ public class Level2 {
     // 2022 KAKAO BLIND RECRUITMENT - 주차 요금 계산 START
     @Test
     void 주차_요금_계산() {
-
+        // result [14600, 34400, 5000]
+        for (int s : 주차_요금_계산(new int[] {180, 5000, 10, 600}, new String[] {"05:34 5961 IN", "06:00 0000 IN", "06:34 0000 OUT", "07:59 5961 OUT", "07:59 0148 IN", "18:59 0000 IN", "19:09 0148 OUT", "22:59 5961 IN", "23:00 5961 OUT"})) {
+            System.out.println("s = " + s);
+        }
     }
 
     public int[] 주차_요금_계산(int[] fees, String[] records) {
-        int[] answer = {};
+        Map<String, Long> totalFeeWithId = new HashMap<>();
+        Map<String, List<String>> groupWithId = new ConcurrentHashMap<>();
+        for (int i = 0; i < records.length; i++) {
+            String[] record = records[i].split(" ");
+            String id = record[1];
+
+            List<String> group = groupWithId.getOrDefault(id, new ArrayList<>());
+            group.add(records[i]);
+            groupWithId.put(id, group);
+        }
+
+        for (String groupKey : groupWithId.keySet()) {
+            boolean isOut = false;
+            LocalTime startTime = null;
+            LocalTime endTime = null;
+
+            for (String recordInGroup : groupWithId.get(groupKey)) {
+                String[] record = recordInGroup.split(" ");
+                String time = record[0];
+                String type = record[2];
+
+                if ("IN".equals(type)) {
+                    isOut = false;
+                    startTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
+                } else {
+                    isOut = true;
+                    endTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
+                    totalFeeWithId.put(groupKey, totalFeeWithId.getOrDefault(groupKey, 0L) + Duration.between(startTime, endTime).getSeconds());
+                }
+            }
+
+            if (!isOut) {
+                endTime = LocalTime.parse("23:59", DateTimeFormatter.ofPattern("HH:mm"));
+                totalFeeWithId.put(groupKey, totalFeeWithId.getOrDefault(groupKey, 0L) + Duration.between(startTime, endTime).getSeconds());
+            }
+        }
+
+        List<String> list = new ArrayList<>(totalFeeWithId.keySet());
+        Collections.sort(list);
+
+        int baseTime = fees[0];
+        int baseFee = fees[1];
+        int unitTime = fees[2];
+        int unitFee = fees[3];
+        int[] answer = new int[list.size()];
+        int i = 0;
+        for (String key : list) {
+            Long totalSeconds = totalFeeWithId.get(key);
+            int useTime = (int) (totalSeconds / 60) - baseTime;
+            if (useTime <= 0) {
+                answer[i++] = baseFee;
+                continue;
+            }
+            int calculateFee = baseFee + useTime / unitTime * unitFee;
+            if (useTime % unitTime > 0) {
+                calculateFee += unitFee;
+            }
+
+            answer[i++] = calculateFee;
+        }
+
         return answer;
     }
     // 2022 KAKAO BLIND RECRUITMENT - 주차 요금 계산 END
