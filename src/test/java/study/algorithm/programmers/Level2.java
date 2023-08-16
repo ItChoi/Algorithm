@@ -2910,6 +2910,69 @@ public class Level2 {
         return answer;
     }
     // 2022 KAKAO BLIND RECRUITMENT - 주차 요금 계산 END
+
+    // 깊이/너비 우선 탐색(DFS/BFS) - 게임 맵 최단거리 START
+    @Test
+    void 게임_맵_최단거리() {
+        System.out.println("[11] result: " + 게임_맵_최단거리(new int[][] {
+                {1,0,1,1,1},
+                {1,0,1,0,1},
+                {1,0,1,1,1},
+                {1,1,1,0,1},
+                {0,0,0,0,1}
+        }));
+        System.out.println("[-1] result: " + 게임_맵_최단거리(new int[][] {
+                {1,0,1,1,1},
+                {1,0,1,0,1},
+                {1,0,1,1,1},
+                {1,1,1,0,0},
+                {0,0,0,0,1}
+        }));
+    }
+
+    public int 게임_맵_최단거리(int[][] maps) {
+        int[] dx = {0, 1, 0, -1};
+        int[] dy = {1, 0, -1, 0};
+
+        int n = maps.length;
+        int m = maps[0].length;
+        int[][] ch = new int[n][m];
+        int w = 0;
+        int h = 0;
+
+        Queue<int[]> que = new LinkedList<>();
+        que.offer(new int[]{w, h});
+
+        while (!que.isEmpty()) {
+            int[] target = que.poll();
+
+            int targetPrefix = target[0];
+            int targetSuffix = target[1];
+            int value = ch[targetPrefix][targetSuffix] + 1;
+
+            for (int j = 0; j < dx.length; j++) {
+                int tempW = targetPrefix + dx[j];
+                int tempH = targetSuffix + dy[j];
+
+                if (tempW < 0 || tempH < 0 || tempW >= n || tempH >= m || maps[tempW][tempH] == 0) {
+                    continue;
+                }
+
+                if (ch[tempW][tempH] == 0 || ch[tempW][tempH] > value) {
+                    que.offer(new int[] {tempW, tempH});
+                    ch[tempW][tempH] = value;
+                    maps[tempW][tempH] = 0;
+                }
+            }
+        }
+
+
+        return ch[n - 1][m - 1] == 0 ? -1 : ch[n - 1][m - 1] + 1;
+    }
+
+
+    // 깊이/너비 우선 탐색(DFS/BFS) - 게임 맵 최단거리 END
+
 }
 
 
