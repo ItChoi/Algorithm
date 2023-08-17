@@ -2973,6 +2973,53 @@ public class Level2 {
 
     // 깊이/너비 우선 탐색(DFS/BFS) - 게임 맵 최단거리 END
 
+    // 완전탐색 모음사전 START
+    boolean is_모음사전 = false;
+    int 모음사전_result = 0;
+    @Test
+    void 모음사전() {
+//        System.out.println("[6] result: " + 모음사전("AAAAE"));
+//        System.out.println("[10] result: " + 모음사전("AAAE"));
+//        System.out.println("[1563] result: " + 모음사전("I"));
+        System.out.println("[1189] result: " + 모음사전("EIO"));
+    }
+
+    public int 모음사전(String word) {
+        final String AEIOU = "AEIOU";
+
+        모음사전("", 0, word, AEIOU);
+
+        return 모음사전_result;
+    }
+
+    public void 모음사전(String target,
+                      int idx,
+                      String word,
+                      String AEIOU) {
+        if (is_모음사전) {
+            return;
+        }
+
+        if (target.equals(word)) {
+            is_모음사전 = true;
+            return;
+        }
+
+        if (target.length() >= AEIOU.length()) {
+            return;
+        }
+
+        for (int i = 0; i < AEIOU.length(); i++) {
+            String newTarget = target + AEIOU.charAt(i);
+            모음사전_result++;
+            모음사전(newTarget, i, word, AEIOU);
+            if (is_모음사전) {
+                break;
+            }
+        }
+    }
+    // 완전탐색 모음사전 END
+
 }
 
 
