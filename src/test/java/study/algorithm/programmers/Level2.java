@@ -3020,6 +3020,42 @@ public class Level2 {
     }
     // 완전탐색 모음사전 END
 
+    // 뒤에 있는 큰 수 찾기 START
+    @Test
+    void 뒤에_있는_큰_수_찾기() {
+        // result : [3, 5, 5, -1]
+        for (int i : 뒤에_있는_큰_수_찾기(new int[]{2, 3, 3, 5})) {
+            System.out.print(i + " ");
+        }
+
+        System.out.println();
+        // result : [-1, 5, 6, 6, -1, -1]
+        for (int i : 뒤에_있는_큰_수_찾기(new int[] {9, 1, 5, 3, 6, 2})) {
+            System.out.print(i + " ");
+        }
+    }
+
+    public int[] 뒤에_있는_큰_수_찾기(int[] numbers) {
+        // [ index, value ] 배열을 value 오름차순으로 담는 prioriryQueue선언
+        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+        for (int i = 0; i < numbers.length; i++) {
+            int target = numbers[i];
+
+            while (!queue.isEmpty() && queue.peek()[1] < target) {
+                numbers[queue.poll()[0]] = target;
+            }
+
+            queue.offer(new int[] {i, target});
+        }
+
+        while(!queue.isEmpty()) {
+            numbers[queue.poll()[0]] = -1;
+        }
+
+        return numbers;
+    }
+    // 뒤에 있는 큰 수 찾기 END
+
 }
 
 
