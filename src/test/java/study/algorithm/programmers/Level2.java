@@ -1,6 +1,8 @@
 package study.algorithm.programmers;
 
+import org.apache.logging.log4j.util.PropertySource;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.StringUtils;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -8,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -3055,6 +3059,104 @@ public class Level2 {
         return numbers;
     }
     // 뒤에 있는 큰 수 찾기 END
+
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] 파일명 정렬 START
+    @Test
+    void 파일명_정렬() {
+        // result: ["img1.png", "IMG01.GIF", "img02.png", "img2.JPG", "img10.png", "img12.png"]
+//        for (String a : 파일명_정렬(new String[] {"img12.png", "img10.png", "img02.png", "img1.png", "IMG01.GIF", "img2.JPG"})) {
+//            System.out.println(a + " ");
+//        }
+//        System.out.println();
+
+        //result: ["A-10 Thunderbolt II", "B-50 Superfortress", "F-5 Freedom Fighter", "F-14 Tomcat"]
+//        for (String b : 파일명_정렬(new String[] {"F-5 Freedom Fighter", "B-50 Superfortress", "A-10 Thunderbolt II", "F-14 Tomcat"})) {
+//            System.out.println(b + " ");
+//        }
+//        System.out.println();
+
+//        for (String b : 파일명_정렬(new String[] {"A-10 23", "A-10 21", "C-1 3", "A-10 10", "A-9 101"})) {
+//            System.out.println(b + " ");
+//        }
+//        System.out.println();
+
+        for (String b : 파일명_정렬(new String[] {"A-10 abc", "A-10 abc", "C-1 abc", "A-10 abc", "A-9 abc"})) {
+            System.out.println(b + " ");
+        }
+
+    }
+    /*public String[] 파일명_정렬(String[] files) {
+
+        int fLength = files.length;
+        String[] answer = new String[fLength];
+
+        List<String> orderedFiles = Arrays.stream(files)
+                .sorted((f1, f2) -> {
+                    String HEAD1 = f1.split("[0-9]")[0];
+                    String HEAD2 = f2.split("[0-9]")[0];
+
+                    int compareHead = HEAD1.compareToIgnoreCase(HEAD2);
+                    if (compareHead == 0) {
+                        StringBuilder n1 = new StringBuilder();
+                        StringBuilder n2 = new StringBuilder();
+                        for (int i = HEAD1.length(); i < f1.length(); i++) {
+                            char c = f1.charAt(i);
+                            if (!Character.isDigit(c)) {
+                                break;
+                            }
+                            n1.append(c);
+                        }
+
+                        for (int i = HEAD2.length(); i < f2.length(); i++) {
+                            char c = f2.charAt(i);
+                            if (!Character.isDigit(c)) {
+                                break;
+                            }
+                            n2.append(c);
+                        }
+
+                        String NUMBER1 = n1.toString();
+                        String NUMBER2 = n2.toString();
+
+                        return Integer.parseInt(NUMBER1) - Integer.parseInt(NUMBER2);
+                    } else {
+                        return compareHead;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        for (int i = 0; i < fLength; i++) {
+            answer[i] = orderedFiles.get(i);
+        }
+
+        return answer;
+    }*/
+    // 리팩토링
+    public String[] 파일명_정렬(String[] files) {
+        Pattern p = Pattern.compile("([a-zA-Z\\s.-]+)([0-9]{1,5})");
+        return Arrays.stream(files)
+                .sorted((f1, f2) -> {
+                    Matcher m1 = p.matcher(f1);
+                    Matcher m2 = p.matcher(f2);
+                    m1.find();
+                    m2.find();
+
+                    String HEAD1 = m1.group(1);
+                    String HEAD2 = m2.group(1);
+
+                    int compareHead = HEAD1.compareToIgnoreCase(HEAD2);
+                    if (compareHead == 0) {
+                        String NUMBER1 = m1.group(2);
+                        String NUMBER2 = m2.group(2);
+
+                        return Integer.parseInt(NUMBER1) - Integer.parseInt(NUMBER2);
+                    } else {
+                        return compareHead;
+                    }
+                })
+                .toArray(String[]::new);
+    }
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] 파일명 정렬 END
 
 }
 
