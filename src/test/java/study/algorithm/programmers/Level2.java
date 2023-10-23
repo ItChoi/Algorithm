@@ -3158,6 +3158,229 @@ public class Level2 {
     }
     // 2018 KAKAO BLIND RECRUITMENT - [3차] 파일명 정렬 END
 
+    // 2018 KAKAO BLIND RECRUITMENT [1차] 프렌즈4블록 START
+    @Test
+    void 프렌즈4블록() {
+//        int m = 4;
+//        int n = 5;
+//        String[] board = {"CCBDE", "AAADE", "AAABF", "CCBBF"};
+//        System.out.println("result[14]: " + 프렌즈4블록(m, n, board));
+        System.out.println();
+//        int m = 6;
+//        int n = 6;
+//        String[] board = {"TTTANT", "RRFACC", "RRRFCC", "TRRRAA", "TTMMMF", "TMMTTJ"};
+//        System.out.println("result[15]: " + 프렌즈4블록(m, n, board));
+        System.out.println();
+//        int m = 7;
+//        int n = 2;
+//        String[] board = {"AA", "BB", "AA", "BB", "ZZ", "ZZ", "CC"};
+//        System.out.println("result[4]: " + 프렌즈4블록(m, n, board));
+        System.out.println();
+//        int m = 4;
+//        int n = 5;
+//        String[] board = {"AAAAA","AUUUA","AUUAA","AAAAA"};
+//        System.out.println("result[14]: " + 프렌즈4블록(m, n, board));
+        System.out.println();
+//        int m = 4;
+//        int n = 4;
+//        String[] board = {"ABCD", "BACE", "BCDD", "BCDD"};
+//        System.out.println("result[8]: " + 프렌즈4블록(m, n, board));
+        System.out.println();
+//        int m = 5;
+//        int n = 6;
+//        String[] board = {"AAAAAA", "BBAATB", "BBAATB", "JJJTAA", "JJJTAA"};
+//        System.out.println("result[24]: " + 프렌즈4블록(m, n, board));
+        System.out.println();
+//        int m = 6;
+//        int n = 6;
+//        String[] board = {"AABBEE", "AAAEEE", "VAAEEV", "AABBEE", "AACCEE", "VVCCEE"};
+//        System.out.println("result[32]: " + 프렌즈4블록(m, n, board));
+
+
+//        int m = 4; int n = 5;  String[] board = {"CCBDE", "AAADE", "AAABF", "CCBBF"};
+//        System.out.println("result[14]: " +  프렌즈4블록(m, n , board));
+
+//        int m = 6; int n = 6;  String[] board = {"TTTANT", "RRFACC", "RRRFCC", "TRRRAA", "TTMMMF", "TMMTTJ"};
+//        System.out.println("result[15]: " +  프렌즈4블록(m, n , board));
+
+//        int m = 6; int n = 6;  String[] board = {"OXXOXX", "OXXXXX", "OOXXXX", "OXXOXX", "OXXXXX", "OOXXXX"};
+//        System.out.println("result[30]: " +  프렌즈4블록(m, n , board));
+
+
+//        int m = 6; int n = 6;  String[] board = {"AABBEE","AAAEEE","VAAEEV","AABBEE","AACCEE","VVCCEE"};
+//        System.out.println("result[32]: " +  프렌즈4블록(m, n , board));
+
+
+        System.out.println("result[4]: " +  프렌즈4블록(3,2, new String[]{"AA", "AA", "AB"})) ;
+        System.out.println("result[8]: " +  프렌즈4블록(4,2, new String[]{"CC", "AA", "AA", "CC"}) )  ;
+        System.out.println("result[12]: " +  프렌즈4블록(6,2, new String[]{"DD", "CC", "AA", "AA", "CC", "DD"}));
+        System.out.println("result[8]: " +  프렌즈4블록(8,2, new String[]{"FF", "AA", "CC", "AA", "AA", "CC", "DD", "FF"}) );
+        System.out.println("result[8]: " +  프렌즈4블록(6,2, new String[]{"AA", "AA", "CC", "AA", "AA", "DD"})) ;
+        System.out.println("result[4]: " +  프렌즈4블록(2,2, new String[]{"AA", "AA"}) ) ;
+        System.out.println("result[0]: " +  프렌즈4블록(2,2, new String[]{"AA", "AB"})) ;
+        System.out.println("result[4?]: " +  프렌즈4블록(8,5, new String[]{"HGNHU", "CRSHV", "UKHVL", "MJHQB", "GSHOT", "MQMJJ", "AGJKK", "QULKK"})) ;
+        System.out.println("result[20]: " +  프렌즈4블록(6,5, new String[]{
+                "AANAA",
+                "CCMCC",
+                "CCNAA",
+                "AAMAA",
+                "GSNCC",
+                "AANAA"})) ;
+        System.out.println("result[8]: " +  프렌즈4블록(6,5, new String[]{
+                "AANQW",
+                "CCMWE",
+                "CCAQW",
+                "CAACA",
+                "GSCWQ",
+                "AANQW"})) ;
+        System.out.println("result[20]: " +  프렌즈4블록(7,5, new String[]{
+                "CAACC",
+                "ACACC",
+                "AAABA",
+                "AAACA",
+                "CAACC",
+                "CCCWQ",
+                "AANQW"})) ;
+        System.out.println("result[11]: " +  프렌즈4블록(5,5, new String[]{
+                "ABBBA",
+                "AAACA",
+                "CAAAC",
+                "CBAAQ",
+                "ABBQW"})) ;
+        System.out.println("result[13]: " +  프렌즈4블록(6,5, new String[]{
+                "ABBBA",
+                "ABBBA",
+                "AAACA",
+                "CAAAC",
+                "CBAAQ",
+                "ABBQW"})) ;
+        System.out.println("result[13]: " +  프렌즈4블록(6,5, new String[]{
+                "ACBBB",
+                "ABBCB",
+                "AAACA",
+                "CAABC",
+                "CAABQ",
+                "ABBQW"})) ;
+        System.out.println("result[20]: " +  프렌즈4블록(6,5, new String[]{
+                "ABBBB",
+                "AAAAA",
+                "AAAAA",
+                "CBBBB",
+                "CAABB",
+                "ABBBB"})) ;
+        System.out.println("result[21]: " +  프렌즈4블록(6,5, new String[]{
+                "BAAAA",
+                "AABAA",
+                "AAAAA",
+                "AAAAA",
+                "AAABA",
+                "AABAB"})) ;
+        System.out.println("result[21]: " +  프렌즈4블록(6,5, new String[]{
+                "ABABA",
+                "ABABA",
+                "ABABA",
+                "BAAAB",
+                "BAAAB",
+                "BAAAB"})) ;
+
+        System.out.println("result[32]: " +  프렌즈4블록(6,6, new String[]{"AABBEE","AAAEEE","VAAEEV","AABBEE","AACCEE","VVCCEE" })) ;
+    }
+
+    public int 프렌즈4블록(int m,
+                      int n,
+                      String[] board) {
+        int[][] checkDirArr = {
+                {0, 1},
+                {1, 1},
+                {1, 0}
+        };
+
+        boolean[][] countCheck = new boolean[m][n];
+        String[][] block = new String[m][n];
+        for (int i = 0; i < board.length; i++) {
+            String b = board[i];
+            for (int j = 0; j < b.length(); j++) {
+                block[i][j] = String.valueOf(b.charAt(j));
+            }
+        }
+
+        return 프렌즈4블록_DFS(block, countCheck, checkDirArr);
+    }
+
+    private int 프렌즈4블록_DFS(String[][] block,
+                           boolean[][] countCheck,
+                           int[][] checkDirArr) {
+        boolean hasAtLeastOne;
+        int count = 0;
+
+        do {
+            hasAtLeastOne = false;
+            for (int i = 0; i < block.length - 1; i++) {
+                for (int j = 0; j < block[i].length - 1; j++) {
+                    boolean isMatch = true;
+                    if (block[i][j] == null) continue;
+
+                    for (int k = 0; k < checkDirArr.length; k++) {
+                        if (!block[i][j].equals(block[i + checkDirArr[k][0]][j + checkDirArr[k][1]])) {
+                            isMatch = false;
+                            break;
+                        }
+                    }
+
+                    if (isMatch) {
+                        hasAtLeastOne = true;
+
+                        countCheck[i][j] = true;
+                        for (int k = 0; k < checkDirArr.length; k++) {
+                            countCheck[i + checkDirArr[k][0]][j + checkDirArr[k][1]] = true;
+                        }
+                    }
+                }
+            }
+
+            if (hasAtLeastOne) {
+                for (int i = 0; i < countCheck[0].length; i++) {
+                    for (int j = countCheck.length - 1; j >= 0; j--) {
+                        int tempJ = j;
+                        if (countCheck[j][i]) {
+                            countCheck[j][i] = false;
+                            block[j][i] = null;
+                            count++;
+                        }
+
+                        if (countCheck[j][i] || block[j][i] == null) {
+                            while (--tempJ >= 0) {
+                                if (block[tempJ][i] != null && !countCheck[tempJ][i]) {
+                                    block[j][i] = block[tempJ][i];
+                                    block[tempJ][i] = null;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } while (hasAtLeastOne);
+
+        return count;
+    }
+
+    @Test
+    void tetst() {
+        String[] test = {
+                "abcd"
+        };
+
+        String s = test[0];
+        System.out.println("s1 = " + s);
+        System.out.println("test[0]1 = " + test[0]);
+        test[0] = "a";
+        System.out.println("s2 = " + s);
+        System.out.println("test[0]2 = " + test[0]);
+        System.out.println("tttt: " + "a".equals(null));
+
+    }
+    // 2018 KAKAO BLIND RECRUITMENT [1차] 프렌즈4블록 END
 }
 
 
