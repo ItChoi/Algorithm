@@ -3403,8 +3403,44 @@ public class Level2 {
 
         return answer;
     }
-
     // 롤케이크 자르기 END
+
+    // 2 x n 타일링 START
+    @Test
+    void 타일링() {
+        System.out.println("result[5]: " + 타일링_ASDASD(4));
+        //System.out.println("result[5]: " + 타일링_ASDASD(3));
+    }
+
+    public int 타일링_ASDASD(int n) {
+        int[] ch = new int[n];
+        ch[0] = 1;
+        ch[1] = 2;
+
+        for (int i = 2; i < n; i++) {
+            ch[i] = (ch[i - 2] + ch[i - 1]) % 1000000007;
+        }
+
+        return ch[ch.length - 1];
+    }
+
+    /*public int 타일링(int n) {
+        return 타일링_DFS(n, 0);
+    }
+
+    public int 타일링_DFS(int n,
+                       int idx) {
+        if (idx > n) {
+            return 0;
+        }
+
+        if (idx == n) {
+            return 1;
+        }
+
+        return (타일링_DFS(n, idx + 1) + 타일링_DFS(n, idx + 2)) % 1000000007;
+    }*/
+    // 2 x n 타일링 END
 
 }
 
