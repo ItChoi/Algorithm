@@ -3364,23 +3364,48 @@ public class Level2 {
 
         return count;
     }
-
-    @Test
-    void tetst() {
-        String[] test = {
-                "abcd"
-        };
-
-        String s = test[0];
-        System.out.println("s1 = " + s);
-        System.out.println("test[0]1 = " + test[0]);
-        test[0] = "a";
-        System.out.println("s2 = " + s);
-        System.out.println("test[0]2 = " + test[0]);
-        System.out.println("tttt: " + "a".equals(null));
-
-    }
     // 2018 KAKAO BLIND RECRUITMENT [1차] 프렌즈4블록 END
+
+    // 롤케이크 자르기 START
+    @Test
+    void 롤케이크_자르기() {
+        System.out.println("result[2]: " + 롤케이크_자르기(new int[]{1, 2, 1, 3, 1, 4, 1, 2}));
+        System.out.println("result[0]: " + 롤케이크_자르기(new int[]{1, 2, 3, 1, 4}));
+    }
+
+    public int 롤케이크_자르기(int[] topping) {
+        int answer = 0;
+
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < topping.length; i++) {
+            int t = topping[i];
+            map.put(t, map.getOrDefault(t, 0) + 1);
+        }
+
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < topping.length; i++) {
+            int t = topping[i];
+            set.add(t);
+
+            Integer value = map.get(t);
+            if (value != null) {
+                if (value == 1) {
+                    map.remove(t);
+                } else {
+                    map.put(t, map.get(t) - 1);
+                }
+            }
+
+            if (set.size() == map.size()) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+
+    // 롤케이크 자르기 END
+
 }
 
 
