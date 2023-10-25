@@ -3442,6 +3442,63 @@ public class Level2 {
     }*/
     // 2 x n 타일링 END
 
+    // 택배상자 START
+    @Test
+    void 택배상자() {
+        System.out.println("result[2]: " + 택배상자(new int[] {4, 3, 1, 2, 5}));
+        System.out.println("result[5]: " + 택배상자(new int[] {5, 4, 3, 2, 1}));
+    }
+
+    public int 택배상자(int[] order) {
+        int answer = 0;
+
+        int n = order.length;
+
+        Stack<Integer> stack = new Stack<>();
+
+        int j = 1;
+        int i = 0;
+        for (; i < n; i++) {
+            int box = order[i];
+
+            if (!stack.isEmpty()) {
+                if (stack.peek() == box) {
+                    answer++;
+                    stack.pop();
+                    continue;
+                }
+            }
+
+            while (j <= n) {
+                if (box == j) {
+                    j++;
+                    answer++;
+                    break;
+                }
+
+                stack.push(j);
+                j++;
+            }
+
+            if (j > n) {
+                i++;
+                break;
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            Integer ii = stack.pop();
+            if (i >= n || order[i] != ii) {
+                break;
+            }
+            i++;
+            answer++;
+        }
+
+        return answer;
+    }
+    // 택배상자 END
+
 }
 
 
