@@ -3499,6 +3499,64 @@ public class Level2 {
     }
     // 택배상자 END
 
+    // 월간 코드 챌린지 시즌2- 2개 이하로 다른 비트 START
+    @Test
+    void 두개_이하로_다른_비트() {
+        for (long a : 두개_이하로_다른_비트(new long[] {2, 7})) {System.out.println("[3, 11] " + a);}
+        System.out.println();
+        for (long a : 두개_이하로_다른_비트(new long[] {10, 21})) {System.out.println("[11, 22] " + a);}
+        System.out.println();
+        for (long a : 두개_이하로_다른_비트(new long[] {11, 14})) {System.out.println("[13, 15] " + a);}
+        System.out.println();
+        for (long a : 두개_이하로_다른_비트(new long[] {15, 22})) {System.out.println("[23, 23] " + a);}
+        System.out.println();
+        for (long a : 두개_이하로_다른_비트(new long[] {0, 43})) {System.out.println("[1, 45] " + a);}
+        System.out.println();
+    }
+
+    public long[] 두개_이하로_다른_비트(long[] numbers) {
+        long[] answer = new long[numbers.length];
+
+        for (int i = 0; i < numbers.length; i++) {
+            String binaryStr = Long.toBinaryString(numbers[i]);
+            int bStrLeng = binaryStr.length();
+            if (binaryStr.charAt(bStrLeng - 1) == '0') {
+                answer[i] = Long.parseLong(binaryStr.substring(0, bStrLeng - 1) + "1", 2);
+                continue;
+            }
+
+            if (!binaryStr.contains("0")) {
+                answer[i] = Long.parseLong("1" + binaryStr.replaceFirst("1", "0"), 2);
+                continue;
+            }
+
+
+            Stack<Character> stack = new Stack<>();
+            boolean isZero = false;
+            for (int j = bStrLeng - 1; j >= 0; j--) {
+                char c = binaryStr.charAt(j);
+
+                if (c == '0' && !isZero) {
+                    isZero = true;
+                    stack.pop();
+                    stack.push('0');
+                    stack.push('1');
+                } else {
+                    stack.push(c);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            while (!stack.isEmpty()) {
+                sb.append(stack.pop());
+            }
+
+            answer[i] = Long.valueOf(Long.parseLong(sb.toString(), 2));
+        }
+
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌2- 2개 이하로 다른 비트 END
 }
 
 
