@@ -3,6 +3,7 @@ package study.algorithm.programmers;
 import org.apache.logging.log4j.util.PropertySource;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StringUtils;
+import org.springframework.util.comparator.Comparators;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -3640,6 +3641,46 @@ public class Level2 {
         return answer;
     }
     // 월간 코드 챌린지 시즌2- 2개 이하로 다른 비트 END
+
+    // 정렬 - H-Index START
+    @Test
+    void H_INDEX() {
+        System.out.println("result[3]: " + H_INDEX(new int[] {3, 0, 6, 1, 5}));
+        // 6,5,3,1,0, n = 5
+        System.out.println("result[0]: " + H_INDEX(new int[] {0, 0, 0}));
+        System.out.println("result[2]: " + H_INDEX(new int[] {22, 42}));
+        // 42, 22, n = 2
+
+        System.out.println("result[4]: " + H_INDEX(new int[] {5, 5, 5, 5}));
+        System.out.println("result[2]: " + H_INDEX(new int[] {3, 4}));
+        System.out.println("result[4]: " + H_INDEX(new int[] {6, 5, 5, 5, 3, 2, 1, 0}));
+        System.out.println("result[4]: " + H_INDEX(new int[] {0, 5, 6, 7, 8}));
+        // 8, 7, 6, 5, 0, n = 5
+    }
+
+    public int H_INDEX(int[] citations) {
+        int answer = 0;
+        Arrays.sort(citations);
+
+        int cLength = citations.length;
+
+        int rank = 0;
+        for (int i = cLength - 1; i >= 0; i--) {
+            rank++;
+            int citation = citations[i];
+            if (rank == citation) {
+                return citation;
+            }
+
+            if (citation >= rank) {
+                answer = Math.max(rank, answer);
+            }
+
+        }
+
+        return answer;
+    }
+    // 정렬 - H-Index END
 }
 
 
