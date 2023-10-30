@@ -2513,15 +2513,29 @@ public class Level2 {
     // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 START
     @Test
     void n_제곱_배열_자르기() {
-        System.out.println("[3,2,2,3] result");
-        for (int i : n_제곱_배열_자르기(3, 2, 5)) {
-            System.out.println(i + " ");
-        }
-
-//        System.out.println("[4,3,3,3,4,4,4,4] result");
-//        for (int i : n_제곱_배열_자르기(4, 7, 14)) {
+//        System.out.println("[3,2,2,3] result");
+//        for (int i : n_제곱_배열_자르기(3, 2, 5)) {
 //            System.out.println(i + " ");
 //        }
+//        System.out.println();
+
+        System.out.println("[4,3,3,3,4,4,4,4] result");
+        for (int i : n_제곱_배열_자르기(4, 7, 14)) {
+            System.out.println(i + " ");
+        }
+        System.out.println();
+
+//        System.out.println("[2, 2] result");
+//        for (int i : n_제곱_배열_자르기(3, 3, 4)) {
+//            System.out.println(i + " ");
+//        }
+//        System.out.println();
+
+//        for (int i : n_제곱_배열_자르기(10000000, 99999999999L, 99999999999L)) {
+//            System.out.println(i + " ");
+//        }
+//        System.out.println();
+
     }
     /* 시간 복잡도 실패 - 수식으로 풀어야 함
     public int[] n_제곱_배열_자르기(int n, long left, long right) {
@@ -2550,14 +2564,83 @@ public class Level2 {
         return answer;
     }*/
 
-    public int[] n_제곱_배열_자르기(int n, long left, long right) {
-        int nLeng = (int) (right - left) + 1;
-        int[] answer = new int[nLeng];
+    /*public int[] n_제곱_배열_자르기(int n,
+                             long left,
+                             long right) {
+        int resultLeng = ((int) (right - left)) + 1;
+        int[] answer = new int[resultLeng];
 
-        int num = 1;
-        for (int i = 0; i < nLeng; i++) {
+        int[][] arr = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            int num = i + 1;
+            arr[i][i] = num;
 
+            for (int j = 0; j < i; j++) {
+                arr[i][j] = num;
+                arr[j][i] = num;
+            }
         }
+
+        int idx = 0;
+        for (long i = left; i <= right; i++) {
+            int pre = (int) i / n;
+            int suf = (int) i % n;
+
+            answer[idx++] = arr[pre][suf];
+        }
+
+        return answer;
+    }*/
+
+    /*public int[] n_제곱_배열_자르기(int n,
+                             long left,
+                             long right) {
+
+        int resultLeng = ((int) (right - left)) + 1;
+        int[] answer = new int[resultLeng];
+
+        int wIdx = 0;
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = i + 1;
+        }
+
+        int ii = 0;
+        for (long i = left; i <= right; i++) {
+            int pre = (int) i / n;
+            int suf = (int) i % n;
+
+            if (wIdx == pre) {
+                answer[ii++] = arr[suf];
+                continue;
+            }
+
+            int num = pre + 1;
+            int height = pre;
+
+            arr[height] = num;
+            while (height != suf) {
+                int temp = arr[height];
+                if (height < suf) {
+                    temp++;
+                    height++;
+                } else {
+                    height--;
+                }
+                arr[height] = temp;
+            }
+
+            answer[ii++] = arr[suf];
+        }
+
+        return answer;
+    }*/
+
+    public int[] n_제곱_배열_자르기(int n,
+                             long left,
+                             long right) {
+
+        int[] answer = new int[((int) (right - left)) + 1];
 
         return answer;
     }
