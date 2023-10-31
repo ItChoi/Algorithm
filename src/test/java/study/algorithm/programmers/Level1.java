@@ -1210,9 +1210,51 @@ public class Level1 {
             }
         }
 
-
-
         return result.stream().collect(Collectors.joining(" "));
     }
     // JadenCase 문자열 만들기 END
+
+    // 월간 코드 챌린지 시즌1 - 3진법 뒤집기 START
+    @Test
+    void 삼진법_뒤집기() {
+        System.out.println("result[7]: " + 삼진법_뒤집기(45));
+        System.out.println("result[229]: " + 삼진법_뒤집기(125));
+    }
+
+    public int 삼진법_뒤집기(int n) {
+        String strN = convertNumber(n);
+        return reverseStrNumber(strN);
+    }
+
+    public String convertNumber(int n) {
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            sb.insert(0, n % 3);
+            n = n / 3;
+        }
+
+        return sb.toString();
+    }
+
+    public int reverseStrNumber(String strN) {
+        StringBuilder sb = new StringBuilder();
+
+        char[] cArr = strN.toCharArray();
+        int cArrLeng = cArr.length;
+        for (int i = 0; i < cArrLeng / 2; i++) {
+            char tempC = cArr[i];
+            cArr[i] = cArr[cArrLeng - 1 - i];
+            cArr[cArrLeng - 1 - i] = tempC;
+        }
+
+
+        for (char c : cArr) {
+            if (Character.isDigit(c)) {
+                sb.append(c);
+            }
+        }
+
+        return Integer.parseInt(sb.toString(), 3);
+    }
+    // 월간 코드 챌린지 시즌1 - 3진법 뒤집기 END
 }
