@@ -1582,37 +1582,6 @@ public class Level2 {
     }
     // 2017 카카오코드 예선 - 카카오프렌즈 컬러링북 END
 
-    // 정렬 - 가장 큰 수 START
-    @Test
-    void 가장_큰_수() {
-        System.out.println("6210 result: " + 가장_큰_수_함수(new int[]{6, 10, 2}));
-        System.out.println("9534330 result: " + 가장_큰_수_함수(new int[]{3, 30, 34, 5, 9}));
-    }
-
-    int maxValue1 = Integer.MIN_VALUE;
-    private String 가장_큰_수_함수(int[] numbers) {
-        for (int i = 0; i < numbers.length; i++) {
-            가장_큰_수_함수_DFS(i, 0, numbers);
-        }
-
-        return String.valueOf(maxValue1);
-    }
-
-    private void 가장_큰_수_함수_DFS(int index, int count, int[] numbers) {
-        if (count == numbers.length) {
-            return;
-        }
-
-        for (int j = 0; j < numbers.length; j++) {
-            if (index == j) continue;
-
-        }
-
-    }
-
-    // 정렬 - 가장 큰 수 END
-
-
     // 2020 KAKAO BLIND RECRUITMENT - 괄호 변환 START
     @Test
     void 괄호_변환() {
@@ -3111,20 +3080,28 @@ public class Level2 {
     // 뒤에 있는 큰 수 찾기 START
     @Test
     void 뒤에_있는_큰_수_찾기() {
+        /**
+         * 2, 3, 3, 5
+         *
+         */
         // result : [3, 5, 5, -1]
         for (int i : 뒤에_있는_큰_수_찾기(new int[]{2, 3, 3, 5})) {
             System.out.print(i + " ");
         }
+        System.out.println();
 
         System.out.println();
         // result : [-1, 5, 6, 6, -1, -1]
-        for (int i : 뒤에_있는_큰_수_찾기(new int[] {9, 1, 5, 3, 6, 2})) {
-            System.out.print(i + " ");
-        }
+//        for (int i : 뒤에_있는_큰_수_찾기(new int[] {9, 1, 5, 3, 6, 2})) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println();
     }
 
     public int[] 뒤에_있는_큰_수_찾기(int[] numbers) {
-        int[] answer = {};
+        int numLength = numbers.length;
+        int[] answer = new int[numLength];
+
         return answer;
     }
     // 뒤에 있는 큰 수 찾기 END
@@ -3666,6 +3643,51 @@ public class Level2 {
         return answer;
     }
     // 정렬 - H-Index END
+
+    // 숫자 변환하기 START
+    @Test
+    void 숫자_변환하기() {
+        System.out.println("result[2]: " + 숫자_변환하기(10, 40, 5));
+        System.out.println("result[1]: " + 숫자_변환하기(10, 40, 30));
+        System.out.println("result[-1]: " + 숫자_변환하기(2, 5, 4));
+    }
+
+    public int 숫자_변환하기(int x, int y, int n) {
+        int answer = -1;
+
+
+        return answer;
+    }
+
+    // 숫자 변환하기 END
+
+    // 정렬 - 가장 큰 수 START
+    @Test
+    void 가장_큰_수() {
+        /*
+        o1과 o2를 문자열 형태로 번갈아서 더한 후 더 큰 값을 체크하면 됐는데, 꽤 늦게 인지했다.
+        o1과 o2를 각 각 비교해서 더 복잡한 형태로 고민을 하다보니 시간이 조금 걸렸다.
+        문제의 핵심을 조금 더 파악할 필요가 있을 것 같다.
+         */
+        System.out.println("6210 result: " + 가장_큰_수_함수(new int[]{6, 10, 2}));
+        System.out.println("9534330 result: " + 가장_큰_수_함수(new int[]{3, 30, 34, 5, 9}));
+        System.out.println("0 result: " + 가장_큰_수_함수(new int[]{0, 0, 0}));
+    }
+
+
+    private String 가장_큰_수_함수(int[] numbers) {
+        List<String> collect = Arrays.stream(numbers)
+                .mapToObj(String::valueOf)
+                .sorted((o1, o2) -> (o2 + o1).compareTo(o1 + o2))
+                .collect(Collectors.toList());
+
+        String result = collect.stream().collect(Collectors.joining());
+        if ('0' == result.charAt(0)) {
+            return "0";
+        }
+        return result;
+    }
+    // 정렬 - 가장 큰 수 END
 }
 
 
