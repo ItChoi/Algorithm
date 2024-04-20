@@ -2480,143 +2480,6 @@ public class Level2 {
     }
     // 연속 부분 수열 합의 개수 END
 
-    // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 START
-    @Test
-    void n_제곱_배열_자르기() {
-//        System.out.println("[3,2,2,3] result");
-//        for (int i : n_제곱_배열_자르기(3, 2, 5)) {
-//            System.out.println(i + " ");
-//        }
-//        System.out.println();
-
-        System.out.println("[4,3,3,3,4,4,4,4] result");
-        for (int i : n_제곱_배열_자르기(4, 7, 14)) {
-            System.out.println(i + " ");
-        }
-        System.out.println();
-
-//        System.out.println("[2, 2] result");
-//        for (int i : n_제곱_배열_자르기(3, 3, 4)) {
-//            System.out.println(i + " ");
-//        }
-//        System.out.println();
-
-//        for (int i : n_제곱_배열_자르기(10000000, 99999999999L, 99999999999L)) {
-//            System.out.println(i + " ");
-//        }
-//        System.out.println();
-
-    }
-    /* 시간 복잡도 실패 - 수식으로 풀어야 함
-    public int[] n_제곱_배열_자르기(int n, long left, long right) {
-        int nLeng = (int) (right - left) + 1;
-        int[] answer = new int[nLeng];
-
-        int[][] arr = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            int num = i + 1;
-            arr[i][i] = num;
-
-            for (int j = 0; j < i; j++) {
-                int k = i - (j + 1);
-                arr[k][i] = num;
-                arr[i][k] = num;
-            }
-        }
-
-        for (int i = 0; i < nLeng; i++) {
-            int idx = (int) left + i;
-            int w = idx / n;
-            int h = idx % n;
-            answer[i] = arr[w][h];
-        }
-
-        return answer;
-    }*/
-
-    /*public int[] n_제곱_배열_자르기(int n,
-                             long left,
-                             long right) {
-        int resultLeng = ((int) (right - left)) + 1;
-        int[] answer = new int[resultLeng];
-
-        int[][] arr = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            int num = i + 1;
-            arr[i][i] = num;
-
-            for (int j = 0; j < i; j++) {
-                arr[i][j] = num;
-                arr[j][i] = num;
-            }
-        }
-
-        int idx = 0;
-        for (long i = left; i <= right; i++) {
-            int pre = (int) i / n;
-            int suf = (int) i % n;
-
-            answer[idx++] = arr[pre][suf];
-        }
-
-        return answer;
-    }*/
-
-    /*public int[] n_제곱_배열_자르기(int n,
-                             long left,
-                             long right) {
-
-        int resultLeng = ((int) (right - left)) + 1;
-        int[] answer = new int[resultLeng];
-
-        int wIdx = 0;
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = i + 1;
-        }
-
-        int ii = 0;
-        for (long i = left; i <= right; i++) {
-            int pre = (int) i / n;
-            int suf = (int) i % n;
-
-            if (wIdx == pre) {
-                answer[ii++] = arr[suf];
-                continue;
-            }
-
-            int num = pre + 1;
-            int height = pre;
-
-            arr[height] = num;
-            while (height != suf) {
-                int temp = arr[height];
-                if (height < suf) {
-                    temp++;
-                    height++;
-                } else {
-                    height--;
-                }
-                arr[height] = temp;
-            }
-
-            answer[ii++] = arr[suf];
-        }
-
-        return answer;
-    }*/
-
-    public int[] n_제곱_배열_자르기(int n,
-                             long left,
-                             long right) {
-
-        int[] answer = new int[((int) (right - left)) + 1];
-
-        return answer;
-    }
-    // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 END
-
-
     // 할인 행사 START
 
     /**
@@ -3644,23 +3507,6 @@ public class Level2 {
     }
     // 정렬 - H-Index END
 
-    // 숫자 변환하기 START
-    @Test
-    void 숫자_변환하기() {
-        System.out.println("result[2]: " + 숫자_변환하기(10, 40, 5));
-        System.out.println("result[1]: " + 숫자_변환하기(10, 40, 30));
-        System.out.println("result[-1]: " + 숫자_변환하기(2, 5, 4));
-    }
-
-    public int 숫자_변환하기(int x, int y, int n) {
-        int answer = -1;
-
-
-        return answer;
-    }
-
-    // 숫자 변환하기 END
-
     // 정렬 - 가장 큰 수 START
     @Test
     void 가장_큰_수() {
@@ -3688,6 +3534,111 @@ public class Level2 {
         return result;
     }
     // 정렬 - 가장 큰 수 END
+
+    // 숫자 변환하기 START
+    @Test
+    void 숫자_변환하기() {
+        System.out.println("result[2]: " + 숫자_변환하기(10, 40, 5));
+//        System.out.println("result[1]: " + 숫자_변환하기(10, 40, 30));
+//        System.out.println("result[-1]: " + 숫자_변환하기(2, 5, 4));
+    }
+
+    public int 숫자_변환하기(int x, int y, int n) {
+        if (x == y) return 0;
+        Queue<Integer> que = new LinkedList<>();
+        que.add(x);
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int cnt = 0;
+        while (!que.isEmpty()) {
+            cnt++;
+            int size = que.size();
+
+            for (int i = 0; i < size; i++) {
+                Integer number = que.poll();
+
+                int plusN = number + n;
+                if (plusN == y) {
+                    return cnt;
+                }
+
+                int multiTwo = number * 2;
+                if (multiTwo == y) {
+                    return cnt;
+                }
+
+                int multiThree = number * 3;
+                if (multiThree == y) {
+                    return cnt;
+                }
+
+                if (plusN < y && map.get(plusN) == null) {
+                    map.put(plusN, plusN);
+                    que.add(plusN);
+                }
+
+                if (multiTwo < y && map.get(multiTwo) == null) {
+                    map.put(multiTwo, multiTwo);
+                    que.add(multiTwo);
+                }
+
+                if (multiThree < y && map.get(multiThree) == null) {
+                    map.put(multiThree, multiThree);
+                    que.add(multiThree);
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    // 숫자 변환하기 END
+
+    // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 START
+    @Test
+    void n_제곱_배열_자르기() {
+//        System.out.println("[3,2,2,3] result");
+//        for (int i : n_제곱_배열_자르기(3, 2, 5)) {
+//            System.out.println(i + " ");
+//        }
+//        System.out.println();
+
+        System.out.println("[4,3,3,3,4,4,4,4] result");
+        for (int i : n_제곱_배열_자르기(4, 7, 14)) {
+            System.out.println(i + " ");
+        }
+//        System.out.println();
+
+//        System.out.println("[2, 2] result");
+//        for (int i : n_제곱_배열_자르기(3, 3, 4)) {
+//            System.out.println(i + " ");
+//        }
+//        System.out.println();
+
+//        for (int i : n_제곱_배열_자르기(10000000, 99999999999L, 99999999999L)) {
+//            System.out.println(i + " ");
+//        }
+//        System.out.println();
+
+    }
+
+    public int[] n_제곱_배열_자르기(int n,
+                                long left,
+                                long right) {
+        int[] answer = new int[(int) (right - left) + 1];
+
+        int idx = 0;
+        for (long i = left; i <= right; i++) {
+            long height = i / n;
+            long width = i % n;
+
+            answer[idx++] = (int) Math.max(height, width) + 1;
+        }
+
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 END
 }
 
 
