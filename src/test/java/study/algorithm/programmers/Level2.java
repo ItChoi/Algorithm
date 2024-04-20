@@ -2940,35 +2940,6 @@ public class Level2 {
     }
     // 완전탐색 모음사전 END
 
-    // 뒤에 있는 큰 수 찾기 START
-    @Test
-    void 뒤에_있는_큰_수_찾기() {
-        /**
-         * 2, 3, 3, 5
-         *
-         */
-        // result : [3, 5, 5, -1]
-        for (int i : 뒤에_있는_큰_수_찾기(new int[]{2, 3, 3, 5})) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-
-        System.out.println();
-        // result : [-1, 5, 6, 6, -1, -1]
-//        for (int i : 뒤에_있는_큰_수_찾기(new int[] {9, 1, 5, 3, 6, 2})) {
-//            System.out.print(i + " ");
-//        }
-//        System.out.println();
-    }
-
-    public int[] 뒤에_있는_큰_수_찾기(int[] numbers) {
-        int numLength = numbers.length;
-        int[] answer = new int[numLength];
-
-        return answer;
-    }
-    // 뒤에 있는 큰 수 찾기 END
-
     // 2018 KAKAO BLIND RECRUITMENT - [3차] 파일명 정렬 START
     @Test
     void 파일명_정렬() {
@@ -3639,6 +3610,59 @@ public class Level2 {
         return answer;
     }
     // 월간 코드 챌린지 시즌3 - n^2 배열 자르기 END
+
+    // 뒤에 있는 큰 수 찾기 START
+    @Test
+    void 뒤에_있는_큰_수_찾기() {
+        /**
+         * 2, 3, 3, 5
+         *
+         */
+        // result : [3, 5, 5, -1]
+        for (int i : 뒤에_있는_큰_수_찾기(new int[]{2, 3, 3, 5})) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        System.out.println();
+        // result : [-1, 5, 6, 6, -1, -1]
+//        for (int i : 뒤에_있는_큰_수_찾기(new int[] {9, 1, 5, 3, 6, 2})) {
+//            System.out.print(i + " ");
+//        }
+//        System.out.println();
+    }
+
+    public int[] 뒤에_있는_큰_수_찾기(int[] numbers) {
+        int numLength = numbers.length;
+        int[] answer = new int[numLength];
+
+        Stack<Integer> stack = new Stack<>();
+
+
+        for (int i = numLength - 1; i >= 0; i--) {
+            int targetNum = numbers[i];
+
+            while (!stack.isEmpty()) {
+                if (stack.peek() <= targetNum) {
+                    stack.pop();
+                } else {
+                    answer[i] = stack.peek();
+                    break;
+                }
+            }
+
+            stack.push(targetNum);
+        }
+
+        for (int i = 0; i < answer.length; i++) {
+            if (answer[i] == 0) {
+                answer[i] = -1;
+            }
+        }
+
+        return answer;
+    }
+    // 뒤에 있는 큰 수 찾기 END
 }
 
 
