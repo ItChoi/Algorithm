@@ -3663,6 +3663,77 @@ public class Level2 {
         return answer;
     }
     // 뒤에 있는 큰 수 찾기 END
+
+    // 완전탐색 소수 찾기 START
+    @Test
+    void 소수_찾기() {
+//        System.out.println("[3] result: " + 소수_찾기("17"));
+        System.out.println("[2] result: " + 소수_찾기("011"));
+    }
+
+    private int 소수_찾기(String numbers) {
+        Set<Integer> savePrime = new HashSet<>();
+        boolean[] visited = new boolean[numbers.length()];
+
+        소수_찾기_DFS("", visited, savePrime, numbers);
+
+        return savePrime.size();
+    }
+
+    private void 소수_찾기_DFS(String targetStr,
+                           boolean[] visited,
+                           Set<Integer> savePrime,
+                           String numbers) {
+        if (!소수_찾기_availableVisit(visited)) {
+            return;
+        }
+
+        for (int i = 0; i < numbers.length(); i++) {
+            if (visited[i]) {
+                continue;
+            }
+
+            visited[i] = true;
+
+            String appendStr = targetStr + numbers.charAt(i);
+            if (소수_찾기_isPrime(appendStr)) {
+                savePrime.add(Integer.parseInt(appendStr));
+            }
+
+            소수_찾기_DFS(appendStr, visited, savePrime, numbers);
+            visited[i] = false;
+        }
+
+
+
+    }
+
+    private boolean 소수_찾기_isPrime(String numStr) {
+        int num = Integer.parseInt(numStr);
+
+        if (num == 0 || num == 1) {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean 소수_찾기_availableVisit(boolean[] visited) {
+        for (boolean visit : visited) {
+            if (!visit) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // 완전탐색 소수 찾기 END
 }
 
 
