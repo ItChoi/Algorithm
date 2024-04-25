@@ -3738,14 +3738,14 @@ public class Level2 {
     // 월간 코드 챌린지 시즌1 - 쿼드압축 후 개수 세기 START
     @Test
     void 쿼드압축_후_개수_세기() {
-        int[][] arr = new int[][] {
+        /*int[][] arr = new int[][] {
                 {1, 1, 0, 0},
                 {1, 0, 0, 0},
                 {1, 0, 0, 1},
                 {1, 1, 1, 1}
-        };
+        };*/
 
-        /*int[][] arr = new int[][] {
+        int[][] arr = new int[][] {
                 {1, 1, 1, 1, 1, 1, 1, 1},
                 {0, 1, 1, 1, 1, 1, 1, 1},
                 {0, 0, 0, 0, 1, 1, 1, 1},
@@ -3754,7 +3754,7 @@ public class Level2 {
                 {0, 0, 0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 1, 0, 0, 1},
                 {0, 0, 0, 0, 1, 1, 1, 1},
-        };*/
+        };
 
 
         // result [4,9]
@@ -3763,81 +3763,50 @@ public class Level2 {
         }
     }
 
+    int zero = 0;
+    int one = 0;
     public int[] 쿼드압축_후_개수_세기(int[][] arr) {
         int arrLength = arr.length;
-        int zero = 0;
-        int one = 0;
-        int[][] ch = new int[arrLength][arrLength];
+        쿼드압축_후_개수_세기_DFS(0, 0, arrLength, arr);
 
-        for (int i = 0; i < arrLength; i++) {
+        return new int[] {zero, one};
+    }
 
-            for (int j = 0; j < arrLength; j++) {
-                if (ch[i][j] == 1) continue;
+    private void 쿼드압축_후_개수_세기_DFS(int i, int j, int arrLength, int[][] arr) {
+        if (arrLength <= 0) {
+            return;
+        }
 
-                int num = arr[i][j];
-                if (num == 0) {
-                    zero++;
-                } else {
-                    one++;
-                }
+        int targetNum = arr[i][j];
+        if (isAllMatch(i, j, arrLength, arr, targetNum)) {
+            if (targetNum == 1) {
+                one++;
+                return;
+            }
 
-                ch[i][j] = 1;
+            zero++;
+            return;
+        }
 
-                int tempI = i + 1;
-                int tempJ = j + 1;
-                boolean isMatch = true;
-                while (isMatch && tempI < arrLength && tempJ < arrLength) {
+        int divArrLength = arrLength / 2;
+        쿼드압축_후_개수_세기_DFS(i, j, divArrLength, arr);
+        쿼드압축_후_개수_세기_DFS(i, j + divArrLength, divArrLength, arr);
+        쿼드압축_후_개수_세기_DFS(i + divArrLength, j, divArrLength, arr);
+        쿼드압축_후_개수_세기_DFS(i + divArrLength, j + divArrLength, divArrLength, arr);
+    }
 
-                    int level = 1;
-                    while (isMatch) {
-                        if (ch[tempI][tempJ] == 1) {
-                            isMatch = false;
-                            break;
-                        }
-
-                        if (arr[tempI][tempJ] != num) {
-                            isMatch = false;
-                            break;
-                        }
-
-                        ch[tempI][tempJ] = 2;
-
-                        for (int k = 1; k <= level; k++) {
-                            int tempH = ch[tempI - k][tempJ];
-                            int tempW = ch[tempI][tempJ - k];
-
-                            if ((tempH == 1 || tempW == 1) && (arr[tempI - k][tempJ] != num || arr[tempI][tempJ - k] != num)) {
-                                isMatch = false;
-                                break;
-                            }
-
-                            ch[tempI - k][tempJ] = 2;
-                            ch[tempI][tempJ - k] = 2;
-                        }
-                        changeNum(isMatch, ch);
-                    }
-
-                    tempJ++;
-                    tempI++;
+    private boolean isAllMatch(int i, int j, int arrLength, int[][] arr, int targetNum) {
+        for (int tempI = 0; tempI < arrLength; tempI++) {
+            for (int tempJ = 0; tempJ < arrLength; tempJ++) {
+                if (arr[tempI + i][tempJ + j] != targetNum) {
+                    return false;
                 }
             }
         }
 
-        return new int[]{zero, one};
+        return true;
     }
 
-    private void changeNum(boolean isMatch,
-                           int[][] ch) {
-        int assignNum = isMatch ? 1 : 0;
-
-        for (int i = 0; i < ch.length; i++) {
-            for (int j = 0; j < ch.length; j++) {
-                if (ch[i][j] == 2) {
-                    ch[i][j] = assignNum;
-                }
-            }
-        }
-    }
 
     // 월간 코드 챌린지 시즌1 - 쿼드압축 후 개수 세기 END
 }
