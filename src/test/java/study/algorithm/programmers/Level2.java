@@ -1,6 +1,7 @@
 package study.algorithm.programmers;
 
 import org.apache.logging.log4j.util.PropertySource;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StringUtils;
 import org.springframework.util.comparator.Comparators;
@@ -3806,9 +3807,67 @@ public class Level2 {
 
         return true;
     }
-
-
     // 월간 코드 챌린지 시즌1 - 쿼드압축 후 개수 세기 END
+
+    // 2022 KAKAO TECH INTERNSHIP - 두 큐 합 같게 만들기 START
+    @Test
+    void 두_큐_합_같게_만들기() {
+//        System.out.println("[2] result: " + 두_큐_합_같게_만들기(new int[]{3, 2, 7, 2}, new int[]{4, 6, 5, 1}));
+//        System.out.println("[7] result: " + 두_큐_합_같게_만들기(new int[]{1, 2, 1, 2}, new int[]{1, 10, 1, 2}));
+//        System.out.println("[-1] result: " + 두_큐_합_같게_만들기(new int[]{1, 1}, new int[]{1, 5}));
+//        System.out.println("[?] result: " + 두_큐_합_같게_만들기(new int[]{1, 4}, new int[]{3, 4}));
+        System.out.println("[?] result: " + 두_큐_합_같게_만들기(new int[]{101, 100}, new int[]{102, 103}));
+    }
+
+    public int 두_큐_합_같게_만들기(int[] queue1, int[] queue2) {
+        Queue<Integer> que1 = new LinkedList<>();
+        Queue<Integer> que2 = new LinkedList<>();
+
+        long sum1 = 0;
+        long sum2 = 0;
+
+        for (int i = 0; i < queue1.length; i++) {
+            int queVal1 = queue1[i];
+            int queVal2 = queue2[i];
+            sum1 += queVal1;
+            sum2 += queVal2;
+
+            que1.add(queVal1);
+            que2.add(queVal2);
+        }
+
+        if ((sum1 + sum2) % 2 != 0) {
+            return -1;
+        }
+
+        int answer = 0;
+
+        long limitLength = queue1.length * 4;
+        int i = 0;
+        while(sum1 != sum2) {
+            i++;
+            answer++;
+            if (sum1 > sum2) {
+                Integer que1Poll = que1.poll();
+                sum1 -= que1Poll;
+                sum2 += que1Poll;
+                que2.add(que1Poll);
+            } else {
+                Integer que2Poll = que2.poll();
+                sum2 -= que2Poll;
+                sum1 += que2Poll;
+                que1.add(que2Poll);
+            }
+
+            if (que1.isEmpty() || que2.isEmpty() || i >= limitLength) {
+                return -1;
+            }
+        }
+
+        return answer;
+    }
+    // 2022 KAKAO TECH INTERNSHIP - 두 큐 합 같게 만들기 END
+
 }
 
 
