@@ -3812,11 +3812,11 @@ public class Level2 {
     // 2022 KAKAO TECH INTERNSHIP - 두 큐 합 같게 만들기 START
     @Test
     void 두_큐_합_같게_만들기() {
-//        System.out.println("[2] result: " + 두_큐_합_같게_만들기(new int[]{3, 2, 7, 2}, new int[]{4, 6, 5, 1}));
-//        System.out.println("[7] result: " + 두_큐_합_같게_만들기(new int[]{1, 2, 1, 2}, new int[]{1, 10, 1, 2}));
-//        System.out.println("[-1] result: " + 두_큐_합_같게_만들기(new int[]{1, 1}, new int[]{1, 5}));
-//        System.out.println("[?] result: " + 두_큐_합_같게_만들기(new int[]{1, 4}, new int[]{3, 4}));
-        System.out.println("[?] result: " + 두_큐_합_같게_만들기(new int[]{101, 100}, new int[]{102, 103}));
+        System.out.println("[2] result: " + 두_큐_합_같게_만들기(new int[]{3, 2, 7, 2}, new int[]{4, 6, 5, 1}));
+        System.out.println("[7] result: " + 두_큐_합_같게_만들기(new int[]{1, 2, 1, 2}, new int[]{1, 10, 1, 2}));
+        System.out.println("[-1] result: " + 두_큐_합_같게_만들기(new int[]{1, 1}, new int[]{1, 5}));
+        System.out.println("[-1] result: " + 두_큐_합_같게_만들기(new int[]{1, 4}, new int[]{3, 4}));
+        System.out.println("[-1] result: " + 두_큐_합_같게_만들기(new int[]{101, 100}, new int[]{102, 103}));
     }
 
     public int 두_큐_합_같게_만들기(int[] queue1, int[] queue2) {
@@ -3867,6 +3867,79 @@ public class Level2 {
         return answer;
     }
     // 2022 KAKAO TECH INTERNSHIP - 두 큐 합 같게 만들기 END
+
+    // 탐욕법(Greedy) - 큰 수 만들기 START
+    @Test
+    void 큰_수_만들기() {
+        System.out.println("[94] result: " + 큰_수_만들기("1924", 2));
+        System.out.println("[3234] result: " + 큰_수_만들기("1231234", 3));
+        System.out.println("[775841] result: " + 큰_수_만들기("4177252841", 4));
+        System.out.println("[99] result: " + 큰_수_만들기("999", 1));
+//        System.out.println("[9] result: " + 큰_수_만들기("91", 1));
+//        System.out.println("[333] result: " + 큰_수_만들기("333222111", 6));
+//        System.out.println("[3332221] result: " + 큰_수_만들기("333222111", 2));
+//        System.out.println("[234567890123456789012345678901234567890] result: " + 큰_수_만들기("1234567890123456789012345678901234567890", 1));
+//        System.out.println("[1] result: " + 큰_수_만들기("111", 2));
+//        System.out.println("[11] result: " + 큰_수_만들기("111", 1));
+//        System.out.println("[89781299] result: " + 큰_수_만들기("3879781299", 2));
+//        System.out.println("[999] result: " + 큰_수_만들기("9999", 1));
+//        System.out.println("[99] result: " + 큰_수_만들기("9999", 2));
+//        System.out.println("[9] result: " + 큰_수_만들기("9999", 3));
+//        System.out.println("[9] result: " + 큰_수_만들기("89", 1));
+//        System.out.println("[8] result: " + 큰_수_만들기("87", 1));
+//        System.out.println("[7] result: " + 큰_수_만들기("77", 1));
+//        System.out.println("[988] result: " + 큰_수_만들기("928857", 3));
+//        System.out.println("[99] result: " + 큰_수_만들기("99991", 3));
+//        System.out.println("[11] result: " + 큰_수_만들기("10001", 3));
+//        System.out.println("[1] result: " + 큰_수_만들기("10001", 4));
+//        System.out.println("[101] result: " + 큰_수_만들기("10001", 2));
+//        System.out.println("[1001] result: " + 큰_수_만들기("10001", 1));
+//        System.out.println("[999] result: " + 큰_수_만들기("98989", 2));
+//        System.out.println("[9989] result: " + 큰_수_만들기("98989", 1));
+//        System.out.println("[99] result: " + 큰_수_만들기("98989", 3));
+//        System.out.println("[11011] result: " + 큰_수_만들기("101011", 1));
+//        System.out.println("[1111] result: " + 큰_수_만들기("101011", 2));
+//        System.out.println("[1000] result: " + 큰_수_만들기("100000", 2));
+//        System.out.println("[11111] result: " + 큰_수_만들기("111110", 1));
+//        System.out.println("[11111] result: " + 큰_수_만들기("111101", 1));
+//        System.out.println("[11111] result: " + 큰_수_만들기("111011", 1));
+//        System.out.println("[11111] result: " + 큰_수_만들기("110111", 1));
+//        System.out.println("[11111] result: " + 큰_수_만들기("101111", 1));
+//        System.out.println("[11111] result: " + 큰_수_만들기("011111", 1));
+//        System.out.println("[987654] result: " + 큰_수_만들기("9876543214", 4));
+//        System.out.println("[900002] result: " + 큰_수_만들기("190000002", 3));
+//        System.out.println("[6543] result: " + 큰_수_만들기("654312", 2));
+//        System.out.println("[7378] result: " + 큰_수_만들기("720378", 2));
+    }
+
+    public String 큰_수_만들기(String number, int k) {
+        String answer = "";
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < number.length(); i++) {
+            char c = number.charAt(i);
+
+            while (!stack.isEmpty() && k != 0) {
+                if (stack.peek() >= c) break;
+
+                stack.pop();
+                k--;
+            }
+
+            stack.push(c);
+        }
+
+        int count = number.length() - k;
+        for (Character c : stack) {
+            answer += c;
+            count--;
+            if (count <= 0) break;
+        }
+
+        return answer;
+    }
+    // 탐욕법(Greedy) - 큰 수 만들기 END
 
 }
 
