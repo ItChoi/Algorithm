@@ -3916,7 +3916,6 @@ public class Level2 {
         String answer = "";
 
         Stack<Character> stack = new Stack<>();
-
         for (int i = 0; i < number.length(); i++) {
             char c = number.charAt(i);
 
@@ -3940,6 +3939,76 @@ public class Level2 {
         return answer;
     }
     // 탐욕법(Greedy) - 큰 수 만들기 END
+
+    // 연속된 부분 수열의 합 START
+    @Test
+    void 연속된_부분_수열의_합() {
+        // [2, 3]
+        int[] sequence = {1, 2, 3, 4, 5};
+        int k = 7;
+
+        /*int[] sequence = {2, 2, 2, 2, 2, 10, 10, 10, 10, 10, 10};
+        int k = 30;*/
+
+        // [6, 6]
+        int[] sequence1 = {1, 1, 1, 2, 3, 4, 5};
+        int k1 = 5;
+
+        // [0, 2]
+        int[] sequence2 = {2, 2, 2, 2, 2};
+        int k2 = 6;
+
+        for (int i : 연속된_부분_수열의_합(sequence, k)) {
+            System.out.println(i);
+        }
+    }
+
+    public int[] 연속된_부분_수열의_합(int[] sequence, int k) {
+        int answerLt = 0;
+        int answerRt = sequence.length - 1;
+
+        int lt = 0;
+        int rt = 0;
+
+        int sum = 0;
+        for (; rt < sequence.length; rt++) {
+            sum += sequence[rt];
+
+            if (sum == k) {
+                if (lt == rt) {
+                    answerLt = lt;
+                    answerRt = rt;
+                    break;
+                }
+
+                if (rt - lt < answerRt - answerLt) {
+                    answerRt = rt;
+                    answerLt = lt;
+                }
+            }
+
+            while (sum >= k && lt <= rt) {
+                sum -= sequence[lt++];
+
+                if (sum == k) {
+                    if (lt == rt) {
+                        answerLt = lt;
+                        answerRt = rt;
+                        return new int[] {answerLt, answerRt};
+                    }
+
+                    if (rt - lt < answerRt - answerLt) {
+                        answerLt = lt;
+                        answerRt = rt;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return new int[] {answerLt, answerRt};
+    }
+    // 연속된 부분 수열의 합 END
 
 }
 
