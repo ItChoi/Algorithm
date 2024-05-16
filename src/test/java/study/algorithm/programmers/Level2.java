@@ -1,10 +1,6 @@
 package study.algorithm.programmers;
 
-import org.apache.logging.log4j.util.PropertySource;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.StringUtils;
-import org.springframework.util.comparator.Comparators;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -4009,6 +4005,49 @@ public class Level2 {
         return new int[] {answerLt, answerRt};
     }
     // 연속된 부분 수열의 합 END
+
+    // 124 나라의 숫자 START
+    @Test
+    void 일이사_나라의_숫자() {
+//        System.out.println("[1] result : " + 일이사_나라의_숫자(1));
+//        System.out.println("[2] result : " + 일이사_나라의_숫자(2));
+//        System.out.println("[4] result : " + 일이사_나라의_숫자(3));
+//        System.out.println("[11] result : " + 일이사_나라의_숫자(4));
+//        System.out.println("[12] result : " + 일이사_나라의_숫자(5));
+//        System.out.println("[14] result : " + 일이사_나라의_숫자(6));
+//        System.out.println("[21] result : " + 일이사_나라의_숫자(7));
+//        System.out.println("[22] result : " + 일이사_나라의_숫자(8));
+//        System.out.println("[24] result : " + 일이사_나라의_숫자(9));
+//        System.out.println("[41] result : " + 일이사_나라의_숫자(10));
+        System.out.println("[114] result : " + 일이사_나라의_숫자(15));
+
+//        System.out.println("[14] result : " + 일이사_나라의_숫자(6));
+//        System.out.println("[24] result : " + 일이사_나라의_숫자(9));
+//        System.out.println("[41] result : " + 일이사_나라의_숫자(10));
+    }
+
+    public String 일이사_나라의_숫자(int n) {
+        if (n < 3) {
+            return n + "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while (n / 3 > 0 || n % 3 != 0) {
+            int nmg = n % 3;
+            n = n / 3;
+
+            if (nmg == 0) {
+                n--;
+                sb.insert(0, "4");
+            } else {
+                sb.insert(0, nmg);
+            }
+        }
+
+        return sb.toString();
+    }
+    }
+    // 124 나라의 숫자 END
 
 }
 
