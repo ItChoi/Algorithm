@@ -4046,8 +4046,22 @@ public class Level2 {
 
         return sb.toString();
     }
-    }
     // 124 나라의 숫자 END
+
+    // 완전탐색 전력망을 둘로 나누기 START
+    @Test
+    void 전력망을_둘로_나누기() {
+        System.out.println("[3] result: " + 전력망을_둘로_나누기(9, new int[][]{{1, 3}, {2, 3}, {3, 4}, {4, 5}, {4, 6}, {4, 7}, {7, 8}, {7, 9}}));
+        System.out.println("[0] result: " + 전력망을_둘로_나누기(4, new int[][]{{1, 2}, {2, 3}, {3, 4}}));
+        System.out.println("[1] result: " + 전력망을_둘로_나누기(7, new int[][]{{1, 2}, {2, 7}, {3, 7}, {3, 4}, {4, 5}, {6, 7}}));
+    }
+
+    public int 전력망을_둘로_나누기(int n, int[][] wires) {
+        int answer = -1;
+        return answer;
+    }
+    // 완전탐색 전력망을 둘로 나누기 END
+
 
 }
 
