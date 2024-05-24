@@ -4051,14 +4051,60 @@ public class Level2 {
     // 완전탐색 전력망을 둘로 나누기 START
     @Test
     void 전력망을_둘로_나누기() {
-        System.out.println("[3] result: " + 전력망을_둘로_나누기(9, new int[][]{{1, 3}, {2, 3}, {3, 4}, {4, 5}, {4, 6}, {4, 7}, {7, 8}, {7, 9}}));
-        System.out.println("[0] result: " + 전력망을_둘로_나누기(4, new int[][]{{1, 2}, {2, 3}, {3, 4}}));
-        System.out.println("[1] result: " + 전력망을_둘로_나누기(7, new int[][]{{1, 2}, {2, 7}, {3, 7}, {3, 4}, {4, 5}, {6, 7}}));
+//        System.out.println("[3] result: " + 전력망을_둘로_나누기(9, new int[][]{{1, 3}, {2, 3}, {3, 4}, {4, 5}, {4, 6}, {4, 7}, {7, 8}, {7, 9}}));
+//        System.out.println("[0] result: " + 전력망을_둘로_나누기(4, new int[][]{{1, 2}, {2, 3}, {3, 4}}));
+//        System.out.println("[1] result: " + 전력망을_둘로_나누기(7, new int[][]{{1, 2}, {2, 7}, {3, 7}, {3, 4}, {4, 5}, {6, 7}}));
+        System.out.println("[0] result: " + 전력망을_둘로_나누기(4, new int[][]{{1, 2}, {3, 4}, {2, 4}}));
     }
 
     public int 전력망을_둘로_나누기(int n, int[][] wires) {
-        int answer = -1;
-        return answer;
+        int min = Integer.MAX_VALUE;
+
+        List<List<Integer>> repo = 전력망을_둘로_나누기_extracted(n, wires);
+        for (int i = 0; i < wires.length; i++) {
+            int[] wire = wires[i];
+            int lt = wire[0];
+            int rt = wire[1];
+
+            int result = 전력망을_둘로_나누기_DFS(lt, rt, repo);
+            result = Math.max(n - result, result) - Math.min(n - result, result);
+            min = Math.min(min, result);
+        }
+
+        return min;
+    }
+
+    private int 전력망을_둘로_나누기_DFS(int no, int go, List<List<Integer>> repo) {
+
+        int result = 0;
+        for (Integer value : repo.get(go)) {
+            if (no == value) {
+                result++;
+                continue;
+            }
+            result += 전력망을_둘로_나누기_DFS(go, value, repo);
+        }
+
+        return result;
+    }
+
+
+    private List<List<Integer>> 전력망을_둘로_나누기_extracted(int n, int[][] wires) {
+        List<List<Integer>> repo = new ArrayList<>(n + 1);
+        for (int i = 0; i <= n; i++) {
+            repo.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < wires.length; i++) {
+            int[] wire = wires[i];
+            int lt = wire[0];
+            int rt = wire[1];
+
+            repo.get(lt).add(rt);
+            repo.get(rt).add(lt);
+        }
+
+        return repo;
     }
     // 완전탐색 전력망을 둘로 나누기 END
 
