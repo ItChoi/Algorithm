@@ -4108,6 +4108,17 @@ public class Level2 {
     }
     // 완전탐색 전력망을 둘로 나누기 END
 
+    // 마법의 엘리베이터 START
+    @Test
+    void 마법의_엘리베이터() {
+        System.out.println("[16] result: " + 마법의_엘리베이터(6));
+        System.out.println("[2554] result: " + 마법의_엘리베이터(16));
+    }
+    public int 마법의_엘리베이터(int storey) {
+        int answer = 0;
+        return answer;
+    }
+    // 마법의 엘리베이터 END
 
 }
 

@@ -1,7 +1,5 @@
 package study.algorithm.inflearn.자바_알고리즘_문제풀이_입문_코딩테스트_대비;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 class Main {
@@ -170,4 +168,91 @@ class Main {
         return answer;
     }*/
 
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+
+        System.out.println(T.특정_문자_뒤집기_5(str));
+    }
+
+    private static String 특정_문자_뒤집기_5(String str) {
+        String answer = "";
+
+        char[] s = str.toCharArray();
+        int lt = 0;
+        int rt = str.length() - 1;
+
+        while (lt < rt) {
+            if (!Character.isAlphabetic(s[lt])) {
+                lt++;
+            } else if (!Character.isAlphabetic(s[rt])) {
+                rt--;
+            } else {
+                char tmp = s[lt];
+                s[lt] = s[rt];
+                s[rt] = tmp;
+                lt++;
+                rt--;
+            }
+        }
+
+        answer = String.valueOf(s);
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+
+        System.out.println(T.중복문자제거_6(str));
+    }
+
+    private static String 중복문자제거_6(String str) {
+        // indexOf 사용 풀이 -> k가 여러 개라도, 첫 발견 index를 반환한다.
+        String answer = "";
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.indexOf(str.charAt(i)) == i) {
+                answer += str.charAt(i);
+            }
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+
+        System.out.println(T.회문_문자열_7(str));
+        System.out.println(T.회문_문자열_7_1(str));
+    }
+
+    private static String 회문_문자열_7(String str) {
+        // 앞에서 읽을 떄나, 뒤에서 읽을때 동일 -> 회문 문자열 = 팰린드럼
+        String answer = "YES";
+        str = str.toUpperCase();
+
+        int len = str.length();
+        for (int i = 0; i < len / 2; i++) {
+            if (str.charAt(i) != str.charAt(len - i - 1)) {
+                return "NO";
+            }
+        }
+
+        return answer;
+    }
+
+    private static String 회문_문자열_7_1(String str) {
+        // 앞에서 읽을 떄나, 뒤에서 읽을때 동일 -> 회문 문자열 = 팰린드럼
+        String answer = "NO";
+        String tmp = new StringBuilder(str).reverse().toString();
+        if (str.equalsIgnoreCase(tmp)) {
+            answer = "YES";
+        }
+        return answer;
+    }
 }
