@@ -222,7 +222,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         String str = kb.next();
@@ -253,6 +253,72 @@ class Main {
         if (str.equalsIgnoreCase(tmp)) {
             answer = "YES";
         }
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.nextLine();
+
+        System.out.println(T.유효한_팰린드롬_8(str));
+    }
+
+    private static String 유효한_팰린드롬_8(String s) {
+        // replaceAll 정규식 사용, replace는 정규식 사용 불가
+        String answer = "NO";
+        s = s.toUpperCase().replaceAll("[^A-Z]", "");
+
+        String tmp = new StringBuilder(s).reverse().toString();
+        if (s.equals(tmp)) answer = "YES";
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.nextLine();
+
+        System.out.println(T.숫자만_추출_9(str));
+        System.out.println(T.숫자만_추출_9_1(str));
+    }
+
+    private static int 숫자만_추출_9(String s) {
+        // 아스키 넘버 활용, 계산식으로 answer를 만든다.
+        int answer = 0;
+        for (char x : s.toCharArray()) {
+            if (x >= 48 && x <= 57) {
+                answer = answer * 10 + (x - 48);
+            }
+        }
+
+        return answer;
+    }
+
+    private static int 숫자만_추출_9_1(String s) {
+        // 아스키 넘버 활용, 계산식으로 answer를 만든다.
+        String answer = "";
+        for (char x : s.toCharArray()) {
+            if (Character.isDigit(x)) {
+                answer += x;
+            }
+        }
+
+        return Integer.parseInt(answer);
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.nextLine();
+
+        System.out.println(T.가장_짧은_문자거리_10(str));
+    }
+
+    private static int 가장_짧은_문자거리_10(String s) {
+        int answer = 0;
+
         return answer;
     }
 }
