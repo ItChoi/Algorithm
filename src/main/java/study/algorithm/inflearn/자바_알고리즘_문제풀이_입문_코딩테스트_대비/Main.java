@@ -308,16 +308,91 @@ class Main {
         return Integer.parseInt(answer);
     }*/
 
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+        char c = kb.next().charAt(0);
+
+        for (int x : T.가장_짧은_문자거리_10(str, c)) {
+            System.out.print(x + " ");
+        }
+
+//        for (int x : T.가장_짧은_문자거리_10_me(str, c)) {
+//            System.out.print(x);
+//        }
+    }
+
+    private static int[] 가장_짧은_문자거리_10(String s, char c) {
+        *//**
+         * idx를 이용한다. 초기화 1000
+         * 배열의 좌로 한 번, 우로 한 번 총 두 번 루프를 돈다.
+         * 루프를 돌며 e를 만나면, idx는 0으로 세팅한다.
+         *//*
+        int[] answer = new int[s.length()];
+        int p = 1000;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                p = 0;
+                answer[i] = p;
+            } else {
+                p++;
+                answer[i] = p;
+            }
+        }
+
+        p = 1000;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == c) {
+                p = 0;
+            } else {
+                p++;
+                answer[i] = Math.min(answer[i] ,p);
+            }
+        }
+
+        return answer;
+    }
+
+    private static int[] 가장_짧은_문자거리_10_me(String s, char c) {
+        int[] answer = new int[s.length()];
+
+        int pos = 1000;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                pos = 0;
+            }
+
+            answer[i] = pos++;
+        }
+
+        pos = 1000;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) == c) {
+                pos = 1;
+                continue;
+            }
+
+            if (answer[i] > pos) {
+                answer[i] = pos;
+            }
+
+            pos++;
+        }
+
+        return answer;
+    }*/
+
     public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
-        String str = kb.nextLine();
+        String str = kb.next();
 
-        System.out.println(T.가장_짧은_문자거리_10(str));
+        System.out.println(T.문자열압축_11(str));
     }
 
-    private static int 가장_짧은_문자거리_10(String s) {
-        int answer = 0;
+    private static int[] 문자열압축_11(String s) {
+        int[] answer = new int[s.length()];
 
         return answer;
     }
