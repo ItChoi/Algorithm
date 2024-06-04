@@ -4255,12 +4255,7 @@ public class Level2 {
         int answer = 0;
         return answer;
     }
-}
-
-
     // 호텔 대실 END
-
-
 }
 
 
