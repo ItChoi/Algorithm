@@ -383,16 +383,78 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         String str = kb.next();
 
         System.out.println(T.문자열압축_11(str));
+        System.out.println(T.문자열압축_11_me(str));
     }
 
-    private static int[] 문자열압축_11(String s) {
-        int[] answer = new int[s.length()];
+    private static String 문자열압축_11(String s) {
+        *//**
+         * 기존 스트링 문자열 마지막에 빈 문자열을 추가하고,
+         * 문자열 length - 1만큼 순환하며, idx i와 i + 1을 비교한다.
+         *//*
+        String answer = "";
+        s = s + " ";
+        int cnt = 1;
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                cnt++;
+            } else {
+                answer += s.charAt(i);
+                if (cnt > 1) {
+                    answer += cnt;
+                    cnt = 1;
+                }
+            }
+        }
+
+        return answer;
+    }
+
+    private static String 문자열압축_11_me(String s) {
+        StringBuilder sb = new StringBuilder();
+        char tempX = s.charAt(0);
+        int tempCnt = 1;
+
+        for (int i = 1; i < s.length(); i++) {
+            char x = s.charAt(i);
+            if (tempX != x) {
+                sb.append(tempX);
+                tempX = x;
+                if (tempCnt > 1) {
+                    sb.append(tempCnt);
+                    tempCnt = 1;
+                }
+                continue;
+            }
+
+            tempCnt++;
+        }
+
+        sb.append(tempX);
+        if (tempCnt > 1) {
+            sb.append(tempCnt);
+        }
+
+        return sb.toString();
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int i = kb.nextInt();
+        String str = kb.next();
+
+        System.out.println(T.암호_12(i, str));
+    }
+
+    private static String 암호_12(int i, String s) {
+        String answer = "";
 
         return answer;
     }

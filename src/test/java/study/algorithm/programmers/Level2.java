@@ -4111,14 +4111,155 @@ public class Level2 {
     // 마법의 엘리베이터 START
     @Test
     void 마법의_엘리베이터() {
-        System.out.println("[16] result: " + 마법의_엘리베이터(6));
-        System.out.println("[2554] result: " + 마법의_엘리베이터(16));
+        System.out.println("[6] result: " + 마법의_엘리베이터(16));
+        System.out.println("[16] result: " + 마법의_엘리베이터(2554));
+        System.out.println("[14] result: " + 마법의_엘리베이터(545));
+        System.out.println("[14] result: " + 마법의_엘리베이터(555));
+        System.out.println("[11] result: " + 마법의_엘리베이터(485));
+        System.out.println("[11] result: " + 마법의_엘리베이터(155));
+        System.out.println("[10] result: " + 마법의_엘리베이터(154));
+        System.out.println("[9] result: " + 마법의_엘리베이터(45));
+        System.out.println("[2] result: " + 마법의_엘리베이터(999));
+        System.out.println("[2] result: " + 마법의_엘리베이터(99));
+        System.out.println("[6] result: " + 마법의_엘리베이터(95));
+        System.out.println("[2] result: " + 마법의_엘리베이터(9));
+        System.out.println("[8] result: " + 마법의_엘리베이터(678));
+        System.out.println("[1] result: " + 마법의_엘리베이터(1000));
+        System.out.println("[9] result: " + 마법의_엘리베이터(56));
+        System.out.println("[9] result: " + 마법의_엘리베이터(46));
+        System.out.println("[11] result: " + 마법의_엘리베이터(155));
+        System.out.println("[10] result: " + 마법의_엘리베이터(55));
+        System.out.println("[8] result: " + 마법의_엘리베이터(75));
+        System.out.println("[14] result: " + 마법의_엘리베이터(555));
+        System.out.println("[22] result: " + 마법의_엘리베이터(123456789));
+        System.out.println("[6] result: " + 마법의_엘리베이터(95));
+        System.out.println("[9] result: " + 마법의_엘리베이터(45));
+        System.out.println("[18] result: " + 마법의_엘리베이터(5454));
+        System.out.println("[17] result: " + 마법의_엘리베이터(5654));
+        System.out.println("[18] result: " + 마법의_엘리베이터(5555));
+        System.out.println("[9] result: " + 마법의_엘리베이터(65));
+        System.out.println("[8] result: " + 마법의_엘리베이터(75));
+        System.out.println("[9] result: " + 마법의_엘리베이터(54));
+        System.out.println("[9] result: " + 마법의_엘리베이터(56));
+        System.out.println("[26] result: " + 마법의_엘리베이터(57595358));
+        // 57595358
+        // 8 5 3 5 9 5 7 5
+        // 2 4 4 5 0 4 2 4 1 -> 15, 11
     }
+
     public int 마법의_엘리베이터(int storey) {
+        int answer = 0;
+
+        while (storey > 0) {
+            int nmg = storey % 10;
+            storey = storey / 10;
+
+            if (5 < nmg || 5 == nmg && 5 <= storey % 10) {
+                answer += 10 - nmg;
+                storey++;
+                continue;
+            }
+
+            answer += nmg;
+        }
+
+        return answer;
+    }
+
+    /*성공
+    public int 마법의_엘리베이터(int storey) {
+        int answer = 0;
+
+        Queue<Integer> que = new LinkedList<>();
+        while (storey > 0) {
+            que.add(storey % 10);
+            storey = storey / 10;
+        }
+
+        Integer num = que.poll();
+        boolean isPlus = false;
+        while (!que.isEmpty()) {
+            Integer nextNum = que.poll();
+            if (isPlus) {
+                num++;
+                if (num == 10) {
+                    num = nextNum;
+                    continue;
+                }
+                isPlus = false;
+            }
+
+            if (nextNum >= 5) {
+                if (num >= 5) {
+                    answer += 10 - num;
+                    isPlus = true;
+                } else {
+                    if (num > 5) {
+                        answer += 10 - num;
+                        isPlus = true;
+                    } else {
+                        answer += num;
+                    }
+                }
+            } else {
+                if (num > 5) {
+                    answer += 10 - num;
+                    isPlus = true;
+                } else {
+                    answer += num;
+                }
+            }
+
+            num = nextNum;
+        }
+
+        if (isPlus) {
+            num++;
+        }
+
+        if (num > 5) {
+            if (10 - num == 0) {
+                answer++;
+            } else {
+                answer += 10 - num + 1;
+            }
+        } else {
+            answer += num;
+        }
+
+        return answer;
+    }*/
+    // 마법의 엘리베이터 END
+
+    // 호텔 대실 START
+    public void 호텔_대실() {
+
+        System.out.println("[3] result: " + 호텔_대실(new String[][]{
+                {"15:00", "17:00"},
+                {"16:40", "18:20"},
+                {"14:20", "15:20"},
+                {"14:10", "19:20"},
+                {"18:20", "21:20"}}));
+
+        System.out.println("[1] result: " + 호텔_대실(new String[][]{
+                {"09:10", "10:10"},
+                {"10:20", "12:20"}}));
+
+        System.out.println("[3] result: " + 호텔_대실(new String[][]{
+                {"10:20", "12:30"},
+                {"10:20", "12:30"},
+                {"10:20", "12:30"}}));
+    }
+
+    public int 호텔_대실(String[][] book_time) {
         int answer = 0;
         return answer;
     }
-    // 마법의 엘리베이터 END
+}
+
+
+    // 호텔 대실 END
+
 
 }
 
