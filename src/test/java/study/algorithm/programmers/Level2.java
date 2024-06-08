@@ -4232,28 +4232,80 @@ public class Level2 {
     // 마법의 엘리베이터 END
 
     // 호텔 대실 START
+    @Test
     public void 호텔_대실() {
-
         System.out.println("[3] result: " + 호텔_대실(new String[][]{
                 {"15:00", "17:00"},
                 {"16:40", "18:20"},
                 {"14:20", "15:20"},
                 {"14:10", "19:20"},
                 {"18:20", "21:20"}}));
-
         System.out.println("[1] result: " + 호텔_대실(new String[][]{
                 {"09:10", "10:10"},
                 {"10:20", "12:20"}}));
-
         System.out.println("[3] result: " + 호텔_대실(new String[][]{
                 {"10:20", "12:30"},
                 {"10:20", "12:30"},
                 {"10:20", "12:30"}}));
+        System.out.println("[2] result: " + 호텔_대실(new String[][]{
+                {"00:01", "00:10"},
+                {"00:19", "00:29"}}));
+        System.out.println("[2] result: " + 호텔_대실(new String[][]{
+                {"08:00", "08:30"},
+                {"08:00", "13:00"},
+                {"12:30", "13:30"}}));
+        System.out.println("[1] result: " + 호텔_대실(new String[][]{
+                {"16:00", "16:10"},
+                {"16:20", "16:30"},
+                {"16:40", "16:50"}}));
+        System.out.println("[1] result: " + 호텔_대실(new String[][]{
+                {"09:10", "10:10"},
+                {"10:20", "12:20"},
+                {"12:30", "13:20"}}));
+        System.out.println("[1] result: " + 호텔_대실(new String[][]{
+                {"10:00", "10:10"}}));
     }
 
     public int 호텔_대실(String[][] book_time) {
         int answer = 0;
+
+        Arrays.sort(book_time,
+                Comparator.comparing((String[] o1) -> o1[0])
+                        .thenComparing(o1 -> o1[1])
+        );
+
+        List<Integer> roomEndTime = new ArrayList<>();
+        for (int i = 0; i < book_time.length; i++) {
+            int startT = 호텔_대실_convertInt(book_time[i][0]);
+            int endT = 호텔_대실_convertInt(book_time[i][1]) + 10;
+
+            List<Integer> removeIdx = new ArrayList<>();
+            for (int j = 0; j < roomEndTime.size(); j++) {
+                int endTime = roomEndTime.get(j);
+                if (endTime <= startT) {
+                    removeIdx.add(j);
+                }
+            }
+            removeIdx.sort(Comparator.reverseOrder());
+            for (int idx : removeIdx) {
+                roomEndTime.remove(idx);
+            }
+
+            roomEndTime.add(endT);
+            if (answer < roomEndTime.size()) {
+                answer = roomEndTime.size();
+            }
+        }
+
         return answer;
+    }
+
+    private int 호텔_대실_convertInt(String time) {
+        String[] t = time.split(":");
+        int h = Integer.parseInt(t[0]) * 60;
+        int m = Integer.parseInt(t[1]);
+
+        return h + m;
     }
     // 호텔 대실 END
 }
