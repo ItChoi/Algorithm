@@ -4308,6 +4308,19 @@ public class Level2 {
         return h + m;
     }
     // 호텔 대실 END
+
+    // 시소 짝궁 START
+    @Test
+    public void 시소_짝꿍() {
+        System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 180, 360, 100, 270}));
+    }
+
+    public long 시소_짝꿍(int[] weights) {
+        long answer = 0;
+
+        return answer;
+    }
+    // 시소 짝궁 END
 }
 
 

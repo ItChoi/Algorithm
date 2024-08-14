@@ -1,5 +1,7 @@
 package study.algorithm.inflearn.자바_알고리즘_문제풀이_입문_코딩테스트_대비;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 class Main {
@@ -444,18 +446,425 @@ class Main {
         return sb.toString();
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int i = kb.nextInt();
         String str = kb.next();
 
         System.out.println(T.암호_12(i, str));
+        System.out.println(T.암호_12_me(i, str));
     }
 
-    private static String 암호_12(int i, String s) {
+    private static String 암호_12_me(int i, String s) {
+        final int LIMIT = 7;
         String answer = "";
+
+        for (int j = LIMIT; j <= s.length(); j += LIMIT) {
+            answer += (char) Integer.parseInt(
+                    s.substring(j - LIMIT, j)
+                            .replaceAll("#", "1")
+                            .replaceAll("\\*", "0"), 2);
+        }
+
+        return answer;
+    }
+
+    private static String 암호_12(int n, String s) {
+        String answer = "";
+        for (int i = 0; i < n; i++) {
+            String tmp = s.substring(0, 7).replace('#', '1').replace('*', '0');
+            int num = Integer.parseInt(tmp, 2);
+            answer += (char) num;
+            s = s.substring(7);
+
+        }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        for (Integer x : T.큰_수_출력하기_01(n, arr)) {
+            System.out.print(x + " ");
+        }
+
+        for (Integer x : T.큰_수_출력하기_01_me(n, arr)) {
+            System.out.print(x + " ");
+        }
+    }
+
+    private static List<Integer> 큰_수_출력하기_01_me(int n, int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        answer.add(arr[0]);
+
+        for (int i = 1; i < arr.length; i++) {
+            Integer preNum = arr[i - 1];
+            int target = arr[i];
+
+            if (target > preNum) {
+                answer.add(target);
+            }
+        }
+
+        return answer;
+    }
+
+    private static List<Integer> 큰_수_출력하기_01(int n, int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        answer.add(arr[0]);
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > arr[i - 1]) {
+                answer.add(arr[i]);
+            }
+        }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.보이는_학생_02(n, arr));
+        System.out.print(T.보이는_학생_02_me(n, arr));
+    }
+
+    private static int 보이는_학생_02_me(int n, int[] arr) {
+        int answer = 1;
+        int max = arr[0];
+
+        for (int i = 1; i < n; i++) {
+            if (max < arr[i]) {
+                max = arr[i];
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+    */
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr1 = new int[n];
+        int[] arr2 = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr1[i] = kb.nextInt();
+        }
+        for (int i = 0; i < n; i++) {
+            arr2[i] = kb.nextInt();
+        }
+
+        for (String x : T.가위_바위_보_03_me(n, arr1, arr2)) {
+            System.out.println(x);
+        }
+
+        for (String x : T.가위_바위_보_03(n, arr1, arr2)) {
+            System.out.println(x);
+        }
+    }
+
+    private static List<String> 가위_바위_보_03_me(int n, int[] arr1, int[] arr2) {
+        List<String> answer = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            int user1 = arr1[i];
+            int user2 = arr2[i];
+
+            if (user1 == user2) {
+                answer.add("D");
+                continue;
+            }
+
+            int result = user1 - user2;
+            if (result == -1 || result != 1) {
+                answer.add("B");
+            }  else {
+                answer.add("A");
+            }
+        }
+
+        return answer;
+    }
+
+    private static List<String> 가위_바위_보_03(int n, int[] a, int[] b) {
+        List<String> answer = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            if (a[i] == b[i]) {
+                answer.add("D");
+            } else if (a[i] == 1 && b[i] == 3) {
+                answer.add("A");
+            } else if (a[i] == 2 && b[i] == 1) {
+                answer.add("A");
+            } else if (a[i] == 3 && b[i] == 2) {
+                answer.add("A");
+            } else {
+                answer.add("B");
+            }
+        }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        for (Integer x : T.피보나치_수열_04_me(n)) {
+            System.out.print(x + " ");
+        }
+
+        for (Integer x : T.피보나치_수열_04(n)) {
+            System.out.print(x + " ");
+        }
+
+        T.피보나치_수열_04_1(n);
+    }
+
+    private static List<Integer> 피보나치_수열_04_me(int n) {
+        List<Integer> answer = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            if (i < 2) {
+                answer.add(1);
+                continue;
+            }
+
+            answer.add(
+                    answer.get(i - 2) + answer.get(i - 1)
+            );
+        }
+
+        return answer;
+    }
+
+    private static int[] 피보나치_수열_04(int n) {
+        int[] answer = new int[n];
+        answer[0] = 1;
+        answer[1] = 1;
+        for (int i = 2; i < n; i++) {
+            answer[i] = answer[i - 2] + answer[i - 1];
+        }
+
+        return answer;
+    }
+
+    private static void 피보나치_수열_04_1(int n) {
+        int a = 1;
+        int b = 1;
+        int c;
+
+        for (int i = 2; i < n; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        System.out.print(T.소수_에라토스테네스_체_05_me(n));
+        System.out.print(T.소수_에라토스테네스_체_05(n));
+    }
+
+    private static int 소수_에라토스테네스_체_05_me(int n) {
+        int answer = 0;
+        for (int i = 0; i <= n; i++) {
+            if (isPrimeNumber_me(i)) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+
+    private static boolean isPrimeNumber_me(int num) {
+        if (num < 2) {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static int 소수_에라토스테네스_체_05(int n) {
+        // 소수 구하는 방법론 중에 제일 빠르다 (제곱근 이용 보다 빠르다)
+        int answer = 0;
+        int[] ch = new int[n + 1];
+
+        for (int i = 2; i <= n; i++) {
+            if (ch[i] == 0) {
+                answer++;
+                for (int j = i; j <= n; j = j + i) {
+                    ch[j] = 1;
+                }
+            }
+        }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        for (Integer x : T.뒤집은_소수_06_me(n, arr)) {
+            System.out.print(x + " ");
+        }
+
+        for (Integer x : T.뒤집은_소수_06(n, arr)) {
+            System.out.print(x + " ");
+        }
+    }
+
+    private static List<Integer> 뒤집은_소수_06_me(int n, int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            int realNum = arr[i];
+            char[] charNum = String.valueOf(realNum).toCharArray();
+            int lastIndex = charNum.length - 1;
+
+            for (int j = 0; j < charNum.length / 2; j++) {
+                char temp = charNum[j];
+                charNum[j] = charNum[lastIndex - j];
+                charNum[lastIndex - j] = temp;
+            }
+
+            int num = Integer.parseInt(String.valueOf(charNum));
+            if (isPrimeNumber_me(num)) {
+                answer.add(num);
+            }
+        }
+
+        return answer;
+    }
+
+    private static boolean isPrimeNumber_me(int num) {
+        if (num < 2) {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static List<Integer> 뒤집은_소수_06(int n, int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            int tmp = arr[i];
+            int res = 0;
+
+            while (tmp > 0) {
+                int t = tmp % 10;
+                res = res * 10 + t;
+                tmp = tmp / 10;
+            }
+
+            if (isPrime(res)) {
+                answer.add(res);
+            }
+        }
+
+        return answer;
+    }
+
+    private static boolean isPrime(int num) {
+        if (num < 2) {
+            return false;
+        }
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.점수_계산_07_me(n, arr));
+    }
+
+    private static int 점수_계산_07_me(int n, int[] arr) {
+        int answer = 0;
+
 
         return answer;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
