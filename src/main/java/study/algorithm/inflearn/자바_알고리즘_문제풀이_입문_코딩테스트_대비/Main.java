@@ -1,8 +1,7 @@
 package study.algorithm.inflearn.자바_알고리즘_문제풀이_입문_코딩테스트_대비;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 class Main {
     /*public static void main(String[] args) {
@@ -819,7 +818,7 @@ class Main {
         return true;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -829,11 +828,341 @@ class Main {
         }
 
         System.out.print(T.점수_계산_07_me(n, arr));
+        System.out.print(T.점수_계산_07(n, arr));
     }
 
     private static int 점수_계산_07_me(int n, int[] arr) {
         int answer = 0;
 
+        int score = 1;
+        for (int i = 0; i < n; i++) {
+
+            if (arr[i] == 1) {
+                answer += score;
+                score++; // score 기본 값을 0으로 하면 상단에 올릴 수 있다.
+                continue;
+            }
+
+            score = 1;
+        }
+
+        return answer;
+    }
+
+    private static int 점수_계산_07(int n, int[] arr) {
+        int answer = 0;
+        int cnt = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 1) {
+                cnt++;
+                answer += cnt;
+            } else {
+                cnt = 0;
+            }
+        }
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        for (int i : T.등수_구하기_08_me(n, arr)) {
+            System.out.print(i + " ");
+        }
+
+        for (int i : T.등수_구하기_08(n, arr)) {
+            System.out.print(i + " ");
+        }
+    }
+
+    private static int[] 등수_구하기_08_me(int n, int[] arr) {
+        int[] answer = new int[n];
+        Map<Integer, Integer> levelWithScore = new HashMap<>();
+
+        int[] sortedArr = arr.clone();
+        Arrays.sort(sortedArr);
+
+        for (int i = 0 ; i < arr.length; i++) {
+            int score = arr[i];
+            Integer cache = levelWithScore.get(score);
+            if (cache != null) {
+                answer[i] = cache;
+                continue;
+            }
+
+            int level = 1;
+            for (int j = sortedArr.length - 1; j >= 0; j--) {
+                if (sortedArr[j] == score) {
+                    answer[i] = level;
+                    levelWithScore.put(score, level);
+                    break;
+                }
+
+                level++;
+            }
+        }
+
+        return answer;
+    }
+
+    private static int[] 등수_구하기_08(int n, int[] arr) {
+        int[] answer = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            int cnt = 1;
+
+            for (int j = 0; j < n; j++) {
+                if (arr[j] > arr[i]) {
+                    cnt++;
+                }
+            }
+
+            answer[i] = cnt;
+        }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[][] arr = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                arr[i][j] = kb.nextInt();
+            }
+        }
+
+        System.out.println(T.격자판_최대합_09_me(n, arr));
+        System.out.println(T.격자판_최대합_09(n, arr));
+    }
+
+    private int 격자판_최대합_09_me(int n,
+                                 int[][] arr) {
+        int answer = 0;
+
+        int ascendingDiagonal = 0;
+        int descendingDiagonal = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            int width = 0;
+            int height = 0;
+            for (int j = 0; j < arr[i].length; j++) {
+                width += arr[i][j];
+                height += arr[j][i];
+
+            }
+
+            ascendingDiagonal += arr[i][i];
+            descendingDiagonal += arr[i][n - 1 - i];
+
+            int winSum = Math.max(width, height);
+            if (winSum > answer) {
+                answer = winSum;
+            }
+        }
+
+        return Math.max(answer, Math.max(ascendingDiagonal, descendingDiagonal));
+    }
+
+    private int 격자판_최대합_09(int n,
+                              int[][] arr) {
+        int answer = Integer.MIN_VALUE;
+        int sum1;
+        int sum2;
+        for (int i = 0; i < n; i++) {
+            sum1 = 0;
+            sum2 = 0;
+
+            for (int j = 0; j < n; j++) {
+                sum1 += arr[i][j];
+                sum2 += arr[j][i];
+            }
+            answer = Math.max(answer, sum1);
+            answer = Math.max(answer, sum2);
+        }
+
+        sum1 = 0;
+        sum2 = 0;
+        for (int i = 0; i < n; i++) {
+            sum1 += arr[i][i];
+            sum2 += arr[i][n - i - 1];
+
+
+        }
+
+        answer = Math.max(answer, sum1);
+        answer = Math.max(answer, sum2);
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[][] arr = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                arr[i][j] = kb.nextInt();
+            }
+        }
+
+        System.out.println(T.봉우리_10_me(n, arr));
+        System.out.println(T.봉우리_10(n, arr));
+    }
+
+    private int 봉우리_10_me(int n,
+                           int[][] arr) {
+        int result = 0;
+        int[] dt1 = {-1, 0, 1, 0};
+        int[] dt2 = {0, 1, 0, -1};
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                boolean isOk = true;
+
+                for (int k = 0; k < dt1.length; k++) {
+                    int d1 = i + dt1[k];
+                    int d2 = j + dt2[k];
+
+                    if (d1 < 0 || d1 >= n || d2 < 0 || d2 >= n) {
+                        continue;
+                    }
+
+                    if (arr[i][j] <= arr[d1][d2]) {
+                        isOk = false;
+                        break;
+                    }
+                }
+
+                if (isOk) {
+                    result++;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private int 봉우리_10(int n,
+                        int[][] arr) {
+        int answer = 0;
+
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                boolean flag = true;
+
+                for (int k = 0; k < 4; k++) {
+                    int nx = i + dx[k];
+                    int ny = j + dy[k];
+                    if (nx >= 0 && nx < n && ny >= 0 && ny < n && arr[nx][ny] >= arr[i][j]) {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag) answer++;
+            }
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        /*int[][] arr = new int[n][5];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 5; j++) {
+                arr[i][j] = kb.nextInt();
+            }
+        }*/
+
+        int[][] arr = new int[n + 1][6];
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= 5; j++) {
+                arr[i][j] = kb.nextInt();
+            }
+        }
+
+//        System.out.println(T.임시반장_정하기_11_me(n, arr));
+        System.out.println(T.임시반장_정하기_11(n, arr));
+    }
+
+    private int 임시반장_정하기_11_me(int n,
+                                  int[][] arr) {
+        int result = 1;
+        Map<Integer, Set<Integer>> map = new HashMap<>();
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < n; j++) {
+                int stNum = j + 1;
+                int stBan = arr[j][i];
+                for (int k = j + 1; k < n; k++) {
+                    int compareStNum = k + 1;
+                    int compareStBan = arr[k][i];
+
+                    if (stBan == compareStBan) {
+                        Set<Integer> set1 = map.getOrDefault(stNum, new HashSet<>());
+                        set1.add(compareStNum);
+                        Set<Integer> set2 = map.getOrDefault(compareStNum, new HashSet<>());
+                        set2.add(stNum);
+
+                        map.put(stNum, set1);
+                        map.put(compareStNum, set2);
+                    }
+                }
+            }
+        }
+
+
+        int max = 0;
+        for (Integer student : map.keySet()) {
+            int size = map.get(student).size();
+            if (max < size) {
+                max = size;
+                result = student;
+            }
+        }
+
+        return result;
+    }
+
+    private int 임시반장_정하기_11(int n,
+                               int[][] arr) {
+        int answer = 0;
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 1; i <= n; i++) {
+            int cnt = 0;
+
+            for (int j = 1; j <= n; j++) {
+                for (int k = 1; k <= 5; k++) {
+                    if (arr[i][k] == arr[j][k]) {
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+
+            if (cnt > max) {
+                max = cnt;
+                answer = i;
+            }
+        }
 
         return answer;
     }
