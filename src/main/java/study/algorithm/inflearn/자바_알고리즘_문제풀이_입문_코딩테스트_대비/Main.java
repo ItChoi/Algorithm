@@ -1080,16 +1080,16 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
-        /*int[][] arr = new int[n][5];
+        *//*int[][] arr = new int[n][5];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < 5; j++) {
                 arr[i][j] = kb.nextInt();
             }
-        }*/
+        }*//*
 
         int[][] arr = new int[n + 1][6];
         for (int i = 1; i <= n; i++) {
@@ -1165,7 +1165,109 @@ class Main {
         }
 
         return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[][] arr = new int[m][n];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                arr[i][j] = kb.nextInt();
+            }
+        }
+
+        System.out.println(T.멘토링_12_me(n, m, arr));
+        System.out.println(T.멘토링_12(n, m, arr));
     }
+
+    private int 멘토링_12_me(int n,
+                           int m,
+                           int[][] arr) {
+        int answer = 0;
+        for (int i = 1; i <= n; i++) {
+            boolean isLast = false;
+            HashMap<Integer, Integer> map = new HashMap<>();
+
+            for (int j = 0; j < m; j++) {
+                if (arr[j][n - 1] == i) {
+                    isLast = true;
+                    break;
+                }
+
+                boolean isGo = false;
+                for (int k = 0; k < n; k++) {
+                    int student = arr[j][k];
+                    if (student == i) {
+                        isGo = true;
+                        continue;
+                    }
+
+                    if (!isGo) {
+                        continue;
+                    }
+
+                    Integer count = map.getOrDefault(student, 0);
+                    if (count < j) {
+                        continue;
+                    }
+
+                    map.put(student, count + 1);
+                }
+            }
+
+            if (isLast) {
+                continue;
+            }
+
+            for (Integer student : map.keySet()) {
+                if (map.get(student) == m) {
+                    answer++;
+                }
+            }
+        }
+
+        return answer;
+    }
+
+    private int 멘토링_12(int n,
+                        int m,
+                        int[][] arr) {
+        // 강사님은 4중 for문을 사용한다고 함
+        int answer = 0;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                int cnt = 0;
+
+                for (int k = 0; k < m; k++) {
+                    int pi = 0;
+                    int pj = 0;
+
+                    for (int s = 0; s < n; s++) {
+                        if (arr[k][s] == i) {
+                            pi = s;
+                        }
+
+                        if (arr[k][s] == j) {
+                            pj = s;
+                        }
+                    }
+
+                    if (pi < pj) {
+                        cnt++;
+                    }
+                }
+                if (cnt == m) {
+                    answer++;
+                }
+            }
+        }
+
+        return answer;
+    }*/
 }
 
 
