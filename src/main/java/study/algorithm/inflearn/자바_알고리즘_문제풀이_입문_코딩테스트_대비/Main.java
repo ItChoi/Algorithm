@@ -1,7 +1,6 @@
 package study.algorithm.inflearn.자바_알고리즘_문제풀이_입문_코딩테스트_대비;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 class Main {
     /*public static void main(String[] args) {
@@ -1268,6 +1267,129 @@ class Main {
 
         return answer;
     }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr1 = new int[n];
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = kb.nextInt();
+        }
+
+        int m = kb.nextInt();
+        int[] arr2 = new int[m];
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = kb.nextInt();
+        }
+
+        for (int i : T.두_배열_합치기_1_me(n, arr1, m, arr2)) {
+            System.out.print(i + " ");
+        }
+
+        for (int i : T.두_배열_합치기_1(n, arr1, m, arr2)) {
+            System.out.print(i + " ");
+        }
+
+    }
+
+    private int[] 두_배열_합치기_1_me(int n,
+                                int[] arr1,
+                                int m,
+                                int[] arr2) {
+        int[] answer = new int[n + m];
+
+        int ni = 0;
+        int mi = 0;
+        for (int i = 0; i < n + m; i++) {
+            if (ni < arr1.length && mi < arr2.length) {
+                if (arr1[ni] < arr2[mi]) {
+                    answer[i] = arr1[ni];
+                    ni++;
+                } else {
+                    answer[i] = arr2[mi];
+                    mi++;
+                }
+
+                continue;
+            }
+
+            boolean isExceedNi = ni >= arr1.length;
+            if (isExceedNi) {
+                answer[i] = arr2[mi];
+                mi++;
+            } else {
+                answer[i] = arr1[ni];
+                ni++;
+            }
+        }
+
+        return answer;
+    }
+
+    private List<Integer> 두_배열_합치기_1(int n,
+                             int[] a,
+                             int m,
+                             int[] b) {
+        // 투포인트 알고리즘 사용
+        // 퀵 정렬 시간 복잡도: O (n log n)
+        List<Integer> answer = new ArrayList<>();
+
+        int p1 = 0;
+        int p2 = 0;
+        while (p1 < n && p2 < m) {
+            if (a[p1] < b[p2]) answer.add(a[p1++]);
+            else answer.add(b[p2++]);
+        }
+
+        while (p1 < n) answer.add(a[p1++]);
+        while (p2 < m) answer.add(b[p2++]);
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr1 = new int[n];
+        for (int i = 0; i < arr1.length; i++) {
+            arr1[i] = kb.nextInt();
+        }
+
+        int m = kb.nextInt();
+        int[] arr2 = new int[m];
+        for (int i = 0; i < arr2.length; i++) {
+            arr2[i] = kb.nextInt();
+        }
+
+        for (int i : T.공통원소_구하기_2_me(n, arr1, m, arr2)) {
+            System.out.print(i + " ");
+        }
+
+        for (int i : T.공통원소_구하기_2(n, arr1, m, arr2)) {
+            System.out.print(i + " ");
+        }
+
+    }
+
+    private int[] 공통원소_구하기_2_me(int n,
+                                int[] arr1,
+                                int m,
+                                int[] arr2) {
+        int[] answer = new int[n + m];
+
+        return answer;
+    }
+
+    private List<Integer> 공통원소_구하기_2(int n,
+                                     int[] a,
+                                     int m,
+                                     int[] b) {
+        List<Integer> answer = new ArrayList<>();
+
+        return answer;
+    }
 }
 
 
