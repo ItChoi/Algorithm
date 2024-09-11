@@ -1348,7 +1348,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1373,11 +1373,33 @@ class Main {
 
     }
 
-    private int[] 공통원소_구하기_2_me(int n,
-                                int[] arr1,
-                                int m,
-                                int[] arr2) {
-        int[] answer = new int[n + m];
+    private List<Integer> 공통원소_구하기_2_me(int n,
+                                        int[] a,
+                                        int m,
+                                        int[] b) {
+        List<Integer> answer = new ArrayList<>();
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        int lt = 0;
+        int rt = 0;
+        while (lt < n && rt < m) {
+            int aVal = a[lt];
+            int bVal = b[rt];
+
+            if (aVal == bVal) {
+                answer.add(aVal);
+                lt++;
+                rt++;
+                continue;
+            }
+
+            if (aVal < bVal) {
+                lt++;
+            } else {
+                rt++;
+            }
+        }
 
         return answer;
     }
@@ -1386,7 +1408,53 @@ class Main {
                                      int[] a,
                                      int m,
                                      int[] b) {
+        // 투 포인트 알고리즘은 원소들을 오름차순으로 정렬해야 한다.
         List<Integer> answer = new ArrayList<>();
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        int p1 = 0;
+        int p2 = 0;
+        while (p1 < n && p2 < m) {
+            if (a[p1] == b[p2]) {
+                answer.add(a[p1++]);
+                p2++;
+            } else if (a[p1] < b[p2]) {
+                p1++;
+            } else {
+                p2++;
+            }
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.최대_매출_3_me(n, m, arr));
+        System.out.print(T.최대_매출_3(n, m, arr));
+    }
+
+    private int 최대_매출_3_me(int n,
+                           int m,
+                           int[] arr) {
+        int answer = 0;
+
+        return answer;
+    }
+
+    private int 최대_매출_3(int n,
+                        int m,
+                        int[] arr) {
+        int answer = 0;
 
         return answer;
     }
