@@ -1429,7 +1429,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1448,12 +1448,66 @@ class Main {
                            int[] arr) {
         int answer = 0;
 
+        for (int i = 0; i < m; i++) {
+            answer += arr[i];
+        }
+
+        int tpIndex = 0;
+        int sum = answer;
+        for (int i = m; i < n; i++) {
+            sum += arr[i];
+            sum -= arr[tpIndex++];
+
+            if (answer < sum) {
+                answer = sum;
+            }
+        }
+
         return answer;
     }
 
     private int 최대_매출_3(int n,
-                        int m,
+                        int k,
                         int[] arr) {
+        // 슬라이딩 윈도우 사용
+        int answer = 0;
+        int sum = 0;
+        for (int i = 0; i < k; i++) sum += arr[i];
+        answer = sum;
+
+        for (int i = k; i < n; i++) {
+            sum += (arr[i] - arr[i - k]);
+            answer = Math.max(answer, sum);
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.연속_부분수열_4_me(n, m, arr));
+        System.out.print(T.연속_부분수열_4(n, m, arr));
+    }
+
+    private int 연속_부분수열_4_me(int n,
+                             int ㅏ,
+                             int[] arr) {
+        int answer = 0;
+
+        return answer;
+    }
+
+    private int 연속_부분수열_4(int n,
+                          int k,
+                          int[] arr) {
         int answer = 0;
 
         return answer;
