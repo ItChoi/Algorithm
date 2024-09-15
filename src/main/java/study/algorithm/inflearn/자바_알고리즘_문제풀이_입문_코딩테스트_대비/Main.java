@@ -1483,7 +1483,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1498,18 +1498,128 @@ class Main {
     }
 
     private int 연속_부분수열_4_me(int n,
-                             int ㅏ,
+                             int m,
                              int[] arr) {
         int answer = 0;
+
+        int index = 0;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 0) continue;
+
+            sum += arr[i];
+            while (sum > m) {
+                sum -= arr[index++];
+            }
+
+            if (sum == m) {
+                answer++;
+                sum -= arr[index++];
+            }
+        }
 
         return answer;
     }
 
     private int 연속_부분수열_4(int n,
-                          int k,
+                          int m,
                           int[] arr) {
         int answer = 0;
+        int sum = 0;
+        int lt = 0;
+        for (int rt = 0; rt < n; rt++) {
+            sum += arr[rt];
 
+            if (sum == m) answer++;
+            while (sum >= m) {
+                sum -= arr[lt++];
+                if (sum == m) answer++;
+            }
+        }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        System.out.print(T.연속된_자연수의_합_05_me(n));
+        System.out.print(T.연속된_자연수의_합_05(n));
+    }
+
+    private int 연속된_자연수의_합_05_me(int n) {
+        int answer = 0;
+        int sum = 0;
+        int lt = 1;
+        for (int rt = 1; rt < n; rt++) {
+            sum += rt;
+            while (sum > n) {
+                sum -= lt;
+                lt++;
+            }
+
+            if (sum == n) {
+                answer++;
+            }
+        }
+
+        return answer;
+    }
+
+    private int 연속된_자연수의_합_05(int n) {
+        // n / 2 + 1 까지만 연산을 하면 된다.
+        int answer = 0;
+        int sum = 0;
+        int lt = 0;
+        int m = n / 2 + 1;
+        int[] arr = new int[m];
+        for (int i = 0; i < m; i++) {
+            arr[i] = i + 1;
+        }
+
+        for (int rt = 0; rt < m; rt++) {
+            sum += arr[rt];
+            if (sum == n) {
+                answer++;
+            }
+            while (sum >= n) {
+                sum -= arr[lt++];
+                if (sum == n) {
+                    answer++;
+                }
+            }
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.최대_길이_연속부분수열_06_me(n, m, arr));
+        System.out.print(T.최대_길이_연속부분수열_06(n, m, arr));
+    }
+
+    private int 최대_길이_연속부분수열_06_me(int n,
+                                       int m,
+                                       int[] arr) {
+        int answer = 0;
+        return answer;
+    }
+
+    private int 최대_길이_연속부분수열_06(int n,
+                                    int m,
+                                    int[] arr) {
+        int answer = 0;
         return answer;
     }
 }
