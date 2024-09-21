@@ -1547,6 +1547,7 @@ class Main {
 
         System.out.print(T.연속된_자연수의_합_05_me(n));
         System.out.print(T.연속된_자연수의_합_05(n));
+        System.out.print(T.연속된_자연수의_합_05_other(n));
     }
 
     private int 연속된_자연수의_합_05_me(int n) {
@@ -1593,6 +1594,22 @@ class Main {
         }
 
         return answer;
+    }
+
+    private int 연속된_자연수의_합_05_other(int n) {
+        int answer = 0;
+        int cnt = 1;
+        n--;
+
+        while (n > 0) {
+            cnt++;
+            n = n - cnt;
+            if (n % cnt == 0) {
+                answer++;
+            }
+        }
+
+        return answer;
     }*/
 
     public static void main(String[] args) {
@@ -1613,6 +1630,30 @@ class Main {
                                        int m,
                                        int[] arr) {
         int answer = 0;
+
+        int lt = -1;
+        for (int rt = 0; rt < arr.length; rt++) {
+            if (arr[rt] == 0) {
+                if (m > 0) {
+                    m--;
+                    continue;
+                }
+
+                int sum = rt - (lt + 1);
+                if (answer < sum) {
+                    answer = sum;
+                }
+
+                for (int i = lt + 1; i <= rt; i++) {
+                    if (arr[i] == 0) {
+                        lt = i;
+                        arr[i] = 2;
+                        break;
+                    }
+                }
+            }
+        }
+
         return answer;
     }
 
@@ -1620,6 +1661,21 @@ class Main {
                                     int m,
                                     int[] arr) {
         int answer = 0;
+        int cnt = 0;
+        int lt = 0;
+        for (int rt = 0; rt < n; rt++) {
+            if (arr[rt] == 0) cnt++;
+
+            while (cnt > m) {
+                if (arr[lt] == 0) {
+                    cnt --;
+                }
+                lt++;
+            }
+
+            answer = Math.max(answer, rt - lt + 1);
+        }
+
         return answer;
     }
 }
