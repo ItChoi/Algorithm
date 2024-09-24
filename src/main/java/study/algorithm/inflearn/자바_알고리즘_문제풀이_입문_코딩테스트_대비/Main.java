@@ -1612,7 +1612,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1676,6 +1676,134 @@ class Main {
             answer = Math.max(answer, rt - lt + 1);
         }
 
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        String m = kb.next();
+
+        System.out.print(T.학급회장_01_me(n, m));
+        System.out.print(T.학급회장_01(n, m));
+    }
+
+    private String 학급회장_01_me(int n,
+                              String m) {
+        String answer = "";
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : m.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        int max = 0;
+        for (Character key : map.keySet()) {
+            int cnt = map.get(key);
+            if (max < cnt) {
+                max = cnt;
+                answer = String.valueOf(key);
+            }
+        }
+
+        return answer;
+    }
+
+    private char 학급회장_01(int n,
+                         String s) {
+
+        char answer = ' ';
+        Map<Character, Integer> map = new HashMap<>();
+        for (char x : s.toCharArray()) {
+            map.put(x, map.getOrDefault(x, 0) + 1);
+        }
+        int max = Integer.MIN_VALUE;
+        for (Character key : map.keySet()) {
+            if (map.get(key) > max) {
+                max = map.get(key);
+                answer = key;
+            }
+        }
+
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String n = kb.next();
+        String m = kb.next();
+
+        System.out.print(T.아나그램_02_me(n, m));
+        System.out.print(T.아나그램_02(n, m));
+    }
+
+    private String 아나그램_02_me(String n,
+                              String m) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : n.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : m.toCharArray()) {
+            Integer cnt = map.get(c);
+            if (cnt == null || cnt < 0) {
+                return "NO";
+            }
+
+            map.put(c, cnt - 1);
+        }
+
+        for (Character c : map.keySet()) {
+            if (map.get(c) != 0) {
+                return "NO";
+            }
+        }
+
+        return "YES";
+    }
+
+    private String 아나그램_02(String s1,
+                           String s2) {
+        String answer = "YES";
+        Map<Character, Integer> map = new HashMap<>();
+        for (char x : s1.toCharArray()) {
+            map.put(x, map.getOrDefault(x, 0) + 1);
+        }
+        for (char x : s2.toCharArray()) {
+            if (!map.containsKey(x) || map.get(x) == 0) return "NO";
+            map.put(x, map.get(x) - 1);
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = kb.nextInt();
+        }
+        
+        System.out.print(T.매출액의_종류_03_me(n, k, arr));
+        System.out.print(T.매출액의_종류_03(n, k, arr));
+    }
+
+    private int[] 매출액의_종류_03_me(int n,
+                                 int k,
+                                 int[] arr) {
+        int[] answer = {};
+        return answer;
+    }
+
+    private int[] 매출액의_종류_03(int n,
+                              int k,
+                              int[] arr) {
+        int[] answer = {};
         return answer;
     }
 }
