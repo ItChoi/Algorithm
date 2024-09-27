@@ -1788,22 +1788,64 @@ class Main {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = kb.nextInt();
         }
-        
-        System.out.print(T.매출액의_종류_03_me(n, k, arr));
-        System.out.print(T.매출액의_종류_03(n, k, arr));
+
+        for (int i : T.매출액의_종류_03_me(n, k, arr)) {
+            System.out.print(i + " ");
+        }
+
+        for (int i : T.매출액의_종류_03(n, k, arr)) {
+            System.out.print(i + " ");
+        }
     }
 
-    private int[] 매출액의_종류_03_me(int n,
+    private List<Integer> 매출액의_종류_03_me(int n,
                                  int k,
                                  int[] arr) {
-        int[] answer = {};
+        List<Integer> answer = new ArrayList<>();
+
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < k; i++) {
+            int key = arr[i];
+            map.put(key, map.getOrDefault(key, 0) + 1);
+        }
+        answer.add(map.size());
+
+        for (int i = k; i < n; i++) {
+            int key = arr[i];
+            map.put(key, map.getOrDefault(key, 0) + 1);
+
+            int removeKey = arr[i - k];
+            map.put(removeKey, map.getOrDefault(removeKey, 0) - 1);
+            if (map.get(removeKey) <= 0) {
+                map.remove(removeKey);
+            }
+
+            answer.add(map.size());
+        }
+
         return answer;
     }
 
-    private int[] 매출액의_종류_03(int n,
+    private List<Integer> 매출액의_종류_03(int n,
                               int k,
                               int[] arr) {
-        int[] answer = {};
+        List<Integer> answer = new ArrayList<>();
+        Map<Integer, Integer> HM = new HashMap<>();
+
+        for (int i = 0; i < k - 1; i++) {
+            HM.put(arr[i], HM.getOrDefault(arr[i], 0) + 1);
+        }
+
+        int lt = 0;
+        for (int rt = k - 1; rt < n; rt++) {
+            HM.put(arr[rt], HM.getOrDefault(arr[rt], 0) + 1);
+            answer.add(HM.size());
+
+            HM.put(arr[lt], HM.get(arr[lt]) - 1);
+            if (HM.get(arr[lt]) == 0) HM.remove(arr[lt]);
+            lt++;
+        }
+
         return answer;
     }
 }
