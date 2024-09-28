@@ -1779,7 +1779,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1846,6 +1846,122 @@ class Main {
             lt++;
         }
 
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String s  = kb.next();
+        String t  = kb.next();
+        
+        System.out.print(T.모든_아나그램_찾기_04_me(s, t));
+        System.out.print(T.모든_아나그램_찾기_04(s, t));
+    }
+
+    private int 모든_아나그램_찾기_04_me(String s,
+                                    String t) {
+        int answer = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        HashMap<Character, Integer> compareMap = new HashMap<>();
+
+        for (int i = 0; i < t.toCharArray().length - 1; i++) {
+            char key = s.charAt(i);
+            map.put(key, map.getOrDefault(key, 0) + 1);
+        }
+
+        for (char c : t.toCharArray()) {
+            compareMap.put(c, compareMap.getOrDefault(c, 0) + 1);
+        }
+
+        int lt = 0;
+        for (int i = t.toCharArray().length - 1; i < s.toCharArray().length; i++) {
+            char key = s.charAt(i);
+            map.put(key, map.getOrDefault(key, 0) + 1);
+
+            boolean isOk = true;
+            for (Character c : map.keySet()) {
+                Integer com1 = map.get(c);
+                Integer com2 = compareMap.get(c);
+                if (com2 == null || com1 != com2) {
+                    isOk = false;
+                    break;
+                }
+            }
+
+            if (isOk) answer++;
+
+            char removeKey = s.charAt(lt);
+            map.put(removeKey, map.get(removeKey) - 1);
+            if (map.get(removeKey) <= 0) {
+                map.remove(removeKey);
+            }
+
+            lt++;
+        }
+
+        return answer;
+    }
+
+    private int 모든_아나그램_찾기_04(String a,
+                                  String b) {
+        // map1.equals(map2) -> key와 value 모두 비교해서 true/false
+        int answer = 0;
+        HashMap<Character, Integer> am = new HashMap<>();
+        HashMap<Character, Integer> bm = new HashMap<>();
+        for (Character x : b.toCharArray()) {
+            bm.put(x, bm.getOrDefault(x, 0) + 1);
+        }
+
+        int L = b.length() - 1;
+        for (int i = 0; i < L; i++) {
+            am.put(a.charAt(i), am.getOrDefault(a.charAt(i), 0) + 1);
+        }
+
+        int lt = 0;
+        for (int rt = L; rt < a.length(); rt++) {
+            am.put(a.charAt(rt), am.getOrDefault(a.charAt(rt), 0) + 1);
+
+            if (am.equals(bm)) {
+                answer++;
+            }
+
+            am.put(a.charAt(lt), am.get(a.charAt(lt)) - 1);
+            if (am.get(a.charAt(lt)) == 0) {
+                am.remove(a.charAt(lt));
+            }
+
+            lt++;
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int k = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.K번째_큰_수_05_me(n, k, arr));
+        System.out.print(T.K번째_큰_수_05(n, k, arr));
+    }
+
+    private Integer K번째_큰_수_05_me(int n,
+                                  int k,
+                                  int[] arr) {
+        Integer answer = 0;
+        return answer;
+    }
+
+    private Integer K번째_큰_수_05(int n,
+                               int k,
+                               int[] arr) {
+        Integer answer = 0;
         return answer;
     }
 }
