@@ -1954,14 +1954,47 @@ class Main {
     private Integer K번째_큰_수_05_me(int n,
                                   int k,
                                   int[] arr) {
-        Integer answer = 0;
+        Integer answer = -1;
+
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int l = j + 1 ; l < n; l++) {
+                    set.add(arr[i] + arr[j] + arr[l]);
+                }
+            }
+        }
+
+        List<Integer> repo = new ArrayList<>(set);
+        Collections.sort(repo, Collections.reverseOrder());
+
+        if (repo.size() >= k) {
+            answer = repo.get(k - 1);
+        }
+
         return answer;
     }
 
     private Integer K번째_큰_수_05(int n,
                                int k,
                                int[] arr) {
-        Integer answer = 0;
+        // TreeSet -> 중복 제거, 정렬 (레드 블랙 트리)
+        int answer = -1;
+        TreeSet<Integer> Tset = new TreeSet<>(Collections.reverseOrder()); // 기본은 오름차순
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int l = j + 1; l < n; l++) {
+                    Tset.add(arr[i] + arr[j] + arr[l]);
+                }
+            }
+        }
+        int cnt = 0;
+        for (Integer x : Tset) {
+            cnt++;
+            if (cnt == k) return x;
+        }
+
         return answer;
     }
 }
