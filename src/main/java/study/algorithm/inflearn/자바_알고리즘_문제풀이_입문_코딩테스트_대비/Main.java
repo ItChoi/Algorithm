@@ -1937,7 +1937,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -1994,6 +1994,185 @@ class Main {
             cnt++;
             if (cnt == k) return x;
         }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String n = kb.next();
+        System.out.print(T.올바른_괄호_01_me(n));
+        System.out.print(T.올바른_괄호_01(n));
+    }
+
+    private String 올바른_괄호_01_me(String n) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : n.toCharArray()) {
+            if (c == '(') {
+                stack.push(c);
+                continue;
+            }
+
+            if (stack.isEmpty()) {
+                return "NO";
+            }
+
+            stack.pop();
+        }
+
+        if (!stack.isEmpty()) {
+            return "NO";
+        }
+
+        return "YES";
+    }
+
+    private String 올바른_괄호_01(String str) {
+        // 스택 자료구조 대표적인 문제
+        String answer = "YES";
+        Stack<Character> stack = new Stack<>();
+        for (char x : str.toCharArray()) {
+            if (x == '(') {
+                stack.push(x);
+            } else {
+                if (stack.isEmpty()) {
+                    return "NO";
+                }
+
+                stack.pop();
+            }
+        }
+
+        if (!stack.isEmpty()) {
+            return "NO";
+        }
+
+        return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String n = kb.next();
+        System.out.print(T.괄호문자제거_02_me(n));
+        System.out.print(T.괄호문자제거_02(n));
+    }
+
+    private String 괄호문자제거_02_me(String n) {
+        String answer = "";
+        Stack<Character> stack = new Stack<>();
+        for (char c : n.toCharArray()) {
+            if (c == '(') {
+                stack.push(c);
+                continue;
+            } else if (c == ')') {
+                stack.pop();
+                continue;
+            }
+
+            if (stack.isEmpty()) {
+                answer = answer + c;
+                continue;
+            }
+        }
+
+        return answer;
+    }
+
+    private String 괄호문자제거_02(String str) {
+        String answer = "";
+        Stack<Character> stack = new Stack<>();
+
+        for (char x : str.toCharArray()) {
+            if (x == ')') {
+                while (stack.pop() != '(');
+            } else {
+                stack.push(x);
+            }
+        }
+
+        for (int i = 0; i < stack.size(); i++) {
+            answer += stack.get(i);
+        }
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        Integer n = kb.nextInt();
+        int[][] board = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = kb.nextInt();
+            }
+        }
+
+        Integer m = kb.nextInt();
+        int[] moves = new int[m];
+        for (int i = 0; i < m; i++) {
+            moves[i] = kb.nextInt();
+        }
+        System.out.print(T.크레인_인형뽑기_03_me(n, board, m, moves));
+        System.out.print(T.크레인_인형뽑기_03(n, board, m, moves));
+    }
+
+    private int 크레인_인형뽑기_03_me(int n,
+                               int[][] board,
+                               int m,
+                               int[] moves) {
+        int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < moves.length; i++) {
+            int moveIdx = moves[i] - 1;
+
+            for (int j = 0; j < n; j++) {
+                int value = board[j][moveIdx];
+                if (value == 0) {
+                    continue;
+                }
+
+                board[j][moveIdx] = 0;
+                if (!stack.isEmpty() && stack.peek() == value) {
+                    stack.pop();
+                    answer += 2;
+                    break;
+                }
+
+                stack.push(value);
+                break;
+            }
+        }
+
+        return answer;
+    }
+
+    private int 크레인_인형뽑기_03(int n,
+                            int[][] board,
+                            int m,
+                            int[] moves) {
+        int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int pos : moves) {
+            for (int i = 0; i < board.length; i++) {
+                if (board[i][pos - 1] != 0) {
+                    int tmp = board[i][pos - 1];
+                    board[i][pos - 1] = 0;
+
+                    if (!stack.isEmpty() && tmp == stack.peek()) {
+                        answer += 2;
+                        stack.pop();
+                    } else {
+                        stack.push(tmp);
+                    }
+
+                    break;
+                }
+            }
+        }
+
 
         return answer;
     }
