@@ -1854,7 +1854,7 @@ class Main {
         Scanner kb = new Scanner(System.in);
         String s  = kb.next();
         String t  = kb.next();
-        
+
         System.out.print(T.모든_아나그램_찾기_04_me(s, t));
         System.out.print(T.모든_아나그램_찾기_04(s, t));
     }
@@ -2099,7 +2099,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         Integer n = kb.nextInt();
@@ -2174,6 +2174,71 @@ class Main {
         }
 
 
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+        System.out.print(T.후위식_연산_04_me(str));
+        System.out.print(T.후위식_연산_04(str));
+    }
+
+    private int 후위식_연산_04_me(String str) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (char c : str.toCharArray()) {
+            if (isOperator(c)) {
+                stack.push(operateNumber(c, stack.pop(), stack.pop()));
+                continue;
+            }
+            stack.push(Character.getNumericValue(c));
+        }
+
+        return stack.pop();
+    }
+
+    private int operateNumber(char c,
+                              int num1,
+                              int num2) {
+        if (c == '+') {
+            return num2 + num1;
+        } else if (c == '/') {
+            return num2 / num1;
+        } else if (c == '*') {
+            return num2 * num1;
+        } else if (c == '-') {
+            return num2 - num1;
+        }
+
+        return 0;
+    }
+
+    private boolean isOperator(char c) {
+        return c == '+'
+                || c == '/'
+                || c == '*'
+                || c == '-';
+    }
+
+    private int 후위식_연산_04(String str) {
+        int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (char x : str.toCharArray()) {
+            if (Character.isDigit(x)) {
+                stack.push(x - 48);
+            } else {
+                int rt = stack.pop();
+                int lt = stack.pop();
+                if (x == '+') stack.push(lt + rt);
+                else if(x == '-') stack.push(lt - rt);
+                else if(x == '*') stack.push(lt * rt);
+                else if(x == '/') stack.push(lt / rt);
+            }
+        }
+
+        answer = stack.get(0);
         return answer;
     }
 }
