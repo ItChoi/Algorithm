@@ -2177,7 +2177,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         String str = kb.next();
@@ -2239,6 +2239,60 @@ class Main {
         }
 
         answer = stack.get(0);
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+        System.out.print(T.쇠막대기_05_me(str));
+        System.out.print(T.쇠막대기_05(str));
+    }
+
+    private int 쇠막대기_05_me(String str) {
+        int answer = 0;
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char x = str.charAt(i);
+
+            if (x == '(') {
+                stack.push(x);
+                continue;
+            }
+
+            stack.pop();
+            if (str.charAt(i - 1) == '(') {
+                answer += stack.size();
+                continue;
+            }
+
+            answer++;
+        }
+
+        return answer;
+    }
+
+
+    private int 쇠막대기_05(String str) {
+        int answer = 0;
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(') {
+                stack.push('(');
+            } else {
+                stack.pop();
+
+                if (str.charAt(i - 1) == '(') {
+                    answer += stack.size();
+                } else {
+                    answer++;
+                }
+            }
+        }
+
         return answer;
     }
 }
