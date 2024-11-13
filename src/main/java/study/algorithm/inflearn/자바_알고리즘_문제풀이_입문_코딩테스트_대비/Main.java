@@ -2242,7 +2242,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         String str = kb.next();
@@ -2293,6 +2293,50 @@ class Main {
             }
         }
 
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int N = kb.nextInt();
+        int K = kb.nextInt();
+        System.out.print(T.공주_구하기_06_me(N, K));
+        System.out.print(T.공주_구하기_06(N, K));
+    }
+
+    private int 공주_구하기_06_me(int N,
+                               int K) {
+        Queue<Integer> que = new LinkedList<>();
+        for (int i = 1; i <= N; i++) {
+            que.add(i);
+        }
+
+        int cnt = 1;
+        while (que.size() != 1) {
+            if (K == cnt++) {
+                que.poll();
+                cnt = 1;
+                continue;
+            }
+
+            que.add(que.poll());
+        }
+
+        return que.poll();
+    }
+
+
+    private int 공주_구하기_06(int n,
+                            int k) {
+        int answer = 0;
+        Queue<Integer> Q = new LinkedList<>();
+        for (int i = 1; i <= n; i++) Q.offer(i);
+        while(!Q.isEmpty()) {
+            for (int i = 1; i < k; i++) Q.offer(Q.poll());
+            Q.poll();
+            if (Q.size() == 1) answer = Q.poll();
+        }
         return answer;
     }
 }
