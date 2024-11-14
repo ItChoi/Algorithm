@@ -2296,7 +2296,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int N = kb.nextInt();
@@ -2337,6 +2337,59 @@ class Main {
             Q.poll();
             if (Q.size() == 1) answer = Q.poll();
         }
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String n = kb.next();
+        String k = kb.next();
+        System.out.print(T.교육과정_설계_07_me(n, k));
+        System.out.print(T.교육과정_설계_07(n, k));
+    }
+
+    private String 교육과정_설계_07_me(String n,
+                                    String k) {
+        Set<Character> set = new HashSet<>();
+        for (char c : n.toCharArray()) {
+            set.add(c);
+        }
+
+        Queue<Character> que = new LinkedList<>();
+        for (char c : k.toCharArray()) {
+            if (set.contains(c)) {
+                que.add(c);
+            }
+        }
+
+        if (que.size() != n.length()) {
+            return "NO";
+        }
+
+        for (char c : n.toCharArray()) {
+            if (c != que.poll()) {
+                return "NO";
+            }
+        }
+        
+        return "YES";
+    }
+
+
+    private String 교육과정_설계_07(String need,
+                                 String plan) {
+        String answer = "YES";
+        Queue<Character> Q = new LinkedList<>();
+        for (char x : need.toCharArray()) Q.offer(x);
+        for (char x : plan.toCharArray()) {
+            if (Q.contains(x)) {
+                if (x != Q.poll()) return "NO";
+            }
+        }
+
+        if (!Q.isEmpty()) return "NO";
+
         return answer;
     }
 }
