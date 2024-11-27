@@ -2340,7 +2340,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         String n = kb.next();
@@ -2389,6 +2389,92 @@ class Main {
         }
 
         if (!Q.isEmpty()) return "NO";
+
+        return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+        System.out.print(T.응급실_08_me(n, m, arr));
+//        System.out.print(T.응급실_08(n, m, arr));
+
+        /**
+         * 6 0
+         * 60 60 90 60 60 60
+         * 5
+         *
+         * 50 15
+         * 77 92 64 94 83 82 69 89 74 79 85 65 82 82 85 79 68 79 63 77 93 58 78 75 86 85 90 77 57 51 56 69 53 56 67 64 84 92 52 54 74 50 66 72 87 54 66 98 55 55
+         * 18
+         *
+         * 100 25
+         * 70 81 58 71 62 68 92 63 50 53 53 61 77 96 67 60 74 54 91 81 65 65 82 50 95 98 87 93 70 72 90 62 64 99 74 73 67 95 71 82 61 96 57 84 84 91 52 50 88 90 77 54 50 70 52 99 99 83 72 57 78 61 54 59 58 78 79 75 84 78 95 61 61 50 90 76 51 55 64 99 50 72 61 77 72 93 62 87 76 57 62 74 94 71 98 84 63 74 73 68
+         * 6
+         *
+         *
+         * 70 60 90 60* 60 60
+         * 60 90 60* 60 60 70
+         * 90 60* 60 60 70 60 (1 - 90)
+         * 60* 60 60 70 60
+         * 60 60 70 60 60*
+         * 60 70 60 60* 60
+         * 70 60 60* 60 60 (2 - 70)
+         * 60 60* 60 60 (3 - 60)
+         * 60* 60 60 (4 - 60*)
+         */
+    }
+
+    private int 응급실_08_me(int n,
+                          int m,
+                          int[] arr) {
+        Queue<Integer> que = new LinkedList<>();
+        PriorityQueue<Integer> pQue = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = 0; i < arr.length; i++) {
+            que.offer(arr[i]);
+            if (arr[i] > arr[m]) {
+                pQue.offer(arr[i]);
+            }
+        }
+
+        int answer = 0;
+        while (!pQue.isEmpty()) {
+            Integer high = pQue.poll();
+
+            for (int i = 0; i < n; i++) {
+                Integer compare = que.poll();
+                m--;
+                if (high == compare) {
+                    answer++;
+                    break;
+                }
+
+                que.offer(compare);
+                if (m < 0) {
+                    m = que.size() - 1;
+                }
+            }
+        }
+
+        for (int i = 0; i < m; i++) {
+            if (que.poll() == arr[m]) {
+                answer++;
+            }
+        }
+
+        return answer + 1;
+    }
+
+    private int 응급실_08(int n,
+                       int m,
+                       int[] arr) {
+        int answer = 0;
 
         return answer;
     }
