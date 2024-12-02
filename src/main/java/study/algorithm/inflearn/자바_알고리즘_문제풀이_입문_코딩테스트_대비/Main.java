@@ -2393,7 +2393,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -2481,6 +2481,163 @@ class Main {
             this.id = id;
             this.priority = priority;
         }
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+
+        for (int i : T.선택정렬_01_me(n, arr)) {
+            System.out.print(i + " ");
+        }
+        System.out.print(T.선택정렬_01(n, arr));
+    }
+
+    private int[] 선택정렬_01_me(int n,
+                             int[] arr) {
+        for (int i = 0; i < n; i++) {
+            int idx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[idx] > arr[j]) {
+                    idx = j;
+                }
+            }
+
+            if (idx == i) {
+                continue;
+            }
+
+            int temp = arr[i];
+            arr[i] = arr[idx];
+            arr[idx] = temp;
+        }
+
+        return arr;
+    }
+
+    private int[] 선택정렬_01(int n,
+                          int[] arr) {
+        for (int i = 0; i < n - 1; i++) {
+            int idx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[idx]) idx = j;
+            }
+
+            int tmp = arr[i];
+            arr[i] = arr[idx];
+            arr[idx] = tmp;
+        }
+
+        return arr;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+
+        for (int i : T.버블정렬_02_me(n, arr)) {
+            System.out.print(i + " ");
+        }
+        for (int i : T.버블정렬_02(n, arr)) {
+            System.out.print(i + " ");
+        }
+    }
+
+    private int[] 버블정렬_02_me(int n,
+                             int[] arr) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        return arr;
+    }
+
+    private int[] 버블정렬_02(int n,
+                          int[] arr) {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int tmp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = tmp;
+                }
+            }
+        }
+        return arr;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        for (int i : T.삽입정렬_03_me(n, arr)) {
+            System.out.print(i + " ");
+        }
+
+        for (int i : T.삽입정렬_03(n, arr)) {
+            System.out.print(i + " ");
+        }
+    }
+
+    private int[] 삽입정렬_03_me(int n,
+                             int[] arr) {
+        for (int i = 1; i < n; i++) {
+            int target = arr[i];
+            for (int j = i; j > 0; j--) {
+                if (target > arr[j - 1]) {
+                    break;
+                }
+
+                int temp = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = temp;
+            }
+        }
+
+        return arr;
+    }
+
+    private int[] 삽입정렬_03(int n,
+                          int[] arr) {
+        for (int i = 1; i < n; i++) {
+            int tmp = arr[i];
+
+            int j;
+            for (j = i - 1; j >= 0; j--) {
+                if (arr[j] > tmp) {
+                    arr[j + 1] = arr[j];
+                } else {
+                    break;
+                }
+            }
+
+            arr[j + 1] = tmp;
+        }
+
+        return arr;
     }
 }
 
