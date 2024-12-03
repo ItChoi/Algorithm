@@ -1,6 +1,7 @@
 package study.algorithm.inflearn.자바_알고리즘_문제풀이_입문_코딩테스트_대비;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 class Main {
     /*public static void main(String[] args) {
@@ -2584,7 +2585,7 @@ class Main {
         return arr;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -2638,6 +2639,80 @@ class Main {
         }
 
         return arr;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int s = kb.nextInt();
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+//        for (int i : T.LEAST_RECENTLY_USED_04_me(s, n, arr)) {
+//            System.out.print(i + " ");
+//        }
+
+        for (int i : T.LEAST_RECENTLY_USED_04(s, n, arr)) {
+            System.out.print(i + " ");
+        }
+    }
+
+    private List<Integer> LEAST_RECENTLY_USED_04_me(int s,
+                                                    int n,
+                                                    int[] arr) {
+        List<Integer> cache = new LinkedList<>();
+        for (Integer value : arr) {
+            if (cache.contains(value)) {
+                for (int i = 0; i < cache.size(); i++) {
+                    if (value.equals(cache.get(i))) {
+                        Integer cVal = cache.get(i);
+                        cache.remove(i);
+                        cache.add(0, cVal);
+                        break;
+                    }
+                }
+
+                continue;
+            }
+
+            while (cache.size() >= s) {
+                cache.remove(cache.size() - 1);
+            }
+
+            cache.add(0, value);
+        }
+
+        return cache;
+    }
+
+    private int[] LEAST_RECENTLY_USED_04(int size,
+                                         int n,
+                                         int[] arr) {
+        int[] cache = new int[size];
+        for (int x : arr) {
+            int pos = -1;
+            for (int i = 0; i < size; i++) {
+                if (x == cache[i]) {
+                    pos = i;
+                }
+            }
+
+            if (pos == -1) {
+                for (int i = size - 1; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+            } else {
+                for (int i = pos; i >= 1; i--) {
+                    cache[i] = cache[i - 1];
+                }
+            }
+            cache[0] = x;
+        }
+
+        return cache;
     }
 }
 
