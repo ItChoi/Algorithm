@@ -1,7 +1,6 @@
 package study.algorithm.inflearn.자바_알고리즘_문제풀이_입문_코딩테스트_대비;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 class Main {
     /*public static void main(String[] args) {
@@ -2641,7 +2640,7 @@ class Main {
         return arr;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int s = kb.nextInt();
@@ -2713,7 +2712,94 @@ class Main {
         }
 
         return cache;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.중복확인_05_me(n, arr));
+        System.out.print(T.중복확인_05(n, arr));
     }
+
+    private String 중복확인_05_me(int n,
+                           int[] arr) {
+        Arrays.sort(arr);
+
+        int temp = 0;
+        for (int i : arr) {
+            if (i == temp) {
+                return "D";
+            }
+
+            temp = i;
+        }
+
+        return "U";
+    }
+
+    private String 중복확인_05(int n,
+                           int[] arr) {
+        // HashMap 방법도 있지만, 정렬로 풀 수 있는 방법도 있다.
+        // 정렬로 풀 때 시간복잡도 n log n
+        String result = "U";
+        Arrays.sort(arr);
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] == arr[i + 1]) return "D";
+        }
+
+        return result;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        for (int i : T.장난꾸러기_06_me(n, arr)) {
+            System.out.print(i + " ");
+        }
+
+        for (int i : T.장난꾸러기_06(n, arr)) {
+            System.out.print(i + " ");
+        }
+    }
+
+    private List<Integer> 장난꾸러기_06_me(int n,
+                                      int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        int[] sortArr = arr.clone();
+        Arrays.sort(sortArr);
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != sortArr[i]) {
+                answer.add(i + 1);
+            }
+        }
+
+        return answer;
+    }
+
+    private List<Integer> 장난꾸러기_06(int n,
+                                   int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        int[] tmp = arr.clone();
+        Arrays.sort(tmp);
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != tmp[i]) answer.add(i + 1);
+        }
+
+        return answer;
+    }
+
 }
 
 
