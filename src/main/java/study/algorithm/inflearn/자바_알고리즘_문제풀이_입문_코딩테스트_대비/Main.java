@@ -2756,7 +2756,7 @@ class Main {
         return result;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -2798,8 +2798,118 @@ class Main {
         }
 
         return answer;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[][] arr = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 2; j++) {
+                arr[i][j] = kb.nextInt();
+            }
+        }
+
+        for (int[] iArr : T.좌표_정렬_07_me(n, arr)) {
+            for (int i : iArr) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+        }
+
     }
 
+    private int[][] 좌표_정렬_07_me(int N,
+                                         int[][] arr) {
+        Arrays.sort(arr, (o1, o2) -> {
+            if (o1[0] < o2[0]) {
+                return -1;
+            } else if (o1[0] > o2[0]) {
+                return 1;
+            }
+
+            if (o1[1] < o2[1]) {
+                return -1;
+            } else if (o1[1] > o2[1]) {
+                return 1;
+            }
+
+            return 0;
+        });
+
+        return arr;
+    }
+
+    private static List<T_좌표_정렬_07_Point> T_좌표_정렬_07(int N,
+                                                     List<T_좌표_정렬_07_Point> arr) {
+        Collections.sort(arr);
+        return arr;
+    }
+
+    class T_좌표_정렬_07_Point implements Comparable<T_좌표_정렬_07_Point> {
+        public int x;
+        public int y;
+
+        T_좌표_정렬_07_Point(int x,
+                         int y) {
+            this.x = x;
+            this.y = y;
+        }
+        @Override
+        public int compareTo(T_좌표_정렬_07_Point o) {
+            if (this.x == o.x) {
+                return this.y - o.y;
+            } else {
+                return this.x = o.x;
+            }
+        }
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int N = kb.nextInt();
+        int K = kb.nextInt();
+        int[] arr = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.이분검색_08_me(N, K, arr));
+        //System.out.print(T.이분검색_08(N, K, arr));
+    }
+
+    private int 이분검색_08_me(int N,
+                           int K,
+                           int[] arr) {
+        Arrays.sort(arr);
+
+        int lt = 0;
+        int rt = N - 1;
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+            if (arr[mid] == K) {
+                return mid + 1;
+            }
+
+            if (arr[mid] < K) {
+                lt = mid + 1;
+            } else {
+                rt = mid - 1;
+            }
+        }
+
+        return 0;
+    }
+
+    private int 이분검색_08(int N,
+                        int K,
+                        int[] arr) {
+        int answer = 1;
+
+        return answer;
+    }
 }
 
 
