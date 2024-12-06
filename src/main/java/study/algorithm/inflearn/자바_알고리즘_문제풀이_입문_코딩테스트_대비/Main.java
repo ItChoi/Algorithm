@@ -2866,7 +2866,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int N = kb.nextInt();
@@ -2925,6 +2925,100 @@ class Main {
         }
 
         return answer;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.뮤직비디오_09_me(n, m, arr));
+//        System.out.print(T.뮤직비디오_09(n, m, arr));
+    }
+
+    private int 뮤직비디오_09_me(int n,
+                            int m,
+                            int[] arr) {
+        int answer = Integer.MAX_VALUE;
+        int lt = 0;
+        int rt = 0;
+        for (int i : arr) {
+            rt += i;
+        }
+
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+
+            int cnt = 1;
+            int sum = 0;
+            for (int i = 0; i < n; i++) {
+                int val = arr[i];
+                if (sum + val <= mid) {
+                    sum += val;
+                    continue;
+                }
+
+                sum = val;
+                cnt++;
+
+                if (cnt > m) {
+                    break;
+                }
+            }
+
+            if (cnt <= m) {
+                if (answer > mid) {
+                    answer = mid;
+                }
+
+                rt = mid - 1;
+            } else {
+                lt = mid + 1;
+            }
+        }
+
+        return answer;
+    }
+
+    private int 뮤직비디오_09(int n,
+                         int m,
+                         int[] arr) {
+        // 이분 탐색으로 하기, lt rt mid
+        int answer = 0;
+        int lt = Arrays.stream(arr).max().getAsInt();
+        int rt = Arrays.stream(arr).sum();
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+            if (뮤직비디오_09_count(arr, mid) <= m) {
+                answer = mid;
+                rt = mid - 1;
+            } else {
+                lt = mid + 1;
+            }
+        }
+
+        return answer;
+    }
+
+    public int 뮤직비디오_09_count(int[] arr,
+                              int capacity) {
+        int cnt = 1;
+        int sum = 0;
+        for (int x : arr) {
+            if (sum + x > capacity) {
+                cnt++;
+                sum = x;
+            } else {
+                sum += x;
+            }
+        }
+
+        return cnt;
     }
 }
 
