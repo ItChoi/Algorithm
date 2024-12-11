@@ -2927,7 +2927,7 @@ class Main {
         return answer;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -3019,13 +3019,97 @@ class Main {
         }
 
         return cnt;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int c = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.마구간_정하기_10_me(n, c, arr));
+        //System.out.print(T.마구간_정하기_10(n, c, arr));
+    }
+
+    private int 마구간_정하기_10_me(int n,
+                              int c,
+                              int[] arr) {
+        Arrays.sort(arr);
+        int answer = 0;
+
+        int lt = 1;
+        int rt = arr[arr.length - 1];
+
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+
+            if (마구간_정하기_10_me_is_ok(mid, c, arr)) {
+                if (answer < mid) {
+                    answer = mid;
+                }
+                lt = mid + 1;
+            } else {
+                rt = mid - 1;
+            }
+        }
+
+        return answer;
+    }
+
+    private boolean 마구간_정하기_10_me_is_ok(int mid,
+                                        int c,
+                                        int[] arr) {
+        int preVal = arr[0];
+        c = c - 1;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] - preVal >= mid) {
+                preVal = arr[i];
+                if (--c == 0) {
+                    break;
+                }
+            }
+        }
+
+        return c == 0;
+    }
+
+    private int 마구간_정하기_10(int n,
+                           int c,
+                           int[] arr) {
+        // lt는 arr[0]이 아니라 1로 시작해야 한다.
+        int answer = 0;
+        Arrays.sort(arr);
+        int lt = 1;
+        int rt = arr[n - 1];
+        while (lt <= rt) {
+            int mid = (lt + rt) / 2;
+            if (마구간_정하기_10_count(arr, mid) >= c) {
+                answer = mid;
+                lt = mid + 1;
+            } else {
+                rt = mid - 1;
+            }
+        }
+        return answer;
+    }
+
+    public int 마구간_정하기_10_count(int[] arr, int dist) {
+        int cnt = 1;
+        int ep = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] - ep >= dist) {
+                cnt++;
+                ep = arr[i];
+            }
+        }
+
+        return cnt;
     }
 }
-
-
-
-
-
 
 
 
