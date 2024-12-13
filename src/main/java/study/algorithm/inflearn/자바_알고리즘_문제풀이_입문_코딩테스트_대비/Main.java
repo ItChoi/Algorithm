@@ -3021,7 +3021,7 @@ class Main {
         return cnt;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -3108,6 +3108,52 @@ class Main {
         }
 
         return cnt;
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        T.재귀함수_01_me(n);
+    }
+
+    private void 재귀함수_01_me(int n) {
+        if (n == 0) {
+            return;
+        }
+
+        재귀함수_01_me(n - 1);
+        System.out.print(n + " ");
+    }*/
+
+    /*public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        T.재귀함수를_이용한_이진수_출력_02_me(n);
+    }
+
+    private void 재귀함수를_이용한_이진수_출력_02_me(int n) {
+        if (n == 0) return;
+        //System.out.print(n % 2 + " ");
+        재귀함수를_이용한_이진수_출력_02_me(n / 2);
+        System.out.print(n % 2 + " ");
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        System.out.println(T.팩토리얼_03_me(n));
+    }
+
+    private int 팩토리얼_03_me(int n) {
+        if (n == 1) return 1;
+
+        return n * 팩토리얼_03_me(n - 1);
     }
 }
 
