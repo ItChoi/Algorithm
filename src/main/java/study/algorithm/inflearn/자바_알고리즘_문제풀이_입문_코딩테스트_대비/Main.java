@@ -3142,7 +3142,7 @@ class Main {
         System.out.print(n % 2 + " ");
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -3154,6 +3154,53 @@ class Main {
         if (n == 1) return 1;
 
         return n * 팩토리얼_03_me(n - 1);
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        피보나치_재귀_메모이제이션_04_02_fibo = new int[n + 1];
+//        System.out.println(T.피보나치_재귀_04_01(n));
+
+        T.피보나치_재귀_04_02(n);
+        for (int i = 1; i <= n; i++) {
+            System.out.print(피보나치_재귀_메모이제이션_04_02_fibo[i] + " ");
+        }
+    }
+
+    private int 피보나치_재귀_04_01(int n) {
+        if (n == 1) {
+            return 1;
+        } else if (n == 2) {
+            return 1;
+        } else {
+            return 피보나치_재귀_04_01(n - 2) + 피보나치_재귀_04_01(n - 1);
+        }
+    }
+
+    static int[] 피보나치_재귀_메모이제이션_04_02_fibo;
+    private int 피보나치_재귀_04_02(int n) {
+        if (n == 1) {
+            return 피보나치_재귀_메모이제이션_04_02_fibo[n] = 1;
+        } else if (n == 2) {
+            return 피보나치_재귀_메모이제이션_04_02_fibo[n] = 1;
+        } else {
+            return 피보나치_재귀_메모이제이션_04_02_fibo[n] = 피보나치_재귀_04_02(n - 2) + 피보나치_재귀_04_02(n - 1);
+        }
+    }
+
+    private int 피보나치_재귀_메모이제이션_04_03(int n) {
+        if (피보나치_재귀_메모이제이션_04_02_fibo[n] > 0) {
+            return 피보나치_재귀_메모이제이션_04_02_fibo[n];
+        }
+        if (n == 1) {
+            return 피보나치_재귀_메모이제이션_04_02_fibo[n] = 1;
+        } else if (n == 2) {
+            return 피보나치_재귀_메모이제이션_04_02_fibo[n] = 1;
+        } else {
+            return 피보나치_재귀_메모이제이션_04_02_fibo[n] = 피보나치_재귀_04_02(n - 2) + 피보나치_재귀_04_02(n - 1);
+        }
     }
 }
 
