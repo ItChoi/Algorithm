@@ -3156,7 +3156,7 @@ class Main {
         return n * 팩토리얼_03_me(n - 1);
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -3201,6 +3201,44 @@ class Main {
         } else {
             return 피보나치_재귀_메모이제이션_04_02_fibo[n] = 피보나치_재귀_04_02(n - 2) + 피보나치_재귀_04_02(n - 1);
         }
+    }*/
+
+    public static void main(String[] args) {
+        이진트리순회_05_Node root;
+        root = new 이진트리순회_05_Node(1);
+        root.lt = new 이진트리순회_05_Node(2);
+        root.rt = new 이진트리순회_05_Node(3);
+        root.lt.lt = new 이진트리순회_05_Node(4);
+        root.lt.rt = new 이진트리순회_05_Node(5);
+        root.rt.lt = new 이진트리순회_05_Node(6);
+        root.rt.rt = new 이진트리순회_05_Node(7);
+
+        이진트리순회_05_DFS(root);
+    }
+
+    static class 이진트리순회_05_Node {
+        int data;
+        이진트리순회_05_Node lt;
+        이진트리순회_05_Node rt;
+
+        public 이진트리순회_05_Node(int val) {
+            this.data = val;
+            lt = null;
+            rt = null;
+        }
+    }
+
+    public static void 이진트리순회_05_DFS(이진트리순회_05_Node root) {
+        if (root == null) {
+            return;
+        } else {
+            //System.out.println(root.data); // 전위 순회
+            이진트리순회_05_DFS(root.lt);
+            //System.out.println(root.data); // 중위 순회
+            이진트리순회_05_DFS(root.rt);
+            System.out.println(root.data); // 후위 순회
+        }
+
     }
 }
 
