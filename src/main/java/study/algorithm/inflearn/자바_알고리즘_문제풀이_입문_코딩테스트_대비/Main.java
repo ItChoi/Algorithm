@@ -3203,7 +3203,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         이진트리순회_05_Node root;
         root = new 이진트리순회_05_Node(1);
         root.lt = new 이진트리순회_05_Node(2);
@@ -3238,7 +3238,36 @@ class Main {
             이진트리순회_05_DFS(root.rt);
             System.out.println(root.data); // 후위 순회
         }
+    }*/
 
+    static int 부분집합_구하기_06_n = 3;
+    static int[] 부분집합_구하기_06_ch = new int[부분집합_구하기_06_n + 1];
+    public static void main(String[] args) {
+        부분집합_구하기_06_DFS(1);
+    }
+
+    public static void 부분집합_구하기_06_DFS(int L) {
+        if (L == 부분집합_구하기_06_n + 1) {
+//            for (int i = 1; i < 부분집합_구하기_06_ch.length; i++) {
+//                if (부분집합_구하기_06_ch[i] == 1) {
+//                    System.out.print(i + " ");
+//                }
+//            }
+//            System.out.println();
+            String tmp = "";
+            for (int i = 1; i <= 부분집합_구하기_06_n; i++) {
+                if (부분집합_구하기_06_ch[i] == 1) tmp += (i+" ");
+            }
+            if (tmp.length() > 0) System.out.println(tmp);
+        } else {
+            // 왼쪽 - 사용
+            부분집합_구하기_06_ch[L] = 1;
+            부분집합_구하기_06_DFS(L + 1);
+
+            // 오른쪽 - 사용 안함
+            부분집합_구하기_06_ch[L] = 0;
+            부분집합_구하기_06_DFS(L + 1);
+        }
     }
 }
 
