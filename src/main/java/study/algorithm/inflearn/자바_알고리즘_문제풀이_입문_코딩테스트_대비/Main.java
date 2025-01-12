@@ -3240,7 +3240,7 @@ class Main {
         }
     }*/
 
-    static int 부분집합_구하기_06_n = 3;
+    /*static int 부분집합_구하기_06_n = 3;
     static int[] 부분집합_구하기_06_ch = new int[부분집합_구하기_06_n + 1];
     public static void main(String[] args) {
         부분집합_구하기_06_DFS(1);
@@ -3267,6 +3267,51 @@ class Main {
             // 오른쪽 - 사용 안함
             부분집합_구하기_06_ch[L] = 0;
             부분집합_구하기_06_DFS(L + 1);
+        }
+    }*/
+
+    public static void main(String[] args) {
+        이진트리_레벨탐색_07_Node root;
+        root = new 이진트리_레벨탐색_07_Node(1);
+        root.lt = new 이진트리_레벨탐색_07_Node(2);
+        root.rt = new 이진트리_레벨탐색_07_Node(3);
+        root.lt.lt = new 이진트리_레벨탐색_07_Node(4);
+        root.lt.rt = new 이진트리_레벨탐색_07_Node(5);
+        root.rt.lt = new 이진트리_레벨탐색_07_Node(6);
+        root.rt.rt = new 이진트리_레벨탐색_07_Node(7);
+
+        이진트리_레벨탐색_07_BFS(root);
+    }
+
+    static class 이진트리_레벨탐색_07_Node {
+        int data;
+        이진트리_레벨탐색_07_Node lt;
+        이진트리_레벨탐색_07_Node rt;
+
+        public 이진트리_레벨탐색_07_Node(int val) {
+            this.data = val;
+            lt = null;
+            rt = null;
+        }
+    }
+
+    public static void 이진트리_레벨탐색_07_BFS(이진트리_레벨탐색_07_Node root) {
+        Queue<이진트리_레벨탐색_07_Node> Q = new LinkedList<>();
+        Q.offer(root);
+        int L = 0;
+
+        while (!Q.isEmpty()) {
+            int len = Q.size();
+            System.out.print(L + " : ");
+            for (int i = 0; i < len; i++) {
+                이진트리_레벨탐색_07_Node cur = Q.poll();
+                System.out.print(cur.data + " ");
+
+                if (cur.lt != null) Q.offer(cur.lt);
+                if (cur.rt != null) Q.offer(cur.rt);
+            }
+            L++;
+            System.out.println();
         }
     }
 }
