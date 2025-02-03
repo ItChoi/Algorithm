@@ -3270,7 +3270,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         이진트리_레벨탐색_07_Node root;
         root = new 이진트리_레벨탐색_07_Node(1);
         root.lt = new 이진트리_레벨탐색_07_Node(2);
@@ -3313,6 +3313,79 @@ class Main {
             L++;
             System.out.println();
         }
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int s = kb.nextInt();
+        int e = kb.nextInt();
+
+        System.out.print(T.송아지_찾기_08_1_me(s, e));
+        System.out.print(T.송아지_찾기_08_1(s, e));
+    }
+
+    private int 송아지_찾기_08_1_me(int s,
+                               int e) {
+        int[] d = {1, -1, 5};
+        int answer = 0;
+        Set<Integer> set = new HashSet<>();
+
+        Queue<Integer> que = new LinkedList<>();
+        que.add(s);
+
+        while (!que.isEmpty()) {
+            int size = que.size();
+            for (int i = 0; i < size; i++) {
+                Integer num = que.poll();
+                if (set.contains(num)) continue;
+                set.add(num);
+                if (e == num) {
+                    return answer;
+                }
+
+                for (int d1 : d) {
+                    int target = num + d1;
+                    if (target < 0) {
+                        continue;
+                    }
+
+                    que.add(target);
+                }
+            }
+
+            answer++;
+        }
+
+        return answer;
+    }
+
+    private int 송아지_찾기_08_1(int s,
+                            int e) {
+        int[] dis = {1, -1, 5};
+        int[] ch = new int[10001];
+        ch[s] = 1;
+        Queue<Integer> Q = new LinkedList<>();
+        Q.offer(s);
+        int L = 0;
+
+        while (!Q.isEmpty()) {
+            int len = Q.size();
+            for (int i = 0; i < len; i++) {
+                Integer x = Q.poll();
+                for (int j = 0; j < dis.length; j++) {
+                    int nx = x + dis[j];
+                    if (nx == e) return L + 1;
+                    if (nx >= 1 && nx <= 10000 && ch[nx] == 0) {
+                        ch[nx] = 1;
+                        Q.offer(nx);
+                    }
+                }
+            }
+            L++;
+        }
+
+        return L;
     }
 }
 
