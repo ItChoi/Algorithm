@@ -3315,7 +3315,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int s = kb.nextInt();
@@ -3386,7 +3386,52 @@ class Main {
         }
 
         return L;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+//        Scanner kb = new Scanner(System.in);
+//        int s = kb.nextInt();
+//        int e = kb.nextInt();
+
+        TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node root;
+        root = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(1);
+        root.lt = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(2);
+        root.rt = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(3);
+        root.lt.lt = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(4);
+        root.lt.rt = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(5);
+        root.rt.lt = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(5);
+        root.rt.rt = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(5);
+
+        // TODO: 이 문제는 DFS보다, BFS로 푸는 것이 맞지만 학습차원에서 진행
+        System.out.print(T.TREE_말단노드까지의_가장_짧은_경로_DFS_09(0, root));
     }
+
+    private int TREE_말단노드까지의_가장_짧은_경로_DFS_09(int L,
+                                             TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node root) {
+        if (root.lt == null && root.rt == null) {
+            return L;
+        } else {
+            return Math.min(
+                    TREE_말단노드까지의_가장_짧은_경로_DFS_09(L + 1, root.lt),
+                    TREE_말단노드까지의_가장_짧은_경로_DFS_09(L + 1, root.rt)
+            );
+        }
+    }
+
+
+    static class TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node {
+        int data;
+        TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node lt;
+        TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node rt;
+
+        public TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(int val) {
+            this.data = val;
+            lt = null;
+            rt = null;
+        }
+    }
+
 }
 
 
