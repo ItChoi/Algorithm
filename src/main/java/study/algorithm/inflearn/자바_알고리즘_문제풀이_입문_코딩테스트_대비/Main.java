@@ -3388,11 +3388,8 @@ class Main {
         return L;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
-//        Scanner kb = new Scanner(System.in);
-//        int s = kb.nextInt();
-//        int e = kb.nextInt();
 
         TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node root;
         root = new TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(1);
@@ -3426,6 +3423,56 @@ class Main {
         TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node rt;
 
         public TREE_말단노드까지의_가장_짧은_경로_DFS_09_Node(int val) {
+            this.data = val;
+            lt = null;
+            rt = null;
+        }
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+
+        TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node root;
+        root = new TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(1);
+        root.lt = new TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(2);
+        root.rt = new TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(3);
+        root.lt.lt = new TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(4);
+        root.lt.rt = new TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(5);
+        root.rt.lt = new TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(5);
+        root.rt.rt = new TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(5);
+
+        System.out.print(T.TREE_말단노드까지의_가장_짧은_경로_BFS_10(root));
+    }
+
+    private int TREE_말단노드까지의_가장_짧은_경로_BFS_10(TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node root) {
+        Queue<TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node> Q = new LinkedList<>();
+        Q.offer(root);
+        int L = 0;
+
+        while (Q.isEmpty()) {
+            int len = Q.size();
+            for (int i = 0; i < len; i++) {
+                TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node cur = Q.poll();
+                if (cur.lt == null && cur.rt == null) {
+                    return L;
+                }
+
+                if (cur.lt != null) Q.offer(cur.lt);
+                if (cur.rt != null) Q.offer(cur.rt);
+            }
+            L++;
+        }
+
+        return 0;
+    }
+
+
+    static class TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node {
+        int data;
+        TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node lt;
+        TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node rt;
+
+        public TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node(int val) {
             this.data = val;
             lt = null;
             rt = null;
