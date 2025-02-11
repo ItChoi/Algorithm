@@ -3429,7 +3429,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
 
         TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node root;
@@ -3466,7 +3466,6 @@ class Main {
         return 0;
     }
 
-
     static class TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node {
         int data;
         TREE_말단노드까지의_가장_짧은_경로_BFS_10_Node lt;
@@ -3476,6 +3475,54 @@ class Main {
             this.data = val;
             lt = null;
             rt = null;
+        }
+    }*/
+
+
+    static int 경로탐색_12_DFS_n;
+    static int 경로탐색_12_DFS_m;
+    static int 경로탐색_12_DFS_answer;
+    static int[][] 경로탐색_12_DFS_graph;
+    static int[] 경로탐색_12_DFS_ch;
+    public static void main(String[] args) {
+        // 입력 예제, 답 6
+        // 5 9
+        // 1 2
+        // 1 3
+        // 1 4
+        // 2 1
+        // 2 3
+        // 2 5
+        // 3 4
+        // 4 2
+        // 4 5
+
+        Scanner kb = new Scanner(System.in);
+        경로탐색_12_DFS_n = kb.nextInt();
+        경로탐색_12_DFS_m = kb.nextInt();
+        경로탐색_12_DFS_graph = new int[경로탐색_12_DFS_n + 1][경로탐색_12_DFS_n + 1];
+        경로탐색_12_DFS_ch = new int[경로탐색_12_DFS_n + 1];
+        for (int i = 0; i < 경로탐색_12_DFS_m; i++) {
+            int a = kb.nextInt();
+            int b = kb.nextInt();
+            경로탐색_12_DFS_graph[a][b] = 1;
+        }
+
+        경로탐색_12_DFS_ch[1] = 1;
+        경로탐색_12_DFS(1);
+        System.out.println(경로탐색_12_DFS_answer);
+    }
+
+    private static void 경로탐색_12_DFS(int v) {
+        if (v == 경로탐색_12_DFS_n) 경로탐색_12_DFS_answer++;
+        else {
+            for (int i = 1; i <= 경로탐색_12_DFS_n; i++) {
+                if (경로탐색_12_DFS_graph[v][i] == 1 && 경로탐색_12_DFS_ch[i] ==0) {
+                    경로탐색_12_DFS_ch[i] = 1;
+                    경로탐색_12_DFS(i);
+                    경로탐색_12_DFS_ch[i] = 0;
+                }
+            }
         }
     }
 
