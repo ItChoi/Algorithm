@@ -3479,7 +3479,7 @@ class Main {
     }*/
 
 
-    static int 경로탐색_12_DFS_n;
+    /*static int 경로탐색_12_DFS_n;
     static int 경로탐색_12_DFS_m;
     static int 경로탐색_12_DFS_answer;
     static int[][] 경로탐색_12_DFS_graph;
@@ -3524,7 +3524,45 @@ class Main {
                 }
             }
         }
+    }*/
+
+    static int 경로탐색_13_인접리스트_n;
+    static int 경로탐색_13_인접리스트_m;
+    static int[] 경로탐색_13_인접리스트_ch;
+    static int 경로탐색_13_인접리스트_answer;
+    static List<List<Integer>> 경로탐색_13_인접리스트_graph;
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        경로탐색_13_인접리스트_n = kb.nextInt();
+        경로탐색_13_인접리스트_m = kb.nextInt();
+        경로탐색_13_인접리스트_graph = new ArrayList<>();
+        for (int i = 0; i <= 경로탐색_13_인접리스트_n; i++) {
+            경로탐색_13_인접리스트_graph.add(new ArrayList<>());
+        }
+        경로탐색_13_인접리스트_ch = new int[경로탐색_13_인접리스트_n + 1];
+        for (int i = 0; i < 경로탐색_13_인접리스트_m; i++) {
+            int a = kb.nextInt();
+            int b = kb.nextInt();
+            경로탐색_13_인접리스트_graph.get(a).add(b);
+        }
+        경로탐색_13_인접리스트_ch[1] = 1;
+        경로탐색_13_인접리스트(1);
+        System.out.println(경로탐색_13_인접리스트_answer);
     }
+
+    public static void 경로탐색_13_인접리스트(int v) {
+        if (v == 경로탐색_13_인접리스트_n) 경로탐색_13_인접리스트_answer++;
+        else {
+            for (Integer nv : 경로탐색_13_인접리스트_graph.get(v)) {
+                if (경로탐색_13_인접리스트_ch[nv] == 0) {
+                    경로탐색_13_인접리스트_ch[nv] = 1;
+                    경로탐색_13_인접리스트(nv);
+                    경로탐색_13_인접리스트_ch[nv] = 0;
+                }
+            }
+        }
+    }
+
 
 }
 
