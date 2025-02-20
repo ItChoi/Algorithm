@@ -3526,7 +3526,7 @@ class Main {
         }
     }*/
 
-    static int 경로탐색_13_인접리스트_n;
+    /*static int 경로탐색_13_인접리스트_n;
     static int 경로탐색_13_인접리스트_m;
     static int[] 경로탐색_13_인접리스트_ch;
     static int 경로탐색_13_인접리스트_answer;
@@ -3561,9 +3561,167 @@ class Main {
                 }
             }
         }
+    }*/
+
+    /*static int 그래프_최단거리_BFS_14_n;
+    static int 그래프_최단거리_BFS_14_m;
+    static int[] 그래프_최단거리_BFS_14_ch;
+    static int[] 그래프_최단거리_BFS_14_dis;
+    static List<List<Integer>> 그래프_최단거리_BFS_14_graph;
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        그래프_최단거리_BFS_14_n = kb.nextInt();
+        그래프_최단거리_BFS_14_m = kb.nextInt();
+        그래프_최단거리_BFS_14_graph = new ArrayList<>();
+        for (int i = 0; i <= 그래프_최단거리_BFS_14_n; i++) {
+            그래프_최단거리_BFS_14_graph.add(new ArrayList<>());
+        }
+
+        그래프_최단거리_BFS_14_ch = new int[그래프_최단거리_BFS_14_n + 1];
+        그래프_최단거리_BFS_14_dis = new int[그래프_최단거리_BFS_14_n + 1];
+        for (int i = 0; i < 그래프_최단거리_BFS_14_m; i++) {
+            int a = kb.nextInt();
+            int b = kb.nextInt();
+            그래프_최단거리_BFS_14_graph.get(a).add(b);
+        }
+
+        그래프_최단거리_BFS_14(1);
+        for (int i = 2; i <= 그래프_최단거리_BFS_14_n; i++) {
+            System.out.println(i + " : " + 그래프_최단거리_BFS_14_dis[i]);
+        }
     }
 
+    public static void 그래프_최단거리_BFS_14(int v) {
+        Queue<Integer> queue = new LinkedList<>();
+        그래프_최단거리_BFS_14_ch[v] = 1;
+        그래프_최단거리_BFS_14_dis[v] = 0;
+        queue.offer(v);
+        while (!queue.isEmpty()) {
+            int cv = queue.poll();
+            for (int nv : 그래프_최단거리_BFS_14_graph.get(cv)) {
+                if (그래프_최단거리_BFS_14_ch[nv] == 0) {
+                    그래프_최단거리_BFS_14_ch[nv] = 1;
+                    queue.offer(nv);
+                    그래프_최단거리_BFS_14_dis[nv] = 그래프_최단거리_BFS_14_dis[cv] + 1;
+                }
+            }
+        }
+    }*/
 
+    /*static String 합이_같은_부분집합_DFS_01_answer = "NO";
+    static int 합이_같은_부분집합_DFS_01_n = 0;
+    static int 합이_같은_부분집합_DFS_01_total = 0;
+    static boolean 합이_같은_부분집합_DFS_01_flag = false;
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+            합이_같은_부분집합_DFS_01_total += arr[i];
+        }
+
+        System.out.print(T.합이_같은_부분집합_DFS_01_me(n, arr));
+        T.합이_같은_부분집합_DFS_01(0, 0, arr);
+        System.out.print(합이_같은_부분집합_DFS_01_answer);
+    }
+
+    private String 합이_같은_부분집합_DFS_01_me(int n,
+                                        int[] arr) {
+        boolean[] ch = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            ch[i] = true;
+            합이_같은_부분집합_DFS(i + 1, n, ch, arr);
+            ch[i] = false;
+            if ("YES".equals(합이_같은_부분집합_DFS_01_answer)) {
+                return "YES";
+            }
+        }
+
+        return 합이_같은_부분집합_DFS_01_answer;
+    }
+
+    private void 합이_같은_부분집합_DFS(int index,
+                                int n,
+                                boolean[] ch,
+                                int[] arr) {
+        if ("YES".equals(합이_같은_부분집합_DFS_01_answer)) return;
+        if (index >= n) {
+            int a = 0;
+            int b = 0;
+            for (int i = 0; i < n; i++) {
+                int value = arr[i];
+                if (ch[i]) {
+                    a += value;
+                } else {
+                    b += value;
+                }
+            }
+
+            if (a == b) {
+                합이_같은_부분집합_DFS_01_answer = "YES";
+            }
+        } else {
+            ch[index] = true;
+            합이_같은_부분집합_DFS(index + 1, n, ch, arr);
+            ch[index] = false;
+            합이_같은_부분집합_DFS(index + 1, n, ch, arr);
+        }
+    }
+
+    private void 합이_같은_부분집합_DFS_01(int L,
+                                   int sum,
+                                   int[] arr) {
+        if (합이_같은_부분집합_DFS_01_flag) return;
+        if (sum > 합이_같은_부분집합_DFS_01_total / 2) return;
+        if (L == 합이_같은_부분집합_DFS_01_n) {
+            if ((합이_같은_부분집합_DFS_01_total - sum) == sum) {
+                합이_같은_부분집합_DFS_01_answer = "YES";
+                합이_같은_부분집합_DFS_01_flag = true;
+            }
+        } else {
+            합이_같은_부분집합_DFS_01(L + 1, sum + arr[L], arr);
+            합이_같은_부분집합_DFS_01(L + 1, sum, arr);
+        }
+    }*/
+
+    static int 바둑이_승차_DFS_02_total = 0;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int w = kb.nextInt();
+        int n = kb.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        System.out.print(T.바둑이_승차_DFS_02_me(w, n, arr));
+    }
+
+    private int 바둑이_승차_DFS_02_me(int w,
+                                 int n,
+                                 int[] arr) {
+        바둑이_승차_DFS_02_DFS(0, 0, arr, w);
+        return 바둑이_승차_DFS_02_total;
+    }
+
+    private void 바둑이_승차_DFS_02_DFS(int index,
+                                   int sum,
+                                   int[] arr,
+                                   int w) {
+        if (sum > w) return;
+        if (index == arr.length) {
+            if (바둑이_승차_DFS_02_total < sum) {
+                바둑이_승차_DFS_02_total = sum;
+            }
+        } else {
+            바둑이_승차_DFS_02_DFS(index + 1, sum + arr[index], arr, w);
+            바둑이_승차_DFS_02_DFS(index + 1, sum, arr, w);
+        }
+    }
 }
 
 
