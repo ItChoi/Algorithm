@@ -3687,7 +3687,10 @@ class Main {
         }
     }*/
 
-    static int 바둑이_승차_DFS_02_total = 0;
+    /*static int 바둑이_승차_DFS_02_total = 0;
+    static int 바둑이_승차_DFS_02_answer = Integer.MIN_VALUE;
+    static int 바둑이_승차_DFS_02_c;
+    static int 바둑이_승차_DFS_02_n;
     public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
@@ -3699,6 +3702,8 @@ class Main {
         }
 
         System.out.print(T.바둑이_승차_DFS_02_me(w, n, arr));
+        T.바둑이_승차_DFS_02(w, n, arr);
+        System.out.print(바둑이_승차_DFS_02_answer);
     }
 
     private int 바둑이_승차_DFS_02_me(int w,
@@ -3720,6 +3725,76 @@ class Main {
         } else {
             바둑이_승차_DFS_02_DFS(index + 1, sum + arr[index], arr, w);
             바둑이_승차_DFS_02_DFS(index + 1, sum, arr, w);
+        }
+    }
+
+    private void 바둑이_승차_DFS_02(int L,
+                               int sum,
+                               int[] arr) {
+        if (sum > 바둑이_승차_DFS_02_c) return;
+        if (L == 바둑이_승차_DFS_02_n) {
+            바둑이_승차_DFS_02_answer = Math.max(바둑이_승차_DFS_02_answer, sum);
+        } else {
+            바둑이_승차_DFS_02(L + 1, sum + arr[L], arr);
+            바둑이_승차_DFS_02(L + 1, sum, arr);
+        }
+    }*/
+
+    static int 최대점수_구하기_03_answer = 0;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        int[][] arr = new int[n][2];
+        int[] a = new int[n];
+        int[] b = new int[m];
+        for (int i = 0; i < n; i++) {
+            arr[i][0] = kb.nextInt();
+            arr[i][1] = kb.nextInt();
+            a[i] = arr[i][0];
+            b[i] = arr[i][1];
+        }
+
+        T.최대점수_구하기_03_me_DFS(0, 0, 0, m, arr);
+//        T.최대점수_구하기_03_DFS(0, 0, 0, a, b, n, m);
+        System.out.print(최대점수_구하기_03_answer);
+    }
+
+
+    private void 최대점수_구하기_03_me_DFS(int index,
+                             int sum,
+                             int limit,
+                             int m,
+                             int[][] arr) {
+        if (limit > m) {
+            return;
+        }
+        if (index == arr.length) {
+            최대점수_구하기_03_answer = Math.max(최대점수_구하기_03_answer, sum);
+            return;
+        }
+
+        최대점수_구하기_03_me_DFS(index + 1, sum + arr[index][0], limit + arr[index][1], m, arr);
+        최대점수_구하기_03_me_DFS(index + 1, sum, limit, m, arr);
+    }
+
+    boolean 최대점수_구하기_03_flag = false;
+    public void 최대점수_구하기_03_DFS(int L,
+                                int sum,
+                                int time,
+                                int[] ps,
+                                int[] pt,
+                                int n,
+                                int m) {
+        if (time > m) {
+            return;
+        }
+        if (L == n) {
+            최대점수_구하기_03_answer = Math.max(최대점수_구하기_03_answer, sum);
+        } else {
+            최대점수_구하기_03_DFS(L + 1, sum + ps[L], time + pt[L], ps, pt, n, m);
+            최대점수_구하기_03_DFS(L + 1, sum, time, ps, pt, n, m);
         }
     }
 }
