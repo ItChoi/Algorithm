@@ -3740,7 +3740,7 @@ class Main {
         }
     }*/
 
-    static int 최대점수_구하기_03_answer = 0;
+    /*static int 최대점수_구하기_03_answer = 0;
     public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
@@ -3795,6 +3795,87 @@ class Main {
         } else {
             최대점수_구하기_03_DFS(L + 1, sum + ps[L], time + pt[L], ps, pt, n, m);
             최대점수_구하기_03_DFS(L + 1, sum, time, ps, pt, n, m);
+        }
+    }*/
+
+    /*static int[] 중복순열_구하기_04_pm;
+    static int 중복순열_구하기_04_n;
+    static int 중복순열_구하기_04_m;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        중복순열_구하기_04_n = kb.nextInt();
+        중복순열_구하기_04_m = kb.nextInt();
+        중복순열_구하기_04_pm = new int[중복순열_구하기_04_m];
+        T.중복순열_구하기_04_DFS(0);
+    }
+
+
+    private void 중복순열_구하기_04_DFS(int L) {
+        if (L == 중복순열_구하기_04_m) {
+            for (int x : 중복순열_구하기_04_pm) {
+                System.out.print(x + " ");
+            }
+            System.out.println();
+        } else {
+            for (int i = 1; i <= 중복순열_구하기_04_n; i++) {
+                중복순열_구하기_04_pm[L] = i;
+                중복순열_구하기_04_DFS(L + 1);
+            }
+        }
+    }*/
+
+    static int 동전교환_05_min_count = Integer.MAX_VALUE;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        Integer[] arr = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+        Arrays.sort(arr, Collections.reverseOrder());
+        int m = kb.nextInt();
+
+        //동전교환_05_me_DFS(0, 0, 0, 0, n, arr, m);
+        동전교환_05_DFS(0, 0, n, arr, m);
+        System.out.println(동전교환_05_min_count);
+    }
+
+    private static void 동전교환_05_me_DFS(int index,
+                                       int callCount,
+                                       int count,
+                                       int sum,
+                                       int n,
+                                       Integer[] arr,
+                                       int m) {
+        if (callCount > m || sum > m) return;
+        if (sum == m) {
+            동전교환_05_min_count = Math.min(동전교환_05_min_count, count);
+        } else {
+            for (int i = index; i < n; i++) {
+                int sumsum = sum + arr[i];
+                int callcall = callCount + 1;
+                int countcount = count + 1;
+                if (sumsum > m || callcall > m || countcount > 동전교환_05_min_count) break;
+                동전교환_05_me_DFS(i, callcall, countcount, sumsum, n, arr, m);
+            }
+        }
+    }
+
+    private static void 동전교환_05_DFS(int L,
+                                    int sum,
+                                    int n,
+                                    Integer[] arr,
+                                    int m) {
+        if (sum > m) return;
+        if (L >= 동전교환_05_min_count) return;
+        if (sum == m) {
+            동전교환_05_min_count = Math.min(동전교환_05_min_count, L);
+        } else {
+            for (int i = 0; i < n; i++) {
+                동전교환_05_DFS(L + 1, sum + arr[i], n, arr, m);
+            }
         }
     }
 }
