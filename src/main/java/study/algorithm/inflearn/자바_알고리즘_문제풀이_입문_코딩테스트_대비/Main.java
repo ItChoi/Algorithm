@@ -3825,7 +3825,7 @@ class Main {
         }
     }*/
 
-    static int 동전교환_05_min_count = Integer.MAX_VALUE;
+    /*static int 동전교환_05_min_count = Integer.MAX_VALUE;
     public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
@@ -3877,7 +3877,46 @@ class Main {
                 동전교환_05_DFS(L + 1, sum + arr[i], n, arr, m);
             }
         }
+    }*/
+
+    static int[] 순열_구하기_06_pm;
+    static int[] 순열_구하기_06_ch;
+    static int[] 순열_구하기_06_arr;
+    static int 순열_구하기_06_n;
+    static int 순열_구하기_06_m;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        순열_구하기_06_n = kb.nextInt();
+        순열_구하기_06_m = kb.nextInt();
+        순열_구하기_06_arr = new int[순열_구하기_06_n];
+        for (int i = 0; i < 순열_구하기_06_n; i++) {
+            순열_구하기_06_arr[i] = kb.nextInt();
+        }
+        순열_구하기_06_ch = new int[순열_구하기_06_n];
+        순열_구하기_06_pm = new int[순열_구하기_06_m];
+
+        순열_구하기_06_DFS(0);
     }
+
+    public static void 순열_구하기_06_DFS(int L) {
+        if (L == 순열_구하기_06_m) {
+            for (int x : 순열_구하기_06_pm) {
+                System.out.print(x + " ");
+            }
+            System.out.println();
+        } else {
+            for (int i = 0; i < 순열_구하기_06_n; i++) {
+                if (순열_구하기_06_ch[i] == 0) {
+                    순열_구하기_06_ch[i] = 1;
+                    순열_구하기_06_pm[L] = 순열_구하기_06_arr[i];
+                    순열_구하기_06_DFS(L + 1);
+                    순열_구하기_06_ch[i] = 0;
+                }
+            }
+        }
+    }
+
 }
 
 
