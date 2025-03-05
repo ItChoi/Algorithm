@@ -3879,7 +3879,7 @@ class Main {
         }
     }*/
 
-    static int[] 순열_구하기_06_pm;
+    /*static int[] 순열_구하기_06_pm;
     static int[] 순열_구하기_06_ch;
     static int[] 순열_구하기_06_arr;
     static int 순열_구하기_06_n;
@@ -3915,6 +3915,30 @@ class Main {
                 }
             }
         }
+    }*/
+
+    static int[][] 조합의_경우수_06_dy = new int[35][35];
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int r = kb.nextInt();
+
+//        System.out.println(조합의_경우수_06_DFS_1(n, r));
+        System.out.println(조합의_경우수_06_DFS_2(n, r));
+    }
+
+    private static int 조합의_경우수_06_DFS_1(int n,
+                                        int r) {
+        if (n == r || r == 0) return 1;
+        return 조합의_경우수_06_DFS_1(n - 1, r - 1) + 조합의_경우수_06_DFS_1(n - 1, r);
+    }
+
+    private static int 조합의_경우수_06_DFS_2(int n,
+                                        int r) {
+        if (조합의_경우수_06_dy[n][r] > 0) return 조합의_경우수_06_dy[n][r];
+        if (n == r || r == 0) return 1;
+        else return 조합의_경우수_06_dy[n][r] = 조합의_경우수_06_DFS_2(n - 1, r - 1) + 조합의_경우수_06_DFS_2(n - 1, r);
     }
 
 }
