@@ -3917,30 +3917,135 @@ class Main {
         }
     }*/
 
-    static int[][] 조합의_경우수_06_dy = new int[35][35];
+    /*static int[][] 조합의_경우수_07_dy = new int[35][35];
     public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
         int r = kb.nextInt();
 
-//        System.out.println(조합의_경우수_06_DFS_1(n, r));
-        System.out.println(조합의_경우수_06_DFS_2(n, r));
+//        System.out.println(조합의_경우수_07_DFS_1(n, r));
+        System.out.println(조합의_경우수_07_DFS_2(n, r));
     }
 
-    private static int 조합의_경우수_06_DFS_1(int n,
+    private static int 조합의_경우수_07_DFS_1(int n,
                                         int r) {
         if (n == r || r == 0) return 1;
-        return 조합의_경우수_06_DFS_1(n - 1, r - 1) + 조합의_경우수_06_DFS_1(n - 1, r);
+        return 조합의_경우수_07_DFS_1(n - 1, r - 1) + 조합의_경우수_07_DFS_1(n - 1, r);
     }
 
-    private static int 조합의_경우수_06_DFS_2(int n,
+    private static int 조합의_경우수_07_DFS_2(int n,
                                         int r) {
-        if (조합의_경우수_06_dy[n][r] > 0) return 조합의_경우수_06_dy[n][r];
+        if (조합의_경우수_07_dy[n][r] > 0) return 조합의_경우수_07_dy[n][r];
         if (n == r || r == 0) return 1;
-        else return 조합의_경우수_06_dy[n][r] = 조합의_경우수_06_DFS_2(n - 1, r - 1) + 조합의_경우수_06_DFS_2(n - 1, r);
+        else return 조합의_경우수_07_dy[n][r] = 조합의_경우수_07_DFS_2(n - 1, r - 1) + 조합의_경우수_07_DFS_2(n - 1, r);
+    }*/
+
+
+    static boolean 수열_추측하기_08_me_flag = false;
+    static int[] 수열_추측하기_08_b;
+    static int[] 수열_추측하기_08_p;
+    static int[] 수열_추측하기_08_ch;
+    static int 수열_추측하기_08_n;
+    static int 수열_추측하기_08_f;
+    static boolean 수열_추측하기_08_flag = false;
+    static int[][] 수열_추측하기_08_dy = new int[35][35];
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int f = kb.nextInt();
+
+        int[] answer = new int[n];
+        boolean[] ch = new boolean[n];
+
+//        수열_추측하기_08_DFS_me(0, answer, ch, n, f);
+//        for (int i : answer) {
+//            System.out.print(i + " ");
+//        }
+
+        수열_추측하기_08_n = n;
+        수열_추측하기_08_f = f;
+        수열_추측하기_08_b = new int[n];
+        수열_추측하기_08_p = new int[n];
+        수열_추측하기_08_ch = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            수열_추측하기_08_b[i] = 수열_추측하기_08_combi(n - 1, i);
+        }
+
+        수열_추측하기_08_DFS(0, 0);
     }
 
+    private static void 수열_추측하기_08_DFS_me(int L,
+                                          int[] answer,
+                                          boolean[] ch,
+                                          int n,
+                                          int f) {
+        if (수열_추측하기_08_me_flag) return;
+        if (L == n) {
+            if (수열_추측하기_08_DFS_me_calcSum(answer) == f) {
+                수열_추측하기_08_me_flag = true;
+            }
+        } else {
+            for (int i = 0; i < n; i++) {
+                if (수열_추측하기_08_me_flag) break;
+                if (ch[i] == false) {
+                    ch[i] = true;
+                    answer[L] = i + 1;
+                    수열_추측하기_08_DFS_me(L + 1, answer, ch, n, f);
+                    ch[i] = false;
+                }
+            }
+        }
+    }
+
+    private static int 수열_추측하기_08_DFS_me_calcSum(int[] answer) {
+        Queue<Integer> que = new LinkedList<>();
+        for (int i : answer) {
+            que.add(i);
+        }
+
+        while (que.size() > 1) {
+            int preNumber = 0;
+            int size = que.size();
+            for (int i = 0; i < size; i++) {
+                Integer number = que.poll();
+                if (preNumber > 0) {
+                    que.add(preNumber + number);
+                }
+                preNumber = number;
+            }
+        }
+
+        return que.poll();
+    }
+
+    public static int 수열_추측하기_08_combi(int n,
+                                       int r) {
+        if (수열_추측하기_08_dy[n][r] > 0) return 수열_추측하기_08_dy[n][r];
+        if (n == r || r == 0) return 1;
+        return 수열_추측하기_08_dy[n][r] = 수열_추측하기_08_combi(n - 1, r - 1) + 수열_추측하기_08_combi(n - 1, r);
+    }
+
+    public static void 수열_추측하기_08_DFS(int L,
+                                      int sum) {
+        if (L == 수열_추측하기_08_n) {
+            if (수열_추측하기_08_flag) return;
+            if (sum == 수열_추측하기_08_f) {
+                for (int x : 수열_추측하기_08_p) System.out.print(x + " ");
+                수열_추측하기_08_flag = true;
+            }
+        } else {
+            for (int i = 1; i <= 수열_추측하기_08_n; i++) {
+                if (수열_추측하기_08_ch[i] == 0) {
+                    수열_추측하기_08_ch[i] = 1;
+                    수열_추측하기_08_p[L] = i;
+                    수열_추측하기_08_DFS(L + 1, sum + (수열_추측하기_08_p[L] * 수열_추측하기_08_b[L]));
+                    수열_추측하기_08_ch[i] = 0;
+                }
+            }
+        }
+    }
 }
 
 
