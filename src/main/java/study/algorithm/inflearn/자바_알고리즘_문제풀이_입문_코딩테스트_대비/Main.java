@@ -3942,7 +3942,7 @@ class Main {
     }*/
 
 
-    static boolean 수열_추측하기_08_me_flag = false;
+    /*static boolean 수열_추측하기_08_me_flag = false;
     static int[] 수열_추측하기_08_b;
     static int[] 수열_추측하기_08_p;
     static int[] 수열_추측하기_08_ch;
@@ -4043,6 +4043,32 @@ class Main {
                     수열_추측하기_08_DFS(L + 1, sum + (수열_추측하기_08_p[L] * 수열_추측하기_08_b[L]));
                     수열_추측하기_08_ch[i] = 0;
                 }
+            }
+        }
+    }*/
+
+    static int[] 조합_구하기_09_combi;
+    static int 조합_구하기_09_n;
+    static int 조합_구하기_09_m;
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        조합_구하기_09_n = kb.nextInt();
+        조합_구하기_09_m = kb.nextInt();
+        조합_구하기_09_combi = new int[조합_구하기_09_m];
+
+        조합_구하기_09_DFS(0, 1);
+    }
+
+    public static void 조합_구하기_09_DFS(int L, int s) {
+        if (L == 조합_구하기_09_m) {
+            for (int i : 조합_구하기_09_combi) System.out.print(i + " ");
+            System.out.println();
+        } else {
+            for (int i = s; i <= 조합_구하기_09_n; i++) {
+                조합_구하기_09_combi[L] = i;
+                조합_구하기_09_DFS(L + 1, i + 1);
             }
         }
     }
