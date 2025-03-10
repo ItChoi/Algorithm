@@ -4047,7 +4047,7 @@ class Main {
         }
     }*/
 
-    static int[] 조합_구하기_09_combi;
+    /*static int[] 조합_구하기_09_combi;
     static int 조합_구하기_09_n;
     static int 조합_구하기_09_m;
 
@@ -4069,6 +4069,89 @@ class Main {
             for (int i = s; i <= 조합_구하기_09_n; i++) {
                 조합_구하기_09_combi[L] = i;
                 조합_구하기_09_DFS(L + 1, i + 1);
+            }
+        }
+    }*/
+
+    static int 미로탐색_me_answer = 0;
+    static int 미로탐색_answer = 0;
+    static int[] 미로탐색_dx = {-1, 0, 1, 0};
+    static int[] 미로탐색_dy = {0, 1, 0, -1};
+    static int[][] 미로탐색_board;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+
+        int length = 7;
+        int[][] arr = new int[length][length];
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                arr[i][j] = kb.nextInt();
+            }
+        }
+
+        int[] dh = {-1, 0, 1, 0};
+        int[] dw = {0, 1, 0, -1};
+
+        미로탐색_me(0, 0, arr, dh, dw);
+        System.out.println(미로탐색_me_answer);
+
+        // 강사님
+        미로탐색_board = new int[8][8];
+        for (int i = 1; i <= 7; i++) {
+            for (int j = 1; j <= 7; j++) {
+                미로탐색_board[i][j] = arr[i - 1][j - 1];
+            }
+        }
+        미로탐색_board[1][1] = 1;
+        미로탐색_DFS(1, 1);
+        System.out.println(미로탐색_answer);
+
+    }
+
+    private static void 미로탐색_me(int h,
+                                int w,
+                                int[][] arr,
+                                int[] dh,
+                                int[] dw) {
+        if (h == arr.length - 1 && w == arr[0].length - 1) {
+            미로탐색_me_answer++;
+            return;
+        }
+
+        if (arr[h][w] == 1) return;
+        arr[h][w] = 1;
+        for (int i = 0; i < dh.length; i++) {
+            int dhVal = h + dh[i];
+            int dwVal = w + dw[i];
+            if (!미로탐색_me_isValid(dhVal, dwVal, arr)) {
+                continue;
+            }
+
+            미로탐색_me(dhVal, dwVal, arr, dh, dw);
+        }
+        arr[h][w] = 0;
+    }
+
+    private static boolean 미로탐색_me_isValid(int dhVal,
+                                           int dwVal,
+                                           int[][] arr) {
+        return (!(dhVal < 0) && dhVal < arr.length)
+        && (!(dwVal < 0) && dwVal < arr[0].length);
+    }
+
+    private static void 미로탐색_DFS(int x, int y) {
+        if (x == 7 && y == 7) {
+            미로탐색_answer++;
+        } else {
+            for (int i = 0; i < 4; i++) {
+                int nx = x + 미로탐색_dx[i];
+                int ny = y + 미로탐색_dy[i];
+                if (nx >= 1 && nx <= 7 && ny >= 1 && ny <= 7 && 미로탐색_board[nx][ny] == 0) {
+                    미로탐색_board[nx][ny] = 1;
+                    미로탐색_DFS(nx, ny);
+                    미로탐색_board[nx][ny] = 0;
+                }
             }
         }
     }
