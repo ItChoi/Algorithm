@@ -4073,7 +4073,7 @@ class Main {
         }
     }*/
 
-    static int 미로탐색_me_answer = 0;
+    /*static int 미로탐색_me_answer = 0;
     static int 미로탐색_answer = 0;
     static int[] 미로탐색_dx = {-1, 0, 1, 0};
     static int[] 미로탐색_dy = {0, 1, 0, -1};
@@ -4153,6 +4153,95 @@ class Main {
                     미로탐색_board[nx][ny] = 0;
                 }
             }
+        }
+    }*/
+
+    static int 미로탐색_11_answer = 1;
+    static int[] 미로탐색_11_dx = {-1, 0, 1, 0};
+    static int[] 미로탐색_11_dy = {0, 1, 0, -1};
+    static int[][] 미로탐색_11_board;
+    static int[][] 미로탐색_11_l_board = new int[8][8];;
+    static int[][] 미로탐색_11_dis = new int[8][8];;
+    static boolean 미로탐색_11_flag;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int length = 7;
+        미로탐색_11_board = new int[length][length];
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                미로탐색_11_board[i][j] = 미로탐색_11_board[i][j] = kb.nextInt();
+                미로탐색_11_l_board[i + 1][j + 1] = 미로탐색_11_board[i][j];
+            }
+        }
+        미로탐색_11_BFS_me(0, 0);
+        System.out.println(미로탐색_11_answer);
+
+        // 강사님
+        미로탐색_11_BFS(1, 1);
+        if (미로탐색_11_dis[7][7] == 0) {
+            System.out.println("-1");
+        } else {
+            System.out.println(미로탐색_11_dis[7][7]);
+        }
+
+    }
+
+    private static void 미로탐색_11_BFS_me(int x, int y) {
+        Queue<int[]> que = new LinkedList<>();
+        que.add(new int[] {x, y});
+
+        while (!que.isEmpty()) {
+            int size = que.size();
+            for (int i = 0; i < size; i++) {
+                int[] poll = que.poll();
+                미로탐색_11_board[poll[0]][poll[1]] = 1;
+
+                for (int j = 0; j < 4; j++) {
+                    int dx = poll[0] + 미로탐색_11_dx[j];
+                    int dy = poll[1] + 미로탐색_11_dy[j];
+                    if (dx >= 0 && dx < 7 && dy >= 0 && dy < 7 && 미로탐색_11_board[dx][dy] == 0) {
+                        if (dx == 6 && dy == 6) {
+                            미로탐색_11_flag = true;
+                            break;
+                        }
+                        que.add(new int[] {dx,dy});
+                    }
+                }
+                if (미로탐색_11_flag) break;
+            }
+            if (미로탐색_11_flag) break;
+            미로탐색_11_answer++;
+        }
+
+        if (!미로탐색_11_flag) 미로탐색_11_answer = -1;
+    }
+
+    private static void 미로탐색_11_BFS(int x, int y) {
+        Queue<미로탐색_11_Point> Q = new LinkedList<>();
+        Q.offer(new 미로탐색_11_Point(x, y));
+        미로탐색_11_l_board[x][y] = 1;
+
+        while (!Q.isEmpty()) {
+            미로탐색_11_Point tmp = Q.poll();
+            for (int i = 0; i < 4; i++) {
+                int nx = tmp.x + 미로탐색_11_dx[i];
+                int ny = tmp.y + 미로탐색_11_dy[i];
+                if (nx >= 1 && nx <= 7 && ny >= 1 && ny <= 7 && 미로탐색_11_l_board[nx][ny] == 0) {
+                    미로탐색_11_l_board[nx][ny] = 1;
+                    Q.offer(new 미로탐색_11_Point(nx, ny));
+                    미로탐색_11_dis[nx][ny] = 미로탐색_11_dis[tmp.x][tmp.y] + 1;
+                }
+            }
+        }
+    }
+
+    static class 미로탐색_11_Point {
+        public int x, y;
+
+        미로탐색_11_Point(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 }
