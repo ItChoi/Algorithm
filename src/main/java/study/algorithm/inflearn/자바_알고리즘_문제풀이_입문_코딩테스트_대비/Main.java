@@ -4156,7 +4156,7 @@ class Main {
         }
     }*/
 
-    static int 미로탐색_11_answer = 1;
+    /*static int 미로탐색_11_answer = 1;
     static int[] 미로탐색_11_dx = {-1, 0, 1, 0};
     static int[] 미로탐색_11_dy = {0, 1, 0, -1};
     static int[][] 미로탐색_11_board;
@@ -4184,7 +4184,6 @@ class Main {
         } else {
             System.out.println(미로탐색_11_dis[7][7]);
         }
-
     }
 
     private static void 미로탐색_11_BFS_me(int x, int y) {
@@ -4240,6 +4239,114 @@ class Main {
         public int x, y;
 
         미로탐색_11_Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }*/
+
+    static int 토마토_12_me_answer = 0;
+    static int 토마토_12_me_count = 0;
+    static int[] 토마토_12_dx = {-1, 0, 1, 0};
+    static int[] 토마토_12_dy = {0, 1, 0, -1};
+    static int[][] 토마토_12_board;
+    static int[][] 토마토_12_dis;
+    static Queue<토마토_12_Point> 토마토_12_Q = new LinkedList<>();
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int m = kb.nextInt();
+        int n = kb.nextInt();
+        int[][] arr = new int[n][m];
+        토마토_12_board = new int[n][m];
+        토마토_12_dis = new int[n][m];
+        Queue<int[]> que = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                arr[i][j] = kb.nextInt();
+                토마토_12_board[i][j] = arr[i][j];
+                if (arr[i][j] == 0) 토마토_12_me_count++;
+                if (arr[i][j] == 1) {
+                    que.add(new int[] {i, j});
+                    토마토_12_Q.add(new 토마토_12_Point(i, j));
+                }
+            }
+        }
+
+        토마토_12_BFS_me(que, arr, m, n);
+        System.out.println(토마토_12_me_answer);
+
+        // 강사님
+        토마토_12_BFS(m, n);
+        boolean flag = true;
+        int 토마토_12_answer = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (토마토_12_board[i][j] == 0) flag = false;
+            }
+        }
+        if (flag) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    토마토_12_answer = Math.max(토마토_12_answer, 토마토_12_dis[i][j]);
+                }
+            }
+            System.out.println(토마토_12_answer);
+        } else {
+            System.out.println(-1);
+        }
+    }
+
+    private static void 토마토_12_BFS_me(Queue<int[]> que,
+                                      int[][] arr,
+                                      int m,
+                                      int n) {
+        boolean isEnd = false;
+        while (!que.isEmpty() && !isEnd) {
+            int size = que.size();
+            for (int i = 0; i < size; i++) {
+                int[] poll = que.poll();
+                for (int j = 0; j < 4; j++) {
+                    int dx = poll[0] + 토마토_12_dx[j];
+                    int dy = poll[1] + 토마토_12_dy[j];
+                    if (dx >= 0 && dx < n && dy >= 0 && dy < m && arr[dx][dy] == 0) {
+                        arr[dx][dy] = 1;
+                        que.add(new int[]{dx, dy});
+                        토마토_12_me_count--;
+
+                        if (토마토_12_me_count == 0) {
+                            isEnd = true;
+                            break;
+                        }
+                    }
+                    if (isEnd) break;
+                }
+            }
+            토마토_12_me_answer++;
+        }
+
+        if (토마토_12_me_count > 0) 토마토_12_me_answer = -1;
+    }
+
+    private static void 토마토_12_BFS(int m,
+                                   int n) {
+        while (!토마토_12_Q.isEmpty()) {
+            토마토_12_Point tmp = 토마토_12_Q.poll();
+            for (int i = 0; i < 4; i++) {
+                int nx = tmp.x + 토마토_12_dx[i];
+                int ny = tmp.y + 토마토_12_dy[i];
+                if (nx >= 0 && nx < n && ny >= 0 && ny < m && 토마토_12_board[nx][ny] == 0) {
+                    토마토_12_board[nx][ny] = 1;
+                    토마토_12_Q.offer(new 토마토_12_Point(nx, ny));
+                    토마토_12_dis[nx][ny] = 토마토_12_dis[tmp.x][tmp.y] + 1;
+                }
+            }
+        }
+    }
+
+    static class 토마토_12_Point {
+        public int x, y;
+
+        토마토_12_Point(int x, int y) {
             this.x = x;
             this.y = y;
         }
