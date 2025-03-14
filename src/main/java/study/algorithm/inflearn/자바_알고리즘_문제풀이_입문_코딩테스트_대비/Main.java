@@ -4244,7 +4244,7 @@ class Main {
         }
     }*/
 
-    static int 토마토_12_me_answer = 0;
+    /*static int 토마토_12_me_answer = 0;
     static int 토마토_12_me_count = 0;
     static int[] 토마토_12_dx = {-1, 0, 1, 0};
     static int[] 토마토_12_dy = {0, 1, 0, -1};
@@ -4349,6 +4349,87 @@ class Main {
         토마토_12_Point(int x, int y) {
             this.x = x;
             this.y = y;
+        }
+    }*/
+
+    static int 섬나라_아일랜드_13_answer = 0;
+    static int 섬나라_아일랜드_13_n;
+
+    static int[] 섬나라_아일랜드_13_dx = new int[] {-1, -1, 0, 1, 1, 1, 0, -1};
+    static int[] 섬나라_아일랜드_13_dy = new int[] {0, 1, 1, 1, 0, -1, -1, -1};
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        섬나라_아일랜드_13_n = n;
+        int[][] ch = new int[n][n];
+        int[][] arr = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                arr[i][j] = kb.nextInt();
+                if (arr[i][j] == 1) {
+                    ch[i][j] = 1;
+                }
+            }
+        }
+
+        int answer_me = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (arr[i][j] == 0 || ch[i][j] == 0) continue;
+                ch[i][j] = 0;
+                answer_me++;
+                섬나라_아일랜드_13_DFS_me(i, j, n, arr, ch);
+            }
+        }
+        System.out.println(answer_me);
+
+        // 강사님
+        섬나라_아일랜드_13_solution(arr);
+        System.out.println(섬나라_아일랜드_13_answer);
+
+    }
+
+    static void 섬나라_아일랜드_13_solution(int[][] board) {
+        for (int i = 0; i < 섬나라_아일랜드_13_n; i++) {
+            for (int j = 0; j < 섬나라_아일랜드_13_n; j++) {
+                if (board[i][j] == 1) {
+                    섬나라_아일랜드_13_answer++;
+                    board[i][j] = 0;
+                    섬나라_아일랜드_13_DFS(i, j, board);
+                }
+            }
+        }
+    }
+
+    private static void 섬나라_아일랜드_13_DFS_me(int w,
+                                           int h,
+                                           int n,
+                                           int[][] arr,
+                                           int[][] ch) {
+        for (int i = 0; i < 8; i++) {
+            int nw = w + 섬나라_아일랜드_13_dx[i];
+            int nh = h + 섬나라_아일랜드_13_dy[i];
+            if (nw >= 0 && nw < n && nh >= 0 && nh < n) {
+                if (arr[nw][nh] == 1 && ch[nw][nh] == 1) {
+                    ch[nw][nh] = 0;
+                    섬나라_아일랜드_13_DFS_me(nw, nh, n, arr, ch);
+                }
+            }
+        }
+    }
+
+    private static void 섬나라_아일랜드_13_DFS(int x,
+                                        int y,
+                                        int[][] board) {
+        for (int i = 0; i < 8; i++) {
+            int nx = x + 섬나라_아일랜드_13_dx[i];
+            int ny = y + 섬나라_아일랜드_13_dy[i];
+
+            if (nx >= 0 && nx < 섬나라_아일랜드_13_n && ny >= 0 && ny < 섬나라_아일랜드_13_n && board[nx][ny] == 1) {
+                board[nx][ny] = 0;
+                섬나라_아일랜드_13_DFS(nx, ny, board);
+            }
         }
     }
 }
