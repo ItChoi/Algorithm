@@ -4352,7 +4352,7 @@ class Main {
         }
     }*/
 
-    static int 섬나라_아일랜드_13_answer = 0;
+    /*static int 섬나라_아일랜드_13_answer = 0;
     static int 섬나라_아일랜드_13_n;
 
     static int[] 섬나라_아일랜드_13_dx = new int[] {-1, -1, 0, 1, 1, 1, 0, -1};
@@ -4430,6 +4430,69 @@ class Main {
                 board[nx][ny] = 0;
                 섬나라_아일랜드_13_DFS(nx, ny, board);
             }
+        }
+    }*/
+
+    static int 섬나라_아일랜드_13_DFS_answer = Integer.MAX_VALUE;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        피자_배달_거리_DFS_14_n = kb.nextInt();
+        피자_배달_거리_DFS_14_m = kb.nextInt();
+        피자_배달_거리_DFS_14_pz = new ArrayList<>();
+        피자_배달_거리_DFS_14_hs = new ArrayList<>();
+
+        for (int i = 0; i < 피자_배달_거리_DFS_14_n; i++) {
+            for (int j = 0; j < 피자_배달_거리_DFS_14_n; j++) {
+                int tmp = kb.nextInt();
+                if (tmp == 1) {
+                    피자_배달_거리_DFS_14_hs.add(new 피자_배달_거리_DFS_14_Point(i, j));
+                } else if (tmp == 2) {
+                    피자_배달_거리_DFS_14_pz.add(new 피자_배달_거리_DFS_14_Point(i, j));
+
+                }
+            }
+        }
+        피자_배달_거리_DFS_14_len = 피자_배달_거리_DFS_14_pz.size();
+        피자_배달_거리_DFS_14_combi = new int[피자_배달_거리_DFS_14_m];
+        피자_배달_거리_DFS_14(0, 0);
+        System.out.println(피자_배달_거리_DFS_14_answer);
+    }
+
+    static int 피자_배달_거리_DFS_14_n;
+    static int 피자_배달_거리_DFS_14_m;
+    static int 피자_배달_거리_DFS_14_len;
+    static int 피자_배달_거리_DFS_14_answer = Integer.MAX_VALUE;
+    static int[] 피자_배달_거리_DFS_14_combi;
+    static List<피자_배달_거리_DFS_14_Point> 피자_배달_거리_DFS_14_pz;
+    static List<피자_배달_거리_DFS_14_Point> 피자_배달_거리_DFS_14_hs;
+
+    private static void 피자_배달_거리_DFS_14(int L,
+                                        int s) {
+        if (L == 피자_배달_거리_DFS_14_m) {
+            int sum = 0;
+            for (피자_배달_거리_DFS_14_Point h : 피자_배달_거리_DFS_14_hs) {
+                int dis = Integer.MAX_VALUE;
+                for (int i : 피자_배달_거리_DFS_14_combi) {
+                    dis = Math.min(dis, Math.abs(h.x - 피자_배달_거리_DFS_14_pz.get(i).x) + Math.abs(h.y - 피자_배달_거리_DFS_14_pz.get(i).y));
+                }
+
+                sum += dis;
+            }
+            피자_배달_거리_DFS_14_answer = Math.min(피자_배달_거리_DFS_14_answer, sum);
+        } else {
+            for (int i = s; i < 피자_배달_거리_DFS_14_len; i++) {
+                피자_배달_거리_DFS_14_combi[L] = i;
+                피자_배달_거리_DFS_14(L + 1, i + 1);
+            }
+        }
+    }
+
+    static class 피자_배달_거리_DFS_14_Point {
+        public int x, y;
+        피자_배달_거리_DFS_14_Point(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 }
