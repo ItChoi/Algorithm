@@ -4433,7 +4433,7 @@ class Main {
         }
     }*/
 
-    static int 섬나라_아일랜드_13_DFS_answer = Integer.MAX_VALUE;
+    /*static int 섬나라_아일랜드_13_DFS_answer = Integer.MAX_VALUE;
     public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
@@ -4493,6 +4493,81 @@ class Main {
         피자_배달_거리_DFS_14_Point(int x, int y) {
             this.x = x;
             this.y = y;
+        }
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+
+        // 내 풀이
+//        int[][] arr = new int[n][2];
+//        for (int i = 0; i < arr.length; i++) {
+//            for (int j = 0; j < arr[i].length; j++) {
+//                arr[i][j] = kb.nextInt();
+//            }
+//        }
+//        System.out.println(씨름선수_01_my(n, arr));
+
+        // 강사님 풀이
+        List<씨름선수_01_Body> arr = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int h = kb.nextInt();
+            int w = kb.nextInt();
+            arr.add(new 씨름선수_01_Body(h, w));
+        }
+        System.out.println(씨름선수_씨름선수_01_lecturer(arr, n));
+    }
+
+    private static int 씨름선수_01_my(int n,
+                                  int[][] arr) {
+        int answer = n;
+        Arrays.sort(arr, Comparator.comparingInt(o -> o[0]));
+
+        for (int i = 0; i < arr.length; i++) {
+            int targetH = arr[i][0];
+            int targetW = arr[i][1];
+            for (int j = i + 1; j < arr.length; j++) {
+                int compareH = arr[j][0];
+                int compareW = arr[j][1];
+
+                if (targetH == compareH) continue;
+                if (targetW < compareW) {
+                    answer--;
+                    break;
+                }
+            }
+        }
+
+        return answer;
+    }
+
+    private static int 씨름선수_씨름선수_01_lecturer(List<씨름선수_01_Body> arr,
+                                                 int n) {
+        int cnt = 0;
+        Collections.sort(arr);
+        int max = Integer.MIN_VALUE;
+
+        for (씨름선수_01_Body ob : arr) {
+            if (ob.w > max) {
+                max = ob.w;
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    static class 씨름선수_01_Body implements Comparable<씨름선수_01_Body> {
+        public int h, w;
+        public 씨름선수_01_Body(int h, int w) {
+            this.h = h;
+            this.w = w;
+        }
+        @Override
+        public int compareTo(씨름선수_01_Body o) {
+            return o.h - this.h;
         }
     }
 }
