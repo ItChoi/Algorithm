@@ -4313,38 +4313,13 @@ public class Level2 {
     @Test
     public void 시소_짝꿍() {
         System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 180, 360, 100, 270}));
-        System.out.println("[7] result: " + 시소_짝꿍(new int[]{100, 50, 100, 150, 300, 25}));
-        System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 50, 150, 300, 25}));
+//        System.out.println("[7] result: " + 시소_짝꿍(new int[]{100, 50, 100, 150, 300, 25}));
+//        System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 50, 150, 300, 25}));
     }
 
     public long 시소_짝꿍(int[] weights) {
         long answer = 0;
-        Map<Integer, Integer> origin = new HashMap<>();
-        Map<Integer, Integer> mul = new HashMap<>();
 
-        for (int i = 0; i < weights.length; i++) {
-            int weight = weights[i];
-            int m2 = weight * 2;
-            int m3 = weight * 3;
-            int m4 = weight * 4;
-
-            Integer parent = origin.get(weight);
-            if (parent == null) {
-                answer += mul.getOrDefault(m2, 0);
-                answer += mul.getOrDefault(m3, 0);
-                answer += mul.getOrDefault(m4, 0);
-            } else {
-                answer += parent;
-                answer += mul.getOrDefault(m2, 0) - parent;
-                answer += mul.getOrDefault(m3, 0) - parent;
-                answer += mul.getOrDefault(m4, 0) - parent;
-            }
-
-            origin.put(weight, origin.getOrDefault(weight, 0) + 1);
-            mul.put(m2, mul.getOrDefault(m2, 0) + 1);
-            mul.put(m3, mul.getOrDefault(m3, 0) + 1);
-            mul.put(m4, mul.getOrDefault(m4, 0) + 1);
-        }
 
         return answer;
     }
