@@ -4496,7 +4496,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -4569,6 +4569,76 @@ class Main {
         public int compareTo(씨름선수_01_Body o) {
             return o.h - this.h;
         }
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        List<회의실_배정_02_meeting> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add( new 회의실_배정_02_meeting(kb.nextInt(), kb.nextInt()));
+        }
+
+        // 내 풀이
+        System.out.println(회의실_배정_02_my(n, list));
+
+        // 강사님 풀이
+        System.out.println(회의실_배정_02_lecturer(list, n));
+    }
+
+    private static int 회의실_배정_02_my(int n,
+                                    List<회의실_배정_02_meeting> list) {
+        Collections.sort(list);
+        int answer = 1;
+
+        회의실_배정_02_meeting target = list.get(0);
+        for (int i = 1; i < list.size(); i++) {
+            회의실_배정_02_meeting compare = list.get(i);
+            if (target.endTime > compare.startTime) {
+                continue;
+            }
+
+            target = compare;
+            answer++;
+        }
+
+        return answer;
+    }
+
+    static class 회의실_배정_02_meeting implements Comparable<회의실_배정_02_meeting> {
+        int startTime;
+        int endTime;
+        public 회의실_배정_02_meeting(int startTime,
+                                 int endTime) {
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }
+
+        @Override
+        public int compareTo(회의실_배정_02_meeting o) {
+            if (this.endTime == o.endTime) {
+                return this.startTime - o.startTime;
+            }
+
+            return this.endTime - o.endTime;
+        }
+    }
+
+    private static int 회의실_배정_02_lecturer(List<회의실_배정_02_meeting> arr,
+                                          int n) {
+        int cnt = 0;
+        Collections.sort(arr);
+
+        int et = 0;
+        for (회의실_배정_02_meeting ob : arr) {
+            if (ob.startTime >= et) {
+                cnt++;
+                et = ob.endTime;
+            }
+        }
+
+        return cnt;
     }
 }
 
