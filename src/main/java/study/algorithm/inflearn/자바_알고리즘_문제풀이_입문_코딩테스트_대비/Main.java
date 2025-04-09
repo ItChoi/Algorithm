@@ -4571,7 +4571,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -4639,7 +4639,101 @@ class Main {
         }
 
         return cnt;
+    }*/
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        List<결혼식_03_time> list = new ArrayList<>();
+        List<결혼식_03_time_lec> arr = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            list.add( new 결혼식_03_time(kb.nextInt(), kb.nextInt()));
+            arr.add(new 결혼식_03_time_lec(list.get(i).s, 's'));
+            arr.add(new 결혼식_03_time_lec(list.get(i).e, 'e'));
+        }
+
+        // 내 풀이
+        System.out.println(결혼식_03_my(n, list));
+
+        // 강사님 풀이
+        System.out.println(결혼식_03_lecturer(arr));
     }
+
+    private static int 결혼식_03_my(int n, List<결혼식_03_time> list) {
+        Collections.sort(list);
+        int answer = 0;
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (결혼식_03_time obj : list) {
+            while (!pq.isEmpty() && pq.peek() <= obj.s) {
+                pq.poll();
+            }
+
+            pq.add(obj.e);
+            answer = Math.max(answer, pq.size());
+        }
+
+        return answer;
+    }
+
+    private static int 결혼식_03_lecturer(List<결혼식_03_time_lec> arr) {
+        int answer = Integer.MIN_VALUE;
+        Collections.sort(arr);
+
+        int cnt = 0;
+        for (결혼식_03_time_lec ob : arr) {
+            if (ob.state == 's') {
+                cnt++;
+            } else {
+                cnt--;
+            }
+
+            answer = Math.max(answer, cnt);
+        }
+
+
+        return answer;
+    }
+
+    static class 결혼식_03_time implements Comparable<결혼식_03_time> {
+        int s;
+        int e;
+
+        public 결혼식_03_time(int s,
+                           int e) {
+            this.s = s;
+            this.e = e;
+        }
+        @Override
+        public int compareTo(결혼식_03_time o) {
+            if (this.s == o.s) {
+                return this.e - o.e;
+            }
+
+            return this.s - o.s;
+        }
+    }
+
+    static class 결혼식_03_time_lec implements Comparable<결혼식_03_time_lec> {
+        int time;
+        int char state;
+
+        public 결혼식_03_time_lec(int time,
+                           char state) {
+            this.time = time;
+            this.state = state;
+        }
+        @Override
+        public int compareTo(결혼식_03_time_lec ob) {
+            if (this.time == ob.time) {
+                return this.state - ob.state;
+            }
+
+            return this.time - ob.time;
+        }
+    }
+
 }
 
 
