@@ -4641,7 +4641,7 @@ class Main {
         return cnt;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -4732,8 +4732,85 @@ class Main {
 
             return this.time - ob.time;
         }
+    }*/
+
+
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int max = 0;
+        List<최대_수입_스케쥴_04_Lecture> arr = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int money = kb.nextInt();
+            int day = kb.nextInt();
+            arr.add( new 최대_수입_스케쥴_04_Lecture(money, day));
+            if (day > max) max = day;
+        }
+
+        // 내 풀이
+        System.out.println(최대_수입_스케쥴_04_my(n, max, arr));
+
+        // 강사님 풀이
+        //System.out.println(결혼식_03_lecturer(n, max, arr));
     }
 
+    private static int 최대_수입_스케쥴_04_my(int n,
+                                       int max,
+                                       List<최대_수입_스케쥴_04_Lecture> arr) {
+        int answer = 0;
+        PriorityQueue<Integer> pQ = new PriorityQueue<>(Comparator.reverseOrder());
+        Collections.sort(arr);
+
+
+        int j = 0;
+        for (int i = max; i > 0; i--) {
+            for (; j < n; j++) {
+                if (arr.get(j).time < i) break;
+                pQ.offer(arr.get(j).money);
+            }
+
+            if (!pQ.isEmpty()) {
+                answer += pQ.poll();
+            }
+        }
+
+        return answer;
+    }
+
+    private static int 결혼식_03_lecturer(int n,
+                                       int max,
+                                       List<최대_수입_스케쥴_04_Lecture> arr) {
+        int answer = 0;
+        PriorityQueue<Integer> pQ = new PriorityQueue<>(Comparator.reverseOrder());
+        Collections.sort(arr);
+
+        int j = 0;
+        for (int i = max; i >= 1; i--) {
+            for (; j < n; j++) {
+                if (arr.get(j).time < i) break;
+                pQ.offer(arr.get(j).money);
+            }
+
+            if (!pQ.isEmpty()) answer += pQ.poll();
+        }
+        return answer;
+    }
+
+
+
+    static class 최대_수입_스케쥴_04_Lecture implements Comparable<최대_수입_스케쥴_04_Lecture> {
+        private int money;
+        private int time;
+        public 최대_수입_스케쥴_04_Lecture(int money, int time) {
+            this.money = money;
+            this.time = time;
+        }
+        @Override
+        public int compareTo(최대_수입_스케쥴_04_Lecture o) {
+            return o.time - this.time;
+        }
+    }
 }
 
 

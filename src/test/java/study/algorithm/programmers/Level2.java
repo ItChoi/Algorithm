@@ -4313,13 +4313,21 @@ public class Level2 {
     @Test
     public void 시소_짝꿍() {
         System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 180, 360, 100, 270}));
-//        System.out.println("[7] result: " + 시소_짝꿍(new int[]{100, 50, 100, 150, 300, 25}));
-//        System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 50, 150, 300, 25}));
+        System.out.println("[7] result: " + 시소_짝꿍(new int[]{100, 50, 100, 150, 300, 25}));
+        System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 50, 150, 300, 25}));
     }
 
     public long 시소_짝꿍(int[] weights) {
         long answer = 0;
 
+        Map<Long, Long> x1 = new HashMap<>();
+        Map<Long, Long> x234 = new HashMap<>();
+        for (int weight : weights) {
+            if (x1.containsKey(weight)) {
+
+            }
+
+        }
 
         return answer;
     }
