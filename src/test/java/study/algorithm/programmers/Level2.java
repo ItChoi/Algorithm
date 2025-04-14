@@ -4315,6 +4315,10 @@ public class Level2 {
         System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 180, 360, 100, 270}));
         System.out.println("[7] result: " + 시소_짝꿍(new int[]{100, 50, 100, 150, 300, 25}));
         System.out.println("[4] result: " + 시소_짝꿍(new int[]{100, 50, 150, 300, 25}));
+        System.out.println("[3] result: " + 시소_짝꿍(new int[]{200, 300, 300}));
+        System.out.println("[1] result: " + 시소_짝꿍(new int[]{101, 202}));
+        System.out.println("[0] result: " + 시소_짝꿍(new int[]{100, 300}));
+        System.out.println("[3] result: " + 시소_짝꿍(new int[]{100, 100, 100}));
     }
 
     public long 시소_짝꿍(int[] weights) {
@@ -4322,11 +4326,22 @@ public class Level2 {
 
         Map<Long, Long> x1 = new HashMap<>();
         Map<Long, Long> x234 = new HashMap<>();
-        for (int weight : weights) {
-            if (x1.containsKey(weight)) {
+        for (long weight : weights) {
+            long w1 = weight;
+            long w2 = weight * 2;
+            long w3 = weight * 3;
+            long w4 = weight * 4;
 
-            }
+            x1.put(w1, x1.getOrDefault(w1, 0L) + 1);
+            x234.put(w2, x234.getOrDefault(w2, 0L) + 1);
+            x234.put(w3, x234.getOrDefault(w3, 0L) + 1);
+            x234.put(w4, x234.getOrDefault(w4, 0L) + 1);
 
+            long x1Cnt = x1.get(w1) - 1;
+            answer += x1Cnt;
+            answer += x234.get(w2) - x1Cnt - 1;
+            answer += x234.get(w3) - x1Cnt - 1;
+            answer += x234.get(w4) - x1Cnt - 1;
         }
 
         return answer;
