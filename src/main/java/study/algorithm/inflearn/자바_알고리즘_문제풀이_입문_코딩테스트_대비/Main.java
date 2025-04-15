@@ -4735,7 +4735,7 @@ class Main {
     }*/
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Main T = new Main();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
@@ -4810,7 +4810,169 @@ class Main {
         public int compareTo(최대_수입_스케쥴_04_Lecture o) {
             return o.time - this.time;
         }
+    }*/
+
+    /*static int 다익스트라_알고리즘_05_n;
+    static int 다익스트라_알고리즘_05_m;
+    static ArrayList<ArrayList<다익스트라_알고리즘_05_Edge>> 다익스트라_알고리즘_05_graph;
+    static int[] 다익스트라_알고리즘_05_dis;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        다익스트라_알고리즘_05_n = kb.nextInt();
+        다익스트라_알고리즘_05_m = kb.nextInt();
+
+        *//**
+     * 그래프 -> 다익스트라 알고리즘 적용시 전제 조건
+     * - 그래프 간선의 가중치 값이 모두 양수여야 한다 (0도 가능)
+     *//*
+        // 강사님 풀이 - 채점 지원 X
+        다익스트라_알고리즘_05_graph = new ArrayList<ArrayList<다익스트라_알고리즘_05_Edge>>();
+        for(int i=0; i<=다익스트라_알고리즘_05_n; i++){
+            다익스트라_알고리즘_05_graph.add(new ArrayList<다익스트라_알고리즘_05_Edge>());
+        }
+        다익스트라_알고리즘_05_dis=new int[다익스트라_알고리즘_05_n+1];
+        Arrays.fill(다익스트라_알고리즘_05_dis, Integer.MAX_VALUE);
+        for(int i=0; i<다익스트라_알고리즘_05_m; i++){
+            int a=kb.nextInt();
+            int b=kb.nextInt();
+            int c=kb.nextInt();
+            다익스트라_알고리즘_05_graph.get(a).add(new 다익스트라_알고리즘_05_Edge(b, c));
+        }
+        T.다익스트라_알고리즘_05(1);
+        for(int i=2; i<=다익스트라_알고리즘_05_n; i++){
+            if(다익스트라_알고리즘_05_dis[i]!=Integer.MAX_VALUE) System.out.println(i+" : "+다익스트라_알고리즘_05_dis[i]);
+            else System.out.println(i+" : impossible");
+        }
     }
+
+    public void 다익스트라_알고리즘_05(int v){
+        PriorityQueue<다익스트라_알고리즘_05_Edge> pQ = new PriorityQueue<>();
+        pQ.offer(new 다익스트라_알고리즘_05_Edge(v, 0));
+        다익스트라_알고리즘_05_dis[v]=0;
+        while(!pQ.isEmpty()){
+            다익스트라_알고리즘_05_Edge tmp=pQ.poll();
+            int now=tmp.vex;
+            int nowCost=tmp.cost;
+            if(nowCost>다익스트라_알고리즘_05_dis[now]) continue;
+            for(다익스트라_알고리즘_05_Edge ob : 다익스트라_알고리즘_05_graph.get(now)){
+                if(다익스트라_알고리즘_05_dis[ob.vex]>nowCost+ob.cost){
+                    다익스트라_알고리즘_05_dis[ob.vex]=nowCost+ob.cost;
+                    pQ.offer(new 다익스트라_알고리즘_05_Edge(ob.vex, nowCost+ob.cost));
+                }
+            }
+        }
+    }
+
+    static class 다익스트라_알고리즘_05_Edge implements Comparable<다익스트라_알고리즘_05_Edge>{
+        public int vex;
+        public int cost;
+        다익스트라_알고리즘_05_Edge(int vex, int cost) {
+            this.vex = vex;
+            this.cost = cost;
+        }
+        @Override
+        public int compareTo(다익스트라_알고리즘_05_Edge ob){
+            return this.cost-ob.cost;
+        }
+    }*/
+
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        int m = kb.nextInt();
+        List<List<Integer>> list = new ArrayList<>(n + 1);
+
+        for (int i = 0; i <= n; i++) {
+            list.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < m; i++) {
+            int f1 = kb.nextInt();
+            int f2 = kb.nextInt();
+            list.get(f1).add(f2);
+        }
+
+        int f1 = kb.nextInt();
+        int f2 = kb.nextInt();
+
+        // 내 풀이
+//        System.out.println(친구인가_06_my(n, m, list, f1, f2));
+        System.out.println(친구인가_06_my_refactoring(n, m, list, f1, f2));
+
+        // 강사님 풀이
+    }
+
+    private static String 친구인가_06_my_refactoring(int n,
+                                                 int m,
+                                                 List<List<Integer>> list,
+                                                 int f1,
+                                                 int f2) {
+        int[] parent = new int[n + 1];
+        for (int i = 1; i <= n; i++) parent[i] = i;
+
+        for (int i = 1; i <= n; i++) {
+            for (int friend : list.get(i)) {
+                친구인가_06_my_refactoring_union(i, friend, parent);
+            }
+        }
+
+        return 친구인가_06_my_refactoring_find(f1, parent) == 친구인가_06_my_refactoring_find(f2, parent) ? "YES" : "NO";
+    }
+    private static void 친구인가_06_my_refactoring_union(int i,
+                                                     Integer friend,
+                                                     int[] parent) {
+        int pa = 친구인가_06_my_refactoring_find(i, parent);
+        int pb = 친구인가_06_my_refactoring_find(friend, parent);
+        if (pa != pb) parent[pb] = pa;
+    }
+
+    private static int 친구인가_06_my_refactoring_find(int i,
+                                                   int[] parent) {
+        if (parent[i] != i) {
+            parent[i] = 친구인가_06_my_refactoring_find(parent[i], parent);
+        }
+        return parent[i];
+    }
+
+
+    private static String 친구인가_06_my(int n,
+                                     int m,
+                                     List<List<Integer>> list,
+                                     int f1,
+                                     int f2) {
+        List<Set<Integer>> fGrouping = new ArrayList<>();
+        int j = 0;
+        boolean[] ch = new boolean[n + 1];
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            q.offer(i);
+            fGrouping.add(new HashSet<>());
+
+            while (!q.isEmpty()) {
+                Integer sFriend = q.poll();
+                Set<Integer> friends = fGrouping.get(j);
+                if (friends.contains(sFriend)) continue;
+                friends.add(sFriend);
+                ch[sFriend] = true;
+                for (Integer friend : list.get(sFriend)) {
+                    q.offer(friend);
+                }
+            }
+
+            j++;
+        }
+
+        for (Set<Integer> friends : fGrouping) {
+            if (friends.contains(f1) && friends.contains(f2)) {
+                return "YES";
+            }
+        }
+
+        return "NO";
+    }
+
+
 }
 
 
