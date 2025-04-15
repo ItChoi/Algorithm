@@ -1,5 +1,6 @@
 package study.algorithm.programmers;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -4401,8 +4402,95 @@ public class Level2 {
 
         return answer;
     }
-
     // Summer/Winter Coding(~2018) - 배달 END
+
+    @DisplayName("테스트를 위한 테스트")
+    @Test
+    void test() throws Exception {
+//        int[] A = {1, 3, 6, 4, 1, 2};
+//        int[] A = {1, 2, 3};
+        int[] A = {-1, -3};
+
+        Arrays.sort(A);
+
+        /*int num = 1;
+        int i = 0;
+        while (i < A.length) {
+            if (A[i] < num) {
+                i++;
+                continue;
+            }
+            if (A[i] != num) {
+                break;
+            }
+            num++;
+            i++;
+        }*/
+
+        int num = 1;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] < num) continue;
+            if (A[i] == num) num++;      // 예상 값과 일치하면 다음 수로 이동
+            else break;                  // 건너뛰는 순간 num이 정답
+        }
+
+        System.out.println(num);
+    }
+
+    // 2025 프로그래머스 코드챌린지 2차 예선 - 서버 증설 횟수 START
+    @Test
+    void 서버_증설_횟수() throws Exception {
+        // result 7
+        int m = 3;
+        int k = 5;
+        int[] players = {
+            0, 2, 3, 3, 1, 2, 0, 0, 0, 0, 4, 2, 0, 6, 0, 4, 2, 13, 3, 5, 10, 0, 1, 5
+        };
+        System.out.println(서버_증설_횟수(players, m, k));
+
+        // result 11
+        /*int m = 5;
+        int k = 1;
+        int[] players = {
+            0, 0, 0, 10, 0, 12, 0, 15, 0, 1, 0, 1, 0, 0, 0, 5, 0, 0, 11, 0, 8, 0, 0, 0
+        };*/
+
+        // result 12
+        /*int m = 1;
+        int k = 1;
+        int[] players = {
+            0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 5, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+        };*/
+    }
+
+    public int 서버_증설_횟수(int[] players,
+                        int m,
+                        int k) {
+        int answer = 0;
+        Queue<Integer> serverStore = new LinkedList<>();
+
+        for (int playerCnt : players) {
+            if (playerCnt >= m) {
+                int requireServerCnt = playerCnt / m;
+                while (requireServerCnt > serverStore.size()) {
+                    serverStore.add(k);
+                    answer++;
+                }
+            }
+
+            int serverStoreSize = serverStore.size();
+            for (int i = 0; i < serverStoreSize; i++) {
+                Integer server = serverStore.poll() - 1;
+                if (server > 0) {
+                    serverStore.add(server);
+                }
+            }
+        }
+
+        return answer;
+    }
+
+    // 2025 프로그래머스 코드챌린지 2차 예선 - 서버 증설 횟수 END
 }
 
 
