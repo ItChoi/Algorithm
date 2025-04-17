@@ -1158,18 +1158,6 @@ public class Level1 {
     }
     // 월간 코드 챌린지 시즌3 없는 숫자 더하기 END
 
-    // 월간 코드 챌린지 시즌1 - 내적 START
-    @Test
-    void 내적() {
-        System.out.println("3: " + 내적(new int[] {1,2,3,4}, new int[] {-3,-1,0,2}));
-        System.out.println("3: " + 내적(new int[] {-1, 0, 1}, new int[]{1, 0, -1}));
-    }
-
-    public int 내적(int[] a, int[] b) {
-        int answer = 1234567890;
-        return answer;
-    }
-    // 월간 코드 챌린지 시즌1 - 내적 END
 
     // JadenCase 문자열 만들기 START
     @Test
@@ -1257,4 +1245,40 @@ public class Level1 {
         return Integer.parseInt(sb.toString(), 3);
     }
     // 월간 코드 챌린지 시즌1 - 3진법 뒤집기 END
+
+    // 월간 코드 챌린지 시즌1 - 내적 START
+    @Test
+    void 내적() {
+        System.out.println("3: " + 내적(new int[] {1,2,3,4}, new int[] {-3,-1,0,2}));
+        System.out.println("3: " + 내적(new int[] {-1, 0, 1}, new int[]{1, 0, -1}));
+    }
+
+    public int 내적(int[] a, int[] b) {
+        int answer = 0;
+
+        for (int i = 0; i < a.length; i++) {
+            answer += a[i] * b[i];
+        }
+
+        return answer;
+    }
+    // 월간 코드 챌린지 시즌1 - 내적 END
+
+    // Summer/Winter Coding(~2018) - 소수 만들기 START
+    @Test
+    void 소수_만들기() {
+
+//        System.out.println("result: 1, " + 소수_만들기(new int[] {1,2,3,4}));
+//        System.out.println("result: 4, " + 소수_만들기(new int[] {1,2,7,6,4}));
+    }
+
+    public int 소수_만들기(int[] nums) {
+        int answer = -1;
+
+
+        return answer;
+    }
+
+    // Summer/Winter Coding(~2018) - 소수 만들기 END
+
 }
