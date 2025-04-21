@@ -4972,20 +4972,15 @@ class Main {
         return "NO";
     }*/
 
-    static int[] 원더랜드_최소스패닝트리_07_unf;
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt(); // 도시 개수
         int m = kb.nextInt(); // 도로 개수
 
-        // 내 풀이
-
-
-        // 강사님 풀이
-        원더랜드_최소스패닝트리_07_unf = new int[n + 1];
+        int[] unf = new int[n + 1];
         List<원더랜드_최소스패닝트리_07_Edge> arr = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
-            원더랜드_최소스패닝트리_07_unf[i] = i;
+            unf[i] = i;
         }
         for (int i = 0; i < m; i++) {
             int a = kb.nextInt();
@@ -4994,33 +4989,72 @@ class Main {
             arr.add(new 원더랜드_최소스패닝트리_07_Edge(a, b, c));
         }
 
+        // 내 풀이
+        System.out.println(원더랜드_최소스패닝트리_07(unf, arr));
+
+        // 강사님 풀이
         int answer = 0;
         Collections.sort(arr);
         for (원더랜드_최소스패닝트리_07_Edge ob : arr) {
-            int fv1 = 원더랜드_최소스패닝트리_07_Find(ob.v1);
-            int fv2 = 원더랜드_최소스패닝트리_07_Find(ob.v2);
+            int v1 = ob.v1;
+            int v2 = ob.v2;
+
+            int fv1 = 원더랜드_최소스패닝트리_07_Find(v1, unf);
+            int fv2 = 원더랜드_최소스패닝트리_07_Find(v2, unf);
             if (fv1 != fv2) {
                 answer += ob.cost;
-                원더랜드_최소스패닝트리_07_Union(ob.v1, ob.v2);
+                원더랜드_최소스패닝트리_07_Union(v1, v2, unf);
             }
         }
         System.out.println(answer);
     }
 
-    private static void 원더랜드_최소스패닝트리_07_Union(int v1, int v2) {
-        int fa = 원더랜드_최소스패닝트리_07_Find(v1);
-        int fb = 원더랜드_최소스패닝트리_07_Find(v2);
+    private static void 원더랜드_최소스패닝트리_07_Union(int v1, int v2, int[] unf) {
+        int fa = 원더랜드_최소스패닝트리_07_Find(v1, unf);
+        int fb = 원더랜드_최소스패닝트리_07_Find(v2, unf);
         if (fa != fb) {
-            원더랜드_최소스패닝트리_07_unf[fa] = fb;
+            unf[fa] = fb;
         }
     }
 
-    private static int 원더랜드_최소스패닝트리_07_Find(int v) {
-        if (v == 원더랜드_최소스패닝트리_07_unf[v]) return v;
-        원더랜드_최소스패닝트리_07_unf[v] = 원더랜드_최소스패닝트리_07_Find(원더랜드_최소스패닝트리_07_unf[v]);
-        return 원더랜드_최소스패닝트리_07_unf[v];
+    private static int 원더랜드_최소스패닝트리_07_Find(int v, int[] unf) {
+        if (v == unf[v]) return v;
+        unf[v] = 원더랜드_최소스패닝트리_07_Find(unf[v], unf);
+        return unf[v];
     }
 
+    private static int 원더랜드_최소스패닝트리_07(int[] unf, List<원더랜드_최소스패닝트리_07_Edge> arr) {
+        Collections.sort(arr);
+        int sum = 0;
+
+        for (원더랜드_최소스패닝트리_07_Edge edge : arr) {
+            int v1 = edge.v1;
+            int v2 = edge.v2;
+
+            int fv1 = 원더랜드_최소스패닝트리_07_find_my(v1, unf);
+            int fv2 = 원더랜드_최소스패닝트리_07_find_my(v2, unf);
+            if (fv1 != fv2) {
+                sum += edge.cost;
+                원더랜드_최소스패닝트리_07_union_my(fv1, fv2, unf);
+            }
+        }
+
+        return sum;
+    }
+
+    private static void 원더랜드_최소스패닝트리_07_union_my(int fv1, int fv2, int[] unf) {
+        int fa = 원더랜드_최소스패닝트리_07_find_my(fv1, unf);
+        int fb = 원더랜드_최소스패닝트리_07_find_my(fv2, unf);
+        if (fa != fb) {
+            unf[fa] = fb;
+        }
+    }
+
+    private static int 원더랜드_최소스패닝트리_07_find_my(int v, int[] unf) {
+        if (v == unf[v]) return v;
+        unf[v] = 원더랜드_최소스패닝트리_07_find_my(unf[v], unf);
+        return unf[v];
+    }
 
     static class 원더랜드_최소스패닝트리_07_Edge implements Comparable<원더랜드_최소스패닝트리_07_Edge> {
         public int v1;
@@ -5035,8 +5069,69 @@ class Main {
         public int compareTo(원더랜드_최소스패닝트리_07_Edge o) {
             return this.cost - o.cost;
         }
+    }*/
+
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt(); // 도시 개수
+        int m = kb.nextInt(); // 도로 개수
+
+        List<List<원더랜드_최소스패닝트리_08_Edge>> arr = new ArrayList<>(n + 1);
+        for (int i = 0; i <= n; i++) {
+            arr.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < m; i++) {
+            int a = kb.nextInt();
+            int b = kb.nextInt();
+            int cost = kb.nextInt();
+            arr.get(a).add(new 원더랜드_최소스패닝트리_08_Edge(b, cost));
+            arr.get(b).add(new 원더랜드_최소스패닝트리_08_Edge(a, cost));
+        }
+
+        // 내 풀이
+        System.out.println(원더랜드_최소스패닝트리_08(arr));
+
+        // 강사님 풀이
+        // 비슷비슷
     }
 
+    private static int 원더랜드_최소스패닝트리_08(List<List<원더랜드_최소스패닝트리_08_Edge>> arr) {
+        boolean[] unf = new boolean[arr.size()];
+
+        int sum = 0;
+        PriorityQueue<원더랜드_최소스패닝트리_08_Edge> pq = new PriorityQueue<>();
+        pq.add(new 원더랜드_최소스패닝트리_08_Edge(1, 0));
+
+        while (!pq.isEmpty()) {
+            원더랜드_최소스패닝트리_08_Edge poll = pq.poll();
+            int vex = poll.vex;
+            int cost = poll.cost;
+            if (unf[vex]) continue;
+
+            for (원더랜드_최소스패닝트리_08_Edge edge : arr.get(vex)) {
+                pq.add(new 원더랜드_최소스패닝트리_08_Edge(edge.vex, edge.cost));
+            }
+
+            unf[vex] = true;
+            sum += cost;
+        }
+
+        return sum;
+    }
+
+    static class 원더랜드_최소스패닝트리_08_Edge implements Comparable<원더랜드_최소스패닝트리_08_Edge> {
+        public int vex;
+        public int cost;
+        public 원더랜드_최소스패닝트리_08_Edge(int vex, int cost) {
+            this.vex = vex;
+            this.cost = cost;
+        }
+        @Override
+        public int compareTo(원더랜드_최소스패닝트리_08_Edge o) {
+            return this.cost - o.cost;
+        }
+    }
 }
 
 
