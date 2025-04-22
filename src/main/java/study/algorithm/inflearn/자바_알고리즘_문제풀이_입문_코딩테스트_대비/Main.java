@@ -5071,7 +5071,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt(); // 도시 개수
         int m = kb.nextInt(); // 도로 개수
@@ -5130,6 +5130,44 @@ class Main {
         @Override
         public int compareTo(원더랜드_최소스패닝트리_08_Edge o) {
             return this.cost - o.cost;
+        }
+    }*/
+
+    static int 계단_오르기_01_answer = 0;
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt(); // 도시 개수
+
+        // 내 풀이
+        int[] arr = new int[n + 1];
+        계단_오르기_01(1, 0, n, arr);
+        System.out.println(계단_오르기_01_answer);
+
+        // 강사님 풀이
+        int[] dy = new int[n + 1];
+        System.out.println(계단_오르기_01_lecture(n, dy));
+    }
+
+    private static int 계단_오르기_01_lecture(int n, int[] dy) {
+        dy[1] = 1;
+        dy[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dy[i] = dy[i - 2] + dy[i - 1];
+        }
+
+        return dy[n];
+    }
+
+    private static void 계단_오르기_01(int index, int sum, int n, int[] arr) {
+        if (sum > n) return;
+        if (sum == n) {
+            계단_오르기_01_answer++;
+        } else {
+            for (int i = 1; i <= 2; i++) {
+                arr[index] = i;
+                계단_오르기_01(index + 1, sum + i, n, arr);
+                arr[index] = 0;
+            }
         }
     }
 }
