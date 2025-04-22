@@ -4489,8 +4489,65 @@ public class Level2 {
 
         return answer;
     }
-
     // 2025 프로그래머스 코드챌린지 2차 예선 - 서버 증설 횟수 END
+
+    // 숫자 카드 나누기 START
+    @Test
+    void 숫자_카드_나누기() {
+        // BASIC TEST CASE
+//        int[] arrayA = new int[]{10, 17};
+//        int[] arrayB = new int[]{5, 20};
+//        System.out.println("[0]result: " + 숫자_카드_나누기(arrayA, arrayB));
+//        int[] arrayA = new int[]{10, 20};
+//        int[] arrayB = new int[]{5, 17};
+//        System.out.println("[10]result: " + 숫자_카드_나누기(arrayA, arrayB));
+//        int[] arrayA = new int[]{14, 35, 119};
+//        int[] arrayB = new int[]{18, 30, 102};
+//        System.out.println("[7]result: " + 숫자_카드_나누기(arrayA, arrayB));
+        // TEST CASE
+        int[] arrayA = new int[]{6, 15};
+        int[] arrayB = new int[]{9, 15};
+        System.out.println("[7]result: " + 숫자_카드_나누기(arrayA, arrayB));
+
+
+    }
+
+    public int 숫자_카드_나누기(int[] arrayA, int[] arrayB) {
+        int size = arrayA.length;
+        int aGcd = arrayA[0];
+        int bGcd = arrayB[0];
+        for (int i = 1; i < size; i++) {
+            aGcd = getGcd(aGcd, arrayA[i]);
+            bGcd = getGcd(bGcd, arrayB[i]);
+        }
+
+        if (aGcd == 1 && bGcd == 1) return 0;
+        if (aGcd > bGcd) {
+            for (int num : arrayB) {
+                if (num % aGcd == 0) {
+                    return 0;
+                }
+            }
+            return aGcd;
+        }
+
+        for (int num : arrayA) {
+            if (num % bGcd == 0) {
+                return 0;
+            }
+        }
+        return bGcd;
+    }
+
+
+    public int getGcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return getGcd(b, a % b);
+    }
+    // 숫자 카드 나누기 END
+
 }
 
 
