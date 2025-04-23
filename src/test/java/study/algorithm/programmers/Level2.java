@@ -4548,6 +4548,109 @@ public class Level2 {
     }
     // 숫자 카드 나누기 END
 
+    // 미로 탈출 START
+    @Test
+    void 미로_탈출() throws Exception {
+//        String[] maps = new String[] {"SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"};
+//        System.out.println("[16] result : " + 미로_탈출(maps));
+
+        String[] maps = new String[] {"LOOXS", "OOOOX", "OOOOO", "OOOOO", "EOOOO"};
+        System.out.println("[-1] result : " + 미로_탈출(maps));
+
+//        String[] maps = new String[] {"SOEOL", "XXXXX", "XXXXX", "XXXXX", "OOOOO"};
+//        System.out.println("[6] result : " + 미로_탈출(maps));
+//
+
+
+    }
+
+    public int 미로_탈출(String[] maps) {
+        int n = maps.length;
+        int m = maps[0].length();
+
+        Map<String, int[]> mazeInfo = new HashMap<>();
+        String[][] maze = new String[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < maps[i].length(); j++) {
+                String value = maps[i].charAt(j) + "";
+                maze[i][j] = value;
+                if ("S".equals(value) || "L".equals(value) || "E".equals(value)) {
+                    mazeInfo.put(value, new int[] {i, j});
+                }
+            }
+        }
+
+        int answer = 0;
+        int[] dx = new int[] {-1, 0, 1, 0};
+        int[] dy = new int[] {0, 1, 0, -1};
+        boolean isOnLever = false;
+
+        Queue<int[]> que = new LinkedList();
+        int[] start = mazeInfo.get("S");
+        que.add(start);
+        maze[start[0]][start[1]] = "C";
+
+        while (!que.isEmpty()) {
+            answer++;
+            int qSize = que.size();
+            for (int i = 0; i < qSize; i++) {
+                int[] poll = que.poll();
+                int x = poll[0];
+                int y = poll[1];
+
+                for (int j = 0; j < dx.length; j++) {
+                    int tempX = x + dx[j];
+                    int tempY = y + dy[j];
+                    if (!미로_탈출_isAvailableNumber(tempX, tempY, maze)) {
+                        continue;
+                    }
+
+                    if (isOnLever) {
+                        if (미로_탈출_isMatch("E", mazeInfo, tempX, tempY)) {
+                            return answer;
+                        }
+
+                        maze[tempX][tempY] = "X";
+                    } else {
+                        if ("C".equals(maze[tempX][tempY])) {
+                            continue;
+                        }
+
+                        if (미로_탈출_isMatch("L" ,mazeInfo, tempX, tempY)) {
+                            isOnLever = true;
+                            que.clear();
+                            que.add(new int[]{tempX, tempY});
+                            qSize = 0;
+                            break;
+                        }
+
+                        if (!미로_탈출_isMatch("E", mazeInfo, tempX, tempY)) {
+                            maze[tempX][tempY] = "C";
+                        }
+                    }
+
+                    que.add(new int[] {tempX, tempY});
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    private boolean 미로_탈출_isMatch(String type, Map<String, int[]> mazeInfo, int x, int y) {
+        int[] target = mazeInfo.get(type);
+        if (target == null) return false;
+
+        return target[0] == x && target[1] == y;
+    }
+
+    private boolean 미로_탈출_isAvailableNumber(int x, int y, String[][] maze) {
+        return x >= 0 && x < maze.length
+                && y >= 0 && y < maze[0].length
+                && !"X".equals(maze[x][y]);
+    }
+    // 미로 탈출 END
+
 }
 
 

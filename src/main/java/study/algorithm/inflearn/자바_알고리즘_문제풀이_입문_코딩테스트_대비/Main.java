@@ -5133,7 +5133,7 @@ class Main {
         }
     }*/
 
-    static int 계단_오르기_01_answer = 0;
+    /*static int 계단_오르기_01_answer = 0;
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt(); // 도시 개수
@@ -5169,6 +5169,29 @@ class Main {
                 arr[index] = 0;
             }
         }
+    }*/
+
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt(); // 도시 개수
+
+        // 내 풀이
+        int[] arr = new int[n + 1];
+        System.out.println(돌다리_건너기_02(n, arr));
+
+        // 강사님 풀이
+        // 비슷
+    }
+
+    private static int 돌다리_건너기_02(int n, int[] arr) {
+        arr[0] = 1;
+        arr[1] = 2;
+
+        for (int i = 2; i <= n; i++) {
+            arr[i] = arr[i - 2] + arr[i - 1];
+        }
+
+        return arr[n];
     }
 }
 
