@@ -5171,7 +5171,7 @@ class Main {
         }
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt(); // 도시 개수
 
@@ -5192,6 +5192,62 @@ class Main {
         }
 
         return arr[n];
+    }*/
+
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt(); // 도시 개수
+
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = kb.nextInt();
+        }
+
+        // 내 풀이
+        System.out.println(최대_부분_증가수열_03(n, arr));
+
+        // 강사님 풀이
+        System.out.println(최대_부분_증가수열_03_lec(arr));
+        // 비슷
+    }
+
+    private static int 최대_부분_증가수열_03_lec(int[] arr) {
+        int[] dy = new int[arr.length];
+        int answer = 0;
+        dy[0] = 1;
+
+        for (int i = 1; i < arr.length; i++) {
+            int max = 0;
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[j] < arr[i] && dy[j] > max) max = dy[j];
+            }
+            dy[i] = max + 1;
+            answer = Math.max(answer, dy[i]);
+        }
+
+        return answer;
+    }
+
+    private static int 최대_부분_증가수열_03(int n, int[] arr) {
+        int result = 0;
+        int[] dy = new int[n];
+        dy[0] = 1;
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                int target = arr[i];
+
+                if (target > arr[j]) {
+                    dy[i] = Math.max(dy[i], dy[j] + 1);
+                }
+            }
+            if (dy[i] == 0) dy[i] = 1;
+
+            if (result < dy[i]) {
+                result = dy[i];
+            }
+        }
+
+        return result;
     }
 }
 
