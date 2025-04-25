@@ -4674,8 +4674,77 @@ public class Level2 {
     }
     // Summer/Winter Coding(~2018) - 배달 END
 
-}
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] 방금그곡 START
+    @Test
+    void 방금그곡_3차() throws Exception {
+//        String m = "ABCDEFG";
+//        String[] musicinfos = {"12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"};
+//        System.out.println("[HELLO] result: " + 방금그곡_3차(m, musicinfos));
+//        String m = "CC#BCC#BCC#BCC#B";
+//        String[] musicinfos = {"03:00,03:30,FOO,CC#B", "04:00,04:08,BAR,CC#BCC#BCC#B"};
+//        System.out.println("[FOO] result: " + 방금그곡_3차(m, musicinfos));
+//        String m = "ABC";
+//        String[] musicinfos = {"12:00,12:14,HELLO,C#DEFGAB", "13:00,13:05,WORLD,ABCDEF"};
+//        System.out.println("[WORLD] result: " + 방금그곡_3차(m, musicinfos));
+          String m = "ABCABC";
+        String[] musicinfos = {"12:00,12:10,HI,ABC", "12:30,12:39,BYE,ABC", "12:50,13:00,BYE,ABC"};
+        System.out.println("[BYE] result: " + 방금그곡_3차(m, musicinfos));
 
+    }
+
+    public String 방금그곡_3차(String m, String[] musicinfos) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> o2[1] - o1[1]);
+        m = 방금그곡_3차_replace(m);
+        String answer = "";
+        for (int i = 0; i < musicinfos.length; i++) {
+//            String musicinfo = musicinfos[i];
+            String musicinfo = musicinfos[i];
+
+            String[] split = musicinfo.split(",");
+            int sTime = 방금그곡_3차_getMinutes(split[0]);
+            int eTime = 방금그곡_3차_getMinutes(split[1]);
+            int n = eTime - sTime;
+            String title = split[2];
+            String content = 방금그곡_3차_replace(split[3]);
+
+            StringBuilder sb = new StringBuilder();
+            int j = 0;
+            for (int count = 0; count < n; count++) {
+                if (j >= content.length()) j = 0;
+                sb.append(content.charAt(j++));
+            }
+
+            int indexOf = sb.toString().indexOf(m);
+            if (indexOf < 0) {
+                continue;
+            }
+            pq.offer(new int[] {i, n});
+        }
+
+        if (pq.isEmpty()) return "(None)";
+
+        int[] poll = pq.poll();
+        return musicinfos[poll[0]].split(",")[2];
+    }
+
+    private String 방금그곡_3차_replace(String musicinfo) {
+        return musicinfo
+                .replaceAll("A#", "Z")
+                .replaceAll("B#", "Y")
+                .replaceAll("C#", "X")
+                .replaceAll("D#", "J")
+                .replaceAll("E#", "K")
+                .replaceAll("F#", "L")
+                .replaceAll("G#", "M");
+    }
+
+    private int 방금그곡_3차_getMinutes(String time) {
+        String[] split = time.split(":");
+        return Integer.parseInt(split[0]) * 60 + Integer.parseInt(split[1]);
+    }
+    // 2018 KAKAO BLIND RECRUITMENT - [3차] 방금그곡 END
+
+}
 
 
 
