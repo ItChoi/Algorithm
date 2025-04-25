@@ -4349,60 +4349,6 @@ public class Level2 {
     }
     // 시소 짝궁 END
 
-    // Summer/Winter Coding(~2018) - 배달 START
-    @Test
-    public void 배달() {
-        int[][] road1 = new int[][] {
-                {1, 2, 1},
-                {2, 3, 3},
-                {5, 2, 2},
-                {1, 4, 2},
-                {5, 3, 1},
-                {5, 4, 2}
-        };
-        System.out.println("[4] result: " + 배달(5, road1, 3));
-
-        /*int[][] road2 = new int[][] {
-                {1, 2, 1},
-                {1, 3, 2},
-                {2, 3, 2},
-                {3, 4, 3},
-                {3, 5, 2},
-                {3, 5, 3},
-                {5, 6, 1}
-        };
-        System.out.println("[4] result: " + 배달(6, road2, 4));*/
-    }
-
-    public int 배달(int N,
-                   int[][] road,
-                   int K) {
-        int answer = 1;
-        Map<Integer, Map<Integer, Integer>> map = new HashMap<>();
-
-        for (int i = 0; i < road.length; i++) {
-            int node1 = road[i][0];
-            int node2 = road[i][1];
-            int time = road[i][2];
-
-            Map<Integer, Integer> var1 = map.getOrDefault(node1, new HashMap<>());
-            if (var1.get(node2) == null || var1.get(node2) > time) {
-                var1.put(node2, time);
-                map.put(node1, var1);
-            }
-
-            Map<Integer, Integer> var2 = map.getOrDefault(node2, new HashMap<>());
-            if (var2.get(node1) == null || var2.get(node1) > time) {
-                var2.put(node1, time);
-                map.put(node2, var2);
-            }
-        }
-
-
-
-        return answer;
-    }
-    // Summer/Winter Coding(~2018) - 배달 END
 
     @DisplayName("테스트를 위한 테스트")
     @Test
@@ -4650,6 +4596,83 @@ public class Level2 {
                 && !"X".equals(maze[x][y]);
     }
     // 미로 탈출 END
+
+    // Summer/Winter Coding(~2018) - 배달 START
+    @DisplayName("")
+    @Test
+    void 배달() throws Exception {
+        int[][] road1 = new int[][] {
+                {1, 2, 1},
+                {2, 3, 3},
+                {5, 2, 2},
+                {1, 4, 2},
+                {5, 3, 1},
+                {5, 4, 2}
+        };
+        System.out.println("[4] result: " + 배달(5, road1, 3));
+
+        /*int[][] road2 = new int[][] {
+                {1, 2, 1},
+                {1, 3, 2},
+                {2, 3, 2},
+                {3, 4, 3},
+                {3, 5, 2},
+                {3, 5, 3},
+                {5, 6, 1}
+        };
+        System.out.println("[4] result: " + 배달(6, road2, 4));*/
+    }
+
+    public int 배달(int N, int[][] road, int K) {
+        List<List<배달_edge>> list = new ArrayList<>();
+        for (int i = 0; i <= N; i++) {
+            list.add(new ArrayList<>());
+        }
+
+        for (int[] nums : road) {
+            list.get(nums[0]).add(new 배달_edge(nums[1], nums[2]));
+            list.get(nums[1]).add(new 배달_edge(nums[0], nums[2]));
+        }
+
+        int answer = 0;
+        int[] arr = new int[N + 1];
+        Arrays.fill(arr, Integer.MAX_VALUE);
+        arr[1] = 0;
+        PriorityQueue<배달_edge> pq = new PriorityQueue<>();
+        pq.offer(new 배달_edge(1, 0));
+
+        while (!pq.isEmpty()) {
+            배달_edge parentEdge = pq.poll();
+
+            for (배달_edge edge : list.get(parentEdge.vex)) {
+                int sumCost = arr[parentEdge.vex] + edge.cost;
+                if (arr[edge.vex] <= sumCost) continue;
+                pq.offer(edge);
+
+                arr[edge.vex] = sumCost;
+            }
+        }
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] <= K) answer++;
+        }
+        return answer;
+    }
+
+    class 배달_edge implements Comparable<배달_edge> {
+        int vex;
+        int cost;
+
+        public 배달_edge(int vex, int cost) {
+            this.vex = vex;
+            this.cost = cost;
+        }
+        @Override
+        public int compareTo(배달_edge o) {
+            return this.cost - o.cost;
+        }
+    }
+    // Summer/Winter Coding(~2018) - 배달 END
 
 }
 
