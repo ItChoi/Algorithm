@@ -5194,7 +5194,7 @@ class Main {
         return arr[n];
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt(); // 도시 개수
 
@@ -5208,7 +5208,6 @@ class Main {
 
         // 강사님 풀이
         System.out.println(최대_부분_증가수열_03_lec(arr));
-        // 비슷
     }
 
     private static int 최대_부분_증가수열_03_lec(int[] arr) {
@@ -5248,6 +5247,89 @@ class Main {
         }
 
         return result;
+    }*/
+
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt(); // 도시 개수
+
+        List<가장_높은_탑_쌓기_04_brick> list = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            list.add(new 가장_높은_탑_쌓기_04_brick(kb.nextInt(), kb.nextInt(), kb.nextInt()));
+        }
+
+        // 내 풀이
+        System.out.println(가장_높은_탑_쌓기_04(n, list));
+
+        // 강사님 풀이
+        System.out.println(가장_높은_탑_쌓기_04_lec(n, list));
+    }
+
+    private static int 가장_높은_탑_쌓기_04_lec(int n, List<가장_높은_탑_쌓기_04_brick> arr) {
+        int answer = 0;
+        Collections.sort(arr);
+        int[] dy = new int[n];
+        dy[0] = arr.get(0).height;
+        answer = dy[0];
+
+        for (int i = 1; i < arr.size(); i++) {
+            int max_h = 0;
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr.get(j).weight > arr.get(i).weight && dy[j] > max_h) {
+                    max_h = dy[j];
+                }
+            }
+            dy[i] = max_h + arr.get(i).height;
+            answer = Math.max(answer, dy[i]);
+        }
+
+        return answer;
+    }
+
+    private static int 가장_높은_탑_쌓기_04(int n, List<가장_높은_탑_쌓기_04_brick> list) {
+        Collections.sort(list);
+        int result = 0;
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+
+            가장_높은_탑_쌓기_04_brick target = list.get(i);
+            boolean isOk = false;
+            for (int j = i - 1; j >= 0; j--) {
+                가장_높은_탑_쌓기_04_brick compare = list.get(j);
+                if (compare.weight > target.weight) {
+                    isOk = true;
+                    arr[i] = Math.max(arr[i], arr[j] + target.height);
+                }
+            }
+            if (!isOk) arr[i] = target.height;
+        }
+
+        for (int i : arr) {
+            if (result < i) {
+                result = i;
+            }
+        }
+
+        return result;
+    }
+
+    static class 가장_높은_탑_쌓기_04_brick implements Comparable<가장_높은_탑_쌓기_04_brick> {
+        private int baseArea; // 밑면 넓이
+        private int height;   // 벽돌 높이
+        private int weight;   // 벽돌 무게
+
+        public 가장_높은_탑_쌓기_04_brick(int baseArea,
+                                   int height,
+                                   int weight) {
+            this.baseArea = baseArea;
+            this.height = height;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(가장_높은_탑_쌓기_04_brick o) {
+            return o.baseArea - this.baseArea;
+        }
     }
 }
 
