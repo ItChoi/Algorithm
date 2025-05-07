@@ -5249,7 +5249,7 @@ class Main {
         return result;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt(); // 도시 개수
 
@@ -5330,6 +5330,50 @@ class Main {
         public int compareTo(가장_높은_탑_쌓기_04_brick o) {
             return o.baseArea - this.baseArea;
         }
+    }*/
+
+    public static void main(String[] args) {
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt(); // 도시 개수
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = kb.nextInt();
+        }
+        int m = kb.nextInt();
+
+        // 내 풀이 -> DFS로는 동전 개수에 따라 time limit, dp로 풀어야 한다.
+        System.out.println(동전교환_05_me(arr, m));
+
+        // 강사님 풀이
+        System.out.println(동전교환_05_lec(arr, m));
+    }
+
+    private static int 동전교환_05_lec(int[] coin, int m) {
+        int[] dy = new int[m + 1];
+        Arrays.fill(dy, Integer.MAX_VALUE);
+        dy[0] = 0;
+        for (int i = 0; i < coin.length; i++) {
+            for (int j = coin[i]; j <= m; j++) {
+                dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1);
+            }
+        }
+
+        return dy[m];
+    }
+
+    private static int 동전교환_05_me(int[] arr, int m) {
+        int[] temp = new int[m + 1];
+        Arrays.fill(temp, Integer.MAX_VALUE);
+        temp[0] = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int coin = arr[i];
+
+            for (int j = coin; j <= m; j++) {
+                temp[j] = Math.min(temp[j], temp[j - coin] + 1);
+            }
+        }
+
+        return temp[m];
     }
 }
 
